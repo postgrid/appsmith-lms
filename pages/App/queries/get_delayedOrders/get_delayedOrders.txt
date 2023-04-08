@@ -1,1 +1,5 @@
-SELECT count("OrderStatus") FROM "CustomerLineItems" WHERE "OrderStatus" !='DELIVERED' 
+SELECT count(c1."OrderStatus")
+FROM "public"."Invoice" i
+INNER JOIN "public"."CustomerLineItems" c1 ON ( c1."InvoiceID" = i."InvoiceID" )
+WHERE c1."OrderStatus" !='DELIVERED'
+AND DATE_PART('day', NOW() - i."InvoiceDate") > 3;
