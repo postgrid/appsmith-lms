@@ -1,1 +1,1 @@
-SELECT count("OrderStatus") FROM "CustomerLineItems" WHERE "OrderStatus" ='DELIVERED'
+SELECT count(DISTINCT "SubItemID") FROM "CustomerLineItems" WHERE "OrderStatus" ='DELIVERED'

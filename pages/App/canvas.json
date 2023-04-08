@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1160,
+          "bottomRow": 1292,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -2248,13 +2248,10 @@
                               "hideCard": false,
                               "animateLoading": false,
                               "overflow": "NONE",
-                              "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
+                              "fontFamily": "Rubik",
                               "dynamicTriggerPathList": [],
                               "leftColumn": 2,
                               "dynamicBindingPathList": [
-                                {
-                                  "key": "fontFamily"
-                                },
                                 {
                                   "key": "borderRadius"
                                 },
