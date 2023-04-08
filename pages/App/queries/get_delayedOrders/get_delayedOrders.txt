@@ -1,6 +1,6 @@
-SELECT count(DISTINCT "SubItemID")
+SELECT count(*)
 FROM "public"."Invoice" i
 INNER JOIN "public"."CustomerLineItems" c1 ON ( c1."InvoiceID" = i."InvoiceID" )
-WHERE c1."OrderStatus" != 'DELIVERED'
+WHERE c1."SubItemID" IS NULL AND c1."OrderStatus" != 'DELIVERED'
 AND EXTRACT(DOW FROM i."InvoiceDate") NOT IN (0, 6) -- exclude Sunday (0) and Saturday (6)
 AND EXTRACT(DAY FROM (NOW() - i."InvoiceDate"))::INTEGER > 3 -- extract number of days and cast to integer
