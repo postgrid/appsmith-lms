@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1160,
+          "bottomRow": 1292,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -4680,7 +4680,7 @@
               "dynamicHeight": "FIXED",
               "widgetId": "c7eiofx1fl",
               "accentColor": "#ffffff",
-              "defaultTab": "{{appsmith.store?.access_token? \"Main\" : \"Main\"}}",
+              "defaultTab": "{{appsmith.store?.access_token? \"Main\" : \"Login\"}}",
               "shouldShowTabs": false,
               "tabsObj": {
                 "tab1": {
