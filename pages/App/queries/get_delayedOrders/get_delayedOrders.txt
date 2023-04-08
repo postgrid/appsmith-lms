@@ -1,1 +1,1 @@
-SELECT count("OrderStatus") FROM "Invoice" WHERE "OrderStatus" ='DELAYED'
+SELECT count("OrderStatus") FROM "CustomerLineItems" WHERE "OrderStatus" !='DELIVERED' 
