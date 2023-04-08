@@ -1,0 +1,15 @@
+{
+  "unpublishedCollection": {
+    "name": "Auth",
+    "pageId": "PrinterDashboard",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "actions": [],
+    "archivedActions": [],
+    "variables": [],
+    "userPermissions": []
+  },
+  "id": "PrinterDashboard_Auth",
+  "deleted": false,
+  "gitSyncId": "63b393c7f276cd0745e9510c_63e2e22b6b8ca42af5ad92dc"
+}

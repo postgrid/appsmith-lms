@@ -1,0 +1,1 @@
+SELECT "PrinterName" FROM public."Printers" limit 10;

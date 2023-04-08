@@ -1,0 +1,3 @@
+SELECT DISTINCT ON  ("customerName") *
+FROM  "Customers" 
+ORDER BY "customerName", "dateofJoin"  DESC;

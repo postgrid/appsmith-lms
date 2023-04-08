@@ -1,0 +1,4 @@
+{
+  "email": "{{get_user.data.email}}",
+  "password": "{{appsmith.store.newpw}}"
+}

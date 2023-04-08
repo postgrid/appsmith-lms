@@ -1,0 +1,4 @@
+{
+  "email": "{{Input1Copy.text}}",
+  "password": "{{Input2Copy.text}}"
+}

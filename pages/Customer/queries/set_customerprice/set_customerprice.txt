@@ -1,0 +1,20 @@
+
+
+CREATE TABLE price_temp_items (
+  temp_price_id INTEGER,
+  temp_cust_id TEXT
+);
+
+
+INSERT INTO price_temp_items (temp_price_id,temp_cust_id)
+VALUES 
+	 {{appsmith.store.newList.map((d) => { 	
+			return"(" + "(SELECT \"Id\" FROM \"Products\" WHERE \"ProductDescription\" = '" + d.ProductDescription + "' )," + "(SELECT \"Id\" FROM \"Customers\" WHERE \"CustomerName\" = '" + d.ClientName + "' ))"}).join(",")  }};
+			
+INSERT INTO public."CustomerPrice" ("ProductID", "CustomerID")
+SELECT DISTINCT temp_price_id,temp_cust_id  FROM price_temp_items
+WHERE NOT EXISTS (
+  SELECT 1 FROM public."CustomerPrice" WHERE "ProductID" = temp_price_id AND "CustomerID" = temp_cust_id
+);
+
+DROP TABLE price_temp_items;

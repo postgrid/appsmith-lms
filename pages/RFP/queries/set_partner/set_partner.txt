@@ -1,0 +1,5 @@
+INSERT INTO public."Printers" ("PrinterName", "Status", "Cheques", "Postcards", "Letters", "Address", "City", "State", "Country", "RFP")
+  VALUES 
+		 {{appsmith.store.partnerdata.map((d) => { 		const str = d.PrinterName
+		const newCompanyname = str.replace("\'", "'\'");
+		return"('" + newCompanyname + "'," + "'" + d.Status + "'," + "'" + d.Cheques + "'," + d.Postcards + "," + "'" + d.Letters + "'," + "'" + d.Address + "'," + "'" + d.City + "'," + "'" + d.State + "'," + "'" + d.Country + "'," + "'" + d.RFP + "')"}).join(",")  }};

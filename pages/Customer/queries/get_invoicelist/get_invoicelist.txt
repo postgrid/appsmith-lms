@@ -1,0 +1,7 @@
+
+
+
+SELECT i."InvoiceID" as "InvoiceNo", i."InvoiceDate", i."CustomerID", i."PaymentMethod", i."InvoiceStatus", i."OrderStatus", c1."CustomerName", c1."Country", c1."PlanID", c1."IsKYCDone", c1."RejectList", c1."WithIMB" , to_date(cast(c1."JoiningDate" as TEXT),'YYYY-MM-DD') 
+FROM "public"."Invoice" i 
+	INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID"  )  
+WHERE to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >= '{{moment().format('YYYY-MM-DD')}}' order by i."InvoiceID" asc;

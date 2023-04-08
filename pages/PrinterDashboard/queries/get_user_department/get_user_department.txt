@@ -1,0 +1,1 @@
+SELECT users."Department" FROM public."users" where email = '{{get_user.data.email}}'

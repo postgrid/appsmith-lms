@@ -1,0 +1,1 @@
+Select distinct "ProductType"  from "Products" where "ProductType" != ''  order by "ProductType" asc

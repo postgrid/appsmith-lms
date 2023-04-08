@@ -1,0 +1,2 @@
+SELECT * 
+FROM public."Printers" WHERE UPPER("PrinterName")  LIKE  '%{{Input2.text.toUpperCase()}}%' order by "Id" asc;

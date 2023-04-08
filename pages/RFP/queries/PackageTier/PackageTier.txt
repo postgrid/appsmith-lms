@@ -1,0 +1,1 @@
+SELECT "PackageTier" FROM "PriceDeal" order by "Id" ASC

@@ -1,0 +1,3 @@
+SELECT DISTINCT p1."PackageTier", p1."Id"
+FROM "public"."PrinterPrice" p 
+	INNER JOIN "public"."PriceDeal" p1 ON ( p1."Id" = p."PriceDealID"  )  order by p1."Id"  ASC

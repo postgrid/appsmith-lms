@@ -1,0 +1,7 @@
+SELECT p1."ProductDescription" , p."Rate" as "{{Select_PrinterCopy.selectedOptionValue}} {{Select_Tier.selectedOptionLabel}}"
+FROM "public"."PrinterPrice" p 
+	FULL OUTER JOIN "public"."Products" p1 ON ( p1."Id" = p."ProductID"  )  
+	INNER JOIN "public"."PriceDeal" p2 ON ( p2."Id" = p."PriceDealID"  )  
+	INNER JOIN "public"."Printers" p3 ON ( p3."Id" = p."PrinterID"  )  
+	
+WHERE p2."PackageTier"='{{Select_Tier.selectedOptionLabel}}' AND p3."PrinterName"  ='{{Select_PrinterCopy.selectedOptionValue}}' 

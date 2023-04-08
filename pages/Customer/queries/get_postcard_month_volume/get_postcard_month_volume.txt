@@ -1,0 +1,8 @@
+SELECT Sum(c1."Qty")
+FROM "public"."CustomerLineItems" c1 
+	INNER JOIN "public"."CustomerPrice" c2 ON ( c2."Id" = c1."CustomerPriceID"  )  
+	INNER JOIN "public"."Products" p ON ( p."Id" = c2."ProductID"  )  
+	INNER JOIN "public"."Customers" c3 ON ( c3."Id" = c2."CustomerID"  )  
+	INNER JOIN "public"."Invoice" i ON ( i."CustomerID" = c3."Id"  )  
+WHERE  p."ProductType" ='Postcard' AND
+extract(month from i."InvoiceDate") = '{{moment().format('MM')}}' AND extract(Year from i."InvoiceDate") = '{{moment().format('YYYY')}}'

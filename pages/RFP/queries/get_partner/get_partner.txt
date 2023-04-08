@@ -1,0 +1,2 @@
+SELECT * 
+FROM public."Printers"  order by "Id" asc;

@@ -1,0 +1,5 @@
+INSERT INTO public."Customers" ("OrgID", "CustomerName", "Country", "CurrentPlan", "PlanLimit", "IsKYCDone", "Status", "DateofJoin")
+  VALUES 
+	 {{appsmith.store.userdata.map((d) => { 		const str = d.CustomerName
+		const newCustomername = str.replace("\'", "'\'");
+		return"(" + "'" + d.OrgID + "'," + "'" + newCustomername + "'," + "'" + d.Country + "'," + "'" + d.CurrentPlan + "'," + d.PlanLimit + "," + "'" + d.IsKYCDone + "'," + "'" + d.Status + "'," + "'" + d.DateofJoin + "')"}).join(",")  }};

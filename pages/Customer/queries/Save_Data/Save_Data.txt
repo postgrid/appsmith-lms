@@ -1,0 +1,17 @@
+UPDATE public."PrinterLineItems"
+SET "PrinterPriceID" = (SELECT p."Id"
+FROM "public"."PrinterPrice" p 
+	INNER JOIN "public"."Printers" p1 ON ( p1."Id" = p."PrinterID"  )  
+	INNER JOIN "public"."Products" p2 ON ( p2."Id" = p."ProductID"  )  
+	INNER JOIN "public"."PriceDeal" p3 ON ( p3."Id" = p."PriceDealID"  )  
+WHERE p1."PrinterName" = '{{this.params.currentRow.AssignTo}}' AND
+	p2."ProductDescription" = '{{JSON.parse(JSON.stringify(this.params.currentRow.ProductDescription).replaceAll("'", "''"))}}' AND
+	p3."Id" = (SELECT st.tier_level_id
+FROM "public".set_tier st 
+	INNER JOIN "public"."Printers" p ON ( p."Id" = st.printerid  )  
+	INNER JOIN "public"."PriceDeal" p1 ON ( p1."Id" = st.tier_level_id  )  
+	WHERE p."PrinterName" =  '{{this.params.currentRow.AssignTo}}'))
+
+WHERE "Id" = {{this.params.currentRow.itemid}} 
+
+

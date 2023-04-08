@@ -1,0 +1,4 @@
+INSERT INTO public."Products" ( "Category", "Product Name", "First Sheet", "Extra Sheet", "user_id", "partner_id", "Add Ons","Overweight","SameDay")
+  VALUES 
+		 {{appsmith.store.productsdata.map((d) => {
+		return"(" + "'" + d.Category + "'," + "'" + d.Collateral + "'," + "" + d.FirstSheet + "," + d.ExtraSheet + "," + "'" + get_user.data.email + "'," + "" + d.PartnerID + "," + "" + d.AddOns + "," + "" + d.Overweight + "," + "" + d.SameDay + ")"}).join(",")  }};

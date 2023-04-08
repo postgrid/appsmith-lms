@@ -1,0 +1,15 @@
+{
+  "unpublishedCollection": {
+    "name": "StoreActions",
+    "pageId": "RFP",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "actions": [],
+    "archivedActions": [],
+    "variables": [],
+    "userPermissions": []
+  },
+  "id": "RFP_StoreActions",
+  "deleted": false,
+  "gitSyncId": "63b393c7f276cd0745e9510c_63f2e6aea01b764626f2d973"
+}

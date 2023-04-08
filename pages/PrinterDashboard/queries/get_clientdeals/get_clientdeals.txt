@@ -1,0 +1,5 @@
+SELECT c1.custdeals_id, c1."First Sheet", c1."Extra Sheet", c1."Add Ons", c1."Overweight", p."Product Name", c2.customer_id, c2."Customer_Name"
+FROM "public"."CustomerDeals" c1 
+	INNER JOIN "public"."Products" p ON ( p.product_id = c1.product_id  )  
+	INNER JOIN "public"."Customer" c2 ON ( c2.customer_id = c1.customer_id  )  
+WHERE c2.customer_id = '{{Dropdown_customerlist.selectedOptionValue}}'

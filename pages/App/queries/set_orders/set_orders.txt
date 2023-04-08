@@ -1,0 +1,2 @@
+INSERT INTO public."Orders" ("order_id", "customerdeals_id", "Quantity", "Order Cost", "Customer Bill", "envelope_id")
+  VALUES (1, 1, 1, 1.0, 1.0, 1);

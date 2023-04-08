@@ -1,0 +1,1 @@
+SELECT * FROM public."EnvelopeDeals" LIMIT 10;

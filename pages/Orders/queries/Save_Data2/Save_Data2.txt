@@ -1,0 +1,11 @@
+UPDATE "PrinterLineItems"
+SET "InitialProdDescription" ='{{this.params.currentRow.ProductDescription}}', "Qty" = {{this.params.currentRow.Qty}}
+WHERE "Id" = '{{this.params.currentRow.itemid}}';
+
+UPDATE "CustomerLineItems"
+SET  "Qty" = {{this.params.currentRow.Qty}}
+WHERE "Id" = '{{this.params.currentRow.itemid}}';
+
+
+
+
