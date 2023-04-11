@@ -5678,7 +5678,7 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "Orders_Util.autorefresh",
+              "id": "63ffcd918a12fa7e07de8da0",
               "name": "Util.autorefresh",
               "collectionId": "Orders_Util",
               "confirmBeforeExecute": false,
@@ -5689,7 +5689,7 @@
               "timeoutInMillisecond": 10000
             },
             {
-              "id": "Orders_Util.synchronize",
+              "id": "63edb08b3d6355314506116f",
               "name": "Util.synchronize",
               "collectionId": "Orders_Util",
               "confirmBeforeExecute": false,
