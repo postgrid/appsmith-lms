@@ -27,6 +27,10 @@
     {
       "id": "Customer",
       "isDefault": false
+    },
+    {
+      "id": "MailingVolume",
+      "isDefault": false
     }
   ],
   "viewMode": false,

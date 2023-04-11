@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "myFun2",
-    "fullyQualifiedName": "StoreActions.myFun2",
+    "name": "myFun1",
+    "fullyQualifiedName": "StoreActions.myFun1",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -13,8 +13,8 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Orders",
-    "collectionId": "Orders_StoreActions",
+    "pageId": "MailingVolume",
+    "collectionId": "MailingVolume_StoreActions",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -39,7 +39,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_StoreActions.myFun2",
+  "id": "MailingVolume_StoreActions.myFun1",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_63fb6325c016ee06f90e56f3"
+  "gitSyncId": "63b393c7f276cd0745e9510c_6435868e99d4922aba72ab01"
 }

@@ -13,8 +13,8 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Orders",
-    "collectionId": "Orders_Util",
+    "pageId": "MailingVolume",
+    "collectionId": "MailingVolume_Util",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_Util.autorefresh",
+  "id": "MailingVolume_Util.autorefresh",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_63ffcd918a12fa7e07de8d9f"
+  "gitSyncId": "63b393c7f276cd0745e9510c_64358ebf99d4922aba72abbe"
 }

@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "synchronize",
-    "fullyQualifiedName": "Util.synchronize",
+    "name": "clearPicker_orders",
+    "fullyQualifiedName": "Util.clearPicker_orders",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -13,8 +13,8 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Orders",
-    "collectionId": "Orders_Util",
+    "pageId": "MailingVolume",
+    "collectionId": "MailingVolume_Util",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -23,7 +23,7 @@
       "jsArguments": [],
       "isAsync": true
     },
-    "executeOnLoad": true,
+    "executeOnLoad": false,
     "dynamicBindingPathList": [
       {
         "key": "body"
@@ -32,12 +32,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "userSetOnLoad": true,
+    "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_Util.synchronize",
+  "id": "MailingVolume_Util.clearPicker_orders",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_63edb08b3d6355314506116e"
+  "gitSyncId": "63b393c7f276cd0745e9510c_6435868e99d4922aba72aaf9"
 }
