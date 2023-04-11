@@ -1,1 +1,1 @@
-SELECT count(*) FROM "CustomerLineItems" WHERE "OrderStatus" ='DELIVERED' AND "SubItemID" IS NULL
+SELECT count("OrderStatus") FROM "CustomerLineItems" WHERE "OrderStatus" ='DELIVERED'

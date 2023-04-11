@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT count(*)\nFROM \"public\".\"Invoice\" i\nINNER JOIN \"public\".\"CustomerLineItems\" c1 ON ( c1.\"InvoiceID\" = i.\"InvoiceID\" )\nWHERE c1.\"SubItemID\" IS NULL AND c1.\"OrderStatus\" != 'DELIVERED'\nAND EXTRACT(DOW FROM i.\"InvoiceDate\") NOT IN (0, 6) -- exclude Sunday (0) and Saturday (6)\nAND EXTRACT(DAY FROM (NOW() - i.\"InvoiceDate\"))::INTEGER > 3 -- extract number of days and cast to integer\n",
+      "body": "SELECT count(\"OrderStatus\") FROM \"CustomerLineItems\" WHERE \"OrderStatus\" !='DELIVERED' ",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
