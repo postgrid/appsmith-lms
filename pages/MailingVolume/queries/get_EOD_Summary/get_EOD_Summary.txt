@@ -7,7 +7,7 @@ FROM "public"."CustomerLineItems" c1
   	INNER JOIN "public"."CustomerPrice" cp ON (cp."Id" = c1."CustomerPriceID") 
   	INNER JOIN "public"."Products" p ON (p."Id" = cp."ProductID") 
   	INNER JOIN "public"."Customers" cu ON (cu."Id" = cp."CustomerID") 
-WHERE i."InvoiceDate"::date >= '2023-04-11'::date 
+WHERE i."InvoiceDate"::date >= '{{moment().format("YYYY-MM-DD")}}'::date 
 	AND p."ProductType" IN ('Cheque', 'Letter', 'Postcard')
 GROUP BY cu."CustomerName"
 ORDER BY cu."CustomerName" ASC

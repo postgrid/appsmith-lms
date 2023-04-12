@@ -18,20 +18,26 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT cu.\"CustomerName\",\n       SUM(CASE WHEN p.\"ProductType\" = 'Cheque' THEN c1.\"Qty\" ELSE NULL END) AS \"Cheques\",\n       SUM(CASE WHEN p.\"ProductType\" = 'Letter' THEN c1.\"Qty\" ELSE NULL END) AS \"Letters\",\n       SUM(CASE WHEN p.\"ProductType\" = 'Postcard' THEN c1.\"Qty\" ELSE NULL END) AS \"Postcards\"\nFROM \"public\".\"CustomerLineItems\" c1\n\tINNER JOIN \"public\".\"Invoice\" i ON (c1.\"InvoiceID\" = i.\"InvoiceID\") \n  \tINNER JOIN \"public\".\"CustomerPrice\" cp ON (cp.\"Id\" = c1.\"CustomerPriceID\") \n  \tINNER JOIN \"public\".\"Products\" p ON (p.\"Id\" = cp.\"ProductID\") \n  \tINNER JOIN \"public\".\"Customers\" cu ON (cu.\"Id\" = cp.\"CustomerID\") \nWHERE i.\"InvoiceDate\"::date >= '2023-04-11'::date \n\tAND p.\"ProductType\" IN ('Cheque', 'Letter', 'Postcard')\nGROUP BY cu.\"CustomerName\"\nORDER BY cu.\"CustomerName\" ASC",
+      "body": "SELECT cu.\"CustomerName\",\n       SUM(CASE WHEN p.\"ProductType\" = 'Cheque' THEN c1.\"Qty\" ELSE NULL END) AS \"Cheques\",\n       SUM(CASE WHEN p.\"ProductType\" = 'Letter' THEN c1.\"Qty\" ELSE NULL END) AS \"Letters\",\n       SUM(CASE WHEN p.\"ProductType\" = 'Postcard' THEN c1.\"Qty\" ELSE NULL END) AS \"Postcards\"\nFROM \"public\".\"CustomerLineItems\" c1\n\tINNER JOIN \"public\".\"Invoice\" i ON (c1.\"InvoiceID\" = i.\"InvoiceID\") \n  \tINNER JOIN \"public\".\"CustomerPrice\" cp ON (cp.\"Id\" = c1.\"CustomerPriceID\") \n  \tINNER JOIN \"public\".\"Products\" p ON (p.\"Id\" = cp.\"ProductID\") \n  \tINNER JOIN \"public\".\"Customers\" cu ON (cu.\"Id\" = cp.\"CustomerID\") \nWHERE i.\"InvoiceDate\"::date >= '{{moment().format(\"YYYY-MM-DD\")}}'::date \n\tAND p.\"ProductType\" IN ('Cheque', 'Letter', 'Postcard')\nGROUP BY cu.\"CustomerName\"\nORDER BY cu.\"CustomerName\" ASC",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ]
     },
     "executeOnLoad": true,
-    "dynamicBindingPathList": [],
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [],
+    "jsonPathKeys": [
+      "moment().format(\"YYYY-MM-DD\")"
+    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
