@@ -1,7 +1,4 @@
 
-
-
-
 WITH RECURSIVE item_tree("Id", "SubItemID", "InvoiceID","Qty","InitialProdDescription","Amount", "PrinterPriceID", "Rate", "Printer", depth,"Destination") AS (
   SELECT "Id", "SubItemID", "InvoiceID","Qty","InitialProdDescription","Amount", "PrinterPriceID", "Rate", "Printer", 0, "Destination" FROM "public"."PrinterLineItems" WHERE "SubItemID" IS  NULL
   UNION ALL
@@ -20,5 +17,5 @@ WHERE tt."InvoiceID" ='{{Table2.selectedRow.InvoiceNo}}'
 
 UNION ALL
 
-SELECT NULL, NULL, NULL, NULL, NULL, NULL ,total, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TOTAL', NULL, NULL, NULL, NULL, NULL
-FROM total_amount;
+SELECT NULL, NULL, NULL, NULL, NULL, NULL ,total, NULL,NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TOTAL', NULL, NULL, NULL, NULL, NULL
+FROM total_amount limit {{Table3.pageSize}} offset {{(Table3.pageNo - 1) * Table3.pageSize}};

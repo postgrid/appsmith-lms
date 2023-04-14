@@ -109,7 +109,7 @@
                           "widgetName": "Canvas19Copy",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 1770,
+                          "bottomRow": 1760,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -180,18 +180,6 @@
                                   "key": "primaryColumns.To.computedValue"
                                 },
                                 {
-                                  "key": "primaryColumns.customColumn2.borderRadius"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn2.boxShadow"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn3.borderRadius"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn3.boxShadow"
-                                },
-                                {
                                   "key": "primaryColumns.AssignTo.selectOptions"
                                 }
                               ],
@@ -232,15 +220,13 @@
                               },
                               "borderRadius": "0px",
                               "originalBottomRow": 75,
-                              "columnUpdatedAt": 1680120126107,
+                              "columnUpdatedAt": 1681477028014,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3Copy",
                               "defaultPageSize": 0,
                               "columnOrder": [
                                 "customColumn1",
                                 "AssignTo",
-                                "customColumn2",
-                                "customColumn3",
                                 "To",
                                 "ProductType",
                                 "Qty",
@@ -264,8 +250,9 @@
                                   "key": "onRowSelected"
                                 }
                               ],
+                              "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 177,
+                              "bottomRow": 176,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 119,
@@ -602,80 +589,13 @@
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
-                                },
-                                "customColumn2": {
-                                  "allowCellWrapping": false,
-                                  "index": 9,
-                                  "width": 150,
-                                  "originalId": "customColumn2",
-                                  "id": "customColumn2",
-                                  "alias": "+",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "iconButton",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": true,
-                                  "label": "+",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "",
-                                  "sticky": "left",
-                                  "validation": {},
-                                  "buttonStyle": "rgb(3, 179, 101)",
-                                  "labelColor": "#FFFFFF",
-                                  "buttonColor": "#15803d",
-                                  "borderRadius": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( appsmith.theme.borderRadius.appBorderRadius))}}",
-                                  "boxShadow": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( 'none'))}}",
-                                  "customAlias": "",
-                                  "buttonVariant": "PRIMARY",
-                                  "iconName": "add"
-                                },
-                                "customColumn3": {
-                                  "allowCellWrapping": false,
-                                  "index": 10,
-                                  "width": 150,
-                                  "originalId": "customColumn3",
-                                  "id": "customColumn3",
-                                  "alias": "-",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "iconButton",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": true,
-                                  "label": "-",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "",
-                                  "sticky": "left",
-                                  "validation": {},
-                                  "buttonStyle": "rgb(3, 179, 101)",
-                                  "labelColor": "#FFFFFF",
-                                  "buttonColor": "#b91c1c",
-                                  "borderRadius": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( appsmith.theme.borderRadius.appBorderRadius))}}",
-                                  "boxShadow": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( 'none'))}}",
-                                  "customAlias": "",
-                                  "iconName": "remove"
                                 }
                               },
                               "onRowSelected": "{{(()=>{\n\tstoreValue('selected',Table3Copy.selectedRow);\n\n\t\n} )()}}",
                               "key": "hn6jp94bxl",
                               "canFreezeColumn": false,
                               "isDeprecated": false,
-                              "rightColumn": 60,
+                              "rightColumn": 64,
                               "textSize": "0.875rem",
                               "widgetId": "6z2yy7gk5t",
                               "allowAddNewRow": false,
@@ -775,7 +695,7 @@
                       "resetFormOnClick": false,
                       "boxShadow": "none",
                       "widgetName": "btn_orders",
-                      "onClick": "{{\t\nstoreValue('newList',Table_NewOrders.tableData)\n//run new cust list\nawait set_newCustList.run()\n//run to create new invoice#\nawait set_newCustInvoice.run()\n//run query add custprice\nawait set_customerprice.run()\n//run cust order detail\nawait set_customerlineitems.run()\n//run printer order detail\nawait set_printerlineitems.run()\n.then(() => \t{\t\tget_letter_day_volume.run(),\nget_cheque_day_volume.run(), get_postcard_day_volume.run(),get_invoicelist.run(),,\nget_invoicelist_count.run(),\tshowAlert('Well done! Your action has been processed successfully.','success')})\n.catch(() => \n\t\t\t showAlert('Error! Unable to procces.','error'))\nUtil.clearPicker_orders();\n}}\n",
+                      "onClick": "{{\t\nstoreValue('newList',Table_NewOrders.tableData)\n//run new cust list\nawait set_newCustList.run()\n//run to create new invoice#\nawait set_newCustInvoice.run()\n//run query add custprice\nawait set_customerprice.run()\n//run cust order detail\nawait set_customerlineitems.run()\n//run printer order detail\nawait set_printerlineitems.run()\n.then(() => \t{\t\tget_letter_day_volume.run(),\nget_cheque_day_volume.run(), get_postcard_day_volume.run(),get_invoicelist.run(),get_num_new_clients.run(),\nget_invoicelist_count.run(),\tshowAlert('Well done! Your action has been processed successfully.','success')})\n.catch(() => \n\t\t\t showAlert('Error! Unable to procces.','error'))\nUtil.clearPicker_orders();\n}}\n",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "dynamicPropertyPathList": [
                         {
@@ -1540,7 +1460,7 @@
                                   "key": "onPageChange"
                                 }
                               ],
-                              "compactMode": "DEFAULT",
+                              "compactMode": "SHORT",
                               "displayName": "Table",
                               "bottomRow": 89,
                               "columnWidthMap": {
@@ -2680,18 +2600,6 @@
                                 },
                                 {
                                   "key": "primaryColumns.To.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn2.borderRadius"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn2.boxShadow"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn3.borderRadius"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn3.boxShadow"
                                 }
                               ],
                               "leftColumn": 0,
@@ -2731,15 +2639,13 @@
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "originalBottomRow": 111,
-                              "columnUpdatedAt": 1680120744472,
+                              "columnUpdatedAt": 1681477040509,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3",
                               "defaultPageSize": 0,
                               "columnOrder": [
                                 "customColumn1",
                                 "Printer",
-                                "customColumn2",
-                                "customColumn3",
                                 "To",
                                 "ProductType",
                                 "Qty",
@@ -2782,6 +2688,7 @@
                                   "key": "primaryColumns.ProductType.textColor"
                                 }
                               ],
+                              "compactMode": "SHORT",
                               "displayName": "Table",
                               "bottomRow": 168,
                               "columnWidthMap": {
@@ -3830,71 +3737,6 @@
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
-                                },
-                                "customColumn2": {
-                                  "allowCellWrapping": false,
-                                  "index": 10,
-                                  "width": 150,
-                                  "originalId": "customColumn2",
-                                  "id": "customColumn2",
-                                  "alias": "+",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "iconButton",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": true,
-                                  "label": "+",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "",
-                                  "sticky": "left",
-                                  "validation": {},
-                                  "buttonStyle": "rgb(3, 179, 101)",
-                                  "labelColor": "#FFFFFF",
-                                  "buttonColor": "#15803d",
-                                  "borderRadius": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( appsmith.theme.borderRadius.appBorderRadius))}}",
-                                  "boxShadow": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( 'none'))}}",
-                                  "customAlias": ""
-                                },
-                                "customColumn3": {
-                                  "allowCellWrapping": false,
-                                  "index": 10,
-                                  "width": 150,
-                                  "originalId": "customColumn3",
-                                  "id": "customColumn3",
-                                  "alias": "-",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "iconButton",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": true,
-                                  "label": "-",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "",
-                                  "sticky": "left",
-                                  "validation": {},
-                                  "buttonStyle": "rgb(3, 179, 101)",
-                                  "labelColor": "#FFFFFF",
-                                  "buttonColor": "#dc2626",
-                                  "borderRadius": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( appsmith.theme.borderRadius.appBorderRadius))}}",
-                                  "boxShadow": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( 'none'))}}",
-                                  "customAlias": "",
-                                  "iconName": "remove"
                                 }
                               },
                               "onRowSelected": "",
@@ -5584,7 +5426,9 @@
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo"
+                "Table2.selectedRow.InvoiceNo",
+                "(Table3Copy.pageNo - 1) * Table3Copy.pageSize",
+                "Table3Copy.pageSize"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -5607,7 +5451,9 @@
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo"
+                "Table2.selectedRow.InvoiceNo",
+                "(Table3.pageNo - 1) * Table3.pageSize",
+                "Table3.pageSize"
               ],
               "timeoutInMillisecond": 10000
             }

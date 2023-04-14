@@ -19,4 +19,4 @@ WHERE it."InvoiceID" ='{{Table2.selectedRow.InvoiceNo}}'
 UNION ALL
 
 SELECT NULL, NULL, total, NULL, NULL, NULL, 'TOTAL', NULL, NULL
-FROM total_amount;
+FROM total_amount limit {{Table3Copy.pageSize}} offset {{(Table3Copy.pageNo - 1) * Table3Copy.pageSize}};
