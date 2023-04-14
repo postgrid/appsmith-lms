@@ -109,7 +109,7 @@
                           "widgetName": "Canvas19Copy",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 1760,
+                          "bottomRow": 1770,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -125,7 +125,7 @@
                               "borderColor": "#E0DEDE",
                               "isVisibleDownload": false,
                               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                              "topRow": 0,
+                              "topRow": 4,
                               "isSortable": true,
                               "type": "TABLE_WIDGET_V2",
                               "inlineEditingSaveOption": "CUSTOM",
@@ -252,7 +252,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 176,
+                              "bottomRow": 177,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 119,
@@ -609,6 +609,64 @@
                               "originalTopRow": 4,
                               "isVisiblePagination": false,
                               "verticalAlignment": "CENTER"
+                            },
+                            {
+                              "resetFormOnClick": false,
+                              "boxShadow": "none",
+                              "widgetName": "Button3",
+                              "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                              "dynamicPropertyPathList": [
+                                {
+                                  "key": "isDisabled"
+                                }
+                              ],
+                              "displayName": "Button",
+                              "iconSVG": "/static/media/icon.cca026338f1c8eb6df8ba03d084c2fca.svg",
+                              "searchTags": [
+                                "click",
+                                "submit"
+                              ],
+                              "topRow": 0,
+                              "bottomRow": 4,
+                              "parentRowSpace": 10,
+                              "type": "BUTTON_WIDGET",
+                              "hideCard": false,
+                              "animateLoading": true,
+                              "parentColumnSpace": 18.859375,
+                              "dynamicTriggerPathList": [],
+                              "leftColumn": 46,
+                              "dynamicBindingPathList": [
+                                {
+                                  "key": "buttonColor"
+                                },
+                                {
+                                  "key": "borderRadius"
+                                },
+                                {
+                                  "key": "isDisabled"
+                                }
+                              ],
+                              "text": "Modify",
+                              "isDisabled": "{{ Table2.selectedRowIndex === -1 || Table3Copy.selectedRowIndex === -1; }}\n",
+                              "key": "p7lz6y8v7e",
+                              "isDeprecated": false,
+                              "rightColumn": 54,
+                              "isDefaultClickDisabled": true,
+                              "iconName": "edit",
+                              "widgetId": "gmvhclj7uq",
+                              "minWidth": 120,
+                              "isVisible": true,
+                              "recaptchaType": "V3",
+                              "version": 1,
+                              "parentId": "7d1dqri8h6",
+                              "renderMode": "CANVAS",
+                              "isLoading": false,
+                              "responsiveBehavior": "hug",
+                              "disabledWhenInvalid": false,
+                              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                              "buttonVariant": "PRIMARY",
+                              "iconAlign": "left",
+                              "placement": "CENTER"
                             }
                           ],
                           "key": "03hwy32xyb",
@@ -2344,7 +2402,7 @@
                                 "label"
                               ],
                               "topRow": 4,
-                              "bottomRow": 9,
+                              "bottomRow": 8,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -2384,7 +2442,7 @@
                               "originalTopRow": 4,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 9,
+                              "originalBottomRow": 8,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             }
