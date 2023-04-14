@@ -168,9 +168,6 @@
                                   "key": "primaryColumns.AssignTo.computedValue"
                                 },
                                 {
-                                  "key": "primaryColumns.AssignTo.cellBackground"
-                                },
-                                {
                                   "key": "primaryColumns.ProductType.textColor"
                                 },
                                 {
@@ -181,6 +178,12 @@
                                 },
                                 {
                                   "key": "primaryColumns.AssignTo.selectOptions"
+                                },
+                                {
+                                  "key": "primaryColumns.AssignTo.isCellEditable"
+                                },
+                                {
+                                  "key": "primaryColumns.AssignTo.cellBackground"
                                 }
                               ],
                               "leftColumn": 0,
@@ -220,7 +223,7 @@
                               },
                               "borderRadius": "0px",
                               "originalBottomRow": 75,
-                              "columnUpdatedAt": 1681477028014,
+                              "columnUpdatedAt": 1681505816620,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3Copy",
                               "defaultPageSize": 0,
@@ -248,6 +251,9 @@
                                 },
                                 {
                                   "key": "onRowSelected"
+                                },
+                                {
+                                  "key": "primaryColumns.AssignTo.isCellEditable"
                                 }
                               ],
                               "compactMode": "SHORT",
@@ -524,7 +530,7 @@
                                   "label": "#",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentIndex+1 + '.'))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1? null : currentIndex+1 ))}}",
                                   "sticky": "left",
                                   "validation": {},
                                   "buttonStyle": "rgb(3, 179, 101)",
@@ -547,17 +553,17 @@
                                   "enableSort": true,
                                   "isVisible": true,
                                   "isDisabled": false,
-                                  "isCellEditable": true,
+                                  "isCellEditable": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentIndex !== Table3Copy.tableData.length - 1))}}",
                                   "isEditable": true,
                                   "isCellVisible": true,
                                   "isDerived": false,
                                   "label": "AssignTo",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"AssignTo\"]))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1? \"\" :currentRow[\"AssignTo\"]))}}",
                                   "sticky": "left",
                                   "validation": {},
-                                  "cellBackground": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow.AssignTo ==undefined? \"#f87171\" :'LightGreen'))}}",
+                                  "cellBackground": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  \n  currentRow.enabled === false\n    ? \"transparent\"\n    : currentIndex !== Table3Copy.tableData.length - 1 && currentRow.AssignTo == undefined\n      ? \"#f87171\"\n      : currentIndex !== Table3Copy.tableData.length - 1\n        ? \"LightGreen\"\n        : \"\"\n))}}",
                                   "selectOptions": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  get_printerlist.data\n     .map(a => ({ label: a.PrinterName, value: a.PrinterName }))\n     .concat([{ label: 'PAUSED', value: 'PAUSED' }, { label: 'CANCELLED', value: 'CANCELLED' }])\n))}}",
                                   "onOptionChange": "{{StoreActions.myFun1(currentRow)}}"
                                 },
@@ -647,7 +653,7 @@
                                 }
                               ],
                               "text": "Modify",
-                              "isDisabled": "{{ Table2.selectedRowIndex === -1 || Table3Copy.selectedRowIndex === -1; }}\n",
+                              "isDisabled": "{{ Table2.selectedRowIndex === -1 || Table3Copy.selectedRowIndex === -1 ||\nTable3Copy.selectedRowIndex === Table3Copy.tableData.length -1 }}\n",
                               "key": "p7lz6y8v7e",
                               "isDeprecated": false,
                               "rightColumn": 54,
@@ -1477,7 +1483,7 @@
                                 }
                               },
                               "borderRadius": "0px",
-                              "columnUpdatedAt": 1680119988419,
+                              "columnUpdatedAt": 1681505816623,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
                                 0
@@ -2402,7 +2408,7 @@
                                 "label"
                               ],
                               "topRow": 4,
-                              "bottomRow": 8,
+                              "bottomRow": 9,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -2442,7 +2448,7 @@
                               "originalTopRow": 4,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 8,
+                              "originalBottomRow": 9,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             }
@@ -2697,7 +2703,7 @@
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "originalBottomRow": 111,
-                              "columnUpdatedAt": 1681477040509,
+                              "columnUpdatedAt": 1681505816625,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3",
                               "defaultPageSize": 0,

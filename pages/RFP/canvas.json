@@ -1066,7 +1066,7 @@
                   "tabId": "tab1",
                   "widgetName": "Canvas1",
                   "displayName": "Canvas",
-                  "bottomRow": 1200,
+                  "bottomRow": 1190,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -1940,8 +1940,8 @@
                       ],
                       "displayName": "Container",
                       "iconSVG": "/static/media/icon.1977dca3.svg",
-                      "topRow": 114,
-                      "bottomRow": 120,
+                      "topRow": 113,
+                      "bottomRow": 119,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -1993,10 +1993,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 113,
+                      "originalTopRow": 114,
                       "borderRadius": "5px",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 119,
+                      "originalBottomRow": 120,
                       "minDynamicHeight": 4
                     },
                     {
@@ -2009,7 +2009,7 @@
                         "label"
                       ],
                       "topRow": 19,
-                      "bottomRow": 24,
+                      "bottomRow": 23,
                       "parentRowSpace": 10,
                       "type": "TEXT_WIDGET",
                       "hideCard": false,
@@ -2049,7 +2049,7 @@
                       "originalTopRow": 19,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 23,
+                      "originalBottomRow": 24,
                       "fontSize": "1rem",
                       "minDynamicHeight": 4
                     },
@@ -2060,8 +2060,8 @@
                       "isCanvas": true,
                       "displayName": "Tabs",
                       "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
-                      "topRow": 27,
-                      "bottomRow": 114,
+                      "topRow": 26,
+                      "bottomRow": 113,
                       "parentRowSpace": 10,
                       "type": "TABS_WIDGET",
                       "hideCard": false,
@@ -2129,10 +2129,10 @@
                                   "key": "primaryColumns._1___5k.computedValue"
                                 },
                                 {
-                                  "key": "primaryColumns._60k___120k.computedValue"
+                                  "key": "primaryColumns._5k___60k.computedValue"
                                 },
                                 {
-                                  "key": "primaryColumns._5k___60k.computedValue"
+                                  "key": "primaryColumns._60k___120k.computedValue"
                                 },
                                 {
                                   "key": "primaryColumns._120k___250k.computedValue"
@@ -2176,7 +2176,7 @@
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "originalBottomRow": 85,
-                              "columnUpdatedAt": 1677708162508,
+                              "columnUpdatedAt": 1681498881181,
                               "defaultSelectedRowIndices": [
                                 0
                               ],
@@ -2185,8 +2185,8 @@
                               "columnOrder": [
                                 "ProductDescription",
                                 "_1___5k",
-                                "_60k___120k",
                                 "_5k___60k",
+                                "_60k___120k",
                                 "_120k___250k",
                                 "_250k___500k"
                               ],
@@ -2269,38 +2269,9 @@
                                   "cellBackground": "",
                                   "sticky": ""
                                 },
-                                "_60k___120k": {
-                                  "allowCellWrapping": false,
-                                  "index": 2,
-                                  "width": 150,
-                                  "originalId": "60k - 120k",
-                                  "id": "_60k___120k",
-                                  "alias": "60k - 120k",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "number",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "60k - 120k",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"60k - 120k\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
                                 "_5k___60k": {
                                   "allowCellWrapping": false,
-                                  "index": 3,
+                                  "index": 2,
                                   "width": 150,
                                   "originalId": "5k - 60k",
                                   "id": "_5k___60k",
@@ -2323,6 +2294,35 @@
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"5k - 60k\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "_60k___120k": {
+                                  "allowCellWrapping": false,
+                                  "index": 3,
+                                  "width": 150,
+                                  "originalId": "60k - 120k",
+                                  "id": "_60k___120k",
+                                  "alias": "60k - 120k",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "number",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "60k - 120k",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"60k - 120k\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -2735,10 +2735,10 @@
                                   "key": "tableData"
                                 },
                                 {
-                                  "key": "primaryColumns.Addressers_1___5k.computedValue"
+                                  "key": "primaryColumns.SolutionsInMail_120k___250k.computedValue"
                                 },
                                 {
-                                  "key": "primaryColumns.SolutionsInMail_1___5k.computedValue"
+                                  "key": "primaryColumns.Addressers_120k___250k.computedValue"
                                 }
                               ],
                               "leftColumn": 0,
@@ -2776,7 +2776,7 @@
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "originalBottomRow": 87,
-                              "columnUpdatedAt": 1678293286205,
+                              "columnUpdatedAt": 1681501045703,
                               "defaultSelectedRowIndices": [
                                 0
                               ],
@@ -2784,8 +2784,8 @@
                               "defaultPageSize": 0,
                               "columnOrder": [
                                 "ProductDescription",
-                                "Addressers_1___5k",
-                                "SolutionsInMail_1___5k"
+                                "SolutionsInMail_120k___250k",
+                                "Addressers_120k___250k"
                               ],
                               "dynamicPropertyPathList": [],
                               "displayName": "Table",
@@ -2843,13 +2843,13 @@
                                   "cellBackground": "",
                                   "sticky": ""
                                 },
-                                "Addressers_1___5k": {
+                                "SolutionsInMail_120k___250k": {
                                   "allowCellWrapping": false,
                                   "index": 1,
                                   "width": 150,
-                                  "originalId": "Addressers 1 - 5k",
-                                  "id": "Addressers_1___5k",
-                                  "alias": "Addressers 1 - 5k",
+                                  "originalId": "SolutionsInMail 120k - 250k",
+                                  "id": "SolutionsInMail_120k___250k",
+                                  "alias": "SolutionsInMail 120k - 250k",
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "number",
@@ -2864,21 +2864,21 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "Addressers 1 - 5k",
+                                  "label": "SolutionsInMail 120k - 250k",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table1Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Addressers 1 - 5k\"]))}}",
+                                  "computedValue": "{{Table1Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"SolutionsInMail 120k - 250k\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
                                 },
-                                "SolutionsInMail_1___5k": {
+                                "Addressers_120k___250k": {
                                   "allowCellWrapping": false,
                                   "index": 2,
                                   "width": 150,
-                                  "originalId": "SolutionsInMail 1 - 5k",
-                                  "id": "SolutionsInMail_1___5k",
-                                  "alias": "SolutionsInMail 1 - 5k",
+                                  "originalId": "Addressers 120k - 250k",
+                                  "id": "Addressers_120k___250k",
+                                  "alias": "Addressers 120k - 250k",
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "number",
@@ -2893,10 +2893,10 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "SolutionsInMail 1 - 5k",
+                                  "label": "Addressers 120k - 250k",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table1Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"SolutionsInMail 1 - 5k\"]))}}",
+                                  "computedValue": "{{Table1Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Addressers 120k - 250k\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -2965,10 +2965,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 26,
+                      "originalTopRow": 27,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 113,
+                      "originalBottomRow": 114,
                       "minDynamicHeight": 15
                     }
                   ],
@@ -3244,16 +3244,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "RFP_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -3326,6 +3316,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Select2Copy.selectedOptionValue"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "RFP_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
