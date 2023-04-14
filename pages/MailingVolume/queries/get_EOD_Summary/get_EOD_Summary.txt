@@ -1,13 +1,14 @@
-SELECT cu."CustomerName",
-       SUM(CASE WHEN p."ProductType" = 'Cheque' THEN c1."Qty" ELSE NULL END) AS "Cheques",
-       SUM(CASE WHEN p."ProductType" = 'Letter' THEN c1."Qty" ELSE NULL END) AS "Letters",
-       SUM(CASE WHEN p."ProductType" = 'Postcard' THEN c1."Qty" ELSE NULL END) AS "Postcards"
+SELECT COALESCE(cu."CustomerName", 'GrandTotal (' || COUNT(DISTINCT cu."CustomerName") || ') Clients') as "CustomerName",
+SUM(CASE WHEN p."ProductType" = 'Cheque' THEN c1."Qty" ELSE NULL END) AS "Cheques",
+SUM(CASE WHEN p."ProductType" = 'Letter' THEN c1."Qty" ELSE NULL END) AS "Letters",
+SUM(CASE WHEN p."ProductType" = 'Postcard' THEN c1."Qty" ELSE NULL END) AS "Postcards",
+SUM(CASE WHEN p."ProductType" IN ('Cheque', 'Letter', 'Postcard') THEN c1."Qty" ELSE NULL END) AS "Total"
 FROM "public"."CustomerLineItems" c1
-	INNER JOIN "public"."Invoice" i ON (c1."InvoiceID" = i."InvoiceID") 
-  	INNER JOIN "public"."CustomerPrice" cp ON (cp."Id" = c1."CustomerPriceID") 
-  	INNER JOIN "public"."Products" p ON (p."Id" = cp."ProductID") 
-  	INNER JOIN "public"."Customers" cu ON (cu."Id" = cp."CustomerID") 
-WHERE i."InvoiceDate"::date >= '{{moment().format("YYYY-MM-DD")}}'::date 
-	AND p."ProductType" IN ('Cheque', 'Letter', 'Postcard')
-GROUP BY cu."CustomerName"
-ORDER BY cu."CustomerName" ASC
+INNER JOIN "public"."Invoice" i ON (c1."InvoiceID" = i."InvoiceID")
+INNER JOIN "public"."CustomerPrice" cp ON (cp."Id" = c1."CustomerPriceID")
+INNER JOIN "public"."Products" p ON (p."Id" = cp."ProductID")
+LEFT JOIN "public"."Customers" cu ON (cu."Id" = cp."CustomerID")
+WHERE (i."InvoiceDate"::date >= '{{moment().format("YYYY-MM-DD")}}'::date AND  i."InvoiceDate"::date <= '{{moment().format("YYYY-MM-DD")}}'::date)
+AND p."ProductType" IN ('Cheque', 'Letter', 'Postcard')
+GROUP BY GROUPING SETS ((cu."CustomerName"), ())
+ORDER BY lower(cu."CustomerName") ASC

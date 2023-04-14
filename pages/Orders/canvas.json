@@ -193,9 +193,6 @@
                                 },
                                 {
                                   "key": "primaryColumns.AssignTo.selectOptions"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn2.iconName"
                                 }
                               ],
                               "leftColumn": 0,
@@ -265,9 +262,6 @@
                                 },
                                 {
                                   "key": "onRowSelected"
-                                },
-                                {
-                                  "key": "primaryColumns.customColumn2.iconName"
                                 }
                               ],
                               "displayName": "Table",
@@ -641,7 +635,7 @@
                                   "boxShadow": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( 'none'))}}",
                                   "customAlias": "",
                                   "buttonVariant": "PRIMARY",
-                                  "iconName": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"To\"]==='null'?\"\":'currentRow[\"+\"]'))}}"
+                                  "iconName": "add"
                                 },
                                 "customColumn3": {
                                   "allowCellWrapping": false,
@@ -781,7 +775,7 @@
                       "resetFormOnClick": false,
                       "boxShadow": "none",
                       "widgetName": "btn_orders",
-                      "onClick": "{{\t\nstoreValue('newList',Table_NewOrders.tableData)\n//run new cust list\nawait set_newCustList.run()\n//run to create new invoice#\nawait set_newCustInvoice.run()\n//run query add custprice\nawait set_customerprice.run()\n//run cust order detail\nawait set_customerlineitems.run()\n//run printer order detail\nawait set_printerlineitems.run()\n.then(() => \t{\t\tget_letter_day_volume.run(),\nget_cheque_day_volume.run(), get_postcard_day_volume.run(),\nget_invoicelist_count.run(),\tshowAlert('Well done! Your action has been processed successfully.','success')})\n.catch(() => \n\t\t\t showAlert('Error! Unable to procces.','error'))\nUtil.clearPicker_orders();\n}}\n",
+                      "onClick": "{{\t\nstoreValue('newList',Table_NewOrders.tableData)\n//run new cust list\nawait set_newCustList.run()\n//run to create new invoice#\nawait set_newCustInvoice.run()\n//run query add custprice\nawait set_customerprice.run()\n//run cust order detail\nawait set_customerlineitems.run()\n//run printer order detail\nawait set_printerlineitems.run()\n.then(() => \t{\t\tget_letter_day_volume.run(),\nget_cheque_day_volume.run(), get_postcard_day_volume.run(),get_invoicelist.run(),,\nget_invoicelist_count.run(),\tshowAlert('Well done! Your action has been processed successfully.','success')})\n.catch(() => \n\t\t\t showAlert('Error! Unable to procces.','error'))\nUtil.clearPicker_orders();\n}}\n",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "dynamicPropertyPathList": [
                         {
@@ -4912,8 +4906,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 5,
-                              "bottomRow": 9,
+                              "topRow": 4,
+                              "bottomRow": 8,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -4992,7 +4986,7 @@
                               ],
                               "shouldTruncate": false,
                               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                              "text": "{{get_letter_day_volume.data[0].sum}}",
+                              "text": "{{ get_letter_day_volume.data[0].sum ? get_letter_day_volume.data[0].sum : 0 }}\n",
                               "key": "3upq1y9zzx",
                               "isDeprecated": false,
                               "rightColumn": 19,
@@ -5020,8 +5014,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 5,
-                              "bottomRow": 9,
+                              "topRow": 4,
+                              "bottomRow": 8,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -5151,7 +5145,7 @@
                               ],
                               "shouldTruncate": false,
                               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                              "text": "{{get_postcard_day_volume.data[0].sum}}",
+                              "text": "{{ get_postcard_day_volume.data[0].sum ? get_postcard_day_volume.data[0].sum : 0 }}\n",
                               "key": "3upq1y9zzx",
                               "isDeprecated": false,
                               "rightColumn": 43,
@@ -5189,7 +5183,7 @@
                               "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
                               "parentColumnSpace": 13.3125,
                               "dynamicTriggerPathList": [],
-                              "leftColumn": 45,
+                              "leftColumn": 43,
                               "dynamicBindingPathList": [
                                 {
                                   "key": "truncateButtonColor"
@@ -5258,7 +5252,7 @@
                               ],
                               "shouldTruncate": false,
                               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                              "text": "{{get_cheque_day_volume.data[0].sum}}",
+                              "text": "{{ get_cheque_day_volume.data[0].sum ? get_cheque_day_volume.data[0].sum : 0 }}\n",
                               "key": "3upq1y9zzx",
                               "isDeprecated": false,
                               "rightColumn": 64,
@@ -5307,120 +5301,6 @@
                       "borderRadius": "0.375rem",
                       "maxDynamicHeight": 9000,
                       "minDynamicHeight": 10
-                    },
-                    {
-                      "widgetName": "Text114",
-                      "displayName": "Text",
-                      "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
-                      "searchTags": [
-                        "typography",
-                        "paragraph",
-                        "label"
-                      ],
-                      "topRow": 73,
-                      "bottomRow": 77,
-                      "parentRowSpace": 10,
-                      "type": "TEXT_WIDGET",
-                      "hideCard": false,
-                      "animateLoading": true,
-                      "overflow": "NONE",
-                      "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-                      "parentColumnSpace": 10.2294921875,
-                      "dynamicTriggerPathList": [],
-                      "leftColumn": 27,
-                      "dynamicBindingPathList": [
-                        {
-                          "key": "truncateButtonColor"
-                        },
-                        {
-                          "key": "fontFamily"
-                        },
-                        {
-                          "key": "borderRadius"
-                        },
-                        {
-                          "key": "text"
-                        }
-                      ],
-                      "shouldTruncate": false,
-                      "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                      "text": "Subtotal:      {{Table3Copy.filteredTableData.map(x => x.Amount).reduce((a, i) => a + i, 0).toFixed(2)}}",
-                      "key": "gd95lozyja",
-                      "isDeprecated": false,
-                      "rightColumn": 46,
-                      "textAlign": "CENTER",
-                      "dynamicHeight": "FIXED",
-                      "widgetId": "dpvrc8nr4c",
-                      "isVisible": true,
-                      "fontStyle": "BOLD",
-                      "textColor": "#dc2626",
-                      "version": 1,
-                      "parentId": "sii7tf5ehc",
-                      "renderMode": "CANVAS",
-                      "isLoading": false,
-                      "originalTopRow": 118,
-                      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "maxDynamicHeight": 9000,
-                      "originalBottomRow": 122,
-                      "fontSize": "1rem",
-                      "minDynamicHeight": 4
-                    },
-                    {
-                      "widgetName": "Text114Copy",
-                      "displayName": "Text",
-                      "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
-                      "searchTags": [
-                        "typography",
-                        "paragraph",
-                        "label"
-                      ],
-                      "topRow": 73,
-                      "bottomRow": 77,
-                      "parentRowSpace": 10,
-                      "type": "TEXT_WIDGET",
-                      "hideCard": false,
-                      "animateLoading": true,
-                      "overflow": "NONE",
-                      "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
-                      "parentColumnSpace": 10.2294921875,
-                      "dynamicTriggerPathList": [],
-                      "leftColumn": 46,
-                      "dynamicBindingPathList": [
-                        {
-                          "key": "truncateButtonColor"
-                        },
-                        {
-                          "key": "fontFamily"
-                        },
-                        {
-                          "key": "borderRadius"
-                        },
-                        {
-                          "key": "text"
-                        }
-                      ],
-                      "shouldTruncate": false,
-                      "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                      "text": "Subtotal:      {{Table3.filteredTableData.map(x => x.Amount).reduce((a, i) => a + i, 0).toFixed(2)}}",
-                      "key": "gd95lozyja",
-                      "isDeprecated": false,
-                      "rightColumn": 64,
-                      "textAlign": "CENTER",
-                      "dynamicHeight": "FIXED",
-                      "widgetId": "5l165scvr4",
-                      "isVisible": true,
-                      "fontStyle": "BOLD",
-                      "textColor": "#dc2626",
-                      "version": 1,
-                      "parentId": "sii7tf5ehc",
-                      "renderMode": "CANVAS",
-                      "isLoading": false,
-                      "originalTopRow": 122,
-                      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "maxDynamicHeight": 9000,
-                      "originalBottomRow": 126,
-                      "fontSize": "1rem",
-                      "minDynamicHeight": 4
                     }
                   ],
                   "isDisabled": false,
@@ -5670,6 +5550,17 @@
         "layoutOnLoadActions": [
           [
             {
+              "id": "Orders_Util.synchronize",
+              "name": "Util.synchronize",
+              "collectionId": "Orders_Util",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  await get_current_tier.run();\n  await get_customer_order_details.run();\n  await get_invoicelist.run();\n  await get_list_of_collaterals.run();\n  await get_num_new_clients.run();\n  await get_printer_order_details.run();\n  await get_printerlist.run();\n  await get_cheque_day_volume.run();\n  await get_letter_day_volume.run();\n  await get_postcard_day_volume.run();\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "Orders_get_collaterals",
               "name": "get_collaterals",
               "confirmBeforeExecute": false,
@@ -5693,9 +5584,7 @@
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo",
-                "(Table3Copy.pageNo - 1) * Table3Copy.pageSize",
-                "Table3Copy.pageSize"
+                "Table2.selectedRow.InvoiceNo"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -5718,9 +5607,7 @@
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo",
-                "(Table3.pageNo - 1) * Table3.pageSize",
-                "Table3.pageSize"
+                "Table2.selectedRow.InvoiceNo"
               ],
               "timeoutInMillisecond": 10000
             }

@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1270,
+          "bottomRow": 1360,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -34,7 +34,7 @@
               "displayName": "Tabs",
               "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
               "topRow": 0,
-              "bottomRow": 127,
+              "bottomRow": 136,
               "parentRowSpace": 10,
               "type": "TABS_WIDGET",
               "hideCard": false,
@@ -59,7 +59,7 @@
                   "tabId": "tab1",
                   "widgetName": "Canvas1",
                   "displayName": "Canvas",
-                  "bottomRow": 1270,
+                  "bottomRow": 1360,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -84,8 +84,8 @@
                         "click",
                         "submit"
                       ],
-                      "topRow": 22,
-                      "bottomRow": 26,
+                      "topRow": 19,
+                      "bottomRow": 23,
                       "parentRowSpace": 10,
                       "type": "BUTTON_WIDGET",
                       "hideCard": false,
@@ -96,7 +96,7 @@
                           "key": "onClick"
                         }
                       ],
-                      "leftColumn": 55,
+                      "leftColumn": 54,
                       "dynamicBindingPathList": [
                         {
                           "key": "buttonColor"
@@ -127,8 +127,8 @@
                       "boxShadow": "none",
                       "dateFormat": "YYYY-MM-DD",
                       "iconSVG": "/static/media/icon.300e5ab8e2e1c26c7a0bad06116842b7.svg",
-                      "topRow": 20,
-                      "labelWidth": 5,
+                      "topRow": 19,
+                      "labelWidth": "0",
                       "type": "DATE_PICKER_WIDGET2",
                       "animateLoading": true,
                       "leftColumn": 33,
@@ -167,7 +167,7 @@
                       "searchTags": [
                         "calendar"
                       ],
-                      "bottomRow": 27,
+                      "bottomRow": 23,
                       "shortcuts": false,
                       "parentRowSpace": 10,
                       "hideCard": false,
@@ -177,7 +177,7 @@
                           "key": "onDateSelected"
                         }
                       ],
-                      "labelPosition": "Auto",
+                      "labelPosition": "Left",
                       "key": "gvjwmdjycx",
                       "labelTextSize": "0.875rem",
                       "isDeprecated": false,
@@ -197,8 +197,8 @@
                       "boxShadow": "none",
                       "dateFormat": "YYYY-MM-DD",
                       "iconSVG": "/static/media/icon.300e5ab8e2e1c26c7a0bad06116842b7.svg",
-                      "topRow": 20,
-                      "labelWidth": 5,
+                      "topRow": 19,
+                      "labelWidth": "0",
                       "type": "DATE_PICKER_WIDGET2",
                       "animateLoading": true,
                       "leftColumn": 44,
@@ -237,7 +237,7 @@
                       "searchTags": [
                         "calendar"
                       ],
-                      "bottomRow": 27,
+                      "bottomRow": 23,
                       "shortcuts": false,
                       "parentRowSpace": 10,
                       "hideCard": false,
@@ -247,7 +247,7 @@
                           "key": "onDateSelected"
                         }
                       ],
-                      "labelPosition": "Top",
+                      "labelPosition": "Left",
                       "key": "gvjwmdjycx",
                       "labelTextSize": "0.875rem",
                       "isDeprecated": false,
@@ -275,8 +275,8 @@
                       ],
                       "displayName": "Container",
                       "iconSVG": "/static/media/icon.1977dca3.svg",
-                      "topRow": 119,
-                      "bottomRow": 125,
+                      "topRow": 128,
+                      "bottomRow": 134,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -327,10 +327,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 119,
+                      "originalTopRow": 125,
                       "borderRadius": "5px",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 125,
+                      "originalBottomRow": 131,
                       "minDynamicHeight": 4
                     },
                     {
@@ -345,8 +345,8 @@
                         "parent",
                         "group"
                       ],
-                      "topRow": 17,
-                      "bottomRow": 28,
+                      "topRow": 15,
+                      "bottomRow": 26,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -767,7 +767,7 @@
                         "group"
                       ],
                       "topRow": 0,
-                      "bottomRow": 17,
+                      "bottomRow": 15,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -1607,313 +1607,9 @@
                       "minDynamicHeight": 4
                     },
                     {
-                      "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
-                      "widgetName": "Container5",
-                      "borderColor": "#E0DEDE",
-                      "isCanvas": true,
-                      "displayName": "Container",
-                      "iconSVG": "/static/media/icon.1977dca3370505e2db3a8e44cfd54907.svg",
-                      "searchTags": [
-                        "div",
-                        "parent",
-                        "group"
-                      ],
-                      "topRow": 29,
-                      "bottomRow": 119,
-                      "parentRowSpace": 10,
-                      "type": "CONTAINER_WIDGET",
-                      "hideCard": false,
-                      "shouldScrollContents": true,
-                      "animateLoading": true,
-                      "parentColumnSpace": 18.859375,
-                      "dynamicTriggerPathList": [],
-                      "leftColumn": 0,
-                      "dynamicBindingPathList": [
-                        {
-                          "key": "borderRadius"
-                        },
-                        {
-                          "key": "boxShadow"
-                        }
-                      ],
-                      "children": [
-                        {
-                          "widgetName": "Canvas115",
-                          "displayName": "Canvas",
-                          "topRow": 0,
-                          "bottomRow": 900,
-                          "parentRowSpace": 1,
-                          "type": "CANVAS_WIDGET",
-                          "canExtend": false,
-                          "hideCard": true,
-                          "minHeight": 100,
-                          "parentColumnSpace": 1,
-                          "leftColumn": 0,
-                          "dynamicBindingPathList": [],
-                          "children": [
-                            {
-                              "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
-                              "borderColor": "#E0DEDE",
-                              "isVisibleDownload": false,
-                              "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                              "topRow": 0,
-                              "isSortable": true,
-                              "type": "TABLE_WIDGET_V2",
-                              "inlineEditingSaveOption": "ROW_LEVEL",
-                              "animateLoading": true,
-                              "dynamicBindingPathList": [
-                                {
-                                  "key": "accentColor"
-                                },
-                                {
-                                  "key": "borderRadius"
-                                },
-                                {
-                                  "key": "boxShadow"
-                                },
-                                {
-                                  "key": "tableData"
-                                },
-                                {
-                                  "key": "primaryColumns.CustomerName.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Cheques.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Letters.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Postcards.computedValue"
-                                }
-                              ],
-                              "needsHeightForContent": true,
-                              "leftColumn": 0,
-                              "delimiter": ",",
-                              "defaultSelectedRowIndex": 0,
-                              "accentColor": "{{appsmith.theme.colors.primaryColor}}",
-                              "isVisibleFilters": false,
-                              "isVisible": true,
-                              "enableClientSideSearch": true,
-                              "version": 1,
-                              "totalRecordsCount": 0,
-                              "isLoading": false,
-                              "childStylesheet": {
-                                "button": {
-                                  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
-                                  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                                  "boxShadow": "none"
-                                },
-                                "menuButton": {
-                                  "menuColor": "{{appsmith.theme.colors.primaryColor}}",
-                                  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                                  "boxShadow": "none"
-                                },
-                                "iconButton": {
-                                  "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
-                                  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                                  "boxShadow": "none"
-                                },
-                                "editActions": {
-                                  "saveButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                                  "saveBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                                  "discardButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                                  "discardBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}"
-                                }
-                              },
-                              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "columnUpdatedAt": 1681239593057,
-                              "defaultSelectedRowIndices": [
-                                0
-                              ],
-                              "widgetName": "Table1",
-                              "defaultPageSize": 0,
-                              "columnOrder": [
-                                "Cheques",
-                                "Letters",
-                                "Postcards",
-                                "CustomerName"
-                              ],
-                              "dynamicPropertyPathList": [],
-                              "displayName": "Table",
-                              "bottomRow": 88,
-                              "columnWidthMap": {
-                                "task": 245,
-                                "step": 70,
-                                "status": 85,
-                                "CustomerName": 745
-                              },
-                              "parentRowSpace": 10,
-                              "hideCard": false,
-                              "parentColumnSpace": 18.546875,
-                              "dynamicTriggerPathList": [],
-                              "borderWidth": "1",
-                              "primaryColumns": {
-                                "CustomerName": {
-                                  "allowCellWrapping": false,
-                                  "index": 0,
-                                  "width": 150,
-                                  "originalId": "CustomerName",
-                                  "id": "CustomerName",
-                                  "alias": "CustomerName",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "CustomerName",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerName\"]))}}",
-                                  "sticky": "right",
-                                  "validation": {}
-                                },
-                                "Cheques": {
-                                  "allowCellWrapping": false,
-                                  "index": 1,
-                                  "width": 150,
-                                  "originalId": "Cheques",
-                                  "id": "Cheques",
-                                  "alias": "Cheques",
-                                  "horizontalAlignment": "CENTER",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "number",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Cheques",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Cheques\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "Letters": {
-                                  "allowCellWrapping": false,
-                                  "index": 2,
-                                  "width": 150,
-                                  "originalId": "Letters",
-                                  "id": "Letters",
-                                  "alias": "Letters",
-                                  "horizontalAlignment": "CENTER",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "number",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Letters",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Letters\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "Postcards": {
-                                  "allowCellWrapping": false,
-                                  "index": 3,
-                                  "width": 150,
-                                  "originalId": "Postcards",
-                                  "id": "Postcards",
-                                  "alias": "Postcards",
-                                  "horizontalAlignment": "CENTER",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "number",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Postcards",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Postcards\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                }
-                              },
-                              "key": "6nntu3wdjw",
-                              "canFreezeColumn": true,
-                              "isDeprecated": false,
-                              "rightColumn": 64,
-                              "textSize": "0.875rem",
-                              "widgetId": "6frpeshy94",
-                              "minWidth": 450,
-                              "tableData": "{{get_EOD_Summary.data}}",
-                              "label": "Data",
-                              "searchKey": "",
-                              "parentId": "0b06shc7ej",
-                              "renderMode": "CANVAS",
-                              "horizontalAlignment": "LEFT",
-                              "isVisibleSearch": false,
-                              "responsiveBehavior": "fill",
-                              "isVisiblePagination": false,
-                              "verticalAlignment": "CENTER"
-                            }
-                          ],
-                          "key": "f97fa0fght",
-                          "isDeprecated": false,
-                          "rightColumn": 452.625,
-                          "detachFromLayout": true,
-                          "widgetId": "0b06shc7ej",
-                          "containerStyle": "none",
-                          "minWidth": 450,
-                          "isVisible": true,
-                          "version": 1,
-                          "parentId": "f84715an1j",
-                          "renderMode": "CANVAS",
-                          "isLoading": false,
-                          "responsiveBehavior": "fill",
-                          "flexLayers": []
-                        }
-                      ],
-                      "borderWidth": "1",
-                      "key": "jixu8ahguv",
-                      "backgroundColor": "transparent",
-                      "isDeprecated": false,
-                      "rightColumn": 33,
-                      "dynamicHeight": "AUTO_HEIGHT",
-                      "widgetId": "f84715an1j",
-                      "containerStyle": "card",
-                      "minWidth": 450,
-                      "isVisible": true,
-                      "version": 1,
-                      "parentId": "sii7tf5ehc",
-                      "renderMode": "CANVAS",
-                      "isLoading": false,
-                      "responsiveBehavior": "fill",
-                      "originalTopRow": 29,
-                      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "maxDynamicHeight": 9000,
-                      "originalBottomRow": 119,
-                      "minDynamicHeight": 10
-                    },
-                    {
-                      "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+                      "boxShadow": "none",
                       "widgetName": "Container6",
-                      "borderColor": "#E0DEDE",
+                      "borderColor": "transparent",
                       "isCanvas": true,
                       "displayName": "Container",
                       "iconSVG": "/static/media/icon.1977dca3370505e2db3a8e44cfd54907.svg",
@@ -1922,8 +1618,8 @@
                         "parent",
                         "group"
                       ],
-                      "topRow": 29,
-                      "bottomRow": 119,
+                      "topRow": 26,
+                      "bottomRow": 116,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -1931,15 +1627,8 @@
                       "animateLoading": true,
                       "parentColumnSpace": 18.859375,
                       "dynamicTriggerPathList": [],
-                      "leftColumn": 33,
-                      "dynamicBindingPathList": [
-                        {
-                          "key": "borderRadius"
-                        },
-                        {
-                          "key": "boxShadow"
-                        }
-                      ],
+                      "leftColumn": 37,
+                      "dynamicBindingPathList": [],
                       "children": [
                         {
                           "widgetName": "Canvas116",
@@ -1958,13 +1647,13 @@
                             {
                               "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
                               "borderColor": "#E0DEDE",
-                              "isVisibleDownload": false,
+                              "isVisibleDownload": true,
                               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
                               "topRow": 0,
                               "isSortable": true,
                               "type": "TABLE_WIDGET_V2",
                               "inlineEditingSaveOption": "ROW_LEVEL",
-                              "animateLoading": true,
+                              "animateLoading": false,
                               "dynamicBindingPathList": [
                                 {
                                   "key": "accentColor"
@@ -1986,7 +1675,7 @@
                                 }
                               ],
                               "needsHeightForContent": true,
-                              "leftColumn": 0,
+                              "leftColumn": 8,
                               "delimiter": ",",
                               "defaultSelectedRowIndex": 0,
                               "accentColor": "{{appsmith.theme.colors.primaryColor}}",
@@ -2154,11 +1843,304 @@
                       "renderMode": "CANVAS",
                       "isLoading": false,
                       "responsiveBehavior": "fill",
-                      "originalTopRow": 29,
-                      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                      "originalTopRow": 26,
+                      "borderRadius": "0px",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 119,
+                      "originalBottomRow": 116,
                       "minDynamicHeight": 10
+                    },
+                    {
+                      "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+                      "borderColor": "#E0DEDE",
+                      "isVisibleDownload": true,
+                      "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
+                      "topRow": 26,
+                      "isSortable": false,
+                      "type": "TABLE_WIDGET_V2",
+                      "inlineEditingSaveOption": "ROW_LEVEL",
+                      "animateLoading": false,
+                      "dynamicBindingPathList": [
+                        {
+                          "key": "accentColor"
+                        },
+                        {
+                          "key": "tableData"
+                        },
+                        {
+                          "key": "primaryColumns.CustomerName.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Cheques.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Letters.computedValue"
+                        },
+                        {
+                          "key": "primaryColumns.Postcards.computedValue"
+                        },
+                        {
+                          "key": "totalRecordsCount"
+                        },
+                        {
+                          "key": "primaryColumns.Total.computedValue"
+                        },
+                        {
+                          "key": "borderRadius"
+                        },
+                        {
+                          "key": "boxShadow"
+                        }
+                      ],
+                      "needsHeightForContent": true,
+                      "leftColumn": 0,
+                      "delimiter": ",",
+                      "variant": "DEFAULT",
+                      "defaultSelectedRowIndex": 0,
+                      "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+                      "isVisibleFilters": false,
+                      "isVisible": true,
+                      "enableClientSideSearch": true,
+                      "version": 1,
+                      "totalRecordsCount": "{{get_max_eod_record.data}}",
+                      "isLoading": false,
+                      "childStylesheet": {
+                        "button": {
+                          "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "menuButton": {
+                          "menuColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "iconButton": {
+                          "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "boxShadow": "none"
+                        },
+                        "editActions": {
+                          "saveButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "saveBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                          "discardButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+                          "discardBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}"
+                        }
+                      },
+                      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                      "columnUpdatedAt": 1681390586742,
+                      "defaultSelectedRowIndices": [
+                        0
+                      ],
+                      "widgetName": "Table1",
+                      "defaultPageSize": 0,
+                      "columnOrder": [
+                        "CustomerName",
+                        "Cheques",
+                        "Letters",
+                        "Postcards",
+                        "Total",
+                        "customColumn1"
+                      ],
+                      "dynamicPropertyPathList": [],
+                      "compactMode": "SHORT",
+                      "displayName": "Table",
+                      "bottomRow": 114,
+                      "columnWidthMap": {
+                        "task": 245,
+                        "step": 70,
+                        "status": 85,
+                        "CustomerName": 260,
+                        "Cheques": 96,
+                        "Letters": 102,
+                        "Postcards": 106,
+                        "Total": 103
+                      },
+                      "parentRowSpace": 10,
+                      "hideCard": false,
+                      "parentColumnSpace": 18.546875,
+                      "dynamicTriggerPathList": [],
+                      "borderWidth": "1",
+                      "primaryColumns": {
+                        "CustomerName": {
+                          "allowCellWrapping": false,
+                          "index": 0,
+                          "width": 150,
+                          "originalId": "CustomerName",
+                          "id": "CustomerName",
+                          "alias": "CustomerName",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "0.875rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "CustomerName",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerName\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "Cheques": {
+                          "allowCellWrapping": false,
+                          "index": 1,
+                          "width": 150,
+                          "originalId": "Cheques",
+                          "id": "Cheques",
+                          "alias": "Cheques",
+                          "horizontalAlignment": "CENTER",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "0.875rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Cheques",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Cheques\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "Letters": {
+                          "allowCellWrapping": false,
+                          "index": 2,
+                          "width": 150,
+                          "originalId": "Letters",
+                          "id": "Letters",
+                          "alias": "Letters",
+                          "horizontalAlignment": "CENTER",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "0.875rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Letters",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Letters\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "Postcards": {
+                          "allowCellWrapping": false,
+                          "index": 3,
+                          "width": 150,
+                          "originalId": "Postcards",
+                          "id": "Postcards",
+                          "alias": "Postcards",
+                          "horizontalAlignment": "CENTER",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textSize": "0.875rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Postcards",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Postcards\"]))}}",
+                          "sticky": "",
+                          "validation": {}
+                        },
+                        "Total": {
+                          "allowCellWrapping": false,
+                          "index": 4,
+                          "width": 150,
+                          "originalId": "Total",
+                          "id": "Total",
+                          "alias": "Total",
+                          "horizontalAlignment": "CENTER",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "number",
+                          "textColor": "",
+                          "textSize": "0.875rem",
+                          "fontStyle": "",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": false,
+                          "label": "Total",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Total\"]))}}",
+                          "sticky": "",
+                          "validation": {},
+                          "cellBackground": ""
+                        },
+                        "customColumn1": {
+                          "allowCellWrapping": false,
+                          "index": 5,
+                          "width": 150,
+                          "originalId": "customColumn1",
+                          "id": "customColumn1",
+                          "alias": " ",
+                          "horizontalAlignment": "LEFT",
+                          "verticalAlignment": "CENTER",
+                          "columnType": "text",
+                          "textSize": "0.875rem",
+                          "enableFilter": true,
+                          "enableSort": true,
+                          "isVisible": true,
+                          "isDisabled": false,
+                          "isCellEditable": false,
+                          "isEditable": false,
+                          "isCellVisible": true,
+                          "isDerived": true,
+                          "label": " ",
+                          "isSaveVisible": true,
+                          "isDiscardVisible": true,
+                          "computedValue": "",
+                          "sticky": "right",
+                          "validation": {},
+                          "buttonStyle": "rgb(3, 179, 101)",
+                          "labelColor": "#FFFFFF"
+                        }
+                      },
+                      "key": "6nntu3wdjw",
+                      "canFreezeColumn": true,
+                      "isDeprecated": false,
+                      "rightColumn": 27,
+                      "textSize": "0.875rem",
+                      "widgetId": "6frpeshy94",
+                      "minWidth": 450,
+                      "tableData": "{{get_EOD_Summary.data}}",
+                      "label": "Data",
+                      "searchKey": "",
+                      "parentId": "sii7tf5ehc",
+                      "serverSidePaginationEnabled": true,
+                      "renderMode": "CANVAS",
+                      "horizontalAlignment": "LEFT",
+                      "isVisibleSearch": false,
+                      "responsiveBehavior": "fill",
+                      "isVisiblePagination": false,
+                      "verticalAlignment": "CENTER"
                     }
                   ],
                   "isDisabled": false,
@@ -2178,7 +2160,7 @@
                   "tabId": "tab2",
                   "widgetName": "Canvas2",
                   "displayName": "Canvas",
-                  "bottomRow": 1270,
+                  "bottomRow": 1360,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -2402,24 +2384,13 @@
               "originalTopRow": 0,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 127,
+              "originalBottomRow": 133,
               "minDynamicHeight": 10
             }
           ]
         },
         "layoutOnLoadActions": [
           [
-            {
-              "id": "MailingVolume_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "MailingVolume_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run());\n  }, 3000, \"autoupdate\");\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
             {
               "id": "MailingVolume_Util.synchronize",
               "name": "Util.synchronize",
@@ -2429,6 +2400,14 @@
               "jsonPathKeys": [
                 "async () => {\n  await get_user.run();\n  await get_user_department.run();\n}"
               ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "MailingVolume_get_max_eod_record",
+              "name": "get_max_eod_record",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
             }
           ],

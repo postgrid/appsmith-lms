@@ -1,3 +1,4 @@
+
 WITH RECURSIVE category_tree AS (
   SELECT "Id", "SubItemID", "InvoiceID","Qty","CustomerPriceID","Amount", "Printer","Destination"
   FROM "CustomerLineItems"
@@ -7,8 +8,15 @@ WITH RECURSIVE category_tree AS (
   FROM "CustomerLineItems" oi
   JOIN category_tree ct ON oi."SubItemID" = ct."Id"
 	
+), total_amount AS (
+  SELECT SUM("Amount") AS total FROM category_tree WHERE "InvoiceID" ='{{Table2.selectedRow.InvoiceNo}}'
 )
-SELECT it."Destination" as "To",it."Qty", it."Amount", c2."Rate", p."MailType" , p."ProductType",p."ProductDescription" , it."Id" as itemId, it."Printer" as "AssignTo" FROM category_tree it
-JOIN "public"."CustomerPrice" c2 ON ( it."CustomerPriceID" = c2."Id"  )	
-JOIN "public"."Products" p ON ( p."Id" = c2."ProductID"  )
-WHERE it."InvoiceID" ='{{Table2.selectedRow.InvoiceNo}}'  order by it."Id" asc  limit {{Table3Copy.pageSize}} offset {{(Table3Copy.pageNo - 1) * Table3Copy.pageSize}}
+SELECT it."Destination" as "To",it."Qty", it."Amount", c2."Rate", p."MailType" , p."ProductType",p."ProductDescription" , it."Id" AS itemId, it."Printer" AS "AssignTo" FROM category_tree it
+JOIN "public"."CustomerPrice" c2 ON (it."CustomerPriceID" = c2."Id")	
+JOIN "public"."Products" p ON (p."Id" = c2."ProductID")
+WHERE it."InvoiceID" ='{{Table2.selectedRow.InvoiceNo}}'
+
+UNION ALL
+
+SELECT NULL, NULL, total, NULL, NULL, NULL, 'TOTAL', NULL, NULL
+FROM total_amount;

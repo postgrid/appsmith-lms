@@ -8,9 +8,9 @@ export default {
 		await	get_user.run();
 		await	get_user_department.run();
 
-	},
+	}/*,
 	autorefresh: async () => {
 		setInterval(() => {	get_user.run(), get_user_department.run()}, 3000, "autoupdate");
-	}
+	}*/
 
 }
