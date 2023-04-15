@@ -19,7 +19,7 @@ export default {
 		await get_postcard_day_volume.run();
 	},
 	autorefresh: async () => {
-		setInterval(() => {get_invoicelist.run(),get_num_new_clients.run()}, 3000, "autoupdate");
+		//setInterval(() => {get_num_new_clients.run()}, 3000, "autoupdate");
 	}
 
 }

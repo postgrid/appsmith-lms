@@ -59,7 +59,7 @@
                   "tabId": "tab1",
                   "widgetName": "Canvas1",
                   "displayName": "Canvas",
-                  "bottomRow": 2250,
+                  "bottomRow": 1990,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -198,8 +198,8 @@
                       ],
                       "displayName": "Container",
                       "iconSVG": "/static/media/icon.1977dca3.svg",
-                      "topRow": 219,
-                      "bottomRow": 225,
+                      "topRow": 193,
+                      "bottomRow": 199,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -250,10 +250,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 219,
+                      "originalTopRow": 193,
                       "borderRadius": "5px",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 225,
+                      "originalBottomRow": 199,
                       "minDynamicHeight": 4
                     },
                     {
@@ -823,7 +823,7 @@
                               "isVisible": "{{!!appsmith.store.access_token}}",
                               "enableClientSideSearch": true,
                               "version": 1,
-                              "totalRecordsCount": "{{get_invoicelist_count.data[0].count}}",
+                              "totalRecordsCount": "{{get_invoicelist_count.data[0].count}} ",
                               "isLoading": false,
                               "onSearchTextChanged": "{{get_invoicelist.run()}}",
                               "childStylesheet": {
@@ -850,7 +850,7 @@
                                 }
                               },
                               "borderRadius": "0px",
-                              "columnUpdatedAt": 1681505816623,
+                              "columnUpdatedAt": 1681570960749,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
                                 0
@@ -920,7 +920,7 @@
                               },
                               "parentRowSpace": 10,
                               "hideCard": false,
-                              "onPageSizeChange": "{{get_invoicelist.run()}}",
+                              "onPageSizeChange": "",
                               "parentColumnSpace": 19.5,
                               "dynamicTriggerPathList": [
                                 {
@@ -1012,7 +1012,7 @@
                                   "fontStyle": "",
                                   "enableFilter": true,
                                   "enableSort": true,
-                                  "isVisible": true,
+                                  "isVisible": false,
                                   "isDisabled": false,
                                   "isCellEditable": false,
                                   "isEditable": false,
@@ -1384,7 +1384,7 @@
                               "textSize": "0.875rem",
                               "widgetId": "rl939i16d0",
                               "allowAddNewRow": false,
-                              "tableData": "{{get_invoicelist.data}}",
+                              "tableData": "{{get_invoicelist.data.slice(0, 50)}}",
                               "label": "Data",
                               "searchKey": "",
                               "parentId": "47tca8pon2",
@@ -3211,7 +3211,7 @@
                       "displayName": "Tabs",
                       "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
                       "topRow": 29,
-                      "bottomRow": 213,
+                      "bottomRow": 187,
                       "parentRowSpace": 10,
                       "type": "TABS_WIDGET",
                       "hideCard": false,
@@ -3236,7 +3236,7 @@
                           "tabId": "tab1",
                           "widgetName": "Canvas116",
                           "displayName": "Canvas",
-                          "bottomRow": 1800,
+                          "bottomRow": 1540,
                           "topRow": 0,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
@@ -3464,7 +3464,7 @@
                               },
                               "borderRadius": "0px",
                               "originalBottomRow": 75,
-                              "columnUpdatedAt": 1681505816620,
+                              "columnUpdatedAt": 1681569729687,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3Copy",
                               "defaultPageSize": 0,
@@ -3878,7 +3878,7 @@
                           "tabId": "tab2",
                           "widgetName": "Canvas117",
                           "displayName": "Canvas",
-                          "bottomRow": 1800,
+                          "bottomRow": 1740,
                           "topRow": 0,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
@@ -5320,7 +5320,7 @@
                       "dynamicHeight": "AUTO_HEIGHT",
                       "widgetId": "vs83o46kwk",
                       "accentColor": "{{appsmith.theme.colors.primaryColor}}",
-                      "defaultTab": "Tab 1",
+                      "defaultTab": "Customer Cost",
                       "shouldShowTabs": true,
                       "minWidth": 450,
                       "tabsObj": {
@@ -5350,7 +5350,7 @@
                       "originalTopRow": 29,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 213,
+                      "originalBottomRow": 187,
                       "minDynamicHeight": 15
                     }
                   ],
@@ -5626,43 +5626,14 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Orders_get_customer_order_details",
-              "name": "get_customer_order_details",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo",
-                "(Table3Copy.pageNo - 1) * Table3Copy.pageSize",
-                "Table3Copy.pageSize"
-              ],
-              "timeoutInMillisecond": 10000
             },
             {
-              "id": "Orders_get_invoicelist",
-              "name": "get_invoicelist",
+              "id": "Orders_get_user",
+              "name": "get_user",
               "confirmBeforeExecute": false,
-              "pluginType": "DB",
+              "pluginType": "API",
               "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')",
-                "Table2.pageSize",
-                "Table2.searchText.toUpperCase()",
-                " (Table2.pageNo - 1) * Table2.pageSize "
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_printer_order_details",
-              "name": "get_printer_order_details",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo",
-                "(Table3.pageNo - 1) * Table3.pageSize",
-                "Table3.pageSize"
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
@@ -5675,6 +5646,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment().format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_customer_order_details",
+              "name": "get_customer_order_details",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "Table2.selectedRow.InvoiceNo",
+                "(Table3Copy.pageNo - 1) * Table3Copy.pageSize",
+                "Table3Copy.pageSize"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -5717,16 +5700,31 @@
                 "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_printer_order_details",
+              "name": "get_printer_order_details",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "Table2.selectedRow.InvoiceNo",
+                "(Table3.pageNo - 1) * Table3.pageSize",
+                "Table3.pageSize"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
             {
-              "id": "Orders_get_user",
-              "name": "get_user",
+              "id": "Orders_get_invoicelist",
+              "name": "get_invoicelist",
               "confirmBeforeExecute": false,
-              "pluginType": "API",
+              "pluginType": "DB",
               "jsonPathKeys": [
-                "appsmith.store.access_token"
+                "moment().format('YYYY-MM-DD')",
+                "Table2.pageSize",
+                "Table2.searchText.toUpperCase()",
+                " (Table2.pageNo - 1) * Table2.pageSize "
               ],
               "timeoutInMillisecond": 10000
             }
