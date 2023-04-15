@@ -16,11 +16,13 @@
     "pageId": "Orders",
     "collectionId": "Orders_StoreActions",
     "actionConfiguration": {
-      "timeoutInMillisecond": 0,
+      "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
+      "jsArguments": [
+        {}
+      ],
       "isAsync": true
     },
     "executeOnLoad": false,
