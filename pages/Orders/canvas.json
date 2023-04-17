@@ -1703,7 +1703,7 @@
                                 "label"
                               ],
                               "topRow": 4,
-                              "bottomRow": 9,
+                              "bottomRow": 8,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -1729,7 +1729,7 @@
                               "text": "Upload Client list CSV file from EOD",
                               "key": "uqtbm4zdj8",
                               "isDeprecated": false,
-                              "rightColumn": 26,
+                              "rightColumn": 34,
                               "textAlign": "LEFT",
                               "dynamicHeight": "AUTO_HEIGHT",
                               "widgetId": "w8yunveto9",
@@ -1743,7 +1743,7 @@
                               "originalTopRow": 4,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 8,
+                              "originalBottomRow": 9,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             }
