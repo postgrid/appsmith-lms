@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "del_subitem",
+    "name": "del_subitemP",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "DELETE FROM \"CustomerLineItems\" WHERE \"Id\" = {{Table3Copy.selectedRow.itemid}};\nDELETE FROM \"PrinterLineItems\" WHERE \"Id\" = {{Table3Copy.selectedRow.itemid}};",
+      "body": "DELETE FROM \"PrinterLineItems\" WHERE \"Id\" = {{Table3.selectedRow.Id}};",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,14 +36,14 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "Table3Copy.selectedRow.itemid"
+      "Table3.selectedRow.Id"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_del_subitem",
+  "id": "Orders_del_subitemP",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_643b78da26013158789b468b"
+  "gitSyncId": "63b393c7f276cd0745e9510c_643d34ebc59797209a3ea4f3"
 }
