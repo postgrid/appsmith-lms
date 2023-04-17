@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1360,
+          "bottomRow": 1440,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -1726,7 +1726,7 @@
                               ],
                               "shouldTruncate": false,
                               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                              "text": "Upload Client list CSV file from EOD",
+                              "text": "Upload CSV file from Order Groups",
                               "key": "uqtbm4zdj8",
                               "isDeprecated": false,
                               "rightColumn": 34,
@@ -1743,7 +1743,7 @@
                               "originalTopRow": 4,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 9,
+                              "originalBottomRow": 8,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             }
