@@ -780,7 +780,7 @@
                                 }
                               },
                               "borderRadius": "0px",
-                              "columnUpdatedAt": 1681570960749,
+                              "columnUpdatedAt": 1681847962135,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
                                 0
@@ -3339,9 +3339,6 @@
                                   "key": "isVisible"
                                 },
                                 {
-                                  "key": "primaryColumns.customColumn1.computedValue"
-                                },
-                                {
                                   "key": "primaryColumns.AssignTo.computedValue"
                                 },
                                 {
@@ -3357,13 +3354,16 @@
                                   "key": "primaryColumns.AssignTo.selectOptions"
                                 },
                                 {
-                                  "key": "primaryColumns.AssignTo.isCellEditable"
-                                },
-                                {
                                   "key": "primaryColumns.AssignTo.cellBackground"
                                 },
                                 {
                                   "key": "primaryColumns.SubItemID.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.AssignTo.isCellEditable"
+                                },
+                                {
+                                  "key": "primaryColumns.customColumn1.computedValue"
                                 }
                               ],
                               "leftColumn": 0,
@@ -3403,7 +3403,7 @@
                               },
                               "borderRadius": "0px",
                               "originalBottomRow": 75,
-                              "columnUpdatedAt": 1681615974436,
+                              "columnUpdatedAt": 1681847962236,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3Copy",
                               "defaultPageSize": 0,
@@ -3714,7 +3714,7 @@
                                   "label": "#",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1? null : currentIndex+1  + '.'))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3.tableData.length - 1 ? null : (currentRow.ProductType === null && Table3.tableData[currentIndex + 1]?.ProductType === null) ? null : (currentRow.ProductType === '' ? '' : (Table3.tableData.slice(0, currentIndex + 1).filter(row => row.ProductType !== null && row.ProductType !== '').length)) ))}}",
                                   "sticky": "left",
                                   "validation": {},
                                   "buttonStyle": "rgb(3, 179, 101)",
@@ -3737,17 +3737,17 @@
                                   "enableSort": true,
                                   "isVisible": true,
                                   "isDisabled": false,
-                                  "isCellEditable": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentIndex !== Table3Copy.tableData.length - 1))}}",
+                                  "isCellEditable": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentRow.ProductType !== '' && currentIndex !== Table3Copy.tableData.length - 1 ))}}",
                                   "isEditable": true,
                                   "isCellVisible": true,
                                   "isDerived": false,
                                   "label": "AssignTo",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1? \"\" :currentRow[\"AssignTo\"]))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1 ? \"\" : (currentRow.ProductType === '' ? \"\" : currentRow.AssignTo) ))}}",
                                   "sticky": "left",
                                   "validation": {},
-                                  "cellBackground": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  \n  currentRow.enabled === false\n    ? \"transparent\"\n    : currentIndex !== Table3Copy.tableData.length - 1 && currentRow.AssignTo == undefined\n      ? \"#f87171\"\n      : currentIndex !== Table3Copy.tableData.length - 1\n        ? \"LightGreen\"\n        : \"\"\n))}}",
+                                  "cellBackground": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  \n  currentRow.enabled === false\n    ? \"transparent\"\n    : currentIndex !== Table3Copy.tableData.length - 1 && currentRow.AssignTo == undefined\n      ? currentRow.ProductType === ''\n      ? \"transparent\":\"#f87171\"\n      : currentIndex !== Table3Copy.tableData.length - 1\n        ?currentRow.ProductType === ''\n      ? \"transparent\": \"LightGreen\"\n        : \"\"\n))}}",
                                   "selectOptions": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  get_printerlist.data\n     .map(a => ({ label: a.PrinterName, value: a.PrinterName }))\n     .concat([{ label: 'PAUSED', value: 'PAUSED' }, { label: 'CANCELLED', value: 'CANCELLED' }])\n))}}",
                                   "onOptionChange": "{{StoreActions.myFun1(currentRow)}}"
                                 },
@@ -4398,7 +4398,7 @@
                                   "label": "#",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3.tableData.length - 1? null : currentIndex+1  + '.'))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3.tableData.length - 1 ? null : (currentRow.ProductType === null && Table3.tableData[currentIndex + 1]?.ProductType === null) ? null : (currentRow.ProductType === '' ? '' : (Table3.tableData.slice(0, currentIndex + 1).filter(row => row.ProductType !== null && row.ProductType !== '').length)) ))}}",
                                   "sticky": "left",
                                   "validation": {},
                                   "buttonStyle": "rgb(3, 179, 101)",
@@ -4486,7 +4486,7 @@
                                   "label": "Printer",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Printer\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1 ? \"\" : (currentRow.ProductType === '' ? \"\" : currentRow[\"Printer\"]) ))}}",
                                   "sticky": "left",
                                   "validation": {},
                                   "cellBackground": ""

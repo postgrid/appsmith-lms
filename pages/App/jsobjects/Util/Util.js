@@ -15,12 +15,14 @@ export default {
 		autorefresh: async () => 
 			{
 		setInterval(() => {
+			get_user.run(),
+			get_user_department.run(),
 			get_cheque_month_volume.run(),
 			get_letter_month_volume.run(),
 			get_cheque_month_volume.run(),
 			get_current_tier.run(),
 			get_total_volume.run(),
 			get_total_volume_per_month.run()
-											}, 2000, "autoupdate");
+											}, 5000, "autoupdate");
   }
 }
