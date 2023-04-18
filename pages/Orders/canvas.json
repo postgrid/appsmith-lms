@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1440,
+          "bottomRow": 1360,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -3460,7 +3460,7 @@
                                 "customColumn1": 60,
                                 "ProductType": 132,
                                 "Rate": 74,
-                                "Amount": 101,
+                                "Amount": 113.234375,
                                 "To": 75,
                                 "customColumn3": 60
                               },
@@ -3523,7 +3523,7 @@
                                   "originalId": "Amount",
                                   "id": "Amount",
                                   "alias": "Amount",
-                                  "horizontalAlignment": "CENTER",
+                                  "horizontalAlignment": "RIGHT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "number",
                                   "textColor": "",
@@ -3540,7 +3540,7 @@
                                   "label": "Amount",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Amount\"]))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Amount\"] ? currentRow[\"Amount\"].toFixed(2) : '0'))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -3552,9 +3552,9 @@
                                   "originalId": "Rate",
                                   "id": "Rate",
                                   "alias": "Rate",
-                                  "horizontalAlignment": "CENTER",
+                                  "horizontalAlignment": "RIGHT",
                                   "verticalAlignment": "CENTER",
-                                  "columnType": "text",
+                                  "columnType": "number",
                                   "textColor": "",
                                   "textSize": "0.875rem",
                                   "fontStyle": "",
@@ -3569,7 +3569,7 @@
                                   "label": "Rate",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Rate\"]))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Rate\"] ? currentRow[\"Rate\"].toFixed(4) : '0'))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -4296,7 +4296,7 @@
                                   "originalId": "Amount",
                                   "id": "Amount",
                                   "alias": "Amount",
-                                  "horizontalAlignment": "CENTER",
+                                  "horizontalAlignment": "RIGHT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "number",
                                   "textColor": "",
@@ -4313,7 +4313,7 @@
                                   "label": "Amount",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Amount\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Amount\"] ? currentRow[\"Amount\"].toFixed(2) : '0'))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -4457,7 +4457,7 @@
                                   "label": "Rate",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Rate\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Rate\"] ? currentRow[\"Rate\"].toFixed(4) : '0'))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -6920,29 +6920,9 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
-            {
-              "id": "Orders_get_cheque_day_volume",
-              "name": "get_cheque_day_volume",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            },
             {
               "id": "Orders_get_customer_order_details",
               "name": "get_customer_order_details",
@@ -6963,6 +6943,30 @@
               "jsonPathKeys": [
                 "moment().format('YYYY-MM-DD')",
                 "Table2.searchText.toUpperCase()"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_printer_order_details",
+              "name": "get_printer_order_details",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "Table2.selectedRow.InvoiceNo",
+                "(Table3.pageNo - 1) * Table3.pageSize",
+                "Table3.pageSize"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Orders_get_cheque_day_volume",
+              "name": "get_cheque_day_volume",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -7005,16 +7009,16 @@
                 "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
-            },
+            }
+          ],
+          [
             {
-              "id": "Orders_get_printer_order_details",
-              "name": "get_printer_order_details",
+              "id": "Orders_get_user",
+              "name": "get_user",
               "confirmBeforeExecute": false,
-              "pluginType": "DB",
+              "pluginType": "API",
               "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo",
-                "(Table3.pageNo - 1) * Table3.pageSize",
-                "Table3.pageSize"
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
