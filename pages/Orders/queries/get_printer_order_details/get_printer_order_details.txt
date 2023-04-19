@@ -1,4 +1,3 @@
-
 WITH RECURSIVE item_tree("Id", "SubItemID", "InvoiceID","Qty","InitialProdDescription","Amount", "PrinterPriceID", "Rate", "Printer", depth,"Destination") AS (
 SELECT "Id", "SubItemID", "InvoiceID","Qty","InitialProdDescription","Amount", "PrinterPriceID", "Rate", "Printer", 0, "Destination" FROM "public"."PrinterLineItems" WHERE "SubItemID" IS NULL
 UNION ALL
