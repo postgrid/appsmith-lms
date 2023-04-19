@@ -271,6 +271,12 @@
                                 },
                                 {
                                   "key": "primaryColumns.destinationCountryCode.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.vendor.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.Save___Discard.computedValue"
                                 }
                               ],
                               "leftColumn": 2,
@@ -307,7 +313,7 @@
                                 }
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "columnUpdatedAt": 1678939967094,
+                              "columnUpdatedAt": 1681907512947,
                               "defaultSelectedRowIndices": [
                                 0
                               ],
@@ -321,7 +327,9 @@
                                 "mailType",
                                 "productDesc",
                                 "parentID",
-                                "destinationCountryCode"
+                                "destinationCountryCode",
+                                "vendor",
+                                "Save___Discard"
                               ],
                               "dynamicPropertyPathList": [],
                               "displayName": "Table",
@@ -566,6 +574,64 @@
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table_NewOrders.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"destinationCountryCode\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "vendor": {
+                                  "allowCellWrapping": false,
+                                  "index": 0,
+                                  "width": 150,
+                                  "originalId": "vendor",
+                                  "id": "vendor",
+                                  "alias": "vendor",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "vendor",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table_NewOrders.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"vendor\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "Save___Discard": {
+                                  "allowCellWrapping": false,
+                                  "index": 9,
+                                  "width": 150,
+                                  "originalId": "Save / Discard",
+                                  "id": "Save___Discard",
+                                  "alias": "Save / Discard",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "Save / Discard",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table_NewOrders.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Save / Discard\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -3714,7 +3780,7 @@
                                   "label": "#",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3.tableData.length - 1 ? null : (currentRow.ProductType === null && Table3.tableData[currentIndex + 1]?.ProductType === null) ? null : (currentRow.ProductType === '' ? '' : (Table3.tableData.slice(0, currentIndex + 1).filter(row => row.ProductType !== null && row.ProductType !== '').length)) ))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1 ? null : (currentRow.ProductType === '' && Table3Copy.tableData[currentIndex + 1]?.ProductType === '') ? null : (currentRow.ProductType === '' ? null : (Table3Copy.tableData.slice(0, currentIndex + 1).filter(row => row.ProductType !== '' && row.ProductType !== '').length)) ))}}",
                                   "sticky": "left",
                                   "validation": {},
                                   "buttonStyle": "rgb(3, 179, 101)",
@@ -4398,7 +4464,7 @@
                                   "label": "#",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3.tableData.length - 1 ? null : (currentRow.ProductType === null && Table3.tableData[currentIndex + 1]?.ProductType === null) ? null : (currentRow.ProductType === '' ? '' : (Table3.tableData.slice(0, currentIndex + 1).filter(row => row.ProductType !== null && row.ProductType !== '').length)) ))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3.tableData.length - 1 ? null : (currentRow.ProductType === '' && Table3.tableData[currentIndex + 1]?.ProductType === '') ? null : (currentRow.ProductType === '' ? null : (Table3.tableData.slice(0, currentIndex + 1).filter(row => row.ProductType !== '' && row.ProductType !== '').length)) ))}}",
                                   "sticky": "left",
                                   "validation": {},
                                   "buttonStyle": "rgb(3, 179, 101)",
@@ -6920,9 +6986,29 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
+            {
+              "id": "Orders_get_cheque_day_volume",
+              "name": "get_cheque_day_volume",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            },
             {
               "id": "Orders_get_customer_order_details",
               "name": "get_customer_order_details",
@@ -6943,30 +7029,6 @@
               "jsonPathKeys": [
                 "moment().format('YYYY-MM-DD')",
                 "Table2.searchText.toUpperCase()"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_printer_order_details",
-              "name": "get_printer_order_details",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo",
-                "(Table3.pageNo - 1) * Table3.pageSize",
-                "Table3.pageSize"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Orders_get_cheque_day_volume",
-              "name": "get_cheque_day_volume",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -7009,16 +7071,16 @@
                 "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
-            }
-          ],
-          [
+            },
             {
-              "id": "Orders_get_user",
-              "name": "get_user",
+              "id": "Orders_get_printer_order_details",
+              "name": "get_printer_order_details",
               "confirmBeforeExecute": false,
-              "pluginType": "API",
+              "pluginType": "DB",
               "jsonPathKeys": [
-                "appsmith.store.access_token"
+                "Table2.selectedRow.InvoiceNo",
+                "(Table3.pageNo - 1) * Table3.pageSize",
+                "Table3.pageSize"
               ],
               "timeoutInMillisecond": 10000
             }
