@@ -1,6 +1,6 @@
 SELECT c1."JoiningDate", c1."OrgID", c1."CustomerName", c1."Country", c1."PlanID", c1."IsKYCDone", c1."RejectList", c1."WithIMB", c1."Id", p."Plan", p."Limit"
 FROM "public"."Customers" c1 
 	INNER JOIN "public"."PlanDeal" p ON ( p."Id" = c1."PlanID"  )  
-WHERE UPPER(c1."CustomerName") LIKE '%{{Input2.text.toUpperCase()}}%'  ORDER BY c1."JoiningDate" DESC limit {{List1.pageSize}} offset {{List1.pageOffset}};
+ORDER BY c1."JoiningDate" DESC
 
 

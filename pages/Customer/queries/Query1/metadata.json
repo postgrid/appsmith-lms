@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT c1.\"JoiningDate\", c1.\"OrgID\", c1.\"CustomerName\", c1.\"Country\", c1.\"PlanID\", c1.\"IsKYCDone\", c1.\"RejectList\", c1.\"WithIMB\", c1.\"Id\", p.\"Plan\", p.\"Limit\"\nFROM \"public\".\"Customers\" c1 \n\tINNER JOIN \"public\".\"PlanDeal\" p ON ( p.\"Id\" = c1.\"PlanID\"  )  \nWHERE UPPER(c1.\"CustomerName\") LIKE '%{{Input2.text.toUpperCase()}}%'  ORDER BY c1.\"JoiningDate\" DESC limit {{List1.pageSize}} offset {{List1.pageOffset}};\n\n\n",
+      "body": "SELECT c1.\"JoiningDate\", c1.\"OrgID\", c1.\"CustomerName\", c1.\"Country\", c1.\"PlanID\", c1.\"IsKYCDone\", c1.\"RejectList\", c1.\"WithIMB\", c1.\"Id\", p.\"Plan\", p.\"Limit\"\nFROM \"public\".\"Customers\" c1 \n\tINNER JOIN \"public\".\"PlanDeal\" p ON ( p.\"Id\" = c1.\"PlanID\"  )  \nORDER BY c1.\"JoiningDate\" DESC\n\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -27,19 +27,11 @@
       ]
     },
     "executeOnLoad": false,
-    "dynamicBindingPathList": [
-      {
-        "key": "body"
-      }
-    ],
+    "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "Input2.text.toUpperCase()",
-      "List1.pageOffset",
-      "List1.pageSize"
-    ],
+    "jsonPathKeys": [],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],

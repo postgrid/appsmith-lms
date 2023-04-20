@@ -3,5 +3,5 @@ FROM "public"."Customers" c1
 	INNER JOIN "public"."CustomerPrice" c2 ON ( c2."CustomerID" = c1."Id"  )  
 	LEFT OUTER JOIN "public"."PlanDeal" p ON ( p."Id" = c2."PlanDealID"  )  
 	INNER JOIN "public"."Products" p1 ON ( p1."Id" = c2."ProductID"  )  
-WHERE  c2."Rate" IS NULL AND UPPER(c1."CustomerName") LIKE '%{{Input2.text.toUpperCase()}}%' limit {{List1.pageSize}} offset {{List1.pageOffset}};
+WHERE  c2."Rate" IS NULL
 

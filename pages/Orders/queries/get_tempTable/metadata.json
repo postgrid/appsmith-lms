@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "Save_Data",
+    "name": "get_tempTable",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -13,39 +13,31 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Customer",
+    "pageId": "Orders",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE public.\"CustomerPrice\"\nSET \"Rate\" = '{{this.params.currentRow.Rate}}' \nWHERE \"ProductID\" = {{Table2.selectedRow.ProductID}} AND \"CustomerID\" = {{Table3.selectedRow.Id}};",
+      "body": "/*WITH new_items AS (\n  SELECT 1 AS id, 'Category 1' AS name, NULL AS parent_id\n  UNION ALL\n  SELECT 2 AS id, 'Subcategory 1.1' AS name, 1 AS parent_id\n  UNION ALL\n  SELECT 3 AS id, 'Subcategory 1.2' AS name, 1 AS parent_id\n)\nINSERT INTO categories (id, name, parent_id)\nSELECT n.id, n.name, n.parent_id\nFROM new_items n\nLEFT JOIN categories c ON n.id = c.id\nWHERE c.id IS NULL;*/\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": false
+          "value": true
         }
       ]
     },
-    "executeOnLoad": false,
-    "dynamicBindingPathList": [
-      {
-        "key": "body"
-      }
-    ],
+    "executeOnLoad": true,
+    "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "Table2.selectedRow.ProductID",
-      "Table3.selectedRow.Id",
-      "this.params.currentRow.Rate"
-    ],
+    "jsonPathKeys": [],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customer_Save_Data",
+  "id": "Orders_get_tempTable",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6400e614e69a2e1df5480bed"
+  "gitSyncId": "63b393c7f276cd0745e9510c_64405f5b24e3b61452ed2ac6"
 }

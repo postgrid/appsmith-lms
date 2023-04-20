@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "Save_Data",
+    "name": "get_collaterals",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -13,39 +13,31 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Customer",
+    "pageId": "PrinterDashboard",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE public.\"CustomerPrice\"\nSET \"Rate\" = '{{this.params.currentRow.Rate}}' \nWHERE \"ProductID\" = {{Table2.selectedRow.ProductID}} AND \"CustomerID\" = {{Table3.selectedRow.Id}};",
+      "body": "  SELECT \"ProductDescription\" from \"Products\" where \"ProductType\" IN ('Letter','Cheque','Postcard')",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": false
+          "value": true
         }
       ]
     },
     "executeOnLoad": false,
-    "dynamicBindingPathList": [
-      {
-        "key": "body"
-      }
-    ],
+    "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "Table2.selectedRow.ProductID",
-      "Table3.selectedRow.Id",
-      "this.params.currentRow.Rate"
-    ],
+    "jsonPathKeys": [],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customer_Save_Data",
+  "id": "PrinterDashboard_get_collaterals",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6400e614e69a2e1df5480bed"
+  "gitSyncId": "63b393c7f276cd0745e9510c_64405ae017a9db4faee968ff"
 }
