@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE public.\"CustomerPrice\"\nSET \"Rate\" = '{{this.params.currentRow.Rate}}' \nWHERE \"ProductID\" = {{Table2.selectedRow.ProductID}} AND \"CustomerID\" = {{Table3.selectedRow.Id}};",
+      "body": "UPDATE public.\"CustomerPrice\"\nSET \"Rate\" = {{this.params.currentRow.Rate}} \nWHERE \"ProductID\" = {{this.params.currentRow.ProductID}} AND \"CustomerID\" = '{{this.params.currentRow.Id}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,8 +36,8 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "Table2.selectedRow.ProductID",
-      "Table3.selectedRow.Id",
+      "this.params.currentRow.Id",
+      "this.params.currentRow.ProductID",
       "this.params.currentRow.Rate"
     ],
     "userSetOnLoad": false,

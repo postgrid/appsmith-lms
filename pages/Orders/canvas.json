@@ -1769,7 +1769,7 @@
                                 "label"
                               ],
                               "topRow": 4,
-                              "bottomRow": 8,
+                              "bottomRow": 9,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -7705,17 +7705,6 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "Orders_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "Orders_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    (get_letter_day_volume.run(), get_cheque_day_volume.run(), get_postcard_day_volume.run(), get_invoicelist.run(), get_num_new_clients.run(), get_invoicelist_count.run());\n  }, 3000, \"autoupdate\");\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "Orders_Util.synchronize",
               "name": "Util.synchronize",
               "collectionId": "Orders_Util",
@@ -7737,6 +7726,17 @@
           ],
           [
             {
+              "id": "Orders_Util.autorefresh",
+              "name": "Util.autorefresh",
+              "collectionId": "Orders_Util",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "async () => {\n  setInterval(() => {\n    (get_letter_day_volume.run(), get_cheque_day_volume.run(), get_postcard_day_volume.run(), get_invoicelist.run(), get_num_new_clients.run(), get_invoicelist_count.run());\n  }, 3000, \"autoupdate\");\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "Orders_get_collaterals",
               "name": "get_collaterals",
               "confirmBeforeExecute": false,
@@ -7751,29 +7751,9 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
-            {
-              "id": "Orders_get_cheque_day_volume",
-              "name": "get_cheque_day_volume",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            },
             {
               "id": "Orders_get_customer_order_details",
               "name": "get_customer_order_details",
@@ -7794,6 +7774,30 @@
               "jsonPathKeys": [
                 "moment().format('YYYY-MM-DD')",
                 "Table2.searchText.toUpperCase()"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_printer_order_details",
+              "name": "get_printer_order_details",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "Table2.selectedRow.InvoiceNo",
+                "(Table3.pageNo - 1) * Table3.pageSize",
+                "Table3.pageSize"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Orders_get_cheque_day_volume",
+              "name": "get_cheque_day_volume",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -7836,16 +7840,16 @@
                 "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
-            },
+            }
+          ],
+          [
             {
-              "id": "Orders_get_printer_order_details",
-              "name": "get_printer_order_details",
+              "id": "Orders_get_user",
+              "name": "get_user",
               "confirmBeforeExecute": false,
-              "pluginType": "DB",
+              "pluginType": "API",
               "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo",
-                "(Table3.pageNo - 1) * Table3.pageSize",
-                "Table3.pageSize"
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

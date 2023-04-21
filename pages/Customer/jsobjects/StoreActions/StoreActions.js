@@ -1,9 +1,9 @@
 export default {
-			myFun1: async (currentRow) => {
-			await storeValue("rowUpdate",currentRow);
-			await Save_Data.run({currentRow});
-			showAlert('Well done!.','success')
-				
+	myFun1: async (currentRow) => {
+		await storeValue("rowUpdate",currentRow);
+		await Save_Data.run({currentRow});
+		await get_custpricelist.run(()			=> { showAlert('Well done!.','success')}, () => {});
+
 	},
 	myFun2: async (currentRow) => {
 		await storeValue("rowUpdate",currentRow);

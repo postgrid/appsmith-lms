@@ -1,3 +1,3 @@
 UPDATE public."CustomerPrice"
-SET "Rate" = '{{this.params.currentRow.Rate}}' 
-WHERE "ProductID" = {{Table2.selectedRow.ProductID}} AND "CustomerID" = {{Table3.selectedRow.Id}};
+SET "Rate" = {{this.params.currentRow.Rate}} 
+WHERE "ProductID" = {{this.params.currentRow.ProductID}} AND "CustomerID" = '{{this.params.currentRow.Id}}';
