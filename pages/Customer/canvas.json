@@ -955,11 +955,7 @@
                               "boxShadow": "none",
                               "widgetName": "Select1",
                               "isFilterable": false,
-                              "dynamicPropertyPathList": [
-                                {
-                                  "key": "onOptionChange"
-                                }
-                              ],
+                              "dynamicPropertyPathList": [],
                               "displayName": "Select",
                               "iconSVG": "/static/media/icon.bd99caba5853ad71e4b3d8daffacb3a2.svg",
                               "labelText": "Select Category",
@@ -982,6 +978,9 @@
                                 },
                                 {
                                   "key": "onDropdownClose"
+                                },
+                                {
+                                  "key": "onDropdownOpen"
                                 }
                               ],
                               "leftColumn": 0,
@@ -997,7 +996,7 @@
                                 }
                               ],
                               "labelPosition": "Left",
-                              "onDropdownClose": "{{resetWidget(\"Table3\",true)}}",
+                              "onDropdownClose": "{{\nStoreActions.runQuery(Select1.selectedOptionValue)\n}}",
                               "options": "[\n  {\n    \"label\": \"Today's New Client\",\n    \"value\": \"Query1\"\n  },\n  {\n    \"label\": \"Missing Rates\",\n    \"value\": \"Query2\"\n  }\n]",
                               "placeholderText": "Select option",
                               "isDisabled": false,
@@ -1012,12 +1011,13 @@
                               "isVisible": true,
                               "version": 1,
                               "parentId": "8z27x8f5df",
+                              "onDropdownOpen": "{{resetWidget(\"Table3\",true)}}",
                               "labelAlignment": "left",
                               "renderMode": "CANVAS",
                               "isLoading": false,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "onOptionChange": "{{StoreActions.runQuery(Select1.selectedOptionValue)}}",
+                              "onOptionChange": "",
                               "minDynamicHeight": 4
                             }
                           ],
@@ -2113,7 +2113,7 @@
                                 }
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "columnUpdatedAt": 1682082289033,
+                              "columnUpdatedAt": 1682083638047,
                               "defaultSelectedRowIndices": [
                                 0
                               ],

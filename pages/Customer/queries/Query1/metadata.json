@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT c1.\"Rate\", c2.\"JoiningDate\", c2.\"CustomerName\", c2.\"Country\", c2.\"IsKYCDone\", c2.\"RejectList\", c2.\"WithIMB\", c2.\"SameDay\", p.\"ProductDescription\", p.\"MailType\", p.\"ProductType\", p.\"QtyInStock\", p.\"ReOrderLevel\",c1.\"ProductID\", c1.\"CustomerID\" as \"Id\", c2.\"OrgID\"\nFROM \"public\".\"CustomerPrice\" c1 \n\tINNER JOIN \"public\".\"Customers\" c2 ON ( c2.\"Id\" = c1.\"CustomerID\"  )  \n\tINNER JOIN \"public\".\"Products\" p ON ( p.\"Id\" = c1.\"ProductID\"  )  \nWHERE to_date(cast(c2.\"JoiningDate\" as TEXT),'YYYY-MM-DD') >= DATE'{{moment().format(\"YYYY-MM-DD\")}}'\n",
+      "body": "SELECT c1.\"Rate\", c2.\"JoiningDate\", c2.\"CustomerName\", c2.\"Country\", c2.\"IsKYCDone\", c2.\"RejectList\", c2.\"WithIMB\", c2.\"SameDay\", p.\"ProductDescription\", p.\"MailType\", p.\"ProductType\", p.\"QtyInStock\", p.\"ReOrderLevel\",c1.\"ProductID\", c1.\"CustomerID\" as \"Id\", c2.\"OrgID\"\nFROM \"public\".\"CustomerPrice\" c1\nINNER JOIN \"public\".\"Customers\" c2 ON ( c2.\"Id\" = c1.\"CustomerID\" )\nINNER JOIN \"public\".\"Products\" p ON ( p.\"Id\" = c1.\"ProductID\" )\nWHERE to_date(cast(c2.\"JoiningDate\" as TEXT),'YYYY-MM-DD') >= DATE'{{moment().format(\"YYYY-MM-DD\")}}'\nUNION\nSELECT null, null, '***No new clients added today', null, null, null, null, null, null, null, null, null, null, null, null, null\nWHERE NOT EXISTS (\nSELECT 1\nFROM \"public\".\"Customers\"\nWHERE to_date(cast(\"JoiningDate\" as TEXT),'YYYY-MM-DD') >= DATE'{{moment().format(\"YYYY-MM-DD\")}}'\n);\n\n\n\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
