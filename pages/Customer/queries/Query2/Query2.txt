@@ -1,7 +1,8 @@
-SELECT DISTINCT c1."CustomerName", MAX(c1."JoiningDate") AS "JoiningDate", c1."OrgID", c1."Country", c1."IsKYCDone", c1."RejectList", c1."WithIMB", c1."Id", c2."PlanDealID", c2."CustomerID", p."Plan", p."Limit", p1."CreatedAt"
+SELECT c1."CustomerName", MAX(c1."JoiningDate") AS "JoiningDate", c1."OrgID", c1."Country", c1."IsKYCDone", c1."RejectList", c1."WithIMB", c1."Id", c2."PlanDealID", c2."CustomerID", p."Plan", p."Limit"
 FROM "public"."Customers" c1
 INNER JOIN "public"."CustomerPrice" c2 ON ( c2."CustomerID" = c1."Id" )
 LEFT OUTER JOIN "public"."PlanDeal" p ON ( p."Id" = c2."PlanDealID" )
 INNER JOIN "public"."Products" p1 ON ( p1."Id" = c2."ProductID" )
 WHERE c2."Rate" IS NULL
-GROUP BY c1."CustomerName", c1."OrgID", c1."Country", c1."IsKYCDone", c1."RejectList", c1."WithIMB", c1."Id", c2."PlanDealID", c2."CustomerID", p."Plan", p."Limit", p1."CreatedAt";
+GROUP BY c1."CustomerName", c1."OrgID", c1."Country", c1."IsKYCDone", c1."RejectList", c1."WithIMB", c1."Id", c2."PlanDealID", c2."CustomerID", p."Plan", p."Limit"
+ORDER BY MAX(c1."JoiningDate") ASC;
