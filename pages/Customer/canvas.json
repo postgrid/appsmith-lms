@@ -2132,10 +2132,10 @@
                               ],
                               "dynamicPropertyPathList": [
                                 {
-                                  "key": "onRowSelected"
+                                  "key": "primaryColumns.JoiningDate.outputFormat"
                                 },
                                 {
-                                  "key": "primaryColumns.JoiningDate.outputFormat"
+                                  "key": "onRowSelected"
                                 }
                               ],
                               "displayName": "Table",
@@ -2520,7 +2520,7 @@
                                   "cellBackground": ""
                                 }
                               },
-                              "onRowSelected": "{{get_custpricelist.run()}}",
+                              "onRowSelected": "{{get_custpricelist.data}}",
                               "key": "29025pxgwv",
                               "canFreezeColumn": true,
                               "isDeprecated": false,
