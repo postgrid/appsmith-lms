@@ -1,12 +1,1 @@
-/*WITH new_items AS (
-  SELECT 1 AS id, 'Category 1' AS name, NULL AS parent_id
-  UNION ALL
-  SELECT 2 AS id, 'Subcategory 1.1' AS name, 1 AS parent_id
-  UNION ALL
-  SELECT 3 AS id, 'Subcategory 1.2' AS name, 1 AS parent_id
-)
-INSERT INTO categories (id, name, parent_id)
-SELECT n.id, n.name, n.parent_id
-FROM new_items n
-LEFT JOIN categories c ON n.id = c.id
-WHERE c.id IS NULL;*/
+SELECT '' AS "Qty",'' AS "To" , '' AS "MailType" ,'' AS "ProductDescription"

@@ -18,15 +18,15 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "/*WITH new_items AS (\n  SELECT 1 AS id, 'Category 1' AS name, NULL AS parent_id\n  UNION ALL\n  SELECT 2 AS id, 'Subcategory 1.1' AS name, 1 AS parent_id\n  UNION ALL\n  SELECT 3 AS id, 'Subcategory 1.2' AS name, 1 AS parent_id\n)\nINSERT INTO categories (id, name, parent_id)\nSELECT n.id, n.name, n.parent_id\nFROM new_items n\nLEFT JOIN categories c ON n.id = c.id\nWHERE c.id IS NULL;*/\n",
+      "body": "SELECT '' AS \"Qty\",'' AS \"To\" , '' AS \"MailType\" ,'' AS \"ProductDescription\"",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ]
     },
-    "executeOnLoad": true,
+    "executeOnLoad": false,
     "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
