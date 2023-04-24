@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 77,
+          "version": 78,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -2059,19 +2059,31 @@
                                   "key": "primaryColumns.customColumn1.computedValue"
                                 },
                                 {
-                                  "key": "primaryColumns.PlanDealID.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.CustomerID.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Plan.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Limit.computedValue"
-                                },
-                                {
                                   "key": "primaryColumns.JoiningDate.outputFormat"
+                                },
+                                {
+                                  "key": "primaryColumns.Rate.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.SameDay.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.ProductDescription.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.MailType.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.ProductType.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.QtyInStock.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.ReOrderLevel.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.ProductID.computedValue"
                                 }
                               ],
                               "needsHeightForContent": true,
@@ -2109,7 +2121,7 @@
                                 }
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "columnUpdatedAt": 1682263666604,
+                              "columnUpdatedAt": 1682362564019,
                               "defaultSelectedRowIndices": [
                                 0
                               ],
@@ -2125,10 +2137,14 @@
                                 "WithIMB",
                                 "OrgID",
                                 "Id",
-                                "PlanDealID",
-                                "CustomerID",
-                                "Plan",
-                                "Limit"
+                                "Rate",
+                                "SameDay",
+                                "ProductDescription",
+                                "MailType",
+                                "ProductType",
+                                "QtyInStock",
+                                "ReOrderLevel",
+                                "ProductID"
                               ],
                               "dynamicPropertyPathList": [
                                 {
@@ -2403,13 +2419,14 @@
                                   "buttonStyle": "rgb(3, 179, 101)",
                                   "labelColor": "#FFFFFF"
                                 },
-                                "PlanDealID": {
+                                "Rate": {
                                   "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
                                   "index": 8,
                                   "width": 150,
-                                  "originalId": "PlanDealID",
-                                  "id": "PlanDealID",
-                                  "alias": "PlanDealID",
+                                  "originalId": "Rate",
+                                  "id": "Rate",
+                                  "alias": "Rate",
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
@@ -2424,21 +2441,22 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "PlanDealID",
+                                  "label": "Rate",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"PlanDealID\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Rate\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
                                 },
-                                "CustomerID": {
+                                "SameDay": {
                                   "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
                                   "index": 9,
                                   "width": 150,
-                                  "originalId": "CustomerID",
-                                  "id": "CustomerID",
-                                  "alias": "CustomerID",
+                                  "originalId": "SameDay",
+                                  "id": "SameDay",
+                                  "alias": "SameDay",
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
@@ -2453,21 +2471,22 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "CustomerID",
+                                  "label": "SameDay",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerID\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"SameDay\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
                                 },
-                                "Plan": {
+                                "ProductDescription": {
                                   "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
                                   "index": 10,
                                   "width": 150,
-                                  "originalId": "Plan",
-                                  "id": "Plan",
-                                  "alias": "Plan",
+                                  "originalId": "ProductDescription",
+                                  "id": "ProductDescription",
+                                  "alias": "ProductDescription",
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
@@ -2482,21 +2501,22 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "Plan",
+                                  "label": "ProductDescription",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Plan\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ProductDescription\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
                                 },
-                                "Limit": {
+                                "MailType": {
                                   "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
                                   "index": 11,
                                   "width": 150,
-                                  "originalId": "Limit",
-                                  "id": "Limit",
-                                  "alias": "Limit",
+                                  "originalId": "MailType",
+                                  "id": "MailType",
+                                  "alias": "MailType",
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
@@ -2511,10 +2531,130 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "Limit",
+                                  "label": "MailType",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Limit\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"MailType\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "ProductType": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 12,
+                                  "width": 150,
+                                  "originalId": "ProductType",
+                                  "id": "ProductType",
+                                  "alias": "ProductType",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "ProductType",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ProductType\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "QtyInStock": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 13,
+                                  "width": 150,
+                                  "originalId": "QtyInStock",
+                                  "id": "QtyInStock",
+                                  "alias": "QtyInStock",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "QtyInStock",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"QtyInStock\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "ReOrderLevel": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 14,
+                                  "width": 150,
+                                  "originalId": "ReOrderLevel",
+                                  "id": "ReOrderLevel",
+                                  "alias": "ReOrderLevel",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "ReOrderLevel",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ReOrderLevel\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "ProductID": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 15,
+                                  "width": 150,
+                                  "originalId": "ProductID",
+                                  "id": "ProductID",
+                                  "alias": "ProductID",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "number",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "ProductID",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ProductID\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""

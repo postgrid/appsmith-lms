@@ -21,7 +21,9 @@
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
       "jsArguments": [
-        {}
+        {
+          "name": "status"
+        }
       ],
       "isAsync": false
     },

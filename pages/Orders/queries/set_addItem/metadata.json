@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "INSERT INTO public.\"CustomerLineItems\" (\"InvoiceID\", \"CustomerPriceID\", \"Qty\", \"SubItemID\", \"OrderStatus\",  \"Destination\")\n  VALUES ('{{Text120.text}}', (SELECT c1.\"Id\" FROM \"public\".\"CustomerPrice\" c1  \tINNER JOIN \"public\".\"Products\" p ON ( p.\"Id\" = c1.\"ProductID\"  )   \tINNER JOIN \"public\".\"Customers\" c2 ON ( c2.\"Id\" = c1.\"CustomerID\"  )  WHERE p.\"ProductDescription\" = '{{Select1.selectedOptionValue}}' AND \tc2.\"OrgID\" = '{{Table2.selectedRow.OrgID }}'), {{Input2.text}}, NULL, 'PROCESSING', '{{Input3.text}}');\n\t\n\t\n\tINSERT INTO public.\"PrinterLineItems\" (\"InvoiceID\", \"Qty\", \"InitialProdDescription\",  \"OrderStatus\", \"Destination\")\n  VALUES ('{{Text120.text}}', {{Input2.text}} ,'{{Select1.selectedOptionValue}}', 'PROCESSING', '{{Input3.text}}');\n",
+      "body": "INSERT INTO public.\"CustomerPrice\" (\"ProductID\", \"CustomerID\")\nSELECT (SELECT \"Id\" FROM \"Products\" WHERE \"ProductDescription\" = '{{Select1.selectedOptionValue}}'),\n       (SELECT \"Id\" FROM \"Customers\" WHERE \"OrgID\" ='{{Table2.selectedRow.OrgID}}')\nWHERE NOT EXISTS (\n  SELECT 1 FROM public.\"CustomerPrice\" WHERE \"ProductID\" =(SELECT \"Id\" FROM \"Products\" WHERE \"ProductDescription\" = '{{Select1.selectedOptionValue}}') AND \"CustomerID\" = (SELECT \"Id\" FROM \"Customers\" WHERE \"OrgID\" ='{{Table2.selectedRow.OrgID}}')\n); \n\n\n\nINSERT INTO public.\"CustomerLineItems\" (\"InvoiceID\", \"CustomerPriceID\", \"Qty\", \"SubItemID\", \"OrderStatus\",  \"Destination\")\n  VALUES ('{{Text120.text}}', (SELECT c1.\"Id\" FROM \"public\".\"CustomerPrice\" c1  \tINNER JOIN \"public\".\"Products\" p ON ( p.\"Id\" = c1.\"ProductID\"  )   \tINNER JOIN \"public\".\"Customers\" c2 ON ( c2.\"Id\" = c1.\"CustomerID\"  )  WHERE p.\"ProductDescription\" = '{{Select1.selectedOptionValue}}' AND \tc2.\"OrgID\" = '{{Table2.selectedRow.OrgID }}'), {{Input2.text}}, NULL, 'PROCESSING', '{{Input3.text}}');\n\t\n\t\n\tINSERT INTO public.\"PrinterLineItems\" (\"InvoiceID\", \"Qty\", \"InitialProdDescription\",  \"OrderStatus\", \"Destination\")\n  VALUES ('{{Text120.text}}', {{Input2.text}} ,'{{Select1.selectedOptionValue}}', 'PROCESSING', '{{Input3.text}}');\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -39,6 +39,7 @@
       "Input2.text",
       "Input3.text",
       "Select1.selectedOptionValue",
+      "Table2.selectedRow.OrgID",
       "Table2.selectedRow.OrgID ",
       "Text120.text"
     ],

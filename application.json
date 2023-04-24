@@ -31,6 +31,10 @@
     {
       "id": "MailingVolume",
       "isDefault": false
+    },
+    {
+      "id": "OrdersSummary",
+      "isDefault": false
     }
   ],
   "viewMode": false,

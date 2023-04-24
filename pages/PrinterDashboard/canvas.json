@@ -1088,6 +1088,14 @@
         "layoutOnLoadActions": [
           [
             {
+              "id": "PrinterDashboard_get_collaterals",
+              "name": "get_collaterals",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "PrinterDashboard_get_user",
               "name": "get_user",
               "confirmBeforeExecute": false,

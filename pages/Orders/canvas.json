@@ -1373,7 +1373,7 @@
                                   "cellBackground": ""
                                 }
                               },
-                              "onRowSelected": "{{\nawait get_customer_order_details.run();\nawait get_printer_order_details.run();\nawait get_list_of_collaterals.run();\nstoreValue('org','f');\n}}",
+                              "onRowSelected": "{{\nget_customer_order_details.run();\nget_printer_order_details.run();\nget_list_of_collaterals.run();\nstoreValue('org','f');\n}}",
                               "key": "xbdjr460wt",
                               "canFreezeColumn": false,
                               "isDeprecated": false,
@@ -4037,7 +4037,7 @@
                                 }
                               ],
                               "isDisabled": false,
-                              "sourceData": "{{ ([ \n         { \"Add\": \"ITEM\"} , \n        { \"Add\": \"SUBITEM\" }\n   ]) \n}}",
+                              "sourceData": "{{ ([ \n         { \"Add\": \"NewItem\"} , \n        { \"Add\": \"SubItem\" }\n   ]) \n}}",
                               "key": "q6gmvjt1b8",
                               "isDeprecated": false,
                               "rightColumn": 46,
@@ -6985,7 +6985,7 @@
             },
             {
               "boxShadow": "none",
-              "widgetName": "ITEM",
+              "widgetName": "NewItem",
               "isCanvas": true,
               "displayName": "Modal",
               "iconSVG": "/static/media/icon.4975978e9a961fb0bfb4e38de7ecc7c5.svg",
@@ -7029,13 +7029,9 @@
                     {
                       "boxShadow": "none",
                       "widgetName": "IconButton2",
-                      "onClick": "{{\ncloseModal('ITEM')}}",
+                      "onClick": "{{closeModal('NewItem');}}",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
-                      "dynamicPropertyPathList": [
-                        {
-                          "key": "onClick"
-                        }
-                      ],
+                      "dynamicPropertyPathList": [],
                       "displayName": "Icon Button",
                       "iconSVG": "/static/media/icon.1a0c634ac75f9fa6b6ae7a8df882a3ba.svg",
                       "searchTags": [
@@ -7108,7 +7104,7 @@
                       ],
                       "shouldTruncate": false,
                       "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                      "text": "Add Item",
+                      "text": "Add New Item",
                       "key": "ruci97npxz",
                       "isDeprecated": false,
                       "rightColumn": 41,
@@ -7133,13 +7129,9 @@
                       "resetFormOnClick": false,
                       "boxShadow": "none",
                       "widgetName": "Button7",
-                      "onClick": "{{\ncloseModal('ITEM')}}",
+                      "onClick": "{{closeModal('NewItem');}}",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
-                      "dynamicPropertyPathList": [
-                        {
-                          "key": "onClick"
-                        }
-                      ],
+                      "dynamicPropertyPathList": [],
                       "displayName": "Button",
                       "iconSVG": "/static/media/icon.cca026338f1c8eb6df8ba03d084c2fca.svg",
                       "searchTags": [
@@ -7192,7 +7184,7 @@
                       "resetFormOnClick": true,
                       "boxShadow": "none",
                       "widgetName": "Button8",
-                      "onClick": "{{set_addItem.run().then(() => {\n  showAlert('Added successfully', 'success');\n  get_customer_order_details.run();\n  get_printer_order_details.run();\n}).catch(() => {\n  showAlert('Check your query', 'error');\n});\ncloseModal('ITEM');}}",
+                      "onClick": "{{set_addItem.run().then(() => {\n  showAlert('Added successfully', 'success');\n  get_customer_order_details.run();\n  get_printer_order_details.run();\n}).catch(() => {\n  showAlert('Check your query', 'error');\n});\ncloseModal('NewItem');}}",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "dynamicPropertyPathList": [],
                       "displayName": "Button",
@@ -7601,7 +7593,7 @@
             },
             {
               "boxShadow": "none",
-              "widgetName": "SUBITEM",
+              "widgetName": "SubItem",
               "isCanvas": true,
               "displayName": "Modal",
               "iconSVG": "/static/media/icon.4975978e9a961fb0bfb4e38de7ecc7c5.svg",
@@ -7965,7 +7957,7 @@
                     {
                       "boxShadow": "none",
                       "widgetName": "IconButton2Copy",
-                      "onClick": "{{closeModal('SUBITEM')}}",
+                      "onClick": "{{closeModal('SubItem');}}",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "displayName": "Icon Button",
                       "iconSVG": "/static/media/icon.1a0c634ac75f9fa6b6ae7a8df882a3ba.svg",
@@ -8064,7 +8056,7 @@
                       "resetFormOnClick": false,
                       "boxShadow": "none",
                       "widgetName": "Button7Copy",
-                      "onClick": "{{closeModal('SUBITEM')}}",
+                      "onClick": "{{closeModal('SubItem');}}",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "displayName": "Button",
                       "iconSVG": "/static/media/icon.cca026338f1c8eb6df8ba03d084c2fca.svg",
@@ -8118,7 +8110,7 @@
                       "resetFormOnClick": false,
                       "boxShadow": "none",
                       "widgetName": "Button8Copy",
-                      "onClick": "{{set_addsubitem.run().then(() => {\n  showAlert('Added Successfully', 'success');\n  get_printer_order_details.run();\n  get_printer_order_details.run();\n  closeModal('SUBITEM');\n}).catch(() => {\n  showAlert('Check required items', 'error');\n});}}",
+                      "onClick": "{{set_addsubitem.run().then(() => {\n  showAlert('Added Successfully', 'success');\n  get_printer_order_details.run();\n  get_printer_order_details.run();\n  closeModal('SubItem');\n}).catch(() => {\n  showAlert('Check required items', 'error');\n});}}",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "dynamicPropertyPathList": [],
                       "displayName": "Button",

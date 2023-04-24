@@ -1,0 +1,1 @@
+SELECT "PrinterName" from "Printers" where "Status" = 'Active'
