@@ -1,1 +1,1 @@
-  SELECT "ProductDescription" from "Products" where "ProductType" NOT IN ('Letter','Cheque','Postcard')
+  SELECT "ProductDescription" from "Products" where "ProductType" IS NULL OR  "ProductType" = 'Envelope'
