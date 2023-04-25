@@ -2403,6 +2403,16 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "MailingVolume_get_max_eod_record",
+              "name": "get_max_eod_record",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
               "id": "MailingVolume_get_EOD_Summary",
               "name": "get_EOD_Summary",
               "confirmBeforeExecute": false,
@@ -2413,11 +2423,14 @@
               "timeoutInMillisecond": 10000
             },
             {
-              "id": "MailingVolume_get_max_eod_record",
-              "name": "get_max_eod_record",
+              "id": "MailingVolume_get_VolumeByPrinters",
+              "name": "get_VolumeByPrinters",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
-              "jsonPathKeys": [],
+              "jsonPathKeys": [
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
+                "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
               "timeoutInMillisecond": 10000
             }
           ],
@@ -2429,19 +2442,6 @@
               "pluginType": "API",
               "jsonPathKeys": [
                 "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "MailingVolume_get_VolumeByPrinters",
-              "name": "get_VolumeByPrinters",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
-                "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
             }
