@@ -8063,7 +8063,7 @@
     ],
     "userPermissions": [],
     "policies": [],
-    "isHidden": false
+    "isHidden": true
   },
   "deleted": false,
   "gitSyncId": "63b393c7f276cd0745e9510c_6446d13ec12bb14ca7306318"

@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"PrinterLineItems\"\nSET \"Printer\" = '{{appsmith.store.MBitem}}'\nWHERE \"Id\" IN ( {{Table3Copy.tableData.slice(0, -1).map(row => row.itemid).join(',')}} );\n\nUPDATE \"CustomerLineItems\"\nSET \"Printer\" = '{{appsmith.store.MBitem}}'\nWHERE \"Id\" IN ( {{Table3Copy.tableData.slice(0, -1).map(row => row.itemid).join(',')}} );\n",
+      "body": "UPDATE \"PrinterLineItems\"\nSET \"Printer\" = '{{appsmith.store.MBitem}}', \"OrderStatus\" = 'RELEASED'\nWHERE \"Id\" IN ( {{Table3Copy.tableData.slice(0, -1).map(row => row.itemid).join(',')}} );\n\nUPDATE \"CustomerLineItems\"\nSET \"Printer\" = '{{appsmith.store.MBitem}}', \"OrderStatus\" = 'RELEASED'\nWHERE \"Id\" IN ( {{Table3Copy.tableData.slice(0, -1).map(row => row.itemid).join(',')}} );\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {

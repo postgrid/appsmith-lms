@@ -1,16 +1,12 @@
-SELECT c1."Rate", c2."JoiningDate", c2."CustomerName", c2."Country", c2."IsKYCDone", c2."RejectList", c2."WithIMB", c2."SameDay", p."ProductDescription", p."MailType", p."ProductType", p."QtyInStock", p."ReOrderLevel",c1."ProductID", c1."CustomerID" as "Id", c2."OrgID"
+SELECT c2."JoiningDate" as "JoiningDate" , c2."CustomerName", c2."Country", c2."IsKYCDone", c2."RejectList", c2."WithIMB", c2."SameDay",   c1."CustomerID" as "Id", c2."OrgID"
 FROM "public"."CustomerPrice" c1
 INNER JOIN "public"."Customers" c2 ON ( c2."Id" = c1."CustomerID" )
-INNER JOIN "public"."Products" p ON ( p."Id" = c1."ProductID" )
+--INNER JOIN "public"."Products" p ON ( p."Id" = c1."ProductID" )
 WHERE to_date(cast(c2."JoiningDate" as TEXT),'YYYY-MM-DD') >= DATE'{{moment().format("YYYY-MM-DD")}}'
 UNION
-SELECT null, null, '***No new clients added today', null, null, null, null, null, null, null, null, null, null, null, null, null
+SELECT null, '***No new clients added today', null, null, null, null, null, null,null
 WHERE NOT EXISTS (
 SELECT 1
 FROM "public"."Customers"
 WHERE to_date(cast("JoiningDate" as TEXT),'YYYY-MM-DD') >= DATE'{{moment().format("YYYY-MM-DD")}}'
 );
-
-
-
-
