@@ -8,6 +8,4 @@ FROM (
   WHERE p."ProductDescription" LIKE '%Envelope'
   GROUP BY  p."ProductDescription"
 ) subquery
-WHERE "Products"."ProductDescription" = subquery."ProductDescription"
-AND "Products"."ProductDescription" LIKE '%Envelope'
-AND "Products"."QtyInStock" - subquery.total_envelopes_sold <= "ReOrderLevel";
+WHERE "Products"."ProductDescription" = subquery."ProductDescription";

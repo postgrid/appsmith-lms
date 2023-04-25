@@ -18,11 +18,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"Products\"\nSET \"QtyInStock\" = \"QtyInStock\" - subquery.total_envelopes_sold\nFROM (\n  SELECT \"ProductDescription\", SUM(c1.\"Qty\") as total_envelopes_sold\n  FROM \"public\".\"CustomerLineItems\" c1 \n\tINNER JOIN \"public\".\"CustomerPrice\" c2 ON ( c2.\"Id\" = c1.\"CustomerPriceID\"  )  \n\tINNER JOIN \"public\".\"Products\" p ON ( p.\"Id\" = c2.\"ProductID\"  )  \n  WHERE p.\"ProductDescription\" LIKE '%Envelope'\n  GROUP BY  p.\"ProductDescription\"\n) subquery\nWHERE \"Products\".\"ProductDescription\" = subquery.\"ProductDescription\"\nAND \"Products\".\"ProductDescription\" LIKE '%Envelope'\nAND \"Products\".\"QtyInStock\" - subquery.total_envelopes_sold <= \"ReOrderLevel\";",
+      "body": "UPDATE \"Products\"\nSET \"QtyInStock\" = \"QtyInStock\" - subquery.total_envelopes_sold\nFROM (\n  SELECT \"ProductDescription\", SUM(c1.\"Qty\") as total_envelopes_sold\n  FROM \"public\".\"CustomerLineItems\" c1 \n\tINNER JOIN \"public\".\"CustomerPrice\" c2 ON ( c2.\"Id\" = c1.\"CustomerPriceID\"  )  \n\tINNER JOIN \"public\".\"Products\" p ON ( p.\"Id\" = c2.\"ProductID\"  )  \n  WHERE p.\"ProductDescription\" LIKE '%Envelope'\n  GROUP BY  p.\"ProductDescription\"\n) subquery\nWHERE \"Products\".\"ProductDescription\" = subquery.\"ProductDescription\";",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ]
     },
