@@ -1,0 +1,3 @@
+UPDATE "public"."Products"
+SET "QtyInStock" =  "QtyInStock" - {{Input2Copy.text}}
+WHERE "ProductDescription" = '{{Select1Copy.selectedOptionLabel}}';
