@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 77,
+          "version": 78,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -218,7 +218,8 @@
                           "computedValue": "{{Table4.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ProductDescription\"]))}}",
                           "sticky": "",
                           "validation": {},
-                          "selectOptions": "{{Table4.processedTableData.map((currentRow, currentIndex) => ( \nget_collaterals.data.map(a=>({label: a.ProductDescription , value: a.ProductDescription}))\n))}}"
+                          "selectOptions": "{{Table4.processedTableData.map((currentRow, currentIndex) => ( \nget_collaterals.data.map(a=>({label: a.ProductDescription , value: a.ProductDescription}))\n))}}",
+                          "allowSameOptionsInNewRow": true
                         },
                         "customColumn2": {
                           "allowCellWrapping": false,
@@ -1094,7 +1095,9 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
+            }
+          ],
+          [
             {
               "id": "PrinterDashboard_get_user",
               "name": "get_user",
