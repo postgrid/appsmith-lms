@@ -8054,7 +8054,7 @@
                       "resetFormOnClick": false,
                       "boxShadow": "none",
                       "widgetName": "Button8Copy",
-                      "onClick": "{{set_addsubitem.run().then(() => {\n  showAlert('Added Successfully', 'success')\n}).catch(() => {\n  showAlert('Check required items', 'error')\n});\nawait\tset_deduct_inventory.run()\n await get_printer_order_details.run()\n await get_printer_order_details.run()\n  closeModal('SubItem')\n}}",
+                      "onClick": "{{set_addsubitem.run().then(() => {\n  showAlert('Added Successfully', 'success')\n}).catch(() => {\n  showAlert('Check required items', 'error')\n});\nawait\tset_deduct_inventory.run();\n await get_printer_order_details.run();\n await get_printer_order_details.run();\n  closeModal('SubItem');\n}}",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "dynamicPropertyPathList": [
                         {

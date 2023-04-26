@@ -1,0 +1,4 @@
+SELECT p."ProductDescription", p."MailType", p."QtyInStock", "ReOrderLevel"
+FROM "public"."Products" p 
+WHERE p."ProductType" = 'Envelope'
+ORDER BY p."ProductDescription" DESC
