@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1180,
+          "bottomRow": 1120,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -1274,7 +1274,7 @@
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
-                              "animateLoading": true,
+                              "animateLoading": false,
                               "overflow": "NONE",
                               "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
                               "parentColumnSpace": 18.703125,
@@ -1371,7 +1371,7 @@
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
-                              "animateLoading": true,
+                              "animateLoading": false,
                               "overflow": "NONE",
                               "fontFamily": "System Default",
                               "parentColumnSpace": 19.75,
@@ -3254,6 +3254,16 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "RFP_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -3326,18 +3336,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Select2Copy.selectedOptionValue"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "RFP_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

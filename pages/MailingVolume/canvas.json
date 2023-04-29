@@ -82,8 +82,8 @@
                         "paragraph",
                         "label"
                       ],
-                      "topRow": 27,
-                      "bottomRow": 31,
+                      "topRow": 28,
+                      "bottomRow": 32,
                       "parentRowSpace": 10,
                       "type": "TEXT_WIDGET",
                       "hideCard": false,
@@ -403,8 +403,8 @@
                         "parent",
                         "group"
                       ],
-                      "topRow": 15,
-                      "bottomRow": 26,
+                      "topRow": 17,
+                      "bottomRow": 28,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -705,7 +705,7 @@
                         "group"
                       ],
                       "topRow": 0,
-                      "bottomRow": 15,
+                      "bottomRow": 17,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -2172,7 +2172,7 @@
                       "borderColor": "#E0DEDE",
                       "isVisibleDownload": true,
                       "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                      "topRow": 31,
+                      "topRow": 32,
                       "isSortable": false,
                       "type": "TABLE_WIDGET_V2",
                       "inlineEditingSaveOption": "ROW_LEVEL",
@@ -2262,7 +2262,7 @@
                       "dynamicPropertyPathList": [],
                       "compactMode": "SHORT",
                       "displayName": "Table",
-                      "bottomRow": 141,
+                      "bottomRow": 142,
                       "columnWidthMap": {
                         "task": 245,
                         "step": 70,
