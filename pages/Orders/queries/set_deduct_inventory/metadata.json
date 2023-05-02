@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"public\".\"Products\"\nSET \"QtyInStock\" =  \"QtyInStock\" - {{Input2Copy.text}}\nWHERE \"ProductDescription\" = '{{Select1Copy.selectedOptionLabel}}';",
+      "body": "UPDATE \"public\".\"Products\"\nSET \"QtyInStock\" =  \"QtyInStock\" - {{Input2Copy.text}}\nWHERE \"ProductDescription\" = '{{Select1Copy.selectedOptionLabel}}' AND \"ProductType\" = 'Envelope' ;",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {

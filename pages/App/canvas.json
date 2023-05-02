@@ -5215,6 +5215,17 @@
         "layoutOnLoadActions": [
           [
             {
+              "id": "App_Util.autorefresh",
+              "name": "Util.autorefresh",
+              "collectionId": "App_Util",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "App_Util.synchronize",
               "name": "Util.synchronize",
               "collectionId": "App_Util",
@@ -5236,24 +5247,13 @@
           ],
           [
             {
-              "id": "App_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "App_Util",
+              "id": "App_get_user",
+              "name": "get_user",
               "confirmBeforeExecute": false,
-              "pluginType": "JS",
+              "pluginType": "API",
               "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
+                "appsmith.store.access_token"
               ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "App_get_total_customers",
-              "name": "get_total_customers",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
             }
           ],
@@ -5309,6 +5309,14 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "App_get_total_customers",
+              "name": "get_total_customers",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "App_get_total_volume",
               "name": "get_total_volume",
               "confirmBeforeExecute": false,
@@ -5325,18 +5333,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment().format('MM')"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "App_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
