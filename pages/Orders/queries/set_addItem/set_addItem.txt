@@ -8,8 +8,8 @@ WHERE NOT EXISTS (
 
 
 
-INSERT INTO public."CustomerLineItems" ("InvoiceID", "CustomerPriceID", "Qty", "SubItemID", "OrderStatus",  "Destination")
-  VALUES ('{{Text120.text}}', (SELECT c1."Id" FROM "public"."CustomerPrice" c1  	INNER JOIN "public"."Products" p ON ( p."Id" = c1."ProductID"  )   	INNER JOIN "public"."Customers" c2 ON ( c2."Id" = c1."CustomerID"  )  WHERE p."ProductDescription" = '{{JSON.parse(JSON.stringify(Select1.selectedOptionValue).replaceAll("'", "''"))}}' AND 	c2."OrgID" = '{{Table2.selectedRow.OrgID }}'), {{Input2.text}}, NULL, 'PROCESSING', '{{Input3.text}}');
+INSERT INTO public."CustomerLineItems" ("InvoiceID", "CustomerPriceID", "Qty","Rate", "SubItemID", "OrderStatus",  "Destination")
+  VALUES ('{{Text120.text}}', (SELECT c1."Id" FROM "public"."CustomerPrice" c1  	INNER JOIN "public"."Products" p ON ( p."Id" = c1."ProductID"  )   	INNER JOIN "public"."Customers" c2 ON ( c2."Id" = c1."CustomerID"  )  WHERE p."ProductDescription" = '{{JSON.parse(JSON.stringify(Select1.selectedOptionValue).replaceAll("'", "''"))}}' AND 	c2."OrgID" = '{{Table2.selectedRow.OrgID }}'), {{Input2.text}} , (SELECT c1."Rate"  FROM "public"."CustomerPrice" c1  	INNER JOIN "public"."Products" p ON ( p."Id" = c1."ProductID"  )   	INNER JOIN "public"."Customers" c2 ON ( c2."Id" = c1."CustomerID"  )  WHERE p."ProductDescription" = '{{JSON.parse(JSON.stringify(Select1.selectedOptionValue).replaceAll("'", "''"))}}' AND 	c2."OrgID" = '{{Table2.selectedRow.OrgID }}'), NULL, 'PROCESSING', '{{Input3.text}}');
 	
 	
 	INSERT INTO public."PrinterLineItems" ("InvoiceID", "Qty", "InitialProdDescription",  "OrderStatus", "Destination")

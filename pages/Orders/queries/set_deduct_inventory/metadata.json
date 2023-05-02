@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"public\".\"Products\"\nSET \"QtyInStock\" =  \"QtyInStock\" - {{Input2Copy.text}}\nWHERE \"ProductDescription\" = '{{Select1Copy.selectedOptionLabel}}' AND \"ProductType\" = 'Envelope' ;",
+      "body": "UPDATE \"public\".\"Products\"\nSET \"QtyInStock\" =  \"QtyInStock\" - {{Input2Copy.text}}\nWHERE \"ProductDescription\" = '{{JSON.parse(JSON.stringify(Select1Copy.selectedOptionLabel).replaceAll(\"'\", \"''\"))}}' AND \"ProductType\" = 'Envelope' ;\n\n\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -37,7 +37,7 @@
     "messages": [],
     "jsonPathKeys": [
       "Input2Copy.text",
-      "Select1Copy.selectedOptionLabel"
+      "JSON.parse(JSON.stringify(Select1Copy.selectedOptionLabel).replaceAll(\"'\", \"''\"))"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
