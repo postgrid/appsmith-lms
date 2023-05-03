@@ -336,7 +336,7 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "Client Cost (USD)",
+                                  "label": "Total Revenue (USD)",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"totalamount\"].toFixed(2)))}}",
