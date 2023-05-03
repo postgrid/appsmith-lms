@@ -1,0 +1,20 @@
+
+SELECT   CustomerName, TotalAmount FROM (
+
+SELECT DISTINCT  c1."CustomerName" AS CustomerName, sum(c2."Amount") AS TotalAmount, 1 AS sort_order
+FROM "public"."Invoice" i
+INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID" )
+INNER JOIN "public"."CustomerLineItems" c2 ON ( c2."InvoiceID" = i."InvoiceID" )
+WHERE c2."Printer" NOT IN ('CANCELLED','PAUSED')
+GROUP BY   c1."CustomerName"
+
+UNION ALL
+
+SELECT   'Total' AS CustomerName, sum(c2."Amount") AS TotalAmount, 2 AS sort_order
+FROM "public"."Invoice" i
+INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID" )
+INNER JOIN "public"."CustomerLineItems" c2 ON ( c2."InvoiceID" = i."InvoiceID" )
+WHERE c2."Printer" NOT IN ('CANCELLED','PAUSED')
+) AS allData
+
+ORDER BY sort_order, LOWER(CustomerName) ASC NULLS LAST
