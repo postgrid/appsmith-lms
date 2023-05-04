@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"PrinterLineItems\"\nSET \"InitialProdDescription\" ='{{this.params.currentRow.ProductDescription}}', \"Qty\" = {{this.params.currentRow.Qty}}\nWHERE \"Id\" = '{{this.params.currentRow.itemid}}';\n\nUPDATE \"CustomerLineItems\"\nSET  \"Qty\" = {{this.params.currentRow.Qty}}\nWHERE \"Id\" = '{{this.params.currentRow.itemid}}';\n\n\n\n\n",
+      "body": "UPDATE \"PrinterLineItems\"\nSET \"InitialProdDescription\" ='{{JSON.parse(JSON.stringify(this.params.currentRow.ProductDescription).replaceAll(\"'\", \"''\"))}}', \"Qty\" = {{this.params.currentRow.Qty}}\nWHERE \"Id\" = '{{this.params.currentRow.itemid}}';\n\nUPDATE \"CustomerLineItems\"\nSET  \"Qty\" = {{this.params.currentRow.Qty}}\nWHERE \"Id\" = '{{this.params.currentRow.itemid}}';\n\n\n\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,7 +36,7 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "this.params.currentRow.ProductDescription",
+      "JSON.parse(JSON.stringify(this.params.currentRow.ProductDescription).replaceAll(\"'\", \"''\"))",
       "this.params.currentRow.Qty",
       "this.params.currentRow.itemid"
     ],

@@ -7622,7 +7622,7 @@
                       "rightColumn": 12,
                       "widgetId": "qybp16ob6x",
                       "minWidth": 450,
-                      "label": "Destination Country",
+                      "label": "Destination",
                       "parentId": "xngq7k3vzo",
                       "labelAlignment": "left",
                       "renderMode": "CANVAS",

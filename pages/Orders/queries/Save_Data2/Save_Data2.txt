@@ -1,5 +1,5 @@
 UPDATE "PrinterLineItems"
-SET "InitialProdDescription" ='{{this.params.currentRow.ProductDescription}}', "Qty" = {{this.params.currentRow.Qty}}
+SET "InitialProdDescription" ='{{JSON.parse(JSON.stringify(this.params.currentRow.ProductDescription).replaceAll("'", "''"))}}', "Qty" = {{this.params.currentRow.Qty}}
 WHERE "Id" = '{{this.params.currentRow.itemid}}';
 
 UPDATE "CustomerLineItems"
