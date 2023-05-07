@@ -3,6 +3,7 @@ export default {
 		await storeValue("rowUpdate",currentRow);
 		await Save_Data.run({currentRow});
 		await get_customer_order_details.run();
+		await get_PauseCancel_custOrderDetai.run();
 		await get_printer_order_details.run(()			=> { showAlert('Well done!.','success')}, () => {});
 
 	},

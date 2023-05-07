@@ -7,14 +7,18 @@ WITH RECURSIVE category_tree AS (
   FROM "CustomerLineItems" oi
   JOIN category_tree ct ON oi."SubItemID" = ct."Id"
 ), total_amount AS (
-  SELECT SUM("Amount") AS total FROM category_tree WHERE   "Printer"  IN ('CANCELLED','PAUSED')
+  SELECT SUM("Amount") AS total FROM category_tree 
+		INNER JOIN "public"."Invoice" i ON ( i."InvoiceID" =  category_tree."InvoiceID"  ) 
+	WHERE   "Printer"  IN ('CANCELLED','PAUSED') AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >= '{{moment().format('YYYY-MM-DD')}}'  
+
 )
 SELECT * FROM (
   SELECT it."Destination" as "To", it."Qty", it."Amount", c2."Rate", p."MailType", p."ProductType", p."ProductDescription", it."Id" AS itemId, it."Printer" AS "AssignTo", it."SubItemID"
   FROM category_tree it
   JOIN "public"."CustomerPrice" c2 ON (it."CustomerPriceID" = c2."Id")
   JOIN "public"."Products" p ON (p."Id" = c2."ProductID")
-  WHERE   it."Printer"   IN ('CANCELLED','PAUSED')
+  	INNER JOIN "public"."Invoice" i ON ( i."InvoiceID" =  it."InvoiceID"  ) 
+	WHERE   "Printer"  IN ('CANCELLED','PAUSED') AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >= '{{moment().format('YYYY-MM-DD')}}'  
   ORDER BY COALESCE(it."SubItemID", it."Id"), it."Id"
 ) AS subquery
 UNION ALL

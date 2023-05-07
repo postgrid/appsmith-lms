@@ -5820,7 +5820,7 @@
                       "widgetId": "vs83o46kwk",
                       "accentColor": "",
                       "defaultTab": "Customer Cost",
-                      "onTabSelected": "{{get_customer_order_details.run();\nget_printer_order_details.run().then(() => {}).catch(() => {\n  showAlert('No item selected', 'warning');\n});\n\nif(Tabs2.selectedTab == \"Printing Cost\"){\nstoreValue('show','false')\nstoreValue('show2','false')\n}\nelse\n\t{\nstoreValue('show','true')\nstoreValue('show2','true')\t\t\n}\n}}",
+                      "onTabSelected": "{{get_customer_order_details.run();\nget_PauseCancel_custOrderDetai.run();\nget_printer_order_details.run().then(() => {}).catch(() => {\n  showAlert('No item selected', 'warning');\n});\n\nif(Tabs2.selectedTab == \"Printing Cost\"){\nstoreValue('show','false')\nstoreValue('show2','false')\n}\nelse\n\t{\nstoreValue('show','true')\nstoreValue('show2','true')\t\t\n}\n}}",
                       "shouldShowTabs": true,
                       "minWidth": 450,
                       "tabsObj": {
@@ -9304,6 +9304,18 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "Orders_get_invoicelist",
+              "name": "get_invoicelist",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
               "id": "Orders_get_collaterals",
               "name": "get_collaterals",
               "confirmBeforeExecute": false,
@@ -9326,6 +9338,16 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -9335,8 +9357,19 @@
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')",
                 "(Table3CopyCopy.pageNo - 1) * Table3CopyCopy.pageSize",
                 "Table3CopyCopy.pageSize"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_cheque_day_volume",
+              "name": "get_cheque_day_volume",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -9349,40 +9382,6 @@
                 "Table2.selectedRow.InvoiceNo",
                 "(Table3Copy.pageNo - 1) * Table3Copy.pageSize",
                 "Table3Copy.pageSize"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_invoicelist",
-              "name": "get_invoicelist",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_printer_order_details",
-              "name": "get_printer_order_details",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Table2.selectedRow.InvoiceNo",
-                "(Table3.pageNo - 1) * Table3.pageSize",
-                "Table3.pageSize"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Orders_get_cheque_day_volume",
-              "name": "get_cheque_day_volume",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -9425,16 +9424,16 @@
                 "moment().format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
-            }
-          ],
-          [
+            },
             {
-              "id": "Orders_get_user",
-              "name": "get_user",
+              "id": "Orders_get_printer_order_details",
+              "name": "get_printer_order_details",
               "confirmBeforeExecute": false,
-              "pluginType": "API",
+              "pluginType": "DB",
               "jsonPathKeys": [
-                "appsmith.store.access_token"
+                "Table2.selectedRow.InvoiceNo",
+                "(Table3.pageNo - 1) * Table3.pageSize",
+                "Table3.pageSize"
               ],
               "timeoutInMillisecond": 10000
             }
