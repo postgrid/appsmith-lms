@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1590,
+          "bottomRow": 1260,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -34,7 +34,7 @@
               "displayName": "Tabs",
               "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
               "topRow": 0,
-              "bottomRow": 159,
+              "bottomRow": 126,
               "parentRowSpace": 10,
               "type": "TABS_WIDGET",
               "hideCard": false,
@@ -59,7 +59,7 @@
                   "tabId": "tab1",
                   "widgetName": "Canvas1",
                   "displayName": "Canvas",
-                  "bottomRow": 1590,
+                  "bottomRow": 1260,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -79,8 +79,8 @@
                       "isCanvas": true,
                       "displayName": "Stats Box",
                       "iconSVG": "/static/media/icon.382a7c7bc55323fbbd8edd79208c5324.svg",
-                      "topRow": 98,
-                      "bottomRow": 112,
+                      "topRow": 65,
+                      "bottomRow": 79,
                       "parentRowSpace": 10,
                       "type": "STATBOX_WIDGET",
                       "hideCard": false,
@@ -344,10 +344,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 65,
+                      "originalTopRow": 98,
                       "borderRadius": "0px",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 79,
+                      "originalBottomRow": 112,
                       "minDynamicHeight": 4
                     },
                     {
@@ -1221,8 +1221,8 @@
                       ],
                       "displayName": "Container",
                       "iconSVG": "/static/media/icon.1977dca3.svg",
-                      "topRow": 151,
-                      "bottomRow": 157,
+                      "topRow": 118,
+                      "bottomRow": 124,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -1273,10 +1273,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 118,
+                      "originalTopRow": 151,
                       "borderRadius": "5px",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 124,
+                      "originalBottomRow": 157,
                       "minDynamicHeight": 4
                     },
                     {
@@ -1286,8 +1286,8 @@
                       "isCanvas": true,
                       "displayName": "Stats Box",
                       "iconSVG": "/static/media/icon.382a7c7bc55323fbbd8edd79208c5324.svg",
-                      "topRow": 130,
-                      "bottomRow": 150,
+                      "topRow": 96,
+                      "bottomRow": 114,
                       "parentRowSpace": 10,
                       "type": "STATBOX_WIDGET",
                       "hideCard": false,
@@ -1308,7 +1308,7 @@
                           "widgetName": "Canvas16",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 200,
+                          "bottomRow": 180,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -1328,7 +1328,7 @@
                                 "label"
                               ],
                               "topRow": 8,
-                              "bottomRow": 13,
+                              "bottomRow": 12,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
                               "animateLoading": true,
@@ -1366,7 +1366,7 @@
                               "originalTopRow": 8,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 14,
+                              "originalBottomRow": 13,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             },
@@ -1430,8 +1430,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 13,
-                              "bottomRow": 18,
+                              "topRow": 12,
+                              "bottomRow": 16,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
                               "animateLoading": true,
@@ -1465,10 +1465,10 @@
                               "parentId": "o9fdymdyll",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 14,
+                              "originalTopRow": 13,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 20,
+                              "originalBottomRow": 18,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             },
@@ -1591,10 +1591,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 97,
+                      "originalTopRow": 130,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 117,
+                      "originalBottomRow": 150,
                       "minDynamicHeight": 14
                     },
                     {
@@ -1604,8 +1604,8 @@
                       "isCanvas": true,
                       "displayName": "Stats Box",
                       "iconSVG": "/static/media/icon.382a7c7bc55323fbbd8edd79208c5324.svg",
-                      "topRow": 114,
-                      "bottomRow": 129,
+                      "topRow": 81,
+                      "bottomRow": 95,
                       "parentRowSpace": 10,
                       "type": "STATBOX_WIDGET",
                       "hideCard": false,
@@ -1626,7 +1626,7 @@
                           "widgetName": "Canvas17",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 150,
+                          "bottomRow": 140,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -1749,7 +1749,7 @@
                                 "label"
                               ],
                               "topRow": 8,
-                              "bottomRow": 13,
+                              "bottomRow": 12,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
                               "animateLoading": true,
@@ -1783,10 +1783,10 @@
                               "parentId": "m5xfwhrdo7",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 9,
+                              "originalTopRow": 8,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 15,
+                              "originalBottomRow": 13,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             },
@@ -1854,10 +1854,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 81,
+                      "originalTopRow": 114,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 96,
+                      "originalBottomRow": 129,
                       "minDynamicHeight": 14
                     },
                     {
@@ -1925,7 +1925,7 @@
                               ],
                               "shouldTruncate": false,
                               "truncateButtonColor": "#FFC13D",
-                              "text": "Total Customers",
+                              "text": "Total Client This Month",
                               "key": "j0z4cpigeh",
                               "isDeprecated": false,
                               "rightColumn": 42,
@@ -2854,7 +2854,7 @@
                         "group"
                       ],
                       "topRow": 34,
-                      "bottomRow": 97,
+                      "bottomRow": 64,
                       "parentRowSpace": 10,
                       "type": "CONTAINER_WIDGET",
                       "hideCard": false,
@@ -2879,7 +2879,7 @@
                           "widgetName": "Canvas20Copy",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 630,
+                          "bottomRow": 300,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -2899,7 +2899,7 @@
                                 "label"
                               ],
                               "topRow": 1,
-                              "bottomRow": 6,
+                              "bottomRow": 5,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -2952,8 +2952,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 8,
-                              "bottomRow": 21,
+                              "topRow": 7,
+                              "bottomRow": 11,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -2993,7 +2993,7 @@
                               "originalTopRow": 8,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 12,
+                              "originalBottomRow": 21,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -3006,8 +3006,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 8,
-                              "bottomRow": 15,
+                              "topRow": 7,
+                              "bottomRow": 11,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -3050,7 +3050,7 @@
                               "originalTopRow": 8,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 12,
+                              "originalBottomRow": 15,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -3063,8 +3063,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 21,
-                              "bottomRow": 40,
+                              "topRow": 11,
+                              "bottomRow": 15,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -3101,10 +3101,10 @@
                               "parentId": "rbrn7hgnac",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 12,
+                              "originalTopRow": 21,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 16,
+                              "originalBottomRow": 40,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -3117,8 +3117,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 15,
-                              "bottomRow": 20,
+                              "topRow": 11,
+                              "bottomRow": 15,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -3158,10 +3158,10 @@
                               "parentId": "rbrn7hgnac",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 12,
+                              "originalTopRow": 15,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 16,
+                              "originalBottomRow": 20,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -3174,8 +3174,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 40,
-                              "bottomRow": 55,
+                              "topRow": 15,
+                              "bottomRow": 19,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -3212,10 +3212,10 @@
                               "parentId": "rbrn7hgnac",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 16,
+                              "originalTopRow": 40,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 20,
+                              "originalBottomRow": 55,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -3228,8 +3228,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 20,
-                              "bottomRow": 25,
+                              "topRow": 15,
+                              "bottomRow": 19,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -3269,10 +3269,10 @@
                               "parentId": "rbrn7hgnac",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 16,
+                              "originalTopRow": 20,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 20,
+                              "originalBottomRow": 25,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -3395,8 +3395,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 56,
-                              "bottomRow": 61,
+                              "topRow": 20,
+                              "bottomRow": 24,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
                               "animateLoading": true,
@@ -3434,10 +3434,10 @@
                               "parentId": "rbrn7hgnac",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 21,
+                              "originalTopRow": 56,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 26,
+                              "originalBottomRow": 61,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -3450,8 +3450,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 26,
-                              "bottomRow": 39,
+                              "topRow": 20,
+                              "bottomRow": 24,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -3491,10 +3491,10 @@
                               "parentId": "rbrn7hgnac",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 21,
+                              "originalTopRow": 26,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 25,
+                              "originalBottomRow": 39,
                               "fontSize": "1.25rem",
                               "minDynamicHeight": 4
                             }
@@ -3528,7 +3528,7 @@
                       "originalTopRow": 34,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 64,
+                      "originalBottomRow": 97,
                       "minDynamicHeight": 10
                     },
                     {
@@ -4345,8 +4345,8 @@
                         "visuals",
                         "visualisations"
                       ],
-                      "topRow": 98,
-                      "bottomRow": 150,
+                      "topRow": 65,
+                      "bottomRow": 117,
                       "parentRowSpace": 10,
                       "type": "CHART_WIDGET",
                       "hideCard": false,
@@ -4446,11 +4446,11 @@
                       "renderMode": "CANVAS",
                       "isLoading": false,
                       "yAxisName": "Revenue($)",
-                      "originalTopRow": 65,
+                      "originalTopRow": 98,
                       "chartName": "Sales Report",
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "xAxisName": "Product Line",
-                      "originalBottomRow": 117,
+                      "originalBottomRow": 150,
                       "chartType": "COLUMN_CHART"
                     }
                   ],
@@ -4471,7 +4471,7 @@
                   "tabId": "tab2",
                   "widgetName": "Canvas2",
                   "displayName": "Canvas",
-                  "bottomRow": 1590,
+                  "bottomRow": 1260,
                   "topRow": 0,
                   "parentRowSpace": 1,
                   "type": "CANVAS_WIDGET",
@@ -4743,7 +4743,7 @@
               "originalTopRow": 0,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 126,
+              "originalBottomRow": 159,
               "minDynamicHeight": 10
             },
             {
@@ -5215,17 +5215,6 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "App_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "App_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "App_Util.synchronize",
               "name": "Util.synchronize",
               "collectionId": "App_Util",
@@ -5247,12 +5236,13 @@
           ],
           [
             {
-              "id": "App_get_user",
-              "name": "get_user",
+              "id": "App_Util.autorefresh",
+              "name": "Util.autorefresh",
+              "collectionId": "App_Util",
               "confirmBeforeExecute": false,
-              "pluginType": "API",
+              "pluginType": "JS",
               "jsonPathKeys": [
-                "appsmith.store.access_token"
+                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
               ],
               "timeoutInMillisecond": 10000
             }
@@ -5313,7 +5303,9 @@
               "name": "get_total_customers",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
-              "jsonPathKeys": [],
+              "jsonPathKeys": [
+                "moment().format('MM')"
+              ],
               "timeoutInMillisecond": 10000
             },
             {
@@ -5333,6 +5325,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment().format('MM')"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "App_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

@@ -1,1 +1,9 @@
-SELECT count(*) FROM "Customers" 
+SELECT COUNT(DISTINCT i."CustomerID")
+FROM "public"."Invoice" i 
+	INNER JOIN "public"."Customers" cu ON ( cu."Id" = i."CustomerID"  )  
+	INNER JOIN "public"."CustomerLineItems" c1 ON ( c1."InvoiceID" = i."InvoiceID"  )  
+	INNER JOIN "public"."CustomerPrice" c2 ON ( c2."Id" = c1."CustomerPriceID"  )  
+	INNER JOIN "public"."Products" p ON ( p."Id" = c2."ProductID"  )  
+
+WHERE  p."ProductType" != 'Envelope' AND p."ProductType" != ''
+AND (extract(MONTH from i."InvoiceDate") = '{{moment().format('MM')}}' ) 
