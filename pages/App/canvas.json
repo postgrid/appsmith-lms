@@ -4338,25 +4338,13 @@
                       "chartData": {
                         "ghaq4tzox4": {
                           "seriesName": "Sales",
-                          "data": [
-                            {
-                              "x": "Product1",
-                              "y": 20000
-                            },
-                            {
-                              "x": "Product2",
-                              "y": 22000
-                            },
-                            {
-                              "x": "Product3",
-                              "y": 32000
-                            }
-                          ]
+                          "data": "[\n  {\n    \"x\": \"Product1\",\n    \"y\": 20000\n  },\n  {\n    \"x\": \"Product2\",\n    \"y\": 22000\n  },\n  {\n    \"x\": \"Product3\",\n    \"y\": 32000\n  }\n]"
                         }
                       },
                       "animateLoading": true,
                       "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
                       "parentColumnSpace": 19.75,
+                      "dynamicTriggerPathList": [],
                       "leftColumn": 16,
                       "dynamicBindingPathList": [
                         {
@@ -5205,17 +5193,6 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "App_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "App_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "App_Util.synchronize",
               "name": "Util.synchronize",
               "collectionId": "App_Util",
@@ -5237,12 +5214,13 @@
           ],
           [
             {
-              "id": "App_get_user",
-              "name": "get_user",
+              "id": "App_Util.autorefresh",
+              "name": "Util.autorefresh",
+              "collectionId": "App_Util",
               "confirmBeforeExecute": false,
-              "pluginType": "API",
+              "pluginType": "JS",
               "jsonPathKeys": [
-                "appsmith.store.access_token"
+                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
               ],
               "timeoutInMillisecond": 10000
             }
@@ -5325,6 +5303,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment().format('MM')"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "App_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
