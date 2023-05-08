@@ -1,0 +1,15 @@
+{
+  "unpublishedCollection": {
+    "name": "Auth",
+    "pageId": "LogSum",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "actions": [],
+    "archivedActions": [],
+    "variables": [],
+    "userPermissions": []
+  },
+  "id": "LogSum_Auth",
+  "deleted": false,
+  "gitSyncId": "63b393c7f276cd0745e9510c_645877d91671447b88d3c2d5"
+}

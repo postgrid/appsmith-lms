@@ -35,6 +35,10 @@
     {
       "id": "OrdersSummary",
       "isDefault": false
+    },
+    {
+      "id": "LogSum",
+      "isDefault": false
     }
   ],
   "viewMode": false,

@@ -1,0 +1,2 @@
+SELECT "CustomerName","Id" FROM "Customers" 
+Order by lower("CustomerName") ASC

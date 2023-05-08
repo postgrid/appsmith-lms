@@ -1,0 +1,2 @@
+INSERT INTO public."Invoice" ("InvoiceStatus", "OrderStatus", "CustomerID")
+  VALUES ('INPROCESS', 'INPROCESS', '{{JSON.parse(JSON.stringify(Select2.selectedOptionValue).replaceAll("'", "''"))}}');

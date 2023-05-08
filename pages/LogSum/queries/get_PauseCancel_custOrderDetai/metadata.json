@@ -13,7 +13,7 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "Orders",
+    "pageId": "LogSum",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -26,7 +26,7 @@
         }
       ]
     },
-    "executeOnLoad": true,
+    "executeOnLoad": false,
     "dynamicBindingPathList": [
       {
         "key": "body"
@@ -45,7 +45,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_get_PauseCancel_custOrderDetai",
+  "id": "LogSum_get_PauseCancel_custOrderDetai",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6457facb416c9912ae128c10"
+  "gitSyncId": "63b393c7f276cd0745e9510c_645877d91671447b88d3c2b8"
 }
