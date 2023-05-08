@@ -1095,7 +1095,9 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
+            }
+          ],
+          [
             {
               "id": "PrinterDashboard_get_user",
               "name": "get_user",

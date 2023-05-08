@@ -1209,11 +1209,11 @@
                                       "rightColumn": 61,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "home",
-                                      "widgetId": "hd8drvpadw",
+                                      "widgetId": "4ip6kd6g1j",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "ygatzctzf6",
+                                      "parentId": "3uyb198lr9",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -1259,11 +1259,11 @@
                                       "rightColumn": 53,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "people",
-                                      "widgetId": "p7znvfu0fx",
+                                      "widgetId": "h3m3nmm64s",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "ygatzctzf6",
+                                      "parentId": "3uyb198lr9",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -1309,11 +1309,11 @@
                                       "rightColumn": 42,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "print",
-                                      "widgetId": "pkla61nqfh",
+                                      "widgetId": "4zo2zgfl3v",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "ygatzctzf6",
+                                      "parentId": "3uyb198lr9",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -1343,6 +1343,9 @@
                                         },
                                         {
                                           "key": "menuItems.menuItem2.onClick"
+                                        },
+                                        {
+                                          "key": "menuItems.menuItemgcx5eam3xh.onClick"
                                         }
                                       ],
                                       "leftColumn": 12,
@@ -1357,10 +1360,10 @@
                                       "rightColumn": 22,
                                       "iconName": "swap-horizontal",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "1jtn5hj72r",
+                                      "widgetId": "wvvj8kqztg",
                                       "menuItems": {
                                         "menuItem1": {
-                                          "label": "Orders",
+                                          "label": "Manage Orders",
                                           "id": "menuItem1",
                                           "widgetId": "",
                                           "isVisible": true,
@@ -1369,13 +1372,13 @@
                                           "onClick": "{{navigateTo('Orders', {}, 'SAME_WINDOW')}}"
                                         },
                                         "menuItem2": {
-                                          "label": "Summary",
+                                          "label": "Logistics Summary",
                                           "id": "menuItem2",
                                           "widgetId": "",
                                           "isVisible": true,
                                           "isDisabled": false,
                                           "index": 1,
-                                          "onClick": "{{navigateTo('OrdersSummary', {}, 'SAME_WINDOW');}}"
+                                          "onClick": "{{navigateTo('LogSum', {}, 'SAME_WINDOW');}}"
                                         },
                                         "menuItem3": {
                                           "label": "Mailing & Inventory",
@@ -1386,9 +1389,18 @@
                                           "index": 2,
                                           "onClick": "{{navigateTo('MailingVolume', {}, 'SAME_WINDOW');}}"
                                         },
+                                        "menuItemgcx5eam3xh": {
+                                          "id": "menuItemgcx5eam3xh",
+                                          "index": 3,
+                                          "label": "Sales Dashboard",
+                                          "widgetId": "qdtpw6bftb",
+                                          "isDisabled": false,
+                                          "isVisible": true,
+                                          "onClick": "{{navigateTo('OrdersSummary', {}, 'SAME_WINDOW');}}"
+                                        },
                                         "menuItem99wwdrp04b": {
                                           "id": "menuItem99wwdrp04b",
-                                          "index": 3,
+                                          "index": 4,
                                           "label": "Archives",
                                           "widgetId": "jgelm4178f",
                                           "isDisabled": false,
@@ -1398,7 +1410,7 @@
                                       "isVisible": true,
                                       "label": "Operations",
                                       "version": 1,
-                                      "parentId": "ygatzctzf6",
+                                      "parentId": "3uyb198lr9",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -1451,10 +1463,10 @@
                                       "rightColumn": 32,
                                       "iconName": "inherited-group",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "jsj6tv2j74",
+                                      "widgetId": "hqzlaokxch",
                                       "menuItems": {
                                         "menuItem1": {
-                                          "label": "Printers",
+                                          "label": "Manage Printers",
                                           "id": "menuItem1",
                                           "widgetId": "",
                                           "isVisible": true,
@@ -1475,7 +1487,7 @@
                                       "isVisible": true,
                                       "label": "Partnership",
                                       "version": 1,
-                                      "parentId": "ygatzctzf6",
+                                      "parentId": "3uyb198lr9",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -1509,16 +1521,10 @@
                                       "parentColumnSpace": 13.9814453125,
                                       "dynamicTriggerPathList": [
                                         {
-                                          "key": "menuItems.menuItem1.onClick"
-                                        },
-                                        {
-                                          "key": "menuItems.menuItem2.onClick"
-                                        },
-                                        {
-                                          "key": "menuItems.menuItem93y1l3qly0.onClick"
-                                        },
-                                        {
                                           "key": "menuItems.menuItem5t32gvzbnc.onClick"
+                                        },
+                                        {
+                                          "key": "menuItems.menuItemchlpdcx8u1.onClick"
                                         }
                                       ],
                                       "leftColumn": 61,
@@ -1534,42 +1540,21 @@
                                       "rightColumn": 64,
                                       "iconName": "menu",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "2kcl504ooh",
+                                      "widgetId": "nti0m9xmuo",
                                       "menuItems": {
-                                        "menuItem1": {
-                                          "label": "Operation",
-                                          "id": "menuItem1",
-                                          "widgetId": "",
-                                          "isVisible": true,
-                                          "isDisabled": false,
+                                        "menuItemchlpdcx8u1": {
+                                          "id": "menuItemchlpdcx8u1",
                                           "index": 0,
-                                          "onClick": "{{navigateTo('Dashboard', {})}}",
-                                          "iconName": "swap-horizontal",
-                                          "iconAlign": "left"
-                                        },
-                                        "menuItem2": {
-                                          "label": "Partnership",
-                                          "id": "menuItem2",
-                                          "widgetId": "",
-                                          "isVisible": true,
-                                          "isDisabled": false,
-                                          "index": 1,
-                                          "onClick": "{{navigateTo('Search', {})}}",
-                                          "iconName": "inherited-group"
-                                        },
-                                        "menuItem93y1l3qly0": {
-                                          "id": "menuItem93y1l3qly0",
-                                          "index": 2,
-                                          "label": "Customer Success",
-                                          "widgetId": "47913puvxu",
+                                          "label": "Change Password",
+                                          "widgetId": "aj9fd0bcf2",
                                           "isDisabled": false,
                                           "isVisible": true,
-                                          "onClick": "{{navigateTo('App usage', {})}}",
-                                          "iconName": "people"
+                                          "onClick": "{{showModal('Modal2');}}",
+                                          "iconName": "key"
                                         },
                                         "menuItem5t32gvzbnc": {
                                           "id": "menuItem5t32gvzbnc",
-                                          "index": 3,
+                                          "index": 1,
                                           "label": "Sign Out",
                                           "widgetId": "add2gtihvh",
                                           "isDisabled": false,
@@ -1581,7 +1566,7 @@
                                       "isVisible": true,
                                       "label": "",
                                       "version": 1,
-                                      "parentId": "ygatzctzf6",
+                                      "parentId": "3uyb198lr9",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -1595,11 +1580,11 @@
                                   "isDeprecated": false,
                                   "rightColumn": 574.5,
                                   "detachFromLayout": true,
-                                  "widgetId": "ygatzctzf6",
+                                  "widgetId": "3uyb198lr9",
                                   "containerStyle": "none",
                                   "isVisible": true,
                                   "version": 1,
-                                  "parentId": "drhmx9h59v",
+                                  "parentId": "tixu5zsmpy",
                                   "renderMode": "CANVAS",
                                   "isLoading": false
                                 }
@@ -1610,7 +1595,7 @@
                               "isDeprecated": false,
                               "rightColumn": 64,
                               "dynamicHeight": "FIXED",
-                              "widgetId": "drhmx9h59v",
+                              "widgetId": "tixu5zsmpy",
                               "containerStyle": "card",
                               "isVisible": true,
                               "version": 1,
@@ -4209,16 +4194,6 @@
                 "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  await get_printernames.run();\n  await get_partner.run();\n}"
               ],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Partnership_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -4229,6 +4204,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Input2.text.toUpperCase()"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Partnership_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
