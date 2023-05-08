@@ -357,7 +357,7 @@
                                   "originalId": "InvoiceDate",
                                   "id": "InvoiceDate",
                                   "alias": "InvoiceDate",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "CENTER",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "date",
                                   "textColor": "",
@@ -445,9 +445,9 @@
                                   "originalId": "OrderStatus",
                                   "id": "OrderStatus",
                                   "alias": "OrderStatus",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
-                                  "columnType": "select",
+                                  "columnType": "text",
                                   "textColor": "",
                                   "textSize": "0.875rem",
                                   "fontStyle": "",
@@ -745,7 +745,7 @@
                                   "originalId": "Printer",
                                   "id": "Printer",
                                   "alias": "Printer",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
                                   "textColor": "",
@@ -805,7 +805,7 @@
                                   "originalId": "Destination",
                                   "id": "Destination",
                                   "alias": "Destination",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "CENTER",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
                                   "textColor": "",
@@ -909,7 +909,7 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "Printer Cost",
+                                  "label": "PrintingCost",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"PSummary\"]))}}",
@@ -965,7 +965,7 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "Summary",
+                                  "label": "AmountCharge",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Summary\"]))}}",
@@ -5329,16 +5329,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "LogSum_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -5349,6 +5339,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "LogSum_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
