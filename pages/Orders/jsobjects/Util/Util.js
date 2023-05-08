@@ -9,7 +9,7 @@ export default {
 		await	get_user_department.run();
 		await	get_current_tier.run();
 		await	get_customer_order_details.run();
-		await	get_invoicelist.run();
+		//await	get_invoicelist.run();
 		await	get_list_of_collaterals.run();
 		await	get_num_new_clients.run();
 		await	get_printer_order_details.run();
@@ -21,8 +21,8 @@ export default {
 	autorefresh: async () => {
 		setInterval(() => {
 				get_letter_day_volume.run(),
-get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.run(),
-get_invoicelist_count.run()}, 3000, "autoupdate");
+get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.run()}, 3000, "autoupdate");
+/*get_invoicelist_count.run()*/
 	}
 
 }

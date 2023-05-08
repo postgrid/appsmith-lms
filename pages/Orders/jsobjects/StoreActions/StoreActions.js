@@ -13,5 +13,14 @@ export default {
 		await get_customer_order_details.run();
 		await get_printer_order_details.run(()			=> { get_letter_day_volume.run(),
 get_cheque_day_volume.run(), get_postcard_day_volume.run(), showAlert('Well done!.','success')}, () => {});
+	},	
+	rundateoforder: async () => {
+ 		 await get_invoicelist.run(()=>{
+		 get_invoicelist_count.run(),
+		 get_letter_day_volume.run(),
+		 get_postcard_day_volume.run(),
+		 get_cheque_day_volume.run(),
+	showAlert('Order date updated!', 'success')
+		 }, () => {});
 	}
 }

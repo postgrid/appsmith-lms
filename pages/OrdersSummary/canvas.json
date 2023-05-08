@@ -387,7 +387,7 @@
                                 }
                               },
                               "borderRadius": "0px",
-                              "columnUpdatedAt": 1683510009407,
+                              "columnUpdatedAt": 1683513830806,
                               "originalBottomRow": 152,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
@@ -397,10 +397,11 @@
                               "defaultPageSize": 0,
                               "columnOrder": [
                                 "customColumn1",
+                                "ClientName",
                                 "Total_Cost__LocalCurrency_",
                                 "Total_Cost__ConvertedToUSD_",
                                 "TotalRevenue",
-                                "ClientName"
+                                "customColumn2"
                               ],
                               "dynamicPropertyPathList": [
                                 {
@@ -482,7 +483,7 @@
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentIndex+1 + '.'))}}",
-                                  "sticky": "",
+                                  "sticky": "left",
                                   "validation": {},
                                   "buttonStyle": "rgb(3, 179, 101)",
                                   "cellBackground": "",
@@ -514,7 +515,7 @@
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ClientName\"]))}}",
-                                  "sticky": "right",
+                                  "sticky": "left",
                                   "validation": {},
                                   "cellBackground": ""
                                 },
@@ -607,6 +608,36 @@
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
+                                },
+                                "customColumn2": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 4,
+                                  "width": 150,
+                                  "originalId": "customColumn2",
+                                  "id": "customColumn2",
+                                  "alias": "",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textSize": "0.875rem",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": true,
+                                  "label": "",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "buttonStyle": "rgb(3, 179, 101)",
+                                  "cellBackground": "",
+                                  "labelColor": "#FFFFFF"
                                 }
                               },
                               "onRowSelected": "",
@@ -2002,7 +2033,7 @@
                               "leftColumn": 2,
                               "dynamicBindingPathList": [],
                               "truncateButtonColor": "#FFC13D",
-                              "text": "Order Summary",
+                              "text": "Sales Dashboard",
                               "key": "czyq0gtp0e",
                               "labelTextSize": "0.875rem",
                               "rightColumn": 29,
