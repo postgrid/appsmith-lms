@@ -1,0 +1,8 @@
+UPDATE "PrinterLineItems"
+SET "Rate" = {{this.params.currentRow.Rate}}
+WHERE "Id" = '{{this.params.currentRow.Id}}';
+
+
+
+
+

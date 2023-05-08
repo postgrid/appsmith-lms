@@ -250,7 +250,7 @@
                                 }
                               },
                               "borderRadius": "0px",
-                              "columnUpdatedAt": 1683529807104,
+                              "columnUpdatedAt": 1683570733416,
                               "originalBottomRow": 98,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
@@ -282,9 +282,6 @@
                                 "InvoiceStatus"
                               ],
                               "dynamicPropertyPathList": [
-                                {
-                                  "key": "onRowSelected"
-                                },
                                 {
                                   "key": "primaryColumns.CustomerName.cellBackground"
                                 },
@@ -416,9 +413,9 @@
                                   "originalId": "InvoiceStatus",
                                   "id": "InvoiceStatus",
                                   "alias": "InvoiceStatus",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
-                                  "columnType": "text",
+                                  "columnType": "select",
                                   "textColor": "",
                                   "textSize": "0.875rem",
                                   "fontStyle": "",
@@ -426,8 +423,8 @@
                                   "enableSort": true,
                                   "isVisible": true,
                                   "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
+                                  "isCellEditable": true,
+                                  "isEditable": true,
                                   "isCellVisible": true,
                                   "isDerived": false,
                                   "label": "InvoiceStatus",
@@ -436,7 +433,8 @@
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"InvoiceStatus\"]))}}",
                                   "validation": {},
                                   "cellBackground": "",
-                                  "sticky": "right"
+                                  "sticky": "right",
+                                  "selectOptions": "[{\"label\": \"CHARGED\", \"value\": \"CHARGED\"},{\"label\": \"PAID\", \"value\": \"PAID\"},{\"label\": \"FAILED\", \"value\": \"FAILED\"}\n]"
                                 },
                                 "OrderStatus": {
                                   "allowCellWrapping": false,
@@ -476,7 +474,7 @@
                                   "originalId": "CustomerName",
                                   "id": "CustomerName",
                                   "alias": "CustomerName",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
                                   "textColor": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow.RejectList==\"BLOCKED\"? \"white\":\"Black\",\ncurrentRow.to_date ==moment().format('YYYY-MM-DD')? \"white\":\"Black\"))}}",
@@ -974,7 +972,7 @@
                                   "cellBackground": ""
                                 }
                               },
-                              "onRowSelected": "{{\nget_customer_order_details.run();\nget_printer_order_details.run();\nget_list_of_collaterals.run();\nstoreValue('org','f');\n}}",
+                              "onRowSelected": "",
                               "key": "xbdjr460wt",
                               "canFreezeColumn": false,
                               "isDeprecated": false,
@@ -5250,21 +5248,14 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "LogSum_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "LogSum_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "LogSum_Util.synchronize",
               "name": "Util.synchronize",
               "collectionId": "LogSum_Util",
               "confirmBeforeExecute": false,
               "pluginType": "JS",
-              "jsonPathKeys": [],
+              "jsonPathKeys": [
+                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n}"
+              ],
               "timeoutInMillisecond": 10000
             },
             {

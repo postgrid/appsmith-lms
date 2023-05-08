@@ -16,7 +16,7 @@
     "pageId": "Orders",
     "collectionId": "Orders_Util",
     "actionConfiguration": {
-      "timeoutInMillisecond": 10000,
+      "timeoutInMillisecond": 0,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
@@ -39,5 +39,5 @@
   },
   "id": "Orders_Util.clearPicker_orders",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_64359e86e0735231ba67402c"
+  "gitSyncId": "63b393c7f276cd0745e9510c_645959e71671447b88d3d260"
 }
