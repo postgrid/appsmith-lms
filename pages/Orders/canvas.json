@@ -4096,7 +4096,7 @@
                           "tabId": "tab2",
                           "widgetName": "Canvas117",
                           "displayName": "Canvas",
-                          "bottomRow": 3560,
+                          "bottomRow": 3540,
                           "topRow": 0,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
@@ -5938,7 +5938,7 @@
                               "key": "hn6jp94bxl",
                               "canFreezeColumn": false,
                               "isDeprecated": false,
-                              "rightColumn": 62,
+                              "rightColumn": 64,
                               "textSize": "0.875rem",
                               "widgetId": "xpdm311054",
                               "allowAddNewRow": false,
@@ -6106,7 +6106,7 @@
                               },
                               "borderRadius": "0px",
                               "originalBottomRow": 75,
-                              "columnUpdatedAt": 1683568910358,
+                              "columnUpdatedAt": 1683581017516,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3CopyCopy",
                               "defaultPageSize": 0,
@@ -6661,7 +6661,7 @@
                       "widgetId": "vs83o46kwk",
                       "accentColor": "",
                       "defaultTab": "Customer Cost",
-                      "onTabSelected": "{{get_customer_order_details.run();\nget_PauseCancel_custOrderDetai.run();\nget_printer_order_details.run().then(() => {}).catch(() => {\n  showAlert('No item selected', 'warning');\n});\n\nif(Tabs2.selectedTab == \"Printing Cost\"){\nstoreValue('show','false')\nstoreValue('show2','false')\n}\nelse\n\t{\nstoreValue('show','true')\nstoreValue('show2','true')\t\t\n}\n}}",
+                      "onTabSelected": "{{get_customer_order_details.run();\nget_PauseCancel_custOrderDetai.run();\nget_printer_order_details.run().then(() => {}).catch(() => {\n  showAlert('No item selected', 'warning');\n});\n\nif(Tabs2.selectedTab == \"Printing Cost\"){\nstoreValue('show','false')\nstoreValue('show2','false')\n}\nelse if(Tabs2.selectedTab == \"Paused/Cancelled\"){\nstoreValue('show','false')\nstoreValue('show2','false')\n}\nelse\n\t{\nstoreValue('show','true')\nstoreValue('show2','true')\t\t\n}\n}}",
                       "shouldShowTabs": true,
                       "minWidth": 450,
                       "tabsObj": {
@@ -10477,6 +10477,17 @@
         "layoutOnLoadActions": [
           [
             {
+              "id": "Orders_Util.synchronize",
+              "name": "Util.synchronize",
+              "collectionId": "Orders_Util",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  storeValue('show', 'true');\n  storeValue('show2', 'true');\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "Orders_get_allorders_invoice",
               "name": "get_allorders_invoice",
               "confirmBeforeExecute": false,
@@ -10515,16 +10526,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -10547,16 +10548,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_num_new_clients",
-              "name": "get_num_new_clients",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -10619,12 +10610,34 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "Orders_get_num_new_clients",
+              "name": "get_num_new_clients",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "Orders_get_postcard_day_volume",
               "name": "get_postcard_day_volume",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Orders_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
