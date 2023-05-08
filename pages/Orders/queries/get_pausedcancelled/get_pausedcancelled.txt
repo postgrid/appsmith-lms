@@ -1,0 +1,44 @@
+WITH RECURSIVE category_tree AS (
+    SELECT "Id", "SubItemID", "InvoiceID", "Qty", "CustomerPriceID", "Amount", "Printer", "Destination"
+    FROM "CustomerLineItems"
+    WHERE "SubItemID" IS NULL -- start with top-level categories
+    UNION ALL
+    SELECT oi."Id", oi."SubItemID", oi."InvoiceID", oi."Qty", oi."CustomerPriceID", oi."Amount", oi."Printer", oi."Destination"
+    FROM "CustomerLineItems" oi
+    JOIN category_tree ct ON oi."SubItemID" = ct."Id"
+), total_amount AS (
+    SELECT SUM("Amount") AS total FROM category_tree
+    INNER JOIN "public"."Invoice" i ON ( i."InvoiceID" = category_tree."InvoiceID" )
+    WHERE "Printer" IN ('CANCELLED','PAUSED') AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= '2023-05-01' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= '2023-05-01' AND EXISTS (
+        SELECT 1 FROM "public"."Customers" c1
+        INNER JOIN "public"."CustomerPrice" c2 ON ( c2."CustomerID" = c1."Id" )
+        INNER JOIN "public"."CustomerLineItems" c3 ON ( c3."CustomerPriceID" = c2."Id" )
+        INNER JOIN "public"."Invoice" i ON ( i."InvoiceID" = c3."InvoiceID" )
+        WHERE EXISTS (
+            SELECT p."ProductDescription"
+            FROM "public"."Products" p
+            WHERE p."Id" = c2."ProductID"
+        ) AND "SubItemID" IS NULL
+        AND c3."Id" = category_tree."Id"
+    )
+)
+SELECT * FROM (
+    SELECT it."Destination" as "To", it."Qty", it."Amount", c2."Rate", p."MailType", p."ProductType", p."ProductDescription", it."Id" AS itemId, it."Printer" AS "AssignTo", it."SubItemID"
+    FROM category_tree it
+    JOIN "public"."CustomerPrice" c2 ON (it."CustomerPriceID" = c2."Id")
+    JOIN "public"."Products" p ON (p."Id" = c2."ProductID")
+    INNER JOIN "public"."Invoice" i ON ( i."InvoiceID" = it."InvoiceID" )
+    WHERE "Printer" IN ('CANCELLED','PAUSED') AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= '2023-05-01' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= '2023-05-01' AND EXISTS (
+        SELECT 1 FROM "public"."Customers" c1
+        INNER JOIN "public"."CustomerPrice" c2 ON ( c2."CustomerID" = c1."Id" )
+        INNER JOIN "public"."CustomerLineItems" c3 ON ( c3."CustomerPriceID" = c2."Id" )
+        INNER JOIN "public"."Invoice" i ON ( i."InvoiceID" = c3."InvoiceID" )
+        WHERE EXISTS (
+            SELECT p."ProductDescription"
+            FROM "public"."Products" p
+            WHERE p."Id" = c2."ProductID"
+        ) AND "SubItemID" IS NULL
+        AND c3."Id" = it."Id" -- use alias "it"
+    )
+    ORDER BY COALESCE(it."SubItemID", it."Id"), it."Id"
+) AS subquery

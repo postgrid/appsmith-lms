@@ -1525,11 +1525,11 @@
                                   "key": "isDisabled"
                                 }
                               ],
-                              "text": "New Order",
+                              "text": "Create New Invoice",
                               "isDisabled": "{{ moment(DatePicker1.selectedDate ).format('YYYY-MM-DD') !== moment().format('YYYY-MM-DD') }}",
                               "key": "s2tg0tksjq",
                               "isDeprecated": false,
-                              "rightColumn": 13,
+                              "rightColumn": 16,
                               "isDefaultClickDisabled": true,
                               "widgetId": "006nzqjhb0",
                               "minWidth": 120,
@@ -1666,7 +1666,7 @@
                               ],
                               "shouldTruncate": false,
                               "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-                              "text": "To go back to a previous date, you can select that particular date from the DATE.\nIf a client is not listed, you can add them by clicking on \"new order\" and filling out the necessary information.",
+                              "text": "To go back to a previous date, you can select that particular date from the DATE.\nIf a client is not listed, you can add them by clicking on \"Create New Invoice\" and filling out the necessary information.",
                               "key": "90nw1tcoyo",
                               "isDeprecated": false,
                               "rightColumn": 64,
@@ -2047,7 +2047,7 @@
                               "originalTopRow": 0,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 5,
+                              "originalBottomRow": 4,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -2098,10 +2098,10 @@
                               "parentId": "8z27x8f5df",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 5,
+                              "originalTopRow": 4,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 10,
+                              "originalBottomRow": 8,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             }
@@ -5506,43 +5506,16 @@
                                   "key": "primaryColumns.ProductDescription.selectOptions"
                                 },
                                 {
-                                  "key": "primaryColumns.CustomerName.computedValue"
+                                  "key": "primaryColumns.AssignTo.cellBackground"
                                 },
                                 {
-                                  "key": "primaryColumns.Id.computedValue"
+                                  "key": "primaryColumns.CustomerName.computedValue"
                                 },
                                 {
                                   "key": "primaryColumns.InvoiceID.computedValue"
                                 },
                                 {
-                                  "key": "primaryColumns.CustomerPriceID.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Printer.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.OrderStatus.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Notes.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Destination.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.InvoiceDate.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.PaymentMethod.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.InvoiceStatus.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.InvoiceOrderStatus.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.AssignTo.cellBackground"
+                                  "key": "primaryColumns.Id.computedValue"
                                 }
                               ],
                               "leftColumn": 0,
@@ -5582,15 +5555,13 @@
                               },
                               "borderRadius": "0px",
                               "originalBottomRow": 75,
-                              "columnUpdatedAt": 1683564800154,
+                              "columnUpdatedAt": 1683568910358,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3CopyCopy",
                               "defaultPageSize": 0,
                               "columnOrder": [
                                 "customColumn1",
                                 "AssignTo",
-                                "CustomerName",
-                                "InvoiceID",
                                 "To",
                                 "ProductType",
                                 "Qty",
@@ -5600,16 +5571,9 @@
                                 "MailType",
                                 "itemid",
                                 "SubItemID",
-                                "Id",
-                                "CustomerPriceID",
-                                "Printer",
-                                "OrderStatus",
-                                "Notes",
-                                "Destination",
-                                "InvoiceDate",
-                                "PaymentMethod",
-                                "InvoiceStatus",
-                                "InvoiceOrderStatus"
+                                "CustomerName",
+                                "InvoiceID",
+                                "Id"
                               ],
                               "dynamicPropertyPathList": [
                                 {
@@ -5755,7 +5719,7 @@
                                   "fontStyle": "",
                                   "enableFilter": true,
                                   "enableSort": true,
-                                  "isVisible": false,
+                                  "isVisible": true,
                                   "isDisabled": false,
                                   "isCellEditable": false,
                                   "isEditable": false,
@@ -6018,7 +5982,9 @@
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
+                                  "textColor": "",
                                   "textSize": "0.875rem",
+                                  "fontStyle": "",
                                   "enableFilter": true,
                                   "enableSort": true,
                                   "isVisible": true,
@@ -6031,13 +5997,44 @@
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerName\"]))}}",
-                                  "sticky": "left",
-                                  "validation": {}
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "InvoiceID": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 11,
+                                  "width": 150,
+                                  "originalId": "InvoiceID",
+                                  "id": "InvoiceID",
+                                  "alias": "InvoiceID",
+                                  "horizontalAlignment": "LEFT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "InvoiceID",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"InvoiceID\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
                                 },
                                 "Id": {
                                   "allowCellWrapping": false,
                                   "allowSameOptionsInNewRow": true,
-                                  "index": 11,
+                                  "index": 12,
                                   "width": 150,
                                   "originalId": "Id",
                                   "id": "Id",
@@ -6045,10 +6042,12 @@
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "number",
+                                  "textColor": "",
                                   "textSize": "0.875rem",
+                                  "fontStyle": "",
                                   "enableFilter": true,
                                   "enableSort": true,
-                                  "isVisible": false,
+                                  "isVisible": true,
                                   "isDisabled": false,
                                   "isCellEditable": false,
                                   "isEditable": false,
@@ -6059,277 +6058,8 @@
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Id\"]))}}",
                                   "sticky": "",
-                                  "validation": {}
-                                },
-                                "InvoiceID": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 12,
-                                  "width": 150,
-                                  "originalId": "InvoiceID",
-                                  "id": "InvoiceID",
-                                  "alias": "InvoiceID",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "InvoiceID",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"InvoiceID\"]))}}",
-                                  "sticky": "left",
-                                  "validation": {}
-                                },
-                                "CustomerPriceID": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 13,
-                                  "width": 150,
-                                  "originalId": "CustomerPriceID",
-                                  "id": "CustomerPriceID",
-                                  "alias": "CustomerPriceID",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "number",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "CustomerPriceID",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerPriceID\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "Printer": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 14,
-                                  "width": 150,
-                                  "originalId": "Printer",
-                                  "id": "Printer",
-                                  "alias": "Printer",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Printer",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Printer\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "OrderStatus": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 15,
-                                  "width": 150,
-                                  "originalId": "OrderStatus",
-                                  "id": "OrderStatus",
-                                  "alias": "OrderStatus",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "OrderStatus",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"OrderStatus\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "Notes": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 16,
-                                  "width": 150,
-                                  "originalId": "Notes",
-                                  "id": "Notes",
-                                  "alias": "Notes",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Notes",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Notes\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "Destination": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 17,
-                                  "width": 150,
-                                  "originalId": "Destination",
-                                  "id": "Destination",
-                                  "alias": "Destination",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Destination",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Destination\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "InvoiceDate": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 18,
-                                  "width": 150,
-                                  "originalId": "InvoiceDate",
-                                  "id": "InvoiceDate",
-                                  "alias": "InvoiceDate",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "InvoiceDate",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"InvoiceDate\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "PaymentMethod": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 19,
-                                  "width": 150,
-                                  "originalId": "PaymentMethod",
-                                  "id": "PaymentMethod",
-                                  "alias": "PaymentMethod",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "PaymentMethod",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"PaymentMethod\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "InvoiceStatus": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 20,
-                                  "width": 150,
-                                  "originalId": "InvoiceStatus",
-                                  "id": "InvoiceStatus",
-                                  "alias": "InvoiceStatus",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "InvoiceStatus",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"InvoiceStatus\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
-                                },
-                                "InvoiceOrderStatus": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 21,
-                                  "width": 150,
-                                  "originalId": "InvoiceOrderStatus",
-                                  "id": "InvoiceOrderStatus",
-                                  "alias": "InvoiceOrderStatus",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textSize": "0.875rem",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": false,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "InvoiceOrderStatus",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"InvoiceOrderStatus\"]))}}",
-                                  "sticky": "",
-                                  "validation": {}
+                                  "validation": {},
+                                  "cellBackground": ""
                                 }
                               },
                               "onRowSelected": "{{(()=>{\n\tstoreValue('selected',Table3Copy.selectedRow);\n\n\t\n} )()}}",
@@ -10256,6 +9986,16 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -10278,6 +10018,16 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_num_new_clients",
+              "name": "get_num_new_clients",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -10340,34 +10090,12 @@
               "timeoutInMillisecond": 10000
             },
             {
-              "id": "Orders_get_num_new_clients",
-              "name": "get_num_new_clients",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "Orders_get_postcard_day_volume",
               "name": "get_postcard_day_volume",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Orders_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
