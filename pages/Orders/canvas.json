@@ -6058,15 +6058,6 @@
                                 },
                                 {
                                   "key": "primaryColumns.AssignTo.cellBackground"
-                                },
-                                {
-                                  "key": "primaryColumns.CustomerName.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.InvoiceID.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Id.computedValue"
                                 }
                               ],
                               "leftColumn": 0,
@@ -6106,7 +6097,7 @@
                               },
                               "borderRadius": "0px",
                               "originalBottomRow": 75,
-                              "columnUpdatedAt": 1683581017516,
+                              "columnUpdatedAt": 1683594125741,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3CopyCopy",
                               "defaultPageSize": 0,
@@ -6121,10 +6112,7 @@
                                 "Amount",
                                 "MailType",
                                 "itemid",
-                                "SubItemID",
-                                "CustomerName",
-                                "InvoiceID",
-                                "Id"
+                                "SubItemID"
                               ],
                               "dynamicPropertyPathList": [
                                 {
@@ -6518,96 +6506,6 @@
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"SubItemID\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
-                                "CustomerName": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 10,
-                                  "width": 150,
-                                  "originalId": "CustomerName",
-                                  "id": "CustomerName",
-                                  "alias": "CustomerName",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "CustomerName",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerName\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
-                                "InvoiceID": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 11,
-                                  "width": 150,
-                                  "originalId": "InvoiceID",
-                                  "id": "InvoiceID",
-                                  "alias": "InvoiceID",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "InvoiceID",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"InvoiceID\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
-                                "Id": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 12,
-                                  "width": 150,
-                                  "originalId": "Id",
-                                  "id": "Id",
-                                  "alias": "Id",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "number",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Id",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Id\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -10526,6 +10424,16 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -10548,6 +10456,16 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_num_new_clients",
+              "name": "get_num_new_clients",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -10610,34 +10528,12 @@
               "timeoutInMillisecond": 10000
             },
             {
-              "id": "Orders_get_num_new_clients",
-              "name": "get_num_new_clients",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "Orders_get_postcard_day_volume",
               "name": "get_postcard_day_volume",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Orders_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
