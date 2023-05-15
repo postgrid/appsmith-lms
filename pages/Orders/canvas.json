@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 78,
+          "version": 79,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -126,7 +126,7 @@
                       "resetFormOnClick": false,
                       "boxShadow": "none",
                       "widgetName": "btn_orders",
-                      "onClick": "{{\t\nstoreValue('newList',Table_NewOrders.tableData)\n//run new cust list\nawait set_newCustList.run()\n//run to create new invoice#\nawait set_newCustInvoice.run()\n//run query add custprice\nawait set_customerprice.run()\n//run cust order detail\nawait set_customerlineitems.run()\n//run printer order detail\nawait set_printerlineitems.run()\n//set envelope inventory used\nawait\nset_envelope_inventory.run()\n.then(() => \t{\t\tget_letter_day_volume.run(),\nget_cheque_day_volume.run(), get_postcard_day_volume.run(),get_invoicelist.run(),get_num_new_clients.run(),\nget_invoicelist_count.run(),\tshowAlert('Well done! Your action has been processed successfully.','success')})\n.catch(() => \n\t\t\t showAlert('Error! Unable to procces.','error'))\nUtil.clearPicker_orders();\n}}\n",
+                      "onClick": "{{\t\nstoreValue('newList', Table_NewOrders.tableData);\n\nPromise.all([\n  set_newCustList.run(),\n  set_newCustInvoice.run(),\n  set_customerprice.run(),\n  set_customerlineitems.run(),\n  set_printerlineitems.run(),\n  set_envelope_inventory.run(),\n]).then(() => {\n  get_letter_day_volume.run();\n  get_cheque_day_volume.run();\n  get_postcard_day_volume.run();\n  get_invoicelist.run();\n  get_num_new_clients.run();\n  get_invoicelist_count.run();\n  showAlert('Well done! Your action has been processed successfully.','success');\n}).catch(() => {\n  showAlert('Error! Unable to process.','error');\n});\n\nUtil.clearPicker_orders();\n}}\n",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "dynamicPropertyPathList": [
                         {
@@ -313,7 +313,7 @@
                                 }
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "columnUpdatedAt": 1681907512947,
+                              "columnUpdatedAt": 1684156630295,
                               "defaultSelectedRowIndices": [
                                 0
                               ],
@@ -825,7 +825,7 @@
                               "borderColor": "#E0DEDE",
                               "isVisibleDownload": true,
                               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                              "topRow": 9,
+                              "topRow": 10,
                               "isSortable": false,
                               "onPageChange": "{{get_invoicelist.run()}}",
                               "type": "TABLE_WIDGET_V2",
@@ -934,7 +934,7 @@
                               },
                               "borderRadius": "0px",
                               "columnUpdatedAt": 1682480240889,
-                              "originalBottomRow": 98,
+                              "originalBottomRow": 97,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
                                 0
@@ -977,7 +977,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 97,
+                              "bottomRow": 98,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 62,
@@ -1477,7 +1477,7 @@
                               "renderMode": "CANVAS",
                               "horizontalAlignment": "LEFT",
                               "isVisibleSearch": true,
-                              "originalTopRow": 10,
+                              "originalTopRow": 9,
                               "isVisiblePagination": true,
                               "cellBackground": "",
                               "verticalAlignment": "CENTER"
@@ -1500,8 +1500,8 @@
                                 "click",
                                 "submit"
                               ],
-                              "topRow": 5,
-                              "bottomRow": 9,
+                              "topRow": 6,
+                              "bottomRow": 10,
                               "parentRowSpace": 10,
                               "type": "BUTTON_WIDGET",
                               "hideCard": false,
@@ -1541,11 +1541,11 @@
                               "isLoading": false,
                               "mobileTopRow": 0,
                               "responsiveBehavior": "hug",
-                              "originalTopRow": 6,
+                              "originalTopRow": 5,
                               "disabledWhenInvalid": false,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "mobileLeftColumn": 0,
-                              "originalBottomRow": 10,
+                              "originalBottomRow": 9,
                               "buttonVariant": "PRIMARY",
                               "placement": "CENTER"
                             },
@@ -1553,7 +1553,7 @@
                               "boxShadow": "none",
                               "dateFormat": "YYYY-MM-DD",
                               "iconSVG": "/static/media/icon.300e5ab8e2e1c26c7a0bad06116842b7.svg",
-                              "topRow": 5,
+                              "topRow": 6,
                               "labelWidth": "10",
                               "type": "DATE_PICKER_WIDGET2",
                               "animateLoading": true,
@@ -1580,7 +1580,7 @@
                               "isLoading": false,
                               "timePrecision": "minute",
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "originalBottomRow": 10,
+                              "originalBottomRow": 9,
                               "closeOnSelection": true,
                               "mobileBottomRow": 7,
                               "widgetName": "DatePicker1",
@@ -1594,7 +1594,7 @@
                               "searchTags": [
                                 "calendar"
                               ],
-                              "bottomRow": 9,
+                              "bottomRow": 10,
                               "shortcuts": false,
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -1619,7 +1619,7 @@
                               "renderMode": "CANVAS",
                               "mobileTopRow": 0,
                               "responsiveBehavior": "fill",
-                              "originalTopRow": 6,
+                              "originalTopRow": 5,
                               "mobileLeftColumn": 43,
                               "maxDynamicHeight": 9000,
                               "firstDayOfWeek": "0",
@@ -1642,7 +1642,7 @@
                                 "label"
                               ],
                               "topRow": 0,
-                              "bottomRow": 4,
+                              "bottomRow": 5,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -1687,7 +1687,7 @@
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "mobileLeftColumn": 48,
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 5,
+                              "originalBottomRow": 4,
                               "fontSize": "0.675rem",
                               "minDynamicHeight": 4
                             }
@@ -2047,7 +2047,7 @@
                               "originalTopRow": 0,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 4,
+                              "originalBottomRow": 5,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -2098,10 +2098,10 @@
                               "parentId": "8z27x8f5df",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 4,
+                              "originalTopRow": 5,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 8,
+                              "originalBottomRow": 10,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             }

@@ -39,6 +39,10 @@
     {
       "id": "LogSum",
       "isDefault": false
+    },
+    {
+      "id": "OrderEmailDrafting",
+      "isDefault": false
     }
   ],
   "viewMode": false,

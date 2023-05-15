@@ -1,0 +1,11 @@
+INSERT INTO public."CustomerPrice" ("ProductID", "CustomerID")
+SELECT (SELECT "Id" FROM "Products" WHERE "ProductDescription" = '{{JSON.parse(JSON.stringify(Select1Copy.selectedOptionValue).replaceAll("'", "''"))}}'),
+       (SELECT "Id" FROM "Customers" WHERE "OrgID" ='{{Table2.selectedRow.OrgID}}')
+WHERE NOT EXISTS (
+  SELECT 1 FROM public."CustomerPrice" WHERE "ProductID" =(SELECT "Id" FROM "Products" WHERE "ProductDescription" = '{{JSON.parse(JSON.stringify(Select1Copy.selectedOptionValue).replaceAll("'", "''"))}}') AND "CustomerID" = (SELECT "Id" FROM "Customers" WHERE "OrgID" ='{{Table2.selectedRow.OrgID}}')); 
+
+INSERT INTO public."CustomerLineItems" ("InvoiceID", "CustomerPriceID", "Qty","Rate", "SubItemID", "OrderStatus")
+  VALUES ('{{Text120Copy.text}}', (SELECT c1."Id" FROM "public"."CustomerPrice" c1  	INNER JOIN "public"."Products" p ON ( p."Id" = c1."ProductID"  )   	INNER JOIN "public"."Customers" c2 ON ( c2."Id" = c1."CustomerID"  )  WHERE p."ProductDescription" ='{{JSON.parse(JSON.stringify(Select1Copy.selectedOptionLabel).replaceAll("'", "''"))}}' AND 	c2."OrgID" = '{{Table2.selectedRow.OrgID }}'), {{Input2Copy.text}},(SELECT c1."Rate" FROM "public"."CustomerPrice" c1  	INNER JOIN "public"."Products" p ON ( p."Id" = c1."ProductID"  )   	INNER JOIN "public"."Customers" c2 ON ( c2."Id" = c1."CustomerID"  )  WHERE p."ProductDescription" ='{{JSON.parse(JSON.stringify(Select1Copy.selectedOptionLabel).replaceAll("'", "''"))}}' AND 	c2."OrgID" = '{{Table2.selectedRow.OrgID }}'), {{Table3Copy.selectedRow.itemid}}, 'PROCESSING');
+
+INSERT INTO public."PrinterLineItems" ("InvoiceID", "Qty", "InitialProdDescription", "SubItemID",  "OrderStatus")
+  VALUES ('{{Text120Copy.text}}', {{Input2Copy.text}} ,'{{JSON.parse(JSON.stringify(Select1Copy.selectedOptionValue).replaceAll("'", "''"))}}', {{Table3Copy.selectedRow.itemid}}, 'PROCESSING');

@@ -16,7 +16,7 @@
     "pageId": "LogSum",
     "collectionId": "LogSum_StoreActions",
     "actionConfiguration": {
-      "timeoutInMillisecond": 10000,
+      "timeoutInMillisecond": 0,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
@@ -39,5 +39,5 @@
   },
   "id": "LogSum_StoreActions.rundateoforder",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_645877d91671447b88d3c29e"
+  "gitSyncId": "63b393c7f276cd0745e9510c_646230bad209002373fbe41b"
 }

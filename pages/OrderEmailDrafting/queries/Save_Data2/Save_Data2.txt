@@ -1,0 +1,11 @@
+UPDATE "PrinterLineItems"
+SET "InitialProdDescription" ='{{JSON.parse(JSON.stringify(this.params.currentRow.ProductDescription).replaceAll("'", "''"))}}', "Qty" = {{this.params.currentRow.Qty}}
+WHERE "Id" = '{{this.params.currentRow.itemid}}';
+
+UPDATE "CustomerLineItems"
+SET  "Qty" = {{this.params.currentRow.Qty}}
+WHERE "Id" = '{{this.params.currentRow.itemid}}';
+
+
+
+

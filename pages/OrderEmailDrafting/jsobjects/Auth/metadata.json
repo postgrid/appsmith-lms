@@ -1,0 +1,15 @@
+{
+  "unpublishedCollection": {
+    "name": "Auth",
+    "pageId": "OrderEmailDrafting",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "actions": [],
+    "archivedActions": [],
+    "variables": [],
+    "userPermissions": []
+  },
+  "id": "OrderEmailDrafting_Auth",
+  "deleted": false,
+  "gitSyncId": "63b393c7f276cd0745e9510c_645bceb2da60c6288bd791c7"
+}

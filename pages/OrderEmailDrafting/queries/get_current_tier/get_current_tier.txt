@@ -1,0 +1,9 @@
+/*SELECT st.printerid, st.tier_level_id, p."PrinterName", p1."Id", p1."PackageTier"
+FROM "public".set_tier st 
+	INNER JOIN "public"."Printers" p ON ( p."Id" = st.printerid  )  
+	INNER JOIN "public"."PriceDeal" p1 ON ( p1."Id" = st.tier_level_id  )  */
+	
+	SELECT *
+FROM "public".set_tier st 
+	INNER JOIN "public"."Printers" p ON ( p."Id" = st.printerid  )  
+	INNER JOIN "public"."PriceDeal" p1 ON ( p1."Id" = st.tier_level_id  )  
