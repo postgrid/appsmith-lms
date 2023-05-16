@@ -1,9 +1,3 @@
-
-
-
-
-
-
 WITH customer_line_items_query AS (
   SELECT
     c1."CustomerName",
@@ -34,8 +28,8 @@ WITH customer_line_items_query AS (
       WHERE p."Id" = c2."ProductID"
     )
     AND "SubItemID" IS NULL
-    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '2023-05-09'
-    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '2023-05-09'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '{{moment().format('YYYY-MM-DD')}}'
 ),
 category_tree_query AS (
   WITH RECURSIVE category_tree AS (
@@ -231,7 +225,7 @@ customer_line_items_query
 JOIN filtered_category_tree_query ON customer_line_items_query."Id" = filtered_category_tree_query."Id"
 JOIN printer_line_items_query ON customer_line_items_query."Id" = printer_line_items_query."Id"
 WHERE
-customer_line_items_query."Printer" = 'SolutionsInMail'
+customer_line_items_query."Printer" = '{{Select3.selectedOptionLabel}}'
 )
 SELECT
 CASE

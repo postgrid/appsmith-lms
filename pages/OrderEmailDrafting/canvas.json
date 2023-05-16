@@ -109,7 +109,7 @@
                           "widgetName": "Canvas16",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 1970,
+                          "bottomRow": 1990,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -131,8 +131,8 @@
                               ],
                               "displayName": "Container",
                               "iconSVG": "/static/media/icon.1977dca3.svg",
-                              "topRow": 191,
-                              "bottomRow": 197,
+                              "topRow": 193,
+                              "bottomRow": 199,
                               "parentRowSpace": 10,
                               "type": "CONTAINER_WIDGET",
                               "hideCard": false,
@@ -194,7 +194,7 @@
                               "borderColor": "#E0DEDE",
                               "isVisibleDownload": true,
                               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                              "topRow": 5,
+                              "topRow": 7,
                               "isSortable": false,
                               "onPageChange": "{{get_invoicelist.run()}}",
                               "type": "TABLE_WIDGET_V2",
@@ -299,7 +299,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 191,
+                              "bottomRow": 193,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 62,
@@ -580,6 +580,70 @@
                               "isVisiblePagination": true,
                               "cellBackground": "",
                               "verticalAlignment": "CENTER"
+                            },
+                            {
+                              "boxShadow": "none",
+                              "mobileBottomRow": 5,
+                              "widgetName": "Select3",
+                              "isFilterable": false,
+                              "displayName": "Select",
+                              "iconSVG": "/static/media/icon.bd99caba5853ad71e4b3d8daffacb3a2.svg",
+                              "labelText": "Select Printer",
+                              "searchTags": [
+                                "dropdown"
+                              ],
+                              "topRow": 0,
+                              "bottomRow": 5,
+                              "parentRowSpace": 10,
+                              "labelWidth": 5,
+                              "type": "SELECT_WIDGET",
+                              "serverSideFiltering": false,
+                              "hideCard": false,
+                              "mobileRightColumn": 20,
+                              "defaultOptionValue": "{{ ((options, serverSideFiltering) => ( `SolutionsInMail`))(Select3.options, Select3.serverSideFiltering) }}",
+                              "animateLoading": true,
+                              "parentColumnSpace": 25.828125,
+                              "dynamicTriggerPathList": [],
+                              "leftColumn": 49,
+                              "dynamicBindingPathList": [
+                                {
+                                  "key": "accentColor"
+                                },
+                                {
+                                  "key": "borderRadius"
+                                },
+                                {
+                                  "key": "options"
+                                },
+                                {
+                                  "key": "defaultOptionValue"
+                                }
+                              ],
+                              "labelPosition": "Top",
+                              "options": "{{ get_printerlist.data\n     .map(a => ({ label: a.PrinterName, value: a.PrinterName }))\n     .concat([{ label: 'PAUSED', value: 'PAUSED' }, { label: 'CANCELLED', value: 'CANCELLED' }])\n}}",
+                              "placeholderText": "Select option",
+                              "isDisabled": false,
+                              "key": "jxo9cbmqhu",
+                              "labelTextSize": "0.875rem",
+                              "isRequired": false,
+                              "isDeprecated": false,
+                              "rightColumn": 64,
+                              "dynamicHeight": "FIXED",
+                              "widgetId": "93ycqcxxic",
+                              "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+                              "minWidth": 450,
+                              "isVisible": true,
+                              "version": 1,
+                              "parentId": "47tca8pon2",
+                              "labelAlignment": "left",
+                              "renderMode": "CANVAS",
+                              "isLoading": false,
+                              "mobileTopRow": 0,
+                              "responsiveBehavior": "fill",
+                              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                              "mobileLeftColumn": 0,
+                              "maxDynamicHeight": 9000,
+                              "minDynamicHeight": 4
                             }
                           ],
                           "key": "5sa58q4kfb",
@@ -4703,16 +4767,6 @@
               "timeoutInMillisecond": 10000
             },
             {
-              "id": "OrderEmailDrafting_get_draftorders",
-              "name": "get_draftorders",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
               "id": "OrderEmailDrafting_get_clientnames",
               "name": "get_clientnames",
               "confirmBeforeExecute": false,
@@ -4737,6 +4791,14 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "OrderEmailDrafting_get_printerlist",
+              "name": "get_printerlist",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "OrderEmailDrafting_get_user",
               "name": "get_user",
               "confirmBeforeExecute": false,
@@ -4748,6 +4810,17 @@
             }
           ],
           [
+            {
+              "id": "OrderEmailDrafting_get_draftorders",
+              "name": "get_draftorders",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')",
+                "Select3.selectedOptionLabel"
+              ],
+              "timeoutInMillisecond": 10000
+            },
             {
               "id": "OrderEmailDrafting_get_invoicelist_count",
               "name": "get_invoicelist_count",
