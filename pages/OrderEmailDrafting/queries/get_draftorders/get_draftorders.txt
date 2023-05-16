@@ -1,0 +1,249 @@
+
+
+
+
+
+
+WITH customer_line_items_query AS (
+  SELECT
+    c1."CustomerName",
+    c3."Id",
+    c3."InvoiceID",
+    c3."CustomerPriceID",
+    c3."Qty",
+    c3."Rate",
+    c3."Amount",
+    c3."SubItemID",
+    c3."Printer",
+    c3."OrderStatus",
+    c3."Notes",
+    c3."Destination",
+    i."InvoiceDate",
+    i."PaymentMethod",
+    i."InvoiceStatus",
+    i."OrderStatus" AS "InvoiceOrderStatus"
+  FROM
+    "public"."Customers" c1
+    INNER JOIN "public"."CustomerPrice" c2 ON (c2."CustomerID" = c1."Id")
+    INNER JOIN "public"."CustomerLineItems" c3 ON (c3."CustomerPriceID" = c2."Id")
+    INNER JOIN "public"."Invoice" i ON (i."InvoiceID" = c3."InvoiceID")
+  WHERE
+    EXISTS (
+      SELECT p."ProductDescription"
+      FROM "public"."Products" p
+      WHERE p."Id" = c2."ProductID"
+    )
+    AND "SubItemID" IS NULL
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '2023-05-09'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '2023-05-09'
+),
+category_tree_query AS (
+  WITH RECURSIVE category_tree AS (
+    SELECT
+      "Id",
+      "SubItemID",
+      "InvoiceID",
+      "Qty",
+      "CustomerPriceID",
+      "Amount",
+      "Printer",
+      "Destination"
+    FROM
+      "CustomerLineItems"
+    WHERE
+      "SubItemID" IS NULL -- start with top-level categories
+    UNION ALL
+    SELECT
+      oi."Id",
+      oi."SubItemID",
+      oi."InvoiceID",
+      oi."Qty",
+      oi."CustomerPriceID",
+      oi."Amount",
+      oi."Printer",
+      oi."Destination"
+    FROM
+      "CustomerLineItems" oi
+      JOIN category_tree ct ON oi."SubItemID" = ct."Id"
+  ),
+  total_amount AS (
+    SELECT SUM("Amount") AS total FROM category_tree
+  )
+  SELECT
+    COALESCE(it."SubItemID", it."Id") AS "Id",
+    string_agg(p."ProductDescription", ' ➤ ') AS "OrderDetails",
+    SUM(it."Amount") AS "Summary"
+  FROM
+    category_tree it
+    JOIN "public"."CustomerPrice" c2 ON (it."CustomerPriceID" = c2."Id")
+    JOIN "public"."Products" p ON (p."Id" = c2."ProductID")
+  GROUP BY
+    COALESCE(it."SubItemID", it."Id")
+  ORDER BY
+    "OrderDetails" ASC
+),
+filtered_category_tree_query AS (
+  SELECT *
+  FROM category_tree_query
+  -- WHERE "OrderDetails" LIKE '%BW SS - First Class%'
+),
+printer_line_items_query AS (
+  SELECT
+    main_items."Id" AS "Id",
+    CONCAT_WS(' ➤ ', main_items."InitialProdDescription", string_agg(sub_items."InitialProdDescription", ' ➤ ')) AS "OrderDetailsPrinter",
+    COALESCE(main_items."Amount", 0) + COALESCE(sub_items_total."Amount", 0) AS "PSummary"
+FROM
+"PrinterLineItems" AS main_items
+LEFT JOIN (
+SELECT "SubItemID", SUM("Amount") AS "Amount"
+FROM "PrinterLineItems"
+WHERE "SubItemID" IS NOT NULL
+GROUP BY "SubItemID"
+) sub_items_total ON main_items."Id" = sub_items_total."SubItemID"
+LEFT JOIN (
+SELECT "SubItemID", SUM("Amount") AS "Amount", "InitialProdDescription"
+FROM "PrinterLineItems"
+WHERE "SubItemID" IS NOT NULL
+GROUP BY "SubItemID", "InitialProdDescription"
+) sub_items ON main_items."Id" = sub_items."SubItemID"
+INNER JOIN "public"."Invoice" i ON i."InvoiceID" = main_items."InvoiceID"
+INNER JOIN "Customers" c1 ON (c1."Id" = i."CustomerID")
+INNER JOIN "PrinterPrice" p1 ON (p1."Id" = main_items."PrinterPriceID")
+INNER JOIN "Products" p2 ON (p2."Id" = p1."ProductID")
+WHERE
+main_items."SubItemID" IS NULL
+GROUP BY
+main_items."Id",
+main_items."InitialProdDescription",
+sub_items_total."Amount"
+ORDER BY
+main_items."Id" ASC
+),
+grouped_query AS (
+SELECT
+CASE
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Certified Mail RR - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Certified Mail RR - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Certified Mail RR - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Certified Mail RR - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail NRR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Certified Mail NRR - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail NRR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Certified Mail NRR - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail NRR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Certified Mail NRR - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail NRR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Certified Mail NRR - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%#9 Envelope%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Return Envelope - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%#9 Envelope%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Return Envelope - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%#9 Envelope%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Return Envelope - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%#9 Envelope%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Return Envelope - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%#10 Envelope%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Custom Envelope - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%#10 Envelope%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Custom Envelope - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%#10 Envelope%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Custom Envelope - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%#10 Envelope%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Custom Envelope - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%SameDay%'  AND filtered_category_tree_query."OrderDetails"  LIKE '%Cheque add''l Sheet%' THEN 'SameDay Cheques w/ Docs'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%SameDay%'  AND filtered_category_tree_query."OrderDetails"  LIKE '%Cheque Only%' THEN 'SameDay Cheques Only'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%' THEN 'International Delivery - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%' THEN 'International Delivery - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%' THEN 'International Delivery - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%' THEN 'International Delivery - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Priority/Express - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Priority/Express - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Priority/Express - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Priority/Express - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Priority/Express - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Priority/Express - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Priority/Express - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Priority/Express- CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPS CA Express%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Priority/Express - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPS CA Express%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Priority/Express - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPS CA Express%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Priority/Express - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPS CA Express%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Priority/Express - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPS CA Express%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Priority/Express - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPS CA Express%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Priority/Express - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPS CA Express%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Priority/Express - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPS CA Express%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Priority/Express- CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Perforated%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Perforated - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Perforated%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Perforated - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%UPerforated%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Perforated - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Perforated%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Perforated - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Perforated%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Perforated - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Perforated%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Perforated - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Perforated%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Perforated - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Perforated%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Perforated- CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Registered Mail%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Registered Mail - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Registered Mail%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Registered Mail - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Registered Mail%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Registered Mail - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Registered Mail%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Registered Mail - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Registered Mail%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Registered Mail - BW SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Registered Mail%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Registered Mail - BW DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Registered Mail%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Registered Mail - CLR SS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Registered Mail%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%'  THEN 'Registered Mail - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%➤ Letter Size - Cheque add''l Sheet%' THEN 'Letter Size - Cheques with Documents'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - Cheque Only%' THEN 'Letter Size - Cheques Only'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - Cheque Only%' THEN 'A4 Size - Cheques Only'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 4x6 - First Class%' THEN 'Postcard 4x6 - First Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x9 - First Class%' THEN 'Postcard 6x9 - First Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - First Class%' THEN 'Postcard 6x11 - First Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 4x6 - Standard Class%' THEN 'Postcard 4x6 - Standard Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x9 - Standard Class%' THEN 'Postcard 6x9 - Standard Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - Standard Class%' THEN 'Postcard 6x11 - Standard Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 4x6 - Lettermail%' THEN 'Postcard 4x6 - Lettermail'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x9 - Lettermail%' THEN 'Postcard 6x9 - Lettermail'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - Lettermail%' THEN 'Postcard 6x11 - Lettermail'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 4x6 - Personalized%' THEN 'Postcard 4x6 - Personalized'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x9 - Personalized%' THEN 'Postcard 6x9 - Personalized'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - Personalized%' THEN 'Postcard 6x11 - Personalized'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 4x6 - Second Class%' THEN 'Postcard 4x6 - Second Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x9 - Second Class%' THEN 'Postcard 6x9 - Second Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - Second Class%' THEN 'Postcard 6x11 - Second Class'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW SS - First Class%' THEN 'Letter Size - BW SS - FC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW DS - First Class%' THEN 'Letter Size - BW DS - FC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR SS - First Class%' THEN 'Letter Size - CLR SS - FC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR DS - First Class%' THEN 'Letter Size - CLR DS - FC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW SS - Standard Class%' THEN 'Letter Size - BW SS - SC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW DS - Standard Class%' THEN 'Letter Size - BW DS - SC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR SS - Standard Class%' THEN 'Letter Size - CLR SS - SC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR DS - Standard Class%' THEN 'Letter Size - CLR DS - SC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW SS - Lettermail%' THEN 'Letter Size - BW SS - Lettermail'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW DS - Lettermail%' THEN 'Letter Size - BW DS - Lettermail'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR SS - Lettermail%' THEN 'Letter Size - CLR SS - Lettermail'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR DS - Lettermail%' THEN 'Letter Size - CLR DS - Lettermail'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW SS - Personalized%' THEN 'Letter Size - BW SS - Personalized'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW DS - Personalized%' THEN 'Letter Size - BW DS - Personalized'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR SS - Personalized%' THEN 'Letter Size - CLR SS - Personalized'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR DS - Personalized%' THEN 'Letter Size - CLR DS - Personalized'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - BW SS - First Class%' THEN 'A4 Size - BW SS - FC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - BW DS - First Class%' THEN 'A4 Size - BW DS - FC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - CLR SS - First Class%' THEN 'A4 Size - CLR SS - FC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - CLR DS - First Class%' THEN 'A4 Size - CLR DS - FC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - BW SS - Second Class%' THEN 'A4 Size - BW SS - SC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - BW DS - Second Class%' THEN 'A4 Size - BW DS - SC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - CLR SS - Second Class%' THEN 'A4 Size - CLR SS - SC Generic'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - CLR DS - Second Class%' THEN 'A4 Size - CLR DS - SC Generic'
+ELSE filtered_category_tree_query."OrderDetails"
+END AS "GroupDetails",
+SUM(customer_line_items_query."Qty") OVER (PARTITION BY filtered_category_tree_query."OrderDetails" ORDER BY filtered_category_tree_query."OrderDetails") AS "QtyTotal",
+customer_line_items_query."CustomerName",
+customer_line_items_query."Qty",
+printer_line_items_query."OrderDetailsPrinter",
+printer_line_items_query."PSummary",
+customer_line_items_query."Destination"
+FROM
+customer_line_items_query
+JOIN filtered_category_tree_query ON customer_line_items_query."Id" = filtered_category_tree_query."Id"
+JOIN printer_line_items_query ON customer_line_items_query."Id" = printer_line_items_query."Id"
+WHERE
+customer_line_items_query."Printer" = 'SolutionsInMail'
+)
+SELECT
+CASE
+WHEN ROW_NUMBER() OVER (PARTITION BY "GroupDetails" ORDER BY "GroupDetails") = 1 THEN MAX("QtyTotal") OVER (PARTITION BY "GroupDetails")
+ELSE NULL
+END AS "OrderCounts",
+"GroupDetails" as "Collaterals",
+"CustomerName" as "Clients",
+"Qty" || ' '|| "OrderDetailsPrinter" as "OrderDetails",
+"PSummary" as "Subtotal",
+"Destination" as "To"
+FROM
+grouped_query
+ORDER BY
+"GroupDetails" ASC;

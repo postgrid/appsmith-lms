@@ -25,24 +25,12 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(), showAlert('Well done
 		 }, () => {});
 	}*/
 	,
-transformedArray(data){
- const transformedArray = [];
-  let previousNumber = null;
-
-  for (const key in data) {
-    if (data.hasOwnProperty(key)) {
-      const number = data[key];
-
-      if (number === previousNumber) {
-        transformedArray.push(null);
-      } else {
-        transformedArray.push(number);
-      }
-
-      previousNumber = number;
-    }
-  }
-
-  return transformedArray;
+transformedArray: (previousQtyTotal) =>{
+if (!previousQtyTotal || previousQtyTotal !== currentRow["QtyTotal"]) {
+  previousQtyTotal = currentRow["QtyTotal"];
+  return currentRow["QtyTotal"];
+} else {
+  return null;
+}
 }
 }
