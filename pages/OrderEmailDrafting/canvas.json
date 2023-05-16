@@ -319,7 +319,7 @@
                                 "Amount": 108,
                                 "SubItemID": 119,
                                 "PSummary": 251,
-                                "Collaterals": 235
+                                "Collaterals": 331
                               },
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -1836,7 +1836,7 @@
               "originalTopRow": 0,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 135,
+              "originalBottomRow": 129,
               "minDynamicHeight": 10
             },
             {

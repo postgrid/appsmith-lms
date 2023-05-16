@@ -188,6 +188,8 @@ WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - Personal
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 4x6 - Second Class%' THEN 'Postcard 4x6 - Second Class'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x9 - Second Class%' THEN 'Postcard 6x9 - Second Class'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - Second Class%' THEN 'Postcard 6x11 - Second Class'
+	
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW DS - First Class - CreditGlory%' THEN 'Letter Size - BW DS - FC Generic - CG'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW SS - First Class%' THEN 'Letter Size - BW SS - FC Generic'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW DS - First Class%' THEN 'Letter Size - BW DS - FC Generic'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR SS - First Class%' THEN 'Letter Size - CLR SS - FC Generic'
