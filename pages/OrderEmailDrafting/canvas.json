@@ -109,7 +109,7 @@
                           "widgetName": "Canvas16",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 1600,
+                          "bottomRow": 1970,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -131,8 +131,8 @@
                               ],
                               "displayName": "Container",
                               "iconSVG": "/static/media/icon.1977dca3.svg",
-                              "topRow": 154,
-                              "bottomRow": 160,
+                              "topRow": 191,
+                              "bottomRow": 197,
                               "parentRowSpace": 10,
                               "type": "CONTAINER_WIDGET",
                               "hideCard": false,
@@ -299,7 +299,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 154,
+                              "bottomRow": 191,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 62,
@@ -742,11 +742,11 @@
                                       "rightColumn": 61,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "home",
-                                      "widgetId": "jwoiuk2s7k",
+                                      "widgetId": "y1w68h47et",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "ldjnr0ghpn",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -792,11 +792,11 @@
                                       "rightColumn": 53,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "people",
-                                      "widgetId": "yswbijbb5h",
+                                      "widgetId": "5j9pry2tn8",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "ldjnr0ghpn",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -842,11 +842,11 @@
                                       "rightColumn": 42,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "print",
-                                      "widgetId": "wsjztu43vm",
+                                      "widgetId": "xxvlbiex6b",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "ldjnr0ghpn",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -858,6 +858,7 @@
                                       "isCompact": false,
                                       "boxShadow": "none",
                                       "widgetName": "btn_printers",
+                                      "dynamicPropertyPathList": [],
                                       "displayName": "Menu Button",
                                       "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
                                       "topRow": 0,
@@ -879,6 +880,9 @@
                                         },
                                         {
                                           "key": "menuItems.menuItemgcx5eam3xh.onClick"
+                                        },
+                                        {
+                                          "key": "menuItems.menuItem99wwdrp04b.onClick"
                                         }
                                       ],
                                       "leftColumn": 12,
@@ -893,7 +897,7 @@
                                       "rightColumn": 22,
                                       "iconName": "swap-horizontal",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "67mx78dkv1",
+                                      "widgetId": "un2rhzveen",
                                       "menuItems": {
                                         "menuItem1": {
                                           "label": "Manage Orders",
@@ -934,16 +938,17 @@
                                         "menuItem99wwdrp04b": {
                                           "id": "menuItem99wwdrp04b",
                                           "index": 4,
-                                          "label": "Archives",
+                                          "label": " Drafting Orders List",
                                           "widgetId": "jgelm4178f",
                                           "isDisabled": false,
-                                          "isVisible": true
+                                          "isVisible": true,
+                                          "onClick": "{{navigateTo('OrderEmailDrafting', {}, 'SAME_WINDOW');}}"
                                         }
                                       },
                                       "isVisible": true,
                                       "label": "Operations",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "ldjnr0ghpn",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -996,7 +1001,7 @@
                                       "rightColumn": 32,
                                       "iconName": "inherited-group",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "reoxktnxav",
+                                      "widgetId": "kdwqnhwmvd",
                                       "menuItems": {
                                         "menuItem1": {
                                           "label": "Manage Printers",
@@ -1020,7 +1025,7 @@
                                       "isVisible": true,
                                       "label": "Partnership",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "ldjnr0ghpn",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -1073,7 +1078,7 @@
                                       "rightColumn": 64,
                                       "iconName": "menu",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "444wrdyaqm",
+                                      "widgetId": "ikpnzbo3ei",
                                       "menuItems": {
                                         "menuItemchlpdcx8u1": {
                                           "id": "menuItemchlpdcx8u1",
@@ -1082,7 +1087,7 @@
                                           "widgetId": "aj9fd0bcf2",
                                           "isDisabled": false,
                                           "isVisible": true,
-                                          "onClick": "{{showModal('Modal2');}}",
+                                          "onClick": "{{showModal('modal_change_pw');}}",
                                           "iconName": "key"
                                         },
                                         "menuItem5t32gvzbnc": {
@@ -1099,7 +1104,7 @@
                                       "isVisible": true,
                                       "label": "",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "ldjnr0ghpn",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -1113,11 +1118,11 @@
                                   "isDeprecated": false,
                                   "rightColumn": 574.5,
                                   "detachFromLayout": true,
-                                  "widgetId": "wknq0vcit6",
+                                  "widgetId": "ldjnr0ghpn",
                                   "containerStyle": "none",
                                   "isVisible": true,
                                   "version": 1,
-                                  "parentId": "gxxgmkhbkx",
+                                  "parentId": "jrfy07af1n",
                                   "renderMode": "CANVAS",
                                   "isLoading": false
                                 }
@@ -1128,7 +1133,7 @@
                               "isDeprecated": false,
                               "rightColumn": 64,
                               "dynamicHeight": "FIXED",
-                              "widgetId": "gxxgmkhbkx",
+                              "widgetId": "jrfy07af1n",
                               "containerStyle": "card",
                               "isVisible": true,
                               "version": 1,

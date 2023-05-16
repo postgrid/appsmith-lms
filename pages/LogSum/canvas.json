@@ -1301,11 +1301,11 @@
                                       "rightColumn": 61,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "home",
-                                      "widgetId": "jwoiuk2s7k",
+                                      "widgetId": "b5tzm2mmjh",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "tqvsez0ymh",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -1351,11 +1351,11 @@
                                       "rightColumn": 53,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "people",
-                                      "widgetId": "yswbijbb5h",
+                                      "widgetId": "ai20686w63",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "tqvsez0ymh",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -1401,11 +1401,11 @@
                                       "rightColumn": 42,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "print",
-                                      "widgetId": "wsjztu43vm",
+                                      "widgetId": "fwh6aghl4b",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "tqvsez0ymh",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -1417,6 +1417,7 @@
                                       "isCompact": false,
                                       "boxShadow": "none",
                                       "widgetName": "btn_printers",
+                                      "dynamicPropertyPathList": [],
                                       "displayName": "Menu Button",
                                       "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
                                       "topRow": 0,
@@ -1438,6 +1439,9 @@
                                         },
                                         {
                                           "key": "menuItems.menuItemgcx5eam3xh.onClick"
+                                        },
+                                        {
+                                          "key": "menuItems.menuItem99wwdrp04b.onClick"
                                         }
                                       ],
                                       "leftColumn": 12,
@@ -1452,7 +1456,7 @@
                                       "rightColumn": 22,
                                       "iconName": "swap-horizontal",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "67mx78dkv1",
+                                      "widgetId": "egc6age5e2",
                                       "menuItems": {
                                         "menuItem1": {
                                           "label": "Manage Orders",
@@ -1493,16 +1497,17 @@
                                         "menuItem99wwdrp04b": {
                                           "id": "menuItem99wwdrp04b",
                                           "index": 4,
-                                          "label": "Archives",
+                                          "label": " Drafting Orders List",
                                           "widgetId": "jgelm4178f",
                                           "isDisabled": false,
-                                          "isVisible": true
+                                          "isVisible": true,
+                                          "onClick": "{{navigateTo('OrderEmailDrafting', {}, 'SAME_WINDOW');}}"
                                         }
                                       },
                                       "isVisible": true,
                                       "label": "Operations",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "tqvsez0ymh",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -1555,7 +1560,7 @@
                                       "rightColumn": 32,
                                       "iconName": "inherited-group",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "reoxktnxav",
+                                      "widgetId": "ldneao6an7",
                                       "menuItems": {
                                         "menuItem1": {
                                           "label": "Manage Printers",
@@ -1579,7 +1584,7 @@
                                       "isVisible": true,
                                       "label": "Partnership",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "tqvsez0ymh",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -1632,7 +1637,7 @@
                                       "rightColumn": 64,
                                       "iconName": "menu",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "444wrdyaqm",
+                                      "widgetId": "zwe31m3f2z",
                                       "menuItems": {
                                         "menuItemchlpdcx8u1": {
                                           "id": "menuItemchlpdcx8u1",
@@ -1641,7 +1646,7 @@
                                           "widgetId": "aj9fd0bcf2",
                                           "isDisabled": false,
                                           "isVisible": true,
-                                          "onClick": "{{showModal('Modal2');}}",
+                                          "onClick": "{{showModal('modal_change_pw');}}",
                                           "iconName": "key"
                                         },
                                         "menuItem5t32gvzbnc": {
@@ -1658,7 +1663,7 @@
                                       "isVisible": true,
                                       "label": "",
                                       "version": 1,
-                                      "parentId": "wknq0vcit6",
+                                      "parentId": "tqvsez0ymh",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -1672,11 +1677,11 @@
                                   "isDeprecated": false,
                                   "rightColumn": 574.5,
                                   "detachFromLayout": true,
-                                  "widgetId": "wknq0vcit6",
+                                  "widgetId": "tqvsez0ymh",
                                   "containerStyle": "none",
                                   "isVisible": true,
                                   "version": 1,
-                                  "parentId": "gxxgmkhbkx",
+                                  "parentId": "jidonllw9z",
                                   "renderMode": "CANVAS",
                                   "isLoading": false
                                 }
@@ -1687,7 +1692,7 @@
                               "isDeprecated": false,
                               "rightColumn": 64,
                               "dynamicHeight": "FIXED",
-                              "widgetId": "gxxgmkhbkx",
+                              "widgetId": "jidonllw9z",
                               "containerStyle": "card",
                               "isVisible": true,
                               "version": 1,
@@ -5305,6 +5310,16 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "LogSum_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -5315,18 +5330,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "LogSum_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

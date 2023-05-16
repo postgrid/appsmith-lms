@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 78,
+          "version": 79,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -876,6 +876,7 @@
                                       "isCompact": false,
                                       "boxShadow": "none",
                                       "widgetName": "btn_printers",
+                                      "dynamicPropertyPathList": [],
                                       "displayName": "Menu Button",
                                       "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
                                       "topRow": 0,
@@ -897,6 +898,9 @@
                                         },
                                         {
                                           "key": "menuItems.menuItemgcx5eam3xh.onClick"
+                                        },
+                                        {
+                                          "key": "menuItems.menuItem99wwdrp04b.onClick"
                                         }
                                       ],
                                       "leftColumn": 12,
@@ -952,10 +956,11 @@
                                         "menuItem99wwdrp04b": {
                                           "id": "menuItem99wwdrp04b",
                                           "index": 4,
-                                          "label": "Archives",
+                                          "label": " Drafting Orders List",
                                           "widgetId": "jgelm4178f",
                                           "isDisabled": false,
-                                          "isVisible": true
+                                          "isVisible": true,
+                                          "onClick": "{{navigateTo('OrderEmailDrafting', {}, 'SAME_WINDOW');}}"
                                         }
                                       },
                                       "isVisible": true,
@@ -5193,6 +5198,17 @@
         "layoutOnLoadActions": [
           [
             {
+              "id": "App_Util.autorefresh",
+              "name": "Util.autorefresh",
+              "collectionId": "App_Util",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "App_Util.synchronize",
               "name": "Util.synchronize",
               "collectionId": "App_Util",
@@ -5214,13 +5230,12 @@
           ],
           [
             {
-              "id": "App_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "App_Util",
+              "id": "App_get_user",
+              "name": "get_user",
               "confirmBeforeExecute": false,
-              "pluginType": "JS",
+              "pluginType": "API",
               "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
@@ -5303,18 +5318,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment().format('MM')"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "App_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

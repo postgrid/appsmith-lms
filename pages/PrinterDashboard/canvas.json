@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 78,
+          "version": 79,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -1095,9 +1095,7 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            }
-          ],
-          [
+            },
             {
               "id": "PrinterDashboard_get_user",
               "name": "get_user",

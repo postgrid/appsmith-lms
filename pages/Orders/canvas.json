@@ -825,7 +825,7 @@
                               "borderColor": "#E0DEDE",
                               "isVisibleDownload": true,
                               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                              "topRow": 10,
+                              "topRow": 9,
                               "isSortable": false,
                               "onPageChange": "{{get_invoicelist.run()}}",
                               "type": "TABLE_WIDGET_V2",
@@ -934,7 +934,7 @@
                               },
                               "borderRadius": "0px",
                               "columnUpdatedAt": 1682480240889,
-                              "originalBottomRow": 97,
+                              "originalBottomRow": 98,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
                                 0
@@ -977,7 +977,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 98,
+                              "bottomRow": 97,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 62,
@@ -1477,7 +1477,7 @@
                               "renderMode": "CANVAS",
                               "horizontalAlignment": "LEFT",
                               "isVisibleSearch": true,
-                              "originalTopRow": 9,
+                              "originalTopRow": 10,
                               "isVisiblePagination": true,
                               "cellBackground": "",
                               "verticalAlignment": "CENTER"
@@ -1500,8 +1500,8 @@
                                 "click",
                                 "submit"
                               ],
-                              "topRow": 6,
-                              "bottomRow": 10,
+                              "topRow": 5,
+                              "bottomRow": 9,
                               "parentRowSpace": 10,
                               "type": "BUTTON_WIDGET",
                               "hideCard": false,
@@ -1541,11 +1541,11 @@
                               "isLoading": false,
                               "mobileTopRow": 0,
                               "responsiveBehavior": "hug",
-                              "originalTopRow": 5,
+                              "originalTopRow": 6,
                               "disabledWhenInvalid": false,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "mobileLeftColumn": 0,
-                              "originalBottomRow": 9,
+                              "originalBottomRow": 10,
                               "buttonVariant": "PRIMARY",
                               "placement": "CENTER"
                             },
@@ -1553,7 +1553,7 @@
                               "boxShadow": "none",
                               "dateFormat": "YYYY-MM-DD",
                               "iconSVG": "/static/media/icon.300e5ab8e2e1c26c7a0bad06116842b7.svg",
-                              "topRow": 6,
+                              "topRow": 5,
                               "labelWidth": "10",
                               "type": "DATE_PICKER_WIDGET2",
                               "animateLoading": true,
@@ -1580,7 +1580,7 @@
                               "isLoading": false,
                               "timePrecision": "minute",
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "originalBottomRow": 9,
+                              "originalBottomRow": 10,
                               "closeOnSelection": true,
                               "mobileBottomRow": 7,
                               "widgetName": "DatePicker1",
@@ -1594,7 +1594,7 @@
                               "searchTags": [
                                 "calendar"
                               ],
-                              "bottomRow": 10,
+                              "bottomRow": 9,
                               "shortcuts": false,
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -1619,7 +1619,7 @@
                               "renderMode": "CANVAS",
                               "mobileTopRow": 0,
                               "responsiveBehavior": "fill",
-                              "originalTopRow": 5,
+                              "originalTopRow": 6,
                               "mobileLeftColumn": 43,
                               "maxDynamicHeight": 9000,
                               "firstDayOfWeek": "0",
@@ -1642,7 +1642,7 @@
                                 "label"
                               ],
                               "topRow": 0,
-                              "bottomRow": 5,
+                              "bottomRow": 4,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -1687,7 +1687,7 @@
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "mobileLeftColumn": 48,
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 4,
+                              "originalBottomRow": 5,
                               "fontSize": "0.675rem",
                               "minDynamicHeight": 4
                             }
@@ -2266,11 +2266,11 @@
                                       "rightColumn": 61,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "home",
-                                      "widgetId": "ccem4of4jr",
+                                      "widgetId": "6n6krdlevo",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "7sbsh5rc5b",
+                                      "parentId": "vhj4v36uiz",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -2316,11 +2316,11 @@
                                       "rightColumn": 53,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "people",
-                                      "widgetId": "e493w9lgb9",
+                                      "widgetId": "rtytpze8uu",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "7sbsh5rc5b",
+                                      "parentId": "vhj4v36uiz",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -2366,11 +2366,11 @@
                                       "rightColumn": 42,
                                       "isDefaultClickDisabled": true,
                                       "iconName": "print",
-                                      "widgetId": "x6lh4913pk",
+                                      "widgetId": "msthg20bsr",
                                       "isVisible": true,
                                       "recaptchaType": "V3",
                                       "version": 1,
-                                      "parentId": "7sbsh5rc5b",
+                                      "parentId": "vhj4v36uiz",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "disabledWhenInvalid": false,
@@ -2382,6 +2382,7 @@
                                       "isCompact": false,
                                       "boxShadow": "none",
                                       "widgetName": "btn_printers",
+                                      "dynamicPropertyPathList": [],
                                       "displayName": "Menu Button",
                                       "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
                                       "topRow": 0,
@@ -2403,6 +2404,9 @@
                                         },
                                         {
                                           "key": "menuItems.menuItemgcx5eam3xh.onClick"
+                                        },
+                                        {
+                                          "key": "menuItems.menuItem99wwdrp04b.onClick"
                                         }
                                       ],
                                       "leftColumn": 12,
@@ -2417,7 +2421,7 @@
                                       "rightColumn": 22,
                                       "iconName": "swap-horizontal",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "nfcsgsfz1z",
+                                      "widgetId": "exlr8jktlp",
                                       "menuItems": {
                                         "menuItem1": {
                                           "label": "Manage Orders",
@@ -2458,16 +2462,17 @@
                                         "menuItem99wwdrp04b": {
                                           "id": "menuItem99wwdrp04b",
                                           "index": 4,
-                                          "label": "Archives",
+                                          "label": " Drafting Orders List",
                                           "widgetId": "jgelm4178f",
                                           "isDisabled": false,
-                                          "isVisible": true
+                                          "isVisible": true,
+                                          "onClick": "{{navigateTo('OrderEmailDrafting', {}, 'SAME_WINDOW');}}"
                                         }
                                       },
                                       "isVisible": true,
                                       "label": "Operations",
                                       "version": 1,
-                                      "parentId": "7sbsh5rc5b",
+                                      "parentId": "vhj4v36uiz",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -2520,7 +2525,7 @@
                                       "rightColumn": 32,
                                       "iconName": "inherited-group",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "pkz9ucuwxb",
+                                      "widgetId": "ba4l2f2wzp",
                                       "menuItems": {
                                         "menuItem1": {
                                           "label": "Manage Printers",
@@ -2544,7 +2549,7 @@
                                       "isVisible": true,
                                       "label": "Partnership",
                                       "version": 1,
-                                      "parentId": "7sbsh5rc5b",
+                                      "parentId": "vhj4v36uiz",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -2597,7 +2602,7 @@
                                       "rightColumn": 64,
                                       "iconName": "menu",
                                       "menuVariant": "PRIMARY",
-                                      "widgetId": "ex7gag9ymx",
+                                      "widgetId": "f4ekq5lqp5",
                                       "menuItems": {
                                         "menuItemchlpdcx8u1": {
                                           "id": "menuItemchlpdcx8u1",
@@ -2606,7 +2611,7 @@
                                           "widgetId": "aj9fd0bcf2",
                                           "isDisabled": false,
                                           "isVisible": true,
-                                          "onClick": "{{showModal('Modal2');}}",
+                                          "onClick": "{{showModal('modal_change_pw');}}",
                                           "iconName": "key"
                                         },
                                         "menuItem5t32gvzbnc": {
@@ -2623,7 +2628,7 @@
                                       "isVisible": true,
                                       "label": "",
                                       "version": 1,
-                                      "parentId": "7sbsh5rc5b",
+                                      "parentId": "vhj4v36uiz",
                                       "renderMode": "CANVAS",
                                       "isLoading": false,
                                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
@@ -2637,11 +2642,11 @@
                                   "isDeprecated": false,
                                   "rightColumn": 574.5,
                                   "detachFromLayout": true,
-                                  "widgetId": "7sbsh5rc5b",
+                                  "widgetId": "vhj4v36uiz",
                                   "containerStyle": "none",
                                   "isVisible": true,
                                   "version": 1,
-                                  "parentId": "2067k3kk6e",
+                                  "parentId": "alhqe81dai",
                                   "renderMode": "CANVAS",
                                   "isLoading": false
                                 }
@@ -2652,7 +2657,7 @@
                               "isDeprecated": false,
                               "rightColumn": 64,
                               "dynamicHeight": "FIXED",
-                              "widgetId": "2067k3kk6e",
+                              "widgetId": "alhqe81dai",
                               "containerStyle": "card",
                               "isVisible": true,
                               "version": 1,
