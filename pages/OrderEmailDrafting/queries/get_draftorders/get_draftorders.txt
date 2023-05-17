@@ -116,6 +116,9 @@ main_items."Id" ASC
 grouped_query AS (
 SELECT
 CASE
+WHEN customer_line_items_query."CustomerName" LIKE '%Glory%' THEN 'BW DS - FC Generic - Credit Glory Inc'
+WHEN customer_line_items_query."CustomerName" LIKE '%Credit Sage LLC%' THEN 'BW DS - FC Generic - Credit Sage LLC Inc'
+WHEN customer_line_items_query."CustomerName" LIKE '%ECA GreenTech%' THEN 'ECA Greentech'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Certified Mail RR - BW SS'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Certified Mail RR - BW DS'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Certified Mail RR - CLR SS'
@@ -138,6 +141,9 @@ WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%' THEN 'International Delivery - BW DS'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%' THEN 'International Delivery - CLR SS'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR DS%' THEN 'International Delivery - CLR DS'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%Postcard 4x6%' THEN 'International Delivery -Postcard 4x6'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%Postcard 6x9%' THEN 'International Delivery -Postcard 6x9'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%International Delivery%' AND filtered_category_tree_query."OrderDetails"  LIKE '%Postcard 6x11%' THEN 'International Delivery -Postcard 6x11'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Priority/Express - BW SS'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Priority/Express - BW DS'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%USPS%' AND filtered_category_tree_query."OrderDetails"  LIKE '%CLR SS%'  THEN 'Priority/Express - CLR SS'
@@ -188,8 +194,6 @@ WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - Personal
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 4x6 - Second Class%' THEN 'Postcard 4x6 - Second Class'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x9 - Second Class%' THEN 'Postcard 6x9 - Second Class'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Postcard 6x11 - Second Class%' THEN 'Postcard 6x11 - Second Class'
-	
-WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW DS - First Class - CreditGlory%' THEN 'Letter Size - BW DS - FC Generic - CG'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW SS - First Class%' THEN 'Letter Size - BW SS - FC Generic'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - BW DS - First Class%' THEN 'Letter Size - BW DS - FC Generic'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Letter Size - CLR SS - First Class%' THEN 'Letter Size - CLR SS - FC Generic'
@@ -216,30 +220,38 @@ WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - CLR SS - Secon
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%A4 Size - CLR DS - Second Class%' THEN 'A4 Size - CLR DS - SC Generic'
 ELSE filtered_category_tree_query."OrderDetails"
 END AS "GroupDetails",
-SUM(customer_line_items_query."Qty") OVER (PARTITION BY filtered_category_tree_query."OrderDetails" ORDER BY filtered_category_tree_query."OrderDetails") AS "QtyTotal",
-customer_line_items_query."CustomerName",
-customer_line_items_query."Qty",
-printer_line_items_query."OrderDetailsPrinter",
-printer_line_items_query."PSummary",
-customer_line_items_query."Destination"
-FROM
-customer_line_items_query
-JOIN filtered_category_tree_query ON customer_line_items_query."Id" = filtered_category_tree_query."Id"
-JOIN printer_line_items_query ON customer_line_items_query."Id" = printer_line_items_query."Id"
-WHERE
-customer_line_items_query."Printer" = '{{Select3.selectedOptionLabel}}'
+ SUM(customer_line_items_query."Qty") AS "QtyTotal",
+    customer_line_items_query."CustomerName",
+    customer_line_items_query."Qty",
+    printer_line_items_query."OrderDetailsPrinter",
+    printer_line_items_query."PSummary",
+    customer_line_items_query."Destination"
+  FROM
+    customer_line_items_query
+    JOIN filtered_category_tree_query ON customer_line_items_query."Id" = filtered_category_tree_query."Id"
+    JOIN printer_line_items_query ON customer_line_items_query."Id" = printer_line_items_query."Id"
+  WHERE
+    customer_line_items_query."Printer" = '{{Select3.selectedOptionLabel}}'
+  GROUP BY
+    "GroupDetails",
+    customer_line_items_query."CustomerName",
+    customer_line_items_query."Qty",
+    printer_line_items_query."OrderDetailsPrinter",
+    printer_line_items_query."PSummary",
+    customer_line_items_query."Destination"
 )
+
 SELECT
-CASE
-WHEN ROW_NUMBER() OVER (PARTITION BY "GroupDetails" ORDER BY "GroupDetails") = 1 THEN MAX("QtyTotal") OVER (PARTITION BY "GroupDetails")
-ELSE NULL
-END AS "OrderCounts",
-"GroupDetails" as "Collaterals",
-"CustomerName" as "Clients",
-"Qty" || ' '|| "OrderDetailsPrinter" as "OrderDetails",
-"PSummary" as "Subtotal",
-"Destination" as "To"
+  CASE
+    WHEN ROW_NUMBER() OVER (PARTITION BY "GroupDetails" ORDER BY "GroupDetails") = 1 THEN SUM("QtyTotal") OVER (PARTITION BY "GroupDetails")
+    ELSE NULL
+  END AS "OrderCounts",
+  "GroupDetails" AS "Collaterals",
+  "CustomerName" AS "Clients",
+  "Qty" || ' ' || "OrderDetailsPrinter" AS "OrderDetails",
+  "PSummary" AS "Subtotal",
+  "Destination" AS "To"
 FROM
-grouped_query
+  grouped_query
 ORDER BY
-"GroupDetails" ASC;
+  "GroupDetails" ASC;

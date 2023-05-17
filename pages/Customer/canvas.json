@@ -955,7 +955,11 @@
                               "boxShadow": "none",
                               "widgetName": "Select1",
                               "isFilterable": false,
-                              "dynamicPropertyPathList": [],
+                              "dynamicPropertyPathList": [
+                                {
+                                  "key": "onOptionChange"
+                                }
+                              ],
                               "displayName": "Select",
                               "iconSVG": "/static/media/icon.bd99caba5853ad71e4b3d8daffacb3a2.svg",
                               "labelText": "Select Category",
@@ -1011,7 +1015,7 @@
                               "isVisible": true,
                               "version": 1,
                               "parentId": "8z27x8f5df",
-                              "onDropdownOpen": "{{resetWidget(\"Table3\",true)}}",
+                              "onDropdownOpen": "",
                               "labelAlignment": "left",
                               "renderMode": "CANVAS",
                               "isLoading": false,
@@ -2123,7 +2127,7 @@
                                 }
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "columnUpdatedAt": 1682390511019,
+                              "columnUpdatedAt": 1684260760128,
                               "defaultSelectedRowIndices": [
                                 0
                               ],
