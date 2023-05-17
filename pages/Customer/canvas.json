@@ -955,14 +955,10 @@
                               "boxShadow": "none",
                               "widgetName": "Select1",
                               "isFilterable": false,
-                              "dynamicPropertyPathList": [
-                                {
-                                  "key": "onOptionChange"
-                                }
-                              ],
+                              "dynamicPropertyPathList": [],
                               "displayName": "Select",
                               "iconSVG": "/static/media/icon.bd99caba5853ad71e4b3d8daffacb3a2.svg",
-                              "labelText": "Select Category",
+                              "labelText": "Select from options",
                               "searchTags": [
                                 "dropdown"
                               ],
@@ -974,7 +970,7 @@
                               "serverSideFiltering": false,
                               "hideCard": false,
                               "defaultOptionValue": "{{ ((options, serverSideFiltering) => ( `Query1`))(Select1.options, Select1.serverSideFiltering) }}",
-                              "animateLoading": true,
+                              "animateLoading": false,
                               "parentColumnSpace": 8.77734375,
                               "dynamicTriggerPathList": [
                                 {
@@ -1000,7 +996,7 @@
                                 }
                               ],
                               "labelPosition": "Left",
-                              "onDropdownClose": "{{\nStoreActions.runQuery(Select1.selectedOptionValue)\n}}",
+                              "onDropdownClose": "{{resetWidget(\"Table3\", true);\nStoreActions.runQuery(Select1.selectedOptionValue);}}",
                               "options": "[\n  {\n    \"label\": \"Today's New Client\",\n    \"value\": \"Query1\"\n  },\n  {\n    \"label\": \"No Rates\",\n    \"value\": \"Query2\"\n  }\n]",
                               "placeholderText": "Select option",
                               "isDisabled": false,
@@ -1015,7 +1011,7 @@
                               "isVisible": true,
                               "version": 1,
                               "parentId": "8z27x8f5df",
-                              "onDropdownOpen": "",
+                              "onDropdownOpen": "{{StoreActions.runQuery(Select1.selectedOptionValue);}}",
                               "labelAlignment": "left",
                               "renderMode": "CANVAS",
                               "isLoading": false,
@@ -1023,7 +1019,7 @@
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
                               "originalBottomRow": 8,
-                              "onOptionChange": "{{StoreActions.runQuery(Select1.selectedOptionValue);}}",
+                              "onOptionChange": "",
                               "minDynamicHeight": 4
                             }
                           ],
@@ -2080,16 +2076,7 @@
                                   "key": "primaryColumns.JoiningDate.outputFormat"
                                 },
                                 {
-                                  "key": "primaryColumns.PlanDealID.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.CustomerID.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Plan.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Limit.computedValue"
+                                  "key": "primaryColumns.SameDay.computedValue"
                                 }
                               ],
                               "needsHeightForContent": true,
@@ -2127,7 +2114,7 @@
                                 }
                               },
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "columnUpdatedAt": 1684260760128,
+                              "columnUpdatedAt": 1684360213336,
                               "defaultSelectedRowIndices": [
                                 0
                               ],
@@ -2143,10 +2130,7 @@
                                 "WithIMB",
                                 "OrgID",
                                 "Id",
-                                "PlanDealID",
-                                "CustomerID",
-                                "Plan",
-                                "Limit"
+                                "SameDay"
                               ],
                               "dynamicPropertyPathList": [
                                 {
@@ -2421,20 +2405,18 @@
                                   "buttonStyle": "rgb(3, 179, 101)",
                                   "labelColor": "#FFFFFF"
                                 },
-                                "PlanDealID": {
+                                "SameDay": {
                                   "allowCellWrapping": false,
                                   "allowSameOptionsInNewRow": true,
                                   "index": 8,
                                   "width": 150,
-                                  "originalId": "PlanDealID",
-                                  "id": "PlanDealID",
-                                  "alias": "PlanDealID",
+                                  "originalId": "SameDay",
+                                  "id": "SameDay",
+                                  "alias": "SameDay",
                                   "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
-                                  "textColor": "",
                                   "textSize": "0.875rem",
-                                  "fontStyle": "",
                                   "enableFilter": true,
                                   "enableSort": true,
                                   "isVisible": true,
@@ -2443,103 +2425,12 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "PlanDealID",
+                                  "label": "SameDay",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"PlanDealID\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"SameDay\"]))}}",
                                   "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
-                                "CustomerID": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 9,
-                                  "width": 150,
-                                  "originalId": "CustomerID",
-                                  "id": "CustomerID",
-                                  "alias": "CustomerID",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "CustomerID",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerID\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
-                                "Plan": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 10,
-                                  "width": 150,
-                                  "originalId": "Plan",
-                                  "id": "Plan",
-                                  "alias": "Plan",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Plan",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Plan\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
-                                "Limit": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 11,
-                                  "width": 150,
-                                  "originalId": "Limit",
-                                  "id": "Limit",
-                                  "alias": "Limit",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Limit",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Limit\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
+                                  "validation": {}
                                 }
                               },
                               "onRowSelected": "{{get_custpricelist.data}}",
@@ -2844,34 +2735,13 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "Customer_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "Customer_Util",
+              "id": "Customer_StoreActions.runselect",
+              "name": "StoreActions.runselect",
+              "collectionId": "Customer_StoreActions",
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    (get_invoicelist.run(), get_num_new_clients.run(), Query1.run(), get_custpricelist.run());\n  }, 2000, \"autoupdate\");\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Customer_Util.synchronize",
-              "name": "Util.synchronize",
-              "collectionId": "Customer_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  await get_current_tier.run();\n  await get_customer_order_details.run();\n  await get_invoicelist.run();\n  await get_list_of_collaterals.run();\n  await get_num_new_clients.run();\n  await get_printer_order_details.run();\n  await get_printerlist.run();\n  await get_cheque_month_volume.run();\n  await get_letter_month_volume.run();\n  await get_postcard_month_volume.run();\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Customer_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
+                "async () => {\n  resetWidget('Select1');\n  resetWidget('Table3');\n  Query1.run();\n  StoreActions.runQuery('Query1');\n}"
               ],
               "timeoutInMillisecond": 10000
             }
@@ -2884,6 +2754,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Table3.selectedRow.OrgID"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Customer_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

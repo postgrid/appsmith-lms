@@ -140,7 +140,7 @@
                                 }
                               ],
                               "isDisabled": false,
-                              "onDateSelected": "{{get_draftorders.run()}}",
+                              "onDateSelected": "",
                               "isRequired": false,
                               "dynamicHeight": "FIXED",
                               "accentColor": "{{appsmith.theme.colors.primaryColor}}",
@@ -396,8 +396,7 @@
                                 "Amount": 108,
                                 "SubItemID": 119,
                                 "PSummary": 251,
-                                "Collaterals": 331,
-                                "Clients": 232
+                                "Collaterals": 331
                               },
                               "parentRowSpace": 10,
                               "hideCard": false,

@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "autorefresh",
-    "fullyQualifiedName": "Util.autorefresh",
+    "name": "runselect",
+    "fullyQualifiedName": "StoreActions.runselect",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -14,7 +14,7 @@
       "userPermissions": []
     },
     "pageId": "Customer",
-    "collectionId": "Customer_Util",
+    "collectionId": "Customer_StoreActions",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Customer_Util.autorefresh",
+  "id": "Customer_StoreActions.runselect",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6400e614e69a2e1df5480c01"
+  "gitSyncId": "63b393c7f276cd0745e9510c_6465444c2c06a41774106703"
 }
