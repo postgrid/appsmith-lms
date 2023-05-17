@@ -28,8 +28,8 @@ WITH customer_line_items_query AS (
       WHERE p."Id" = c2."ProductID"
     )
     AND "SubItemID" IS NULL
-    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}'
-    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '{{moment().format('YYYY-MM-DD')}}'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment(DatePicker1.selectedDate).format('YYYY-MM-DD')}}'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '{{moment(DatePicker1.selectedDate).format('YYYY-MM-DD')}}'
 ),
 category_tree_query AS (
   WITH RECURSIVE category_tree AS (
@@ -116,8 +116,8 @@ main_items."Id" ASC
 grouped_query AS (
 SELECT
 CASE
-WHEN customer_line_items_query."CustomerName" LIKE '%Glory%' THEN 'BW DS - FC Generic - Credit Glory Inc'
-WHEN customer_line_items_query."CustomerName" LIKE '%Credit Sage LLC%' THEN 'BW DS - FC Generic - Credit Sage LLC Inc'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Glory%' THEN 'BW DS - FC Generic - Credit Glory Inc'
+WHEN filtered_category_tree_query."OrderDetails" LIKE '%Credit Sage LLC%' THEN 'BW DS - FC Generic - Credit Sage LLC Inc'
 WHEN customer_line_items_query."CustomerName" LIKE '%ECA GreenTech%' THEN 'ECA Greentech'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW SS%'  THEN 'Certified Mail RR - BW SS'
 WHEN filtered_category_tree_query."OrderDetails" LIKE '%Certified Mail RR%' AND filtered_category_tree_query."OrderDetails"  LIKE '%BW DS%'  THEN 'Certified Mail RR - BW DS'

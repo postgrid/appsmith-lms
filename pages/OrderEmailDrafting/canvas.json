@@ -109,7 +109,7 @@
                           "widgetName": "Canvas16",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 2440,
+                          "bottomRow": 2450,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -119,6 +119,83 @@
                           "leftColumn": 0,
                           "dynamicBindingPathList": [],
                           "children": [
+                            {
+                              "boxShadow": "none",
+                              "dateFormat": "YYYY-MM-DD",
+                              "iconSVG": "/static/media/icon.300e5ab8e2e1c26c7a0bad06116842b7.svg",
+                              "topRow": 0,
+                              "labelWidth": "4",
+                              "type": "DATE_PICKER_WIDGET2",
+                              "animateLoading": true,
+                              "leftColumn": 33,
+                              "dynamicBindingPathList": [
+                                {
+                                  "key": "accentColor"
+                                },
+                                {
+                                  "key": "borderRadius"
+                                },
+                                {
+                                  "key": "defaultDate"
+                                }
+                              ],
+                              "isDisabled": false,
+                              "onDateSelected": "{{get_draftorders.run()}}",
+                              "isRequired": false,
+                              "dynamicHeight": "FIXED",
+                              "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+                              "isVisible": true,
+                              "datePickerType": "DATE_PICKER",
+                              "version": 2,
+                              "isLoading": false,
+                              "timePrecision": "minute",
+                              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                              "originalBottomRow": 9,
+                              "closeOnSelection": true,
+                              "mobileBottomRow": 7,
+                              "widgetName": "DatePicker1",
+                              "minDate": "1920-12-31T18:30:00.000Z",
+                              "dynamicPropertyPathList": [
+                                {
+                                  "key": "defaultDate"
+                                }
+                              ],
+                              "displayName": "DatePicker",
+                              "searchTags": [
+                                "calendar"
+                              ],
+                              "bottomRow": 4,
+                              "shortcuts": false,
+                              "parentRowSpace": 10,
+                              "hideCard": false,
+                              "mobileRightColumn": 63,
+                              "parentColumnSpace": 10.070068359375,
+                              "dynamicTriggerPathList": [
+                                {
+                                  "key": "onDateSelected"
+                                }
+                              ],
+                              "labelPosition": "Left",
+                              "key": "z914zaw4t0",
+                              "labelTextSize": "0.875rem",
+                              "defaultDate": "{{moment().format('YYYY-MM-DD')}}",
+                              "isDeprecated": false,
+                              "rightColumn": 47,
+                              "widgetId": "29pbeyaqvd",
+                              "minWidth": 450,
+                              "label": "Order Date",
+                              "parentId": "47tca8pon2",
+                              "labelAlignment": "right",
+                              "renderMode": "CANVAS",
+                              "mobileTopRow": 0,
+                              "responsiveBehavior": "fill",
+                              "originalTopRow": 5,
+                              "mobileLeftColumn": 43,
+                              "maxDynamicHeight": 9000,
+                              "firstDayOfWeek": "0",
+                              "maxDate": "2121-12-31T18:29:00.000Z",
+                              "minDynamicHeight": 4
+                            },
                             {
                               "mobileBottomRow": 4,
                               "widgetName": "Text128Copy",
@@ -290,7 +367,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 244,
+                              "bottomRow": 245,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 62,
@@ -319,7 +396,8 @@
                                 "Amount": 108,
                                 "SubItemID": 119,
                                 "PSummary": 251,
-                                "Collaterals": 331
+                                "Collaterals": 331,
+                                "Clients": 232
                               },
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -4872,8 +4950,8 @@
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')",
-                "Select3.selectedOptionLabel"
+                "Select3.selectedOptionLabel",
+                "moment(DatePicker1.selectedDate).format('YYYY-MM-DD')"
               ],
               "timeoutInMillisecond": 10000
             }

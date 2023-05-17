@@ -5310,16 +5310,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "LogSum_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -5330,6 +5320,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "LogSum_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
