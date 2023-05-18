@@ -3846,7 +3846,7 @@
                                   "label": "ProductDescription",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ProductDescription\"]))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentRow.ProductDescription.includes('Sheet') ? 'with ('+ ((currentRow.Qty / Table3Copy.tableData[currentIndex - 1].Qty)) +') Sheets '+ currentRow.ProductDescription : currentRow.ProductDescription ))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": "",
