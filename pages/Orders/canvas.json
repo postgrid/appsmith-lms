@@ -3846,7 +3846,7 @@
                                   "label": "ProductDescription",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentRow.ProductDescription.includes('Sheet') ? 'with ('+ ((currentRow.Qty / Table3Copy.tableData[currentIndex - 1].Qty)) +') Sheets '+ currentRow.ProductDescription : currentRow.ProductDescription ))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentRow.ProductDescription.includes('Sheet') ? 'with ('+ ((currentRow.Qty / Table3Copy.tableData[currentIndex - 1].Qty)) +') Sheet '+ currentRow.ProductDescription : currentRow.ProductDescription ))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": "",
@@ -5759,7 +5759,7 @@
                                   "label": "ProductDescription",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ProductDescription\"]))}}",
+                                  "computedValue": "{{Table3.processedTableData.map((currentRow, currentIndex) => (  currentRow.ProductDescription.includes('Sheet') ? 'with ('+ ((currentRow.Qty / Table3.tableData[currentIndex - 1].Qty)) +') Sheet '+ currentRow.ProductDescription : currentRow.ProductDescription ))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -6102,7 +6102,7 @@
                               },
                               "borderRadius": "0px",
                               "originalBottomRow": 75,
-                              "columnUpdatedAt": 1683594125741,
+                              "columnUpdatedAt": 1684438013692,
                               "defaultSelectedRowIndices": "",
                               "widgetName": "Table3CopyCopy",
                               "defaultPageSize": 0,
@@ -6301,7 +6301,7 @@
                                   "label": "ProductDescription",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ProductDescription\"]))}}",
+                                  "computedValue": "{{Table3CopyCopy.processedTableData.map((currentRow, currentIndex) => (  currentRow.ProductDescription.includes('Sheet') ? 'with ('+ ((currentRow.Qty / Table3CopyCopy.tableData[currentIndex - 1].Qty)) +') Sheet '+ currentRow.ProductDescription : currentRow.ProductDescription ))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": "",
@@ -7550,8 +7550,8 @@
                         "click",
                         "submit"
                       ],
-                      "topRow": 10,
-                      "bottomRow": 14,
+                      "topRow": 11,
+                      "bottomRow": 15,
                       "type": "BUTTON_WIDGET",
                       "hideCard": false,
                       "animateLoading": true,
@@ -7580,10 +7580,10 @@
                       "renderMode": "CANVAS",
                       "isLoading": false,
                       "responsiveBehavior": "hug",
-                      "originalTopRow": 11,
+                      "originalTopRow": 10,
                       "disabledWhenInvalid": false,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "originalBottomRow": 15,
+                      "originalBottomRow": 14,
                       "buttonVariant": "SECONDARY",
                       "placement": "CENTER"
                     },
@@ -7604,8 +7604,8 @@
                         "click",
                         "submit"
                       ],
-                      "topRow": 10,
-                      "bottomRow": 14,
+                      "topRow": 11,
+                      "bottomRow": 15,
                       "type": "BUTTON_WIDGET",
                       "hideCard": false,
                       "animateLoading": true,
@@ -7639,10 +7639,10 @@
                       "renderMode": "CANVAS",
                       "isLoading": false,
                       "responsiveBehavior": "hug",
-                      "originalTopRow": 11,
+                      "originalTopRow": 10,
                       "disabledWhenInvalid": false,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "originalBottomRow": 15,
+                      "originalBottomRow": 14,
                       "buttonVariant": "PRIMARY",
                       "placement": "CENTER"
                     },
@@ -7656,7 +7656,7 @@
                         "label"
                       ],
                       "topRow": 6,
-                      "bottomRow": 10,
+                      "bottomRow": 11,
                       "parentRowSpace": 10,
                       "type": "TEXT_WIDGET",
                       "hideCard": false,
@@ -7698,7 +7698,7 @@
                       "originalTopRow": 6,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 11,
+                      "originalBottomRow": 10,
                       "fontSize": "0.875rem",
                       "minDynamicHeight": 4
                     }
@@ -10429,16 +10429,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -10461,16 +10451,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_num_new_clients",
-              "name": "get_num_new_clients",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -10533,12 +10513,34 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "Orders_get_num_new_clients",
+              "name": "get_num_new_clients",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "Orders_get_postcard_day_volume",
               "name": "get_postcard_day_volume",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Orders_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
