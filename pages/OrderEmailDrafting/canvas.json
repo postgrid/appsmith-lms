@@ -140,7 +140,7 @@
                                 }
                               ],
                               "isDisabled": false,
-                              "onDateSelected": "",
+                              "onDateSelected": "{{get_draftorders.run()}}",
                               "isRequired": false,
                               "dynamicHeight": "FIXED",
                               "accentColor": "{{appsmith.theme.colors.primaryColor}}",
