@@ -5,3 +5,6 @@ SELECT i."InvoiceID" as "InvoiceNo", i."InvoiceDate", i."CustomerID", i."Payment
 FROM "public"."Invoice" i 
 	INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID"  )  
 WHERE to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >= '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' order by i."InvoiceID" asc 
+
+
+
