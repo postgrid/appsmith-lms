@@ -8,7 +8,7 @@ INNER JOIN "public"."Invoice" i ON (c1."InvoiceID" = i."InvoiceID")
 INNER JOIN "public"."CustomerPrice" cp ON (cp."Id" = c1."CustomerPriceID")
 INNER JOIN "public"."Products" p ON (p."Id" = cp."ProductID")
 LEFT JOIN "public"."Customers" cu ON (cu."Id" = cp."CustomerID")
-WHERE to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >=  '{{moment().format("YYYY-MM-DD")}}' 
+WHERE to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  =  '{{moment().format("YYYY-MM-DD")}}'
 AND p."ProductType" IN ('Cheque', 'Letter', 'Postcard')
 GROUP BY GROUPING SETS ((cu."CustomerName"), ())
 ORDER BY lower(cu."CustomerName") ASC
