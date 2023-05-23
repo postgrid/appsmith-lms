@@ -5253,7 +5253,7 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "LogSum_Util.synchronize",
+              "id": "645877d91671447b88d3c2b2",
               "name": "Util.synchronize",
               "collectionId": "LogSum_Util",
               "confirmBeforeExecute": false,
