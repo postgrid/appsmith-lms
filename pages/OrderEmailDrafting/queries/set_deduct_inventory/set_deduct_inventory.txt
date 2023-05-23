@@ -1,6 +1,0 @@
-UPDATE "public"."Products"
-SET "QtyInStock" =  "QtyInStock" - {{Input2Copy.text}}
-WHERE "ProductDescription" = '{{JSON.parse(JSON.stringify(Select1Copy.selectedOptionLabel).replaceAll("'", "''"))}}' AND "ProductType" = 'Envelope' ;
-
-
-

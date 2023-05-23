@@ -7,12 +7,12 @@ export default {
 	synchronize: async () => {
 		await	get_user.run();
 		await	get_user_department.run();
-	
+	  
 		//await	get_invoicelist.run();
 		
 	},
 	autorefresh: async () => {
-		setInterval(() => {
+		setInterval(() => {get_draftorders.run()
 				 }, 3000, "autoupdate");
 /*get_invoicelist_count.run()*/
 	}

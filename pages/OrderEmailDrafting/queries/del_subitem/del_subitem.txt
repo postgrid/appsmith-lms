@@ -1,2 +1,0 @@
-DELETE FROM "CustomerLineItems" WHERE "Id" = {{Table3Copy.selectedRow.itemid}};
-DELETE FROM "PrinterLineItems" WHERE "Id" = {{Table3Copy.selectedRow.itemid}};

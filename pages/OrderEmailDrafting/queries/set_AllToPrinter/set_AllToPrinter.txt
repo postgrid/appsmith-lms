@@ -1,7 +1,0 @@
-UPDATE "PrinterLineItems"
-SET "Printer" = '{{appsmith.store.MBitem}}' , "OrderStatus" = 'RELEASED'
-WHERE "Id" IN ( {{Table3Copy.tableData.slice(0, -1).map(row => row.itemid).join(',')}} );
-
-UPDATE "CustomerLineItems"
-SET "Printer" = '{{appsmith.store.MBitem}}' , "OrderStatus" = 'RELEASED' 
-WHERE "Id" IN ( {{Table3Copy.tableData.slice(0, -1).map(row => row.itemid).join(',')}} );
