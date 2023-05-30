@@ -109,7 +109,7 @@
                           "widgetName": "Canvas16",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 2450,
+                          "bottomRow": 2840,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -262,7 +262,7 @@
                               "borderColor": "#E0DEDE",
                               "isVisibleDownload": true,
                               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                              "topRow": 4,
+                              "topRow": 5,
                               "isSortable": false,
                               "onPageChange": "{{get_invoicelist.run()}}",
                               "type": "TABLE_WIDGET_V2",
@@ -271,9 +271,6 @@
                               "dynamicBindingPathList": [
                                 {
                                   "key": "accentColor"
-                                },
-                                {
-                                  "key": "tableData"
                                 },
                                 {
                                   "key": "primaryColumns.customColumn1.computedValue"
@@ -301,6 +298,15 @@
                                 },
                                 {
                                   "key": "primaryColumns.To.computedValue"
+                                },
+                                {
+                                  "key": "tableData"
+                                },
+                                {
+                                  "key": "primaryColumns.Id.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.result.computedValue"
                                 }
                               ],
                               "leftColumn": 0,
@@ -340,7 +346,7 @@
                                 }
                               },
                               "borderRadius": "0px",
-                              "columnUpdatedAt": 1684220272819,
+                              "columnUpdatedAt": 1685397542667,
                               "originalBottomRow": 203,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
@@ -355,7 +361,9 @@
                                 "Clients",
                                 "OrderDetails",
                                 "To",
-                                "Subtotal"
+                                "result",
+                                "Subtotal",
+                                "Id"
                               ],
                               "dynamicPropertyPathList": [
                                 {
@@ -367,7 +375,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 245,
+                              "bottomRow": 282,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 62,
@@ -396,7 +404,9 @@
                                 "Amount": 108,
                                 "SubItemID": 119,
                                 "PSummary": 251,
-                                "Collaterals": 331
+                                "Collaterals": 331,
+                                "customColumn2": 270,
+                                "result": 390
                               },
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -623,6 +633,66 @@
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"To\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "Id": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 3,
+                                  "width": 150,
+                                  "originalId": "Id",
+                                  "id": "Id",
+                                  "alias": "Id",
+                                  "horizontalAlignment": "RIGHT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "number",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": false,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "Id",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Id\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "result": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 5,
+                                  "width": 150,
+                                  "originalId": "result",
+                                  "id": "result",
+                                  "alias": "result",
+                                  "horizontalAlignment": "RIGHT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "result",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"result\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""

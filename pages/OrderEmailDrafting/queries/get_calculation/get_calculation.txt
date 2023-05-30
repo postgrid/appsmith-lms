@@ -1,0 +1,60 @@
+
+
+WITH RECURSIVE item_tree("Id", "SubItemID", "InvoiceID", "Qty", "InitialProdDescription", "Amount", "PrinterPriceID", "Rate", "Printer", depth, "Destination") AS (
+  SELECT "Id", "SubItemID", "InvoiceID", "Qty", "InitialProdDescription", "Amount", "PrinterPriceID", "Rate", "Printer", 0, "Destination"
+  FROM "public"."PrinterLineItems"
+  WHERE "SubItemID" IS NULL
+  UNION ALL
+  SELECT oi."Id", oi."SubItemID", oi."InvoiceID", oi."Qty", oi."InitialProdDescription", oi."Amount", oi."PrinterPriceID", oi."Rate", oi."Printer", depth + 1, oi."Destination"
+  FROM "public"."PrinterLineItems" oi
+  JOIN item_tree t ON oi."SubItemID" = t."Id"
+),
+itemsubitems AS (
+  SELECT * FROM item_tree tt
+  WHERE "Id" = {{}} OR "SubItemID" =  {{a}}
+  ORDER BY COALESCE(tt."SubItemID", tt."Id"), tt."Id"
+)
+SELECT 
+  CASE 
+  WHEN COUNT(*) <=2 AND EXISTS (SELECT 1 FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Envelope%') THEN (
+      SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL
+    ) || ' * (' || (
+      SELECT "Rate" FROM itemsubitems WHERE "SubItemID" IS NULL
+    )  || '' || (
+      SELECT '' FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Envelope%'  
+    )|| ') = ' || (
+      SELECT SUM("Amount") FROM itemsubitems
+    )
+    WHEN COUNT(*) <=3 THEN (
+      SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL
+    ) || ' * (' || (
+      SELECT "Rate" FROM itemsubitems WHERE "SubItemID" IS NULL
+    ) || ' + (' || (
+      SELECT "Rate" FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Extra%' OR "InitialProdDescription" LIKE '%add%' LIMIT 1
+    ) || ' * ' || (
+      ((SELECT "Qty" FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Extra%' OR "InitialProdDescription" LIKE '%add%' LIMIT 1) / (SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL))
+    )|| ')) = ' || (
+      SELECT SUM("Amount") FROM itemsubitems
+    )
+    ELSE (
+      SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL
+    ) || ' * (' || (
+      SELECT "Rate" FROM itemsubitems WHERE "SubItemID" IS NULL
+    ) || ' + (' || (
+      SELECT "Rate" FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Extra%' OR "InitialProdDescription" LIKE '%add%' LIMIT 1
+    ) || ' * ' || (
+      ((SELECT "Qty" FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Extra%' OR "InitialProdDescription" LIKE '%add%' LIMIT 1) / (SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL))
+    ) || ')' || (
+      SELECT STRING_AGG(' + ' || "Rate", '') FROM itemsubitems WHERE "InitialProdDescription" NOT LIKE '%Extra%' AND "InitialProdDescription" NOT LIKE '%add%' AND "InitialProdDescription" NOT LIKE '%Envelope%' AND "Rate" IS NOT NULL AND "SubItemID" IS NOT NULL
+    ) || ') = ' || (
+      SELECT SUM("Amount") FROM itemsubitems
+    )
+  END AS formula 
+FROM itemsubitems;
+
+
+
+
+
+
+

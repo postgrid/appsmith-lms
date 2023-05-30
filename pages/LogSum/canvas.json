@@ -5253,17 +5253,6 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "645877d91671447b88d3c2b2",
-              "name": "Util.synchronize",
-              "collectionId": "LogSum_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "LogSum_get_allorder_items",
               "name": "get_allorder_items",
               "confirmBeforeExecute": false,
