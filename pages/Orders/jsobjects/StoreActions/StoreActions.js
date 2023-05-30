@@ -5,7 +5,7 @@ export default {
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
 		await get_printer_order_details.run(()			=> { showAlert('Well done!.','success')}, () => {});
-
+	// add mongo connection and update the vendor for this
 	},
 	myFun2: async (currentRow) => {
 		await storeValue("rowUpdate",currentRow);
@@ -28,5 +28,11 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(), showAlert('Well done
 		 get_cheque_day_volume.run(),
 	showAlert('Order date updated!', 'success')
 		 }, () => {});
+	},
+	updateOrderInfo: async () => {
+		//get all the order groups for today from mongo
+		//letter
+		//postcard
+		//
 	}
 }

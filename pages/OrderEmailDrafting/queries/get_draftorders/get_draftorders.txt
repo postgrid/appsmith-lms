@@ -284,18 +284,16 @@ SELECT
         )  || ') = ' || (
           SELECT SUM("Amount") FROM itemsubitems
         )
-      WHEN COUNT(*) <= 2 AND EXISTS (SELECT 1 FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Envelope%') THEN (
+		WHEN COUNT(*) <= 2 AND EXISTS (SELECT 1 FROM itemsubitems WHERE "InitialProdDescription" NOT LIKE '%Extra%' OR "InitialProdDescription" NOT LIKE '%add%') THEN (
           SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL
         ) || ' * (' || (
           SELECT "Rate" FROM itemsubitems WHERE "SubItemID" IS NULL
-        ) || '' || (
-          SELECT '' FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Envelope%'  
         ) || ')' || (
-					SELECT STRING_AGG(' + ' || "Rate", '') FROM itemsubitems WHERE "SubItemID" IS NOT NULL
-        ) || ') = ' || (
+          SELECT STRING_AGG(' + ' || "Rate", '') FROM itemsubitems WHERE "SubItemID" IS NOT NULL 
+        ) || ' = ' || (
           SELECT SUM("Amount") FROM itemsubitems
-        )
-      WHEN COUNT(*) <= 3 THEN (
+        )				  
+		WHEN COUNT(*) <= 3 THEN (
           SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL
         ) || ' * (' || (
           SELECT "Rate" FROM itemsubitems WHERE "SubItemID" IS NULL
@@ -304,8 +302,8 @@ SELECT
         ) || ' * ' || (
           ((SELECT "Qty" FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Extra%' OR "InitialProdDescription" LIKE '%add%' LIMIT 1) / (SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL))
         ) || ')' || (
-					SELECT STRING_AGG(' + ' || "Rate", '') FROM itemsubitems WHERE "SubItemID" IS NOT NULL
-        )   || ') = ' || (
+					  SELECT STRING_AGG(' + ' || "Rate", '') FROM (SELECT "Rate" FROM  itemsubitems WHERE  "InitialProdDescription"	NOT ILIKE  '%Extra%' AND "InitialProdDescription"	NOT ILIKE  '%add%' OFFSET 1) as sub
+        ) || ') = ' || (
           SELECT SUM("Amount") FROM itemsubitems
         )
       ELSE (
@@ -316,8 +314,8 @@ SELECT
           SELECT "Rate" FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Extra%' OR "InitialProdDescription" LIKE '%add%' LIMIT 1
         ) || ' * ' || (
           ((SELECT "Qty" FROM itemsubitems WHERE "InitialProdDescription" LIKE '%Extra%' OR "InitialProdDescription" LIKE '%add%' LIMIT 1) / (SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL))
-        ) || ')' || (
-          SELECT STRING_AGG(' + ' || "Rate", '') FROM itemsubitems WHERE "InitialProdDescription" NOT LIKE '%Extra%' AND "InitialProdDescription" NOT LIKE '%add%' AND "InitialProdDescription" NOT LIKE '%Envelope%' AND "Rate" IS NOT NULL AND "SubItemID" IS NOT NULL
+        ) || ')' || (	
+					  SELECT STRING_AGG(' + ' || "Rate", '') FROM (SELECT "Rate" FROM  itemsubitems WHERE  "InitialProdDescription"	NOT ILIKE  '%Extra%' AND "InitialProdDescription"	NOT ILIKE  '%add%' AND "InitialProdDescription"	NOT ILIKE  '%Envelope%'  OFFSET 1) as sub
         ) || ') = ' || (
           SELECT SUM("Amount") FROM itemsubitems
         )

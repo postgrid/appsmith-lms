@@ -109,7 +109,7 @@
                           "widgetName": "Canvas16",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 2840,
+                          "bottomRow": 2820,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -406,7 +406,7 @@
                                 "PSummary": 251,
                                 "Collaterals": 331,
                                 "customColumn2": 270,
-                                "result": 390
+                                "result": 707
                               },
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -689,10 +689,10 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "result",
+                                  "label": "Calculation",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"result\"]))}}",
+                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => (  currentRow[\"result\"] ))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -1983,7 +1983,7 @@
               "originalTopRow": 0,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 135,
+              "originalBottomRow": 129,
               "minDynamicHeight": 10
             }
           ]
