@@ -33,6 +33,8 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(), showAlert('Well done
 		//get all the order groups for today from mongo
 		//letter
 		//postcard
+		//cheque
+		
 		//
 	}
 }
