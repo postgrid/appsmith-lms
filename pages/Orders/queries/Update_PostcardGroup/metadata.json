@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "Update_LetterGroup",
+    "name": "Update_PostcardGroup",
     "datasource": {
       "name": "PM Database",
       "pluginId": "mongo-plugin",
@@ -29,7 +29,7 @@
           }
         },
         "collection": {
-          "data": "lettergroups"
+          "data": "postcardgroups"
         },
         "command": {
           "data": "UPDATE"
@@ -79,7 +79,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"update\": \"lettergroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {{this.params.orderGroupID}} },\n    \"u\": {\"$set\": {\"vendor\": {{this.params.vendorID}}}},\n    \"multi\": false,\n  }]\n}\n",
+            "data": "{\n  \"update\": \"postcardgroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {{this.params.orderGroupID}} },\n    \"u\": {\"$set\": {\"vendor\": {{this.params.vendorID}}},\n    \"multi\": false,\n  }]\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -94,7 +94,7 @@
             "data": "{\"_id\": {{this.params.orderGroupID}} }"
           },
           "update": {
-            "data": "{\"$set\": {\"vendor\": {{this.params.vendorID}}}}"
+            "data": "{\"$set\": {\"vendor\": {{this.params.vendorID}}}"
           }
         }
       }
@@ -119,9 +119,9 @@
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-06-20T20:18:15Z"
+    "createdAt": "2023-06-21T14:21:29Z"
   },
-  "id": "Orders_Update_LetterGroup",
+  "id": "Orders_Update_PostcardGroup",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_64920987d3cc2d2e52c8148d"
+  "gitSyncId": "63b393c7f276cd0745e9510c_64930769f79393336aa4112a"
 }

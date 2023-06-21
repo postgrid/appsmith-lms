@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 79,
+          "version": 80,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -136,10 +136,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 119,
+                      "originalTopRow": 131,
                       "borderRadius": "5px",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 125,
+                      "originalBottomRow": 137,
                       "minDynamicHeight": 4
                     },
                     {
@@ -322,6 +322,9 @@
                               "dynamicPropertyPathList": [
                                 {
                                   "key": "isVisible"
+                                },
+                                {
+                                  "key": "tableData"
                                 }
                               ],
                               "compactMode": "DEFAULT",
@@ -1052,7 +1055,7 @@
                       "originalTopRow": 17,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 27,
+                      "originalBottomRow": 28,
                       "minDynamicHeight": 10
                     },
                     {
@@ -2147,6 +2150,9 @@
                               "dynamicPropertyPathList": [
                                 {
                                   "key": "primaryColumns.JoiningDate.outputFormat"
+                                },
+                                {
+                                  "key": "tableData"
                                 }
                               ],
                               "displayName": "Table",
@@ -2829,7 +2835,7 @@
               "originalTopRow": 0,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 127,
+              "originalBottomRow": 130,
               "minDynamicHeight": 10
             }
           ]
@@ -2846,6 +2852,16 @@
                 "async () => {\n  resetWidget('Select1');\n  resetWidget('Table3');\n  Query1.run();\n  StoreActions.runQuery('Query1');\n}"
               ],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Customer_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -2856,18 +2872,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Table3.selectedRow.OrgID"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Customer_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

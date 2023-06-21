@@ -5,13 +5,38 @@ export default {
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
 		await get_printer_order_details.run(()			=> { showAlert('Well done!.','success')}, () => {});
+
 		// add mongo connection and update the vendor for this
-		// const orderGroupID = (await get_printer_line_item.run({currentRow}))[0].OrderGroupID;
-		// console.log("JG", orderGroupID, currentRow)
-		// await Update_LetterGroup.run({
-			// orderGroupID: orderGroupID,
-			// vendorID: currentRow.AssignTo
-		// })
+		const orderGroupID = (await get_printer_line_item.run({currentRow}))[0].OrderGroupID;
+		console.log("JG", orderGroupID, currentRow);
+		const groupType = orderGroupID.slice(0, orderGroupID.indexOf("_"));
+
+		const vendorID = await (async () => {
+			if(currentRow.AssignTo === "PAUSED" || currentRow.AssignTo === "CANCELLED"){
+				return currentRow.AssignTo;
+			}
+			return (await getVendorID.run({
+				vendorName: currentRow.AssignTo
+			}))[0]._id;
+		})();
+
+		if(groupType === 'letter'){
+			await Update_LetterGroup.run({
+				orderGroupID: orderGroupID,
+				vendorID: vendorID
+			})
+		} else if(groupType === 'postcard'){
+			await Update_PostcardGroup.run({
+				orderGroupID: orderGroupID,
+				vendorID: vendorID
+			})
+		} else {
+			await Update_ChequeGroup.run({
+				orderGroupID: orderGroupID,
+				vendorID: vendorID
+			})
+		}
+		showAlert('Vendor has been updated successfully', 'success')
 	},
 	myFun2: async (currentRow) => {
 		await storeValue("rowUpdate",currentRow);
@@ -283,7 +308,7 @@ export default {
 						return{
 							...item,
 							mailType: 'Custom',
-							productDesc: item.productDesc += "Oversized (over 20-300 sheets) - EHCUSTOM"
+							productDesc: "Oversized (over 20-300 sheets) - EHCUSTOM"
 						};
 					} else {
 						return{
@@ -664,15 +689,10 @@ export default {
 		await chequeGroups.run();		
 		console.log("JG orgs", orgs.data)
 		console.log("JG letterGroups", letterGroups.data)
-		//get all the order groups for today from mongo -- dont bring in order groups that have already been added
-		//letter
-		//postcard
-		//cheque
+
 		const letters = this.letterGroupsLineItems();
-		console.log("JG after letterGroup");
 		const postcards = this.postcardGroupsLineItems();
 		const cheques = this.chequeGroupsLineItems();
-		console.log("JG after chequeGroup");
 
 
 		/**
@@ -692,30 +712,44 @@ export default {
 		renumberItems(cheques, letters.length + postcards.length);
 
 		const totalCollateral = letters.concat(postcards).concat(cheques);
-		// const printerLintItems = await get_printer_order_details.run();
-		// const invoiceList = get_invoicelist.run();
-		//go through each invoice list item and create 
+
 		let orderGroupIds = [];
 		(await get_order_group_ids.run()).forEach(ID => {
 			orderGroupIds.push(ID.OrderGroupID)
 		})
-		// const orderGroupIds = await get_order_group_ids.run()
+
+		const enter = totalCollateral.filter(order => order.orgID === 'org_3pWY3piAx4H7XNrpY25RU2')
+		console.log("JG enter", enter)
+		
+		const parents = totalCollateral.filter(order => order.orgID !== null);
+		console.log("JG parents", parents.length)
 
 		console.log("JG totalCollateral", totalCollateral);
-		console.log("JG orderGroupIds", orderGroupIds);
-
+		console.log("JG orderGroupIds", orderGroupIds.length);
+		console.log("JG orderGroupIds", orderGroupIds.includes("letter_group_8tF3KuUbFsDYtLq4Ehyots"));
 		//filter only the ones that are not currently added
-		const newCollateral = totalCollateral.filter(order => {
-			if(!orderGroupIds.includes(order.groupID) && order.groupID !== null){
-				return order;
+		const newCollateral = [];
+		let skipCurrent = false;
+
+		totalCollateral.forEach(order => {
+			if(order.groupID === null){
+				if(!skipCurrent){
+					newCollateral.push(order)
+				}
+			} else {
+				if(!orderGroupIds.includes(order.groupID)){
+					skipCurrent = false;
+					newCollateral.push(order);
+				} else {
+					skipCurrent = true;
+				}
 			}
-		})
+		});
 
 		//show an alert on the screen if there are any new order groups
 		console.log("JG newCollateral", newCollateral.length, newCollateral);
 		showAlert(`There was ${newCollateral.length} Order Groups added.`)
 
-		//add the new order groups to supabase to be displayed
 		await storeValue('newList',JSON.parse(JSON.stringify(newCollateral).replaceAll("'", "''")));		
 
 		if(newCollateral.length !== 0){

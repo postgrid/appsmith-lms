@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "Update_LetterGroup",
+    "name": "getVendorID",
     "datasource": {
       "name": "PM Database",
       "pluginId": "mongo-plugin",
@@ -29,10 +29,10 @@
           }
         },
         "collection": {
-          "data": "lettergroups"
+          "data": "vendors"
         },
         "command": {
-          "data": "UPDATE"
+          "data": "FIND"
         },
         "count": {
           "query": {
@@ -60,16 +60,16 @@
             "data": ""
           },
           "query": {
-            "data": ""
+            "data": "{\n\tname: {{this.params.vendorName}}\n}"
           },
           "sort": {
             "data": ""
           },
           "limit": {
-            "data": ""
+            "data": "1"
           },
           "projection": {
-            "data": ""
+            "data": "{_id: 1}"
           }
         },
         "insert": {
@@ -79,7 +79,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"update\": \"lettergroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {{this.params.orderGroupID}} },\n    \"u\": {\"$set\": {\"vendor\": {{this.params.vendorID}}}},\n    \"multi\": false,\n  }]\n}\n",
+            "data": "{\n  \"find\": \"vendors\",\n  \"filter\": {\n\tname: {{this.params.vendorName}}\n},\n  \"limit\": 1,\n  \"batchSize\": 1\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -91,10 +91,10 @@
             "data": "SINGLE"
           },
           "query": {
-            "data": "{\"_id\": {{this.params.orderGroupID}} }"
+            "data": ""
           },
           "update": {
-            "data": "{\"$set\": {\"vendor\": {{this.params.vendorID}}}}"
+            "data": ""
           }
         }
       }
@@ -102,26 +102,22 @@
     "executeOnLoad": false,
     "dynamicBindingPathList": [
       {
-        "key": "formData.updateMany.query.data"
-      },
-      {
-        "key": "formData.updateMany.update.data"
+        "key": "formData.find.query.data"
       }
     ],
     "isValid": true,
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "this.params.orderGroupID",
-      "this.params.vendorID"
+      "this.params.vendorName"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-06-20T20:18:15Z"
+    "createdAt": "2023-06-21T14:30:52Z"
   },
-  "id": "Orders_Update_LetterGroup",
+  "id": "Orders_getVendorID",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_64920987d3cc2d2e52c8148d"
+  "gitSyncId": "63b393c7f276cd0745e9510c_6493099c3619f10007cfd80e"
 }

@@ -9806,16 +9806,6 @@
               "timeoutInMillisecond": 10000
             },
             {
-              "id": "Orders_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "Orders_orgs",
               "name": "orgs",
               "confirmBeforeExecute": false,
@@ -9844,16 +9834,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_num_new_clients",
-              "name": "get_num_new_clients",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -9927,6 +9907,16 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "Orders_get_num_new_clients",
+              "name": "get_num_new_clients",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "Orders_get_postcard_day_volume",
               "name": "get_postcard_day_volume",
               "confirmBeforeExecute": false,
@@ -9955,6 +9945,18 @@
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).startOf('day')",
                 "moment(DatePicker1.selectedDate).endOf('day')"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Orders_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
