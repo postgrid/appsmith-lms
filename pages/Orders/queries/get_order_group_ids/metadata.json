@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "set_newCustList",
+    "name": "get_order_group_ids",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,11 +18,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "--console.log(\"JG set_newCustList\", )\nINSERT INTO public.\"Customers\" (\"OrgID\", \"CustomerName\") \nVALUES\n\t {{appsmith.store.newList.map((d) => { \t\n\t\t\treturn\"(\" + \"'\" + d.orgID + \"',\" + \"'\" + d.orgName + \"')\"}).join(\",\")  }}\nON CONFLICT (\"OrgID\") DO NOTHING;",
+      "body": "SELECT \"public\".\"PrinterLineItems\".\"InvoiceID\",\"public\".\"PrinterLineItems\".\"OrderGroupID\"\nFROM \"public\".\"Invoice\" \nINNER JOIN \"public\".\"PrinterLineItems\" ON \"public\".\"Invoice\".\"InvoiceID\" = \"public\".\"PrinterLineItems\".\"InvoiceID\"\nWHERE to_date(cast(\"public\".\"Invoice\".\"InvoiceDate\" as TEXT),'YYYY-MM-DD')  >= '{{moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")}}' AND to_date(cast(\"public\".\"Invoice\".\"InvoiceDate\" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")}}'",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": false
+          "value": true
         }
       ]
     },
@@ -36,14 +36,14 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "appsmith.store.newList.map((d) => { \t\n\t\t\treturn\"(\" + \"'\" + d.orgID + \"',\" + \"'\" + d.orgName + \"')\"}).join(\",\")  "
+      "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_set_newCustList",
+  "id": "Orders_get_order_group_ids",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_63fd03f8990f7d4baf44461f"
+  "gitSyncId": "63b393c7f276cd0745e9510c_647786de0fdd9009b836e478"
 }

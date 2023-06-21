@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "updateOrderInfo",
-    "fullyQualifiedName": "StoreActions.updateOrderInfo",
+    "name": "letterGroupsLineItems",
+    "fullyQualifiedName": "StoreActions.letterGroupsLineItems",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -21,7 +21,7 @@
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
       "jsArguments": [],
-      "isAsync": true
+      "isAsync": false
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_StoreActions.updateOrderInfo",
+  "id": "Orders_StoreActions.letterGroupsLineItems",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6477675a948d217203790493"
+  "gitSyncId": "63b393c7f276cd0745e9510c_64921374028a7d1385ddef24"
 }

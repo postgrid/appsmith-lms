@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "set_newCustList",
+    "name": "get_printer_line_item",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,11 +18,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "--console.log(\"JG set_newCustList\", )\nINSERT INTO public.\"Customers\" (\"OrgID\", \"CustomerName\") \nVALUES\n\t {{appsmith.store.newList.map((d) => { \t\n\t\t\treturn\"(\" + \"'\" + d.orgID + \"',\" + \"'\" + d.orgName + \"')\"}).join(\",\")  }}\nON CONFLICT (\"OrgID\") DO NOTHING;",
+      "body": "SELECT \"OrderGroupID\" FROM \"public\".\"PrinterLineItems\" WHERE \"Id\" = '{{this.params.currentRow.itemid}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": false
+          "value": true
         }
       ]
     },
@@ -36,14 +36,15 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "appsmith.store.newList.map((d) => { \t\n\t\t\treturn\"(\" + \"'\" + d.orgID + \"',\" + \"'\" + d.orgName + \"')\"}).join(\",\")  "
+      "this.params.currentRow.itemid"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-06-20T19:05:43Z"
   },
-  "id": "Orders_set_newCustList",
+  "id": "Orders_get_printer_line_item",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_63fd03f8990f7d4baf44461f"
+  "gitSyncId": "63b393c7f276cd0745e9510c_6491f88791dc565816d67568"
 }

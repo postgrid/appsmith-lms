@@ -1,0 +1,8 @@
+{
+  "update": "{{chequeGroups}}",
+  "updates": [{
+    "q": {_id: {{this.params.orderGroupID}}, vendor: {{this.params.vendorID}}},
+    "u": ,
+    "multi": false,
+  }]
+}

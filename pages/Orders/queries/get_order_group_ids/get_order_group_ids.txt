@@ -1,0 +1,4 @@
+SELECT "public"."PrinterLineItems"."InvoiceID","public"."PrinterLineItems"."OrderGroupID"
+FROM "public"."Invoice" 
+INNER JOIN "public"."PrinterLineItems" ON "public"."Invoice"."InvoiceID" = "public"."PrinterLineItems"."InvoiceID"
+WHERE to_date(cast("public"."Invoice"."InvoiceDate" as TEXT),'YYYY-MM-DD')  >= '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast("public"."Invoice"."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}'

@@ -1,0 +1,1 @@
+SELECT "OrderGroupID" FROM "public"."PrinterLineItems" WHERE "Id" = '{{this.params.currentRow.itemid}}';
