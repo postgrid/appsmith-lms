@@ -80,7 +80,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"update\": \"chequegroups\",\n  \"updates\": [{\n    \"q\": {_id: {{this.params.orderGroupID}} },\n    \"u\": {$set: {vendor: {{this.params.vendorID}}},\n    \"multi\": false,\n  }]\n}\n",
+            "data": "{\n  \"update\": \"chequegroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }},\n    \"u\": {$set: {vendor: {{this.params.vendorID}}},\n    \"multi\": false,\n  }]\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -92,7 +92,7 @@
             "data": "SINGLE"
           },
           "query": {
-            "data": "{_id: {{this.params.orderGroupID}} }"
+            "data": "{\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }}"
           },
           "update": {
             "data": "{$set: {vendor: {{this.params.vendorID}}}"
@@ -118,6 +118,7 @@
     "jsonPathKeys": [
       "chequeGroups",
       "this.params.orderGroupID",
+      "this.params.orderGroupIDs",
       "this.params.vendorID"
     ],
     "userSetOnLoad": false,

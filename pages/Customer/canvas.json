@@ -136,10 +136,10 @@
                       "parentId": "sii7tf5ehc",
                       "renderMode": "CANVAS",
                       "isLoading": false,
-                      "originalTopRow": 131,
+                      "originalTopRow": 119,
                       "borderRadius": "5px",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 137,
+                      "originalBottomRow": 125,
                       "minDynamicHeight": 4
                     },
                     {
@@ -1055,7 +1055,7 @@
                       "originalTopRow": 17,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 28,
+                      "originalBottomRow": 27,
                       "minDynamicHeight": 10
                     },
                     {
@@ -1615,7 +1615,7 @@
                               "leftColumn": 2,
                               "dynamicBindingPathList": [],
                               "truncateButtonColor": "#FFC13D",
-                              "text": "Client Management",
+                              "text": "Client Services",
                               "key": "czyq0gtp0e",
                               "labelTextSize": "0.875rem",
                               "rightColumn": 29,
@@ -2835,7 +2835,7 @@
               "originalTopRow": 0,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 130,
+              "originalBottomRow": 127,
               "minDynamicHeight": 10
             }
           ]
@@ -2852,16 +2852,6 @@
                 "async () => {\n  resetWidget('Select1');\n  resetWidget('Table3');\n  Query1.run();\n  StoreActions.runQuery('Query1');\n}"
               ],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Customer_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -2872,6 +2862,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Table3.selectedRow.OrgID"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Customer_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

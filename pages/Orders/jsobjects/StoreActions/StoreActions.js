@@ -7,7 +7,7 @@ export default {
 		await get_printer_order_details.run(()			=> { showAlert('Well done!.','success')}, () => {});
 
 		// add mongo connection and update the vendor for this
-		const orderGroupID = (await get_printer_line_item.run({currentRow}))[0].OrderGroupID;
+		const orderGroupID = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
 		console.log("JG", orderGroupID, currentRow);
 		const groupType = orderGroupID.slice(0, orderGroupID.indexOf("_"));
 
@@ -36,6 +36,51 @@ export default {
 				vendorID: vendorID
 			})
 		}
+		showAlert('Vendor has been updated successfully', 'success')
+	},
+	updateOrderGroupVendors: async () => {
+		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (row) => {
+			return (await get_printer_line_item.run({row}))[0].OrderGroupID);
+		}));
+		
+		const letterOrderGroups = [];
+		const postcardOrderGroups = [];
+		const chequeOrderGroups = [];
+		
+		orderGroupIDs.foreach(orderGroupID => {
+			const groupType = orderGroupID.slice(0, orderGroupID.indexOf("_"));
+			if(groupType === 'letter'){
+				letterOrderGroups.push(orderGroupID);
+			} else if(groupType === 'postcard'){
+				postcardOrderGroups.push(orderGroupID);
+			} else {
+				chequeOrderGroups.push(orderGroupID);
+			}
+		});
+
+		const vendorID = await (async () => {
+			if(appsmith.store.MBitem === "PAUSED" || appsmith.store.MBitem === "CANCELLED"){
+				return appsmith.store.MBitem;
+			}
+			return (await getVendorID.run({
+				vendorName: appsmith.store.MBitem
+			}))[0]._id;
+		})();
+
+		await Update_LetterGroup.run({
+			orderGroupID: letterOrderGroups,
+			vendorID: vendorID
+		});
+		
+		await Update_PostcardGroup.run({
+			orderGroupID: postcardOrderGroups,
+			vendorID: vendorID
+		});
+		
+		await Update_ChequeGroup.run({
+			orderGroupID: chequeOrderGroups,
+			vendorID: vendorID
+		});
 		showAlert('Vendor has been updated successfully', 'success')
 	},
 	myFun2: async (currentRow) => {
@@ -718,8 +763,8 @@ export default {
 			orderGroupIds.push(ID.OrderGroupID)
 		})
 
-		const enter = totalCollateral.filter(order => order.orgID === 'org_3pWY3piAx4H7XNrpY25RU2')
-		console.log("JG enter", enter)
+		const enter = totalCollateral.filter(order => order.orgID === 'org_iRzUYiZvDusyts2gVnUUCL')
+		console.log("JG CM", enter)
 		
 		const parents = totalCollateral.filter(order => order.orgID !== null);
 		console.log("JG parents", parents.length)
