@@ -24,23 +24,23 @@ export default {
 			await Update_LetterGroup.run({
 				orderGroupID: orderGroupID,
 				vendorID: vendorID
-			})
+			});
 		} else if(groupType === 'postcard'){
 			await Update_PostcardGroup.run({
 				orderGroupID: orderGroupID,
 				vendorID: vendorID
-			})
+			});
 		} else {
 			await Update_ChequeGroup.run({
 				orderGroupID: orderGroupID,
 				vendorID: vendorID
-			})
+			});
 		}
-		showAlert('Vendor has been updated successfully', 'success')
+		showAlert('Vendor has been updated successfully', 'success');
 	},
 	updateOrderGroupVendors: async () => {
 		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (row) => {
-			return (await get_printer_line_item.run({row}))[0].OrderGroupID);
+			return (await get_printer_line_item.run({row}))[0].OrderGroupID;
 		}));
 		
 		const letterOrderGroups = [];

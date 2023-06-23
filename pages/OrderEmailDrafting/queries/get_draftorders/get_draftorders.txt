@@ -293,6 +293,7 @@ SELECT
         ) || ' = ' || (
           SELECT SUM("Amount") FROM itemsubitems
         )				  
+
 		WHEN COUNT(*) <= 3 THEN (
           SELECT "Qty" FROM itemsubitems WHERE "SubItemID" IS NULL
         ) || ' * (' || (

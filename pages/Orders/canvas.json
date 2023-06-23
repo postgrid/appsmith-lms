@@ -185,7 +185,7 @@
                               "borderColor": "#E0DEDE",
                               "isVisibleDownload": true,
                               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                              "topRow": 11,
+                              "topRow": 10,
                               "isSortable": false,
                               "onPageChange": "{{get_invoicelist.run()}}",
                               "type": "TABLE_WIDGET_V2",
@@ -340,7 +340,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 99,
+                              "bottomRow": 98,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 62,
@@ -863,8 +863,8 @@
                                 "click",
                                 "submit"
                               ],
-                              "topRow": 7,
-                              "bottomRow": 11,
+                              "topRow": 6,
+                              "bottomRow": 10,
                               "parentRowSpace": 10,
                               "type": "BUTTON_WIDGET",
                               "hideCard": false,
@@ -916,7 +916,7 @@
                               "boxShadow": "none",
                               "dateFormat": "YYYY-MM-DD",
                               "iconSVG": "/static/media/icon.300e5ab8e2e1c26c7a0bad06116842b7.svg",
-                              "topRow": 7,
+                              "topRow": 6,
                               "labelWidth": "10",
                               "type": "DATE_PICKER_WIDGET2",
                               "animateLoading": true,
@@ -957,7 +957,7 @@
                               "searchTags": [
                                 "calendar"
                               ],
-                              "bottomRow": 11,
+                              "bottomRow": 10,
                               "shortcuts": false,
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -1005,7 +1005,7 @@
                                 "label"
                               ],
                               "topRow": 0,
-                              "bottomRow": 6,
+                              "bottomRow": 5,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -1370,7 +1370,7 @@
                                 "label"
                               ],
                               "topRow": 0,
-                              "bottomRow": 5,
+                              "bottomRow": 4,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -1423,8 +1423,8 @@
                                 "paragraph",
                                 "label"
                               ],
-                              "topRow": 5,
-                              "bottomRow": 10,
+                              "topRow": 4,
+                              "bottomRow": 8,
                               "parentRowSpace": 10,
                               "type": "TEXT_WIDGET",
                               "hideCard": false,
@@ -9806,16 +9806,6 @@
               "timeoutInMillisecond": 10000
             },
             {
-              "id": "Orders_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "Orders_orgs",
               "name": "orgs",
               "confirmBeforeExecute": false,
@@ -9844,16 +9834,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_num_new_clients",
-              "name": "get_num_new_clients",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment().format('YYYY-MM-DD')"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -9927,6 +9907,16 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "Orders_get_num_new_clients",
+              "name": "get_num_new_clients",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('YYYY-MM-DD')"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "Orders_get_postcard_day_volume",
               "name": "get_postcard_day_volume",
               "confirmBeforeExecute": false,
@@ -9955,6 +9945,18 @@
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).startOf('day')",
                 "moment(DatePicker1.selectedDate).endOf('day')"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Orders_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

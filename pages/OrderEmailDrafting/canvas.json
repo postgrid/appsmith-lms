@@ -109,7 +109,7 @@
                           "widgetName": "Canvas16",
                           "displayName": "Canvas",
                           "topRow": 0,
-                          "bottomRow": 2820,
+                          "bottomRow": 1890,
                           "parentRowSpace": 1,
                           "type": "CANVAS_WIDGET",
                           "canExtend": false,
@@ -262,7 +262,7 @@
                               "borderColor": "#E0DEDE",
                               "isVisibleDownload": true,
                               "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-                              "topRow": 5,
+                              "topRow": 9,
                               "isSortable": false,
                               "onPageChange": "{{get_invoicelist.run()}}",
                               "type": "TABLE_WIDGET_V2",
@@ -282,16 +282,7 @@
                                   "key": "totalRecordsCount"
                                 },
                                 {
-                                  "key": "primaryColumns.OrderDetails.computedValue"
-                                },
-                                {
                                   "key": "primaryColumns.OrderCounts.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Collaterals.computedValue"
-                                },
-                                {
-                                  "key": "primaryColumns.Clients.computedValue"
                                 },
                                 {
                                   "key": "primaryColumns.Subtotal.computedValue"
@@ -303,7 +294,16 @@
                                   "key": "tableData"
                                 },
                                 {
+                                  "key": "primaryColumns.Collaterals.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.Clients.computedValue"
+                                },
+                                {
                                   "key": "primaryColumns.Id.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.OrderDetails.computedValue"
                                 },
                                 {
                                   "key": "primaryColumns.result.computedValue"
@@ -346,7 +346,7 @@
                                 }
                               },
                               "borderRadius": "0px",
-                              "columnUpdatedAt": 1685397542667,
+                              "columnUpdatedAt": 1687460523671,
                               "originalBottomRow": 203,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
@@ -357,13 +357,13 @@
                               "columnOrder": [
                                 "customColumn1",
                                 "OrderCounts",
+                                "To",
+                                "Subtotal",
                                 "Collaterals",
                                 "Clients",
+                                "Id",
                                 "OrderDetails",
-                                "To",
-                                "result",
-                                "Subtotal",
-                                "Id"
+                                "result"
                               ],
                               "dynamicPropertyPathList": [
                                 {
@@ -378,7 +378,7 @@
                               ],
                               "compactMode": "SHORT",
                               "displayName": "Table",
-                              "bottomRow": 282,
+                              "bottomRow": 189,
                               "columnWidthMap": {
                                 "task": 245,
                                 "step": 62,
@@ -402,7 +402,7 @@
                                 "InvoiceNo": 153,
                                 "IsKYCDone": 129,
                                 "OrgID": 250,
-                                "OrderDetails": 773,
+                                "OrderDetails": 1035,
                                 "Summary": 177,
                                 "Amount": 108,
                                 "SubItemID": 119,
@@ -460,36 +460,6 @@
                                   "cellBackground": "",
                                   "labelColor": "#FFFFFF"
                                 },
-                                "OrderDetails": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 3,
-                                  "width": 150,
-                                  "originalId": "OrderDetails",
-                                  "id": "OrderDetails",
-                                  "alias": "OrderDetails",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "OrderDetails",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"OrderDetails\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
                                 "OrderCounts": {
                                   "allowCellWrapping": false,
                                   "allowSameOptionsInNewRow": true,
@@ -516,66 +486,6 @@
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"OrderCounts\"]))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
-                                "Collaterals": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 2,
-                                  "width": 150,
-                                  "originalId": "Collaterals",
-                                  "id": "Collaterals",
-                                  "alias": "Collaterals",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Collaterals",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => (   (currentRow.OrderCounts !== null ? currentRow.Collaterals : \"\") ))}}",
-                                  "sticky": "",
-                                  "validation": {},
-                                  "cellBackground": ""
-                                },
-                                "Clients": {
-                                  "allowCellWrapping": false,
-                                  "allowSameOptionsInNewRow": true,
-                                  "index": 3,
-                                  "width": 150,
-                                  "originalId": "Clients",
-                                  "id": "Clients",
-                                  "alias": "Clients",
-                                  "horizontalAlignment": "LEFT",
-                                  "verticalAlignment": "CENTER",
-                                  "columnType": "text",
-                                  "textColor": "",
-                                  "textSize": "0.875rem",
-                                  "fontStyle": "",
-                                  "enableFilter": true,
-                                  "enableSort": true,
-                                  "isVisible": true,
-                                  "isDisabled": false,
-                                  "isCellEditable": false,
-                                  "isEditable": false,
-                                  "isCellVisible": true,
-                                  "isDerived": false,
-                                  "label": "Clients",
-                                  "isSaveVisible": true,
-                                  "isDiscardVisible": true,
-                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Clients\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -640,10 +550,70 @@
                                   "validation": {},
                                   "cellBackground": ""
                                 },
-                                "Id": {
+                                "Collaterals": {
                                   "allowCellWrapping": false,
                                   "allowSameOptionsInNewRow": true,
                                   "index": 3,
+                                  "width": 150,
+                                  "originalId": "Collaterals",
+                                  "id": "Collaterals",
+                                  "alias": "Collaterals",
+                                  "horizontalAlignment": "RIGHT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "Collaterals",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Collaterals\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "Clients": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 4,
+                                  "width": 150,
+                                  "originalId": "Clients",
+                                  "id": "Clients",
+                                  "alias": "Clients",
+                                  "horizontalAlignment": "RIGHT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "Clients",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Clients\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
+                                "Id": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 5,
                                   "width": 150,
                                   "originalId": "Id",
                                   "id": "Id",
@@ -656,7 +626,7 @@
                                   "fontStyle": "",
                                   "enableFilter": true,
                                   "enableSort": true,
-                                  "isVisible": false,
+                                  "isVisible": true,
                                   "isDisabled": false,
                                   "isCellEditable": false,
                                   "isEditable": false,
@@ -670,10 +640,40 @@
                                   "validation": {},
                                   "cellBackground": ""
                                 },
+                                "OrderDetails": {
+                                  "allowCellWrapping": false,
+                                  "allowSameOptionsInNewRow": true,
+                                  "index": 6,
+                                  "width": 150,
+                                  "originalId": "OrderDetails",
+                                  "id": "OrderDetails",
+                                  "alias": "OrderDetails",
+                                  "horizontalAlignment": "RIGHT",
+                                  "verticalAlignment": "CENTER",
+                                  "columnType": "text",
+                                  "textColor": "",
+                                  "textSize": "0.875rem",
+                                  "fontStyle": "",
+                                  "enableFilter": true,
+                                  "enableSort": true,
+                                  "isVisible": true,
+                                  "isDisabled": false,
+                                  "isCellEditable": false,
+                                  "isEditable": false,
+                                  "isCellVisible": true,
+                                  "isDerived": false,
+                                  "label": "OrderDetails",
+                                  "isSaveVisible": true,
+                                  "isDiscardVisible": true,
+                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"OrderDetails\"]))}}",
+                                  "sticky": "",
+                                  "validation": {},
+                                  "cellBackground": ""
+                                },
                                 "result": {
                                   "allowCellWrapping": false,
                                   "allowSameOptionsInNewRow": true,
-                                  "index": 5,
+                                  "index": 7,
                                   "width": 150,
                                   "originalId": "result",
                                   "id": "result",
@@ -692,10 +692,10 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "Calculation",
+                                  "label": "result",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => (  currentRow[\"result\"] ))}}",
+                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"result\"]))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -709,7 +709,7 @@
                               "textSize": "0.875rem",
                               "widgetId": "qeywr75owg",
                               "allowAddNewRow": false,
-                              "tableData": "{{get_draftorders.data}}",
+                              "tableData": "{{appsmith.store.emailDraft}}",
                               "label": "Data",
                               "searchKey": "",
                               "parentId": "47tca8pon2",
@@ -788,8 +788,58 @@
                               "responsiveBehavior": "fill",
                               "mobileLeftColumn": 0,
                               "maxDynamicHeight": 9000,
-                              "onOptionChange": "{{get_draftorders.run()}}",
+                              "onOptionChange": "{{Util.getDraftOrdersForEmail();}}",
                               "minDynamicHeight": 4
+                            },
+                            {
+                              "mobileBottomRow": 9,
+                              "widgetName": "Progress1",
+                              "progressType": "linear",
+                              "isCanvas": false,
+                              "displayName": "Progress",
+                              "iconSVG": "https://appcdn.appsmith.com/static/media/icon.63065ff64699dbf6b2267d42d3713b98.svg",
+                              "searchTags": [
+                                "percent"
+                              ],
+                              "topRow": 4,
+                              "bottomRow": 8,
+                              "parentRowSpace": 10,
+                              "type": "PROGRESS_WIDGET",
+                              "isIndeterminate": false,
+                              "hideCard": false,
+                              "fillColor": "{{appsmith.theme.colors.primaryColor}}",
+                              "mobileRightColumn": 27,
+                              "parentColumnSpace": 16.125,
+                              "dynamicTriggerPathList": [],
+                              "leftColumn": 0,
+                              "dynamicBindingPathList": [
+                                {
+                                  "key": "fillColor"
+                                },
+                                {
+                                  "key": "borderRadius"
+                                },
+                                {
+                                  "key": "progress"
+                                }
+                              ],
+                              "key": "mehpntewwi",
+                              "showResult": false,
+                              "isDeprecated": false,
+                              "rightColumn": 26,
+                              "counterClosewise": false,
+                              "widgetId": "fgbts4kwj6",
+                              "isVisible": true,
+                              "steps": 1,
+                              "version": 1,
+                              "parentId": "47tca8pon2",
+                              "renderMode": "CANVAS",
+                              "isLoading": false,
+                              "mobileTopRow": 5,
+                              "responsiveBehavior": "fill",
+                              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+                              "mobileLeftColumn": 0,
+                              "progress": "{{appsmith.store.tableProgress}}"
                             }
                           ],
                           "key": "5sa58q4kfb",
@@ -1986,7 +2036,7 @@
               "originalTopRow": 0,
               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
               "maxDynamicHeight": 9000,
-              "originalBottomRow": 130,
+              "originalBottomRow": 135,
               "minDynamicHeight": 10
             }
           ]
@@ -2022,29 +2072,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "OrderEmailDrafting_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "OrderEmailDrafting_get_draftorders",
-              "name": "get_draftorders",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Select3.selectedOptionLabel",
-                "moment(DatePicker1.selectedDate).format('YYYY-MM-DD')"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -2055,6 +2082,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "OrderEmailDrafting_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

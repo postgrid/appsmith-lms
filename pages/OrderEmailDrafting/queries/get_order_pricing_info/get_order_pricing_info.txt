@@ -1,0 +1,9 @@
+WITH RECURSIVE item_tree("Id", "SubItemID", "InvoiceID", "Qty", "InitialProdDescription", "Amount", "PrinterPriceID", "Rate", "Printer", depth, "Destination", "OrderGroupID") AS (
+  SELECT "Id", "SubItemID", "InvoiceID", "Qty", "InitialProdDescription", "Amount", "PrinterPriceID", "Rate", "Printer", 0, "Destination", "OrderGroupID"
+  FROM "public"."PrinterLineItems"
+  WHERE "SubItemID" IS NULL
+  UNION ALL
+  SELECT oi."Id", oi."SubItemID", oi."InvoiceID", oi."Qty", oi."InitialProdDescription", oi."Amount", oi."PrinterPriceID", oi."Rate", oi."Printer", depth + 1, oi."Destination", oi."OrderGroupID"
+  FROM "public"."PrinterLineItems" oi
+  JOIN item_tree t ON oi."SubItemID" = t."Id"
+) select * from item_tree WHERE "SubItemID" = {{this.params.itemID}}  OR "Id" = {{this.params.itemID}}
