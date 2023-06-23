@@ -4,12 +4,12 @@ export default {
 		await Save_Data.run({currentRow});
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
-		await get_printer_order_details.run(()			=> { showAlert('Well done!.','success')}, () => {});
+		await get_printer_order_details.run();
 
 		// add mongo connection and update the vendor for this
-		const orderGroupID = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
-		console.log("JG", orderGroupID, currentRow);
-		const groupType = orderGroupID.slice(0, orderGroupID.indexOf("_"));
+		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
+		console.log("JG", orderGroupIDs, currentRow);
+		const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
 		const vendorID = await (async () => {
 			if(currentRow.AssignTo === "PAUSED" || currentRow.AssignTo === "CANCELLED"){
@@ -22,17 +22,17 @@ export default {
 
 		if(groupType === 'letter'){
 			await Update_LetterGroup.run({
-				orderGroupID: orderGroupID,
+				orderGroupID: orderGroupIDs,
 				vendorID: vendorID
 			});
 		} else if(groupType === 'postcard'){
 			await Update_PostcardGroup.run({
-				orderGroupID: orderGroupID,
+				orderGroupID: orderGroupIDs,
 				vendorID: vendorID
 			});
 		} else {
 			await Update_ChequeGroup.run({
-				orderGroupID: orderGroupID,
+				orderGroupID: orderGroupIDs,
 				vendorID: vendorID
 			});
 		}
@@ -66,21 +66,27 @@ export default {
 				vendorName: appsmith.store.MBitem
 			}))[0]._id;
 		})();
+		
+		if(letterOrderGroups.length > 0){
+			await Update_LetterGroup.run({
+				orderGroupID: letterOrderGroups,
+				vendorID: vendorID
+			});
+		}
 
-		await Update_LetterGroup.run({
-			orderGroupID: letterOrderGroups,
-			vendorID: vendorID
-		});
+		if(postcardOrderGroups.length > 0){
+			await Update_PostcardGroup.run({
+				orderGroupID: postcardOrderGroups,
+				vendorID: vendorID
+			});
+		}
 		
-		await Update_PostcardGroup.run({
-			orderGroupID: postcardOrderGroups,
-			vendorID: vendorID
-		});
-		
-		await Update_ChequeGroup.run({
-			orderGroupID: chequeOrderGroups,
-			vendorID: vendorID
-		});
+		if(chequeOrderGroups.length > 0){
+			await Update_ChequeGroup.run({
+				orderGroupID: chequeOrderGroups,
+				vendorID: vendorID
+			});
+		}
 		showAlert('Vendor has been updated successfully', 'success')
 	},
 	myFun2: async (currentRow) => {

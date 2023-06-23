@@ -346,7 +346,7 @@
                                 }
                               },
                               "borderRadius": "0px",
-                              "columnUpdatedAt": 1687460523671,
+                              "columnUpdatedAt": 1687540709134,
                               "originalBottomRow": 203,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
@@ -357,13 +357,13 @@
                               "columnOrder": [
                                 "customColumn1",
                                 "OrderCounts",
-                                "To",
-                                "Subtotal",
                                 "Collaterals",
                                 "Clients",
-                                "Id",
+                                "To",
                                 "OrderDetails",
-                                "result"
+                                "result",
+                                "Subtotal",
+                                "Id"
                               ],
                               "dynamicPropertyPathList": [
                                 {
@@ -402,14 +402,17 @@
                                 "InvoiceNo": 153,
                                 "IsKYCDone": 129,
                                 "OrgID": 250,
-                                "OrderDetails": 1035,
+                                "OrderDetails": 681,
                                 "Summary": 177,
                                 "Amount": 108,
                                 "SubItemID": 119,
                                 "PSummary": 251,
                                 "Collaterals": 331,
                                 "customColumn2": 270,
-                                "result": 707
+                                "result": 501,
+                                "Clients": 255,
+                                "To": 72,
+                                "Subtotal": 362
                               },
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -558,7 +561,7 @@
                                   "originalId": "Collaterals",
                                   "id": "Collaterals",
                                   "alias": "Collaterals",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
                                   "textColor": "",
@@ -626,7 +629,7 @@
                                   "fontStyle": "",
                                   "enableFilter": true,
                                   "enableSort": true,
-                                  "isVisible": true,
+                                  "isVisible": false,
                                   "isDisabled": false,
                                   "isCellEditable": false,
                                   "isEditable": false,
@@ -648,7 +651,7 @@
                                   "originalId": "OrderDetails",
                                   "id": "OrderDetails",
                                   "alias": "OrderDetails",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "LEFT",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
                                   "textColor": "",
@@ -692,7 +695,7 @@
                                   "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
-                                  "label": "result",
+                                  "label": "Calculation",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
                                   "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"result\"]))}}",
