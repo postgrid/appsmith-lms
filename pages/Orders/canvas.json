@@ -294,7 +294,7 @@
                               },
                               "borderRadius": "0px",
                               "columnUpdatedAt": 1682480240889,
-                              "originalBottomRow": 99,
+                              "originalBottomRow": 98,
                               "primaryColumnId": "InvoiceNo",
                               "defaultSelectedRowIndices": [
                                 0
@@ -840,7 +840,7 @@
                               "renderMode": "CANVAS",
                               "horizontalAlignment": "LEFT",
                               "isVisibleSearch": true,
-                              "originalTopRow": 11,
+                              "originalTopRow": 10,
                               "isVisiblePagination": true,
                               "cellBackground": "",
                               "verticalAlignment": "CENTER"
@@ -904,11 +904,11 @@
                               "isLoading": false,
                               "mobileTopRow": 0,
                               "responsiveBehavior": "hug",
-                              "originalTopRow": 7,
+                              "originalTopRow": 6,
                               "disabledWhenInvalid": false,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "mobileLeftColumn": 0,
-                              "originalBottomRow": 11,
+                              "originalBottomRow": 10,
                               "buttonVariant": "PRIMARY",
                               "placement": "CENTER"
                             },
@@ -943,7 +943,7 @@
                               "isLoading": false,
                               "timePrecision": "minute",
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "originalBottomRow": 11,
+                              "originalBottomRow": 10,
                               "closeOnSelection": true,
                               "mobileBottomRow": 7,
                               "widgetName": "DatePicker1",
@@ -982,7 +982,7 @@
                               "renderMode": "CANVAS",
                               "mobileTopRow": 0,
                               "responsiveBehavior": "fill",
-                              "originalTopRow": 7,
+                              "originalTopRow": 6,
                               "mobileLeftColumn": 43,
                               "maxDynamicHeight": 9000,
                               "firstDayOfWeek": "0",
@@ -1050,7 +1050,7 @@
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "mobileLeftColumn": 48,
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 6,
+                              "originalBottomRow": 5,
                               "fontSize": "0.675rem",
                               "minDynamicHeight": 4
                             }
@@ -9754,17 +9754,6 @@
         },
         "layoutOnLoadActions": [
           [
-            {
-              "id": "Orders_Util.synchronize",
-              "name": "Util.synchronize",
-              "collectionId": "Orders_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  storeValue('show', 'true');\n  storeValue('show2', 'true');\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
             {
               "id": "Orders_get_allorders_invoice",
               "name": "get_allorders_invoice",

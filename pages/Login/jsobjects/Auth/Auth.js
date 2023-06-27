@@ -25,6 +25,6 @@ export default {
 			const [key,value] = i.split('=');
 			 storeValue(key,value); 
 		});
-		navigateTo('App');
+	navigateTo('App');
 	}
 }

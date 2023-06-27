@@ -5201,35 +5201,11 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "App_Util.synchronize",
-              "name": "Util.synchronize",
-              "collectionId": "App_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  await get_partner.run();\n  await get_postcard_month_volume.run();\n  await get_cheque_month_volume.run();\n  await get_letter_month_volume.run();\n  await get_current_tier.run();\n  await get_partner.run();\n  await get_printernames.run();\n  await get_total_volume.run();\n  await get_total_volume_per_month.run();\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "App_get_current_tier",
               "name": "get_current_tier",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "App_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "App_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    (get_user.run(), get_user_department.run(), get_cheque_month_volume.run(), get_letter_month_volume.run(), get_cheque_month_volume.run(), get_current_tier.run(), get_total_volume.run(), get_total_volume_per_month.run());\n  }, 5000, \"autoupdate\");\n}"
-              ],
               "timeoutInMillisecond": 10000
             }
           ],

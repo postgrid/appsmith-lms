@@ -2047,28 +2047,6 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "OrderEmailDrafting_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "OrderEmailDrafting_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  setInterval(() => {\n    get_draftorders.run();\n  }, 3000, \"autoupdate\");\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "OrderEmailDrafting_Util.synchronize",
-              "name": "Util.synchronize",
-              "collectionId": "OrderEmailDrafting_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [
-                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n}"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "OrderEmailDrafting_get_printerlist",
               "name": "get_printerlist",
               "confirmBeforeExecute": false,

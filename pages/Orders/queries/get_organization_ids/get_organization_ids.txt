@@ -1,0 +1,4 @@
+SELECT "public"."Invoice"."CustomerID","public"."Customers"."OrgID"
+FROM "public"."Invoice" 
+INNER JOIN "public"."Customers" ON "public"."Invoice"."CustomerID" = "public"."Customers"."Id"
+WHERE to_date(cast("public"."Invoice"."InvoiceDate" as TEXT),'YYYY-MM-DD')  >= '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast("public"."Invoice"."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}'

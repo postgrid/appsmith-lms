@@ -42,11 +42,11 @@ export default {
 		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (row) => {
 			return (await get_printer_line_item.run({row}))[0].OrderGroupID;
 		}));
-		
+
 		const letterOrderGroups = [];
 		const postcardOrderGroups = [];
 		const chequeOrderGroups = [];
-		
+
 		orderGroupIDs.foreach(orderGroupID => {
 			const groupType = orderGroupID.slice(0, orderGroupID.indexOf("_"));
 			if(groupType === 'letter'){
@@ -66,7 +66,7 @@ export default {
 				vendorName: appsmith.store.MBitem
 			}))[0]._id;
 		})();
-		
+
 		if(letterOrderGroups.length > 0){
 			await Update_LetterGroup.run({
 				orderGroupID: letterOrderGroups,
@@ -80,7 +80,7 @@ export default {
 				vendorID: vendorID
 			});
 		}
-		
+
 		if(chequeOrderGroups.length > 0){
 			await Update_ChequeGroup.run({
 				orderGroupID: chequeOrderGroups,
@@ -588,6 +588,25 @@ export default {
 						productDesc: item.productDesc += " - EcoFlow"
 					};
 				}
+
+				//CRC
+				if(group.organization === "org_iWccrJCPmbqmVbz1j1yNXg"){
+					console.log("JG CRC", item)
+					if(item.productDesc.includes("6x11")){
+						return{
+							...item,
+							mailType: 'Custom',
+							productDesc: "Postcard 6x11 - First Class - CRC Reduced"
+						};
+					} else if(item.productDesc.includes("6x9")){
+						return{
+							...item,
+							mailType: 'Custom',
+							productDesc: "Postcard 6x9 - First Class - CRC Reduced"
+						};
+					}
+
+				}
 				return item;
 			}
 
@@ -703,6 +722,7 @@ export default {
 				});
 			}
 
+			console.log("JG cheque", group);
 			if (group.letterPageCount) {
 				// Assume BW SS for cheque letters
 				const sheetCount = group.letterPageCount;
@@ -767,11 +787,16 @@ export default {
 		let orderGroupIds = [];
 		(await get_order_group_ids.run()).forEach(ID => {
 			orderGroupIds.push(ID.OrderGroupID)
-		})
+		});
+
+		let organizationIDs = [];
+		(await get_organization_ids.run()).forEach(ID => {
+			organizationIDs.push(ID.OrgID)
+		});
 
 		const enter = totalCollateral.filter(order => order.orgID === 'org_iRzUYiZvDusyts2gVnUUCL')
 		console.log("JG CM", enter)
-		
+
 		const parents = totalCollateral.filter(order => order.orgID !== null);
 		console.log("JG parents", parents.length)
 
@@ -780,22 +805,54 @@ export default {
 		console.log("JG orderGroupIds", orderGroupIds.includes("letter_group_8tF3KuUbFsDYtLq4Ehyots"));
 		//filter only the ones that are not currently added
 		const newCollateral = [];
-		let skipCurrent = false;
+		let skipCurrent = true;
+		let updateGroup = false;
+		let groupToAdd = [];
 
-		totalCollateral.forEach(order => {
+		for(const order of totalCollateral){
 			if(order.groupID === null){
-				if(!skipCurrent){
-					newCollateral.push(order)
+				//check if the org associated to this order exists
+				if(updateGroup == true){
+					groupToAdd.push(order);
+				} else if(!skipCurrent){
+					newCollateral.push(order);
 				}
 			} else {
+				if(updateGroup === true){
+					//update all of the stuff
+					//customer line items
+					//printer line items
+					//envelope inventory
+					await storeValue('newList',JSON.parse(JSON.stringify(groupToAdd).replaceAll("'", "''")));
+					await Promise.all([
+						set_customerprice.run(),
+						set_customerlineitems.run(),
+						set_printerlineitems.run(),
+						set_envelope_inventory.run(),
+					]).catch(() => {
+						showAlert('Error! Unable to process.','error');
+					});
+
+					showAlert(`${groupToAdd[0].groupID} added for ${order.orgID}.`)
+
+					updateGroup = false;
+					groupToAdd = [];
+				}
+
 				if(!orderGroupIds.includes(order.groupID)){
-					skipCurrent = false;
-					newCollateral.push(order);
+					//check if the org associated to this order exists
+					if(organizationIDs.includes(order.orgID)){
+						updateGroup = true;
+						groupToAdd.push(order);
+					} else {
+						skipCurrent = false;
+						newCollateral.push(order);
+					}
 				} else {
 					skipCurrent = true;
 				}
 			}
-		});
+		}
 
 		//show an alert on the screen if there are any new order groups
 		console.log("JG newCollateral", newCollateral.length, newCollateral);
@@ -811,18 +868,23 @@ export default {
 				set_customerlineitems.run(),
 				set_printerlineitems.run(),
 				set_envelope_inventory.run(),
-			]).then(() => {
-				get_letter_day_volume.run();
-				get_cheque_day_volume.run();
-				get_postcard_day_volume.run();
-				get_invoicelist.run();
-				get_num_new_clients.run();
-				get_invoicelist_count.run();
-				showAlert('Well done! Your action has been processed successfully.','success');
-			}).catch(() => {
+			]).catch(() => {
 				showAlert('Error! Unable to process.','error');
 			});
 		}
+
+		showAlert(`There was ${newCollateral.length} Order Groups added.`)
+
+		Promise.all([
+			get_letter_day_volume.run(),
+			get_cheque_day_volume.run(),
+			get_postcard_day_volume.run(),
+			get_invoicelist.run(),
+			get_num_new_clients.run(),
+			get_invoicelist_count.run(),
+		]).then(() => {
+			showAlert('Well done! Your action has been processed successfully.','success');
+		})
 
 	}
 }

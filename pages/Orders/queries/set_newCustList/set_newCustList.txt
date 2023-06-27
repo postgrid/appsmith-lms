@@ -1,4 +1,3 @@
---console.log("JG set_newCustList", )
 INSERT INTO public."Customers" ("OrgID", "CustomerName") 
 VALUES
 	 {{appsmith.store.newList.map((d) => { 	
