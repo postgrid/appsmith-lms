@@ -1410,7 +1410,7 @@
                               "originalTopRow": 0,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 5,
+                              "originalBottomRow": 4,
                               "fontSize": "1rem",
                               "minDynamicHeight": 4
                             },
@@ -1461,10 +1461,10 @@
                               "parentId": "8z27x8f5df",
                               "renderMode": "CANVAS",
                               "isLoading": false,
-                              "originalTopRow": 5,
+                              "originalTopRow": 4,
                               "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                               "maxDynamicHeight": 9000,
-                              "originalBottomRow": 10,
+                              "originalBottomRow": 8,
                               "fontSize": "0.875rem",
                               "minDynamicHeight": 4
                             }
@@ -3118,7 +3118,7 @@
                                   "isVisible": true,
                                   "isDisabled": false,
                                   "isCellEditable": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentIndex !== Table3Copy.tableData.length - 1 ))}}",
-                                  "isEditable": true,
+                                  "isEditable": false,
                                   "isCellVisible": true,
                                   "isDerived": false,
                                   "label": "Qty",
@@ -3352,17 +3352,17 @@
                                   "enableSort": true,
                                   "isVisible": true,
                                   "isDisabled": false,
-                                  "isCellEditable": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentRow.SubItemID === null  && currentIndex !== Table3Copy.tableData.length - 1 ))}}",
+                                  "isCellEditable": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow.SubItemID === null  && currentIndex !== Table3Copy.tableData.length - 1 ))}}",
                                   "isEditable": true,
                                   "isCellVisible": true,
                                   "isDerived": false,
                                   "label": "AssignTo",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1 ? \"\" : (currentRow.SubItemID !== null ? \"\" : currentRow.AssignTo) ))}}",
+                                  "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  currentIndex === Table3Copy.tableData.length - 1 \n\t? \"\" \n\t: (currentRow.SubItemID !== null ? \"\" : currentRow.AssignTo) ))}}",
                                   "sticky": "left",
                                   "validation": {},
-                                  "cellBackground": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  \n  currentRow.enabled === false\n    ? \"transparent\"\n    : currentIndex !== Table3Copy.tableData.length - 1 && currentRow.AssignTo == undefined\n      ? currentRow.SubItemID !== null\n      ? \"transparent\":\"#f87171\"\n      : currentIndex !== Table3Copy.tableData.length - 1\n        ?currentRow.SubItemID !== null\n      ? \"transparent\": \"LightGreen\"\n        : \"transparent\"\n))}}",
+                                  "cellBackground": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  \n  currentRow.enabled === false\n    ? \"transparent\"\n    : currentIndex !== Table3Copy.tableData.length - 1 && (currentRow.AssignTo == undefined || currentRow.AssignTo == \"\")\n      ? currentRow.SubItemID !== null\n      ? \"transparent\":\"#f87171\"\n      : currentIndex !== Table3Copy.tableData.length - 1\n        ?currentRow.SubItemID !== null\n      ? \"transparent\": \"LightGreen\"\n        : \"transparent\"\n))}}",
                                   "selectOptions": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  get_printerlist.data\n     .map(a => ({ label: a.PrinterName, value: a.PrinterName }))\n     .concat([{ label: 'PAUSED', value: 'PAUSED' }, { label: 'CANCELLED', value: 'CANCELLED' }])\n))}}",
                                   "onOptionChange": "{{StoreActions.myFun1(currentRow)}}",
                                   "allowSameOptionsInNewRow": true
@@ -6046,7 +6046,7 @@
                                   "isVisible": true,
                                   "isDisabled": false,
                                   "iconAlign": "left",
-                                  "onClick": "{{storeValue('MBitem',currentItem.PrinterName);\nawait set_AllToPrinter.run();\nawait StoreActions.updateOrderGroupVendors();\nawait get_customer_order_details.run();\nget_printer_order_details.run();\nawait showAlert('Well done!.','success');\n}}"
+                                  "onClick": "{{storeValue('MBitem',currentItem.PrinterName);\nawait set_AllToPrinter.run();\nawait StoreActions.updateOrderGroupVendors();\nawait get_customer_order_details.run();\nawait get_PauseCancel_custOrderDetai.run();\nawait get_printer_order_details.run();\nawait showAlert('Well done!.','success');\n}}"
                                 }
                               },
                               "dynamicPropertyPathList": [
@@ -6061,7 +6061,7 @@
                               "parentRowSpace": 10,
                               "type": "MENU_BUTTON_WIDGET",
                               "hideCard": false,
-                              "animateLoading": false,
+                              "animateLoading": true,
                               "parentColumnSpace": 11.769287109375,
                               "dynamicTriggerPathList": [
                                 {
@@ -6925,8 +6925,8 @@
                         "click",
                         "submit"
                       ],
-                      "topRow": 11,
-                      "bottomRow": 15,
+                      "topRow": 10,
+                      "bottomRow": 14,
                       "type": "BUTTON_WIDGET",
                       "hideCard": false,
                       "animateLoading": true,
@@ -6955,10 +6955,10 @@
                       "renderMode": "CANVAS",
                       "isLoading": false,
                       "responsiveBehavior": "hug",
-                      "originalTopRow": 10,
+                      "originalTopRow": 11,
                       "disabledWhenInvalid": false,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "originalBottomRow": 14,
+                      "originalBottomRow": 15,
                       "buttonVariant": "SECONDARY",
                       "placement": "CENTER"
                     },
@@ -6979,8 +6979,8 @@
                         "click",
                         "submit"
                       ],
-                      "topRow": 11,
-                      "bottomRow": 15,
+                      "topRow": 10,
+                      "bottomRow": 14,
                       "type": "BUTTON_WIDGET",
                       "hideCard": false,
                       "animateLoading": true,
@@ -7014,10 +7014,10 @@
                       "renderMode": "CANVAS",
                       "isLoading": false,
                       "responsiveBehavior": "hug",
-                      "originalTopRow": 10,
+                      "originalTopRow": 11,
                       "disabledWhenInvalid": false,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                      "originalBottomRow": 14,
+                      "originalBottomRow": 15,
                       "buttonVariant": "PRIMARY",
                       "placement": "CENTER"
                     },
@@ -7031,7 +7031,7 @@
                         "label"
                       ],
                       "topRow": 6,
-                      "bottomRow": 11,
+                      "bottomRow": 10,
                       "parentRowSpace": 10,
                       "type": "TEXT_WIDGET",
                       "hideCard": false,
@@ -7073,7 +7073,7 @@
                       "originalTopRow": 6,
                       "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
                       "maxDynamicHeight": 9000,
-                      "originalBottomRow": 10,
+                      "originalBottomRow": 11,
                       "fontSize": "0.875rem",
                       "minDynamicHeight": 4
                     }
@@ -8991,7 +8991,7 @@
                       "resetFormOnClick": false,
                       "boxShadow": "none",
                       "widgetName": "Button8Copy",
-                      "onClick": "{{set_addsubitem.run().then(() => {\n  showAlert('Added Successfully', 'success')\n}).catch(() => {\n  showAlert('Check required items', 'error')\n});\nawait\tset_deduct_inventory.run();\n await get_customer_order_details.run();\n await get_printer_order_details.run();\n  closeModal('SubItem');\n}}",
+                      "onClick": "{{set_addsubitem.run().then(() => {\n  showAlert('Added Successfully', 'success')\n}).catch(() => {\n  showAlert('Check required items', 'error')\n});\nawait StoreActions.clearOrderGroupVendor(Table3Copy.selectedRow)\nawait\tset_deduct_inventory.run();\n await get_customer_order_details.run();\n await get_printer_order_details.run();\n  closeModal('SubItem');\n}}",
                       "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
                       "dynamicPropertyPathList": [
                         {

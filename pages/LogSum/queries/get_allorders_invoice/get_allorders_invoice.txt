@@ -6,5 +6,5 @@ FROM "public"."Customers" c1
 WHERE  EXISTS ( 
 	SELECT p."ProductDescription"
 	FROM "public"."Products" p 
-	WHERE p."Id" = c2."ProductID"  )  AND "SubItemID" IS NULL
+	WHERE p."Id" = c2."ProductID"  )  AND i."InvoiceDate"::date >= '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}'::date   AND "SubItemID" IS NULL
 ORDER BY c3."Id" ASC

@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 79,
+          "version": 80,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -2190,7 +2190,11 @@
                                 "_120k___250k",
                                 "_250k___500k"
                               ],
-                              "dynamicPropertyPathList": [],
+                              "dynamicPropertyPathList": [
+                                {
+                                  "key": "tableData"
+                                }
+                              ],
                               "displayName": "Table",
                               "bottomRow": 76,
                               "columnWidthMap": {
@@ -2787,7 +2791,11 @@
                                 "SolutionsInMail_120k___250k",
                                 "Addressers_120k___250k"
                               ],
-                              "dynamicPropertyPathList": [],
+                              "dynamicPropertyPathList": [
+                                {
+                                  "key": "tableData"
+                                }
+                              ],
                               "displayName": "Table",
                               "bottomRow": 80,
                               "columnWidthMap": {
@@ -3244,16 +3252,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "RFP_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -3326,6 +3324,18 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Select2Copy.selectedOptionValue"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "RFP_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

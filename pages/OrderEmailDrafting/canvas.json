@@ -294,9 +294,6 @@
                                   "key": "tableData"
                                 },
                                 {
-                                  "key": "primaryColumns.Collaterals.computedValue"
-                                },
-                                {
                                   "key": "primaryColumns.Clients.computedValue"
                                 },
                                 {
@@ -307,6 +304,9 @@
                                 },
                                 {
                                   "key": "primaryColumns.result.computedValue"
+                                },
+                                {
+                                  "key": "primaryColumns.Collaterals.computedValue"
                                 }
                               ],
                               "leftColumn": 0,
@@ -409,10 +409,10 @@
                                 "PSummary": 251,
                                 "Collaterals": 331,
                                 "customColumn2": 270,
-                                "result": 501,
+                                "result": 445,
                                 "Clients": 255,
                                 "To": 72,
-                                "Subtotal": 362
+                                "Subtotal": 117
                               },
                               "parentRowSpace": 10,
                               "hideCard": false,
@@ -531,7 +531,7 @@
                                   "originalId": "To",
                                   "id": "To",
                                   "alias": "To",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "CENTER",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
                                   "textColor": "",
@@ -578,7 +578,7 @@
                                   "label": "Collaterals",
                                   "isSaveVisible": true,
                                   "isDiscardVisible": true,
-                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Collaterals\"]))}}",
+                                  "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => (  currentRow.Collaterals ))}}",
                                   "sticky": "",
                                   "validation": {},
                                   "cellBackground": ""
@@ -591,7 +591,7 @@
                                   "originalId": "Clients",
                                   "id": "Clients",
                                   "alias": "Clients",
-                                  "horizontalAlignment": "RIGHT",
+                                  "horizontalAlignment": "CENTER",
                                   "verticalAlignment": "CENTER",
                                   "columnType": "text",
                                   "textColor": "",

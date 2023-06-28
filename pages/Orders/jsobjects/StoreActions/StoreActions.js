@@ -38,6 +38,33 @@ export default {
 		}
 		showAlert('Vendor has been updated successfully', 'success');
 	},
+	clearOrderGroupVendor: async (currentRow) => {
+		await Save_Data.run({currentRow: {
+			AssignTo: "",
+			itemid: currentRow.itemid
+		}});
+
+		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
+		console.log("JG", orderGroupIDs, currentRow);
+		const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
+
+		if(groupType === 'letter'){
+			await Update_LetterGroup.run({
+				orderGroupID: orderGroupIDs,
+				vendorID: ""
+			});
+		} else if(groupType === 'postcard'){
+			await Update_PostcardGroup.run({
+				orderGroupID: orderGroupIDs,
+				vendorID: ""
+			});
+		} else {
+			await Update_ChequeGroup.run({
+				orderGroupID: orderGroupIDs,
+				vendorID: ""
+			});
+		}
+	},
 	updateOrderGroupVendors: async () => {
 		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (row) => {
 			return (await get_printer_line_item.run({row}))[0].OrderGroupID;
