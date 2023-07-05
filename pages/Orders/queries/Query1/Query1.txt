@@ -1,0 +1,2 @@
+SELECT last_value FROM "PrinterLineItems_Id_seq";
+

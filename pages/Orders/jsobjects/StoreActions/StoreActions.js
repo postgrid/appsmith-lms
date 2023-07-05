@@ -46,24 +46,27 @@ export default {
 
 		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
 		console.log("JG", orderGroupIDs, currentRow);
-		const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
+		if(orderGroupIDs.length > 0){
+			const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
-		if(groupType === 'letter'){
-			await Update_LetterGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: ""
-			});
-		} else if(groupType === 'postcard'){
-			await Update_PostcardGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: ""
-			});
-		} else {
-			await Update_ChequeGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: ""
-			});
+			if(groupType === 'letter'){
+				await Update_LetterGroup.run({
+					orderGroupID: orderGroupIDs,
+					vendorID: ""
+				});
+			} else if(groupType === 'postcard'){
+				await Update_PostcardGroup.run({
+					orderGroupID: orderGroupIDs,
+					vendorID: ""
+				});
+			} else {
+				await Update_ChequeGroup.run({
+					orderGroupID: orderGroupIDs,
+					vendorID: ""
+				});
+			}
 		}
+
 	},
 	updateOrderGroupVendors: async () => {
 		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (row) => {
@@ -623,13 +626,13 @@ export default {
 						return{
 							...item,
 							mailType: 'Custom',
-							productDesc: "Postcard 6x11 - First Class - CRC Reduced"
+							productDesc: `Postcard 6x11 - ${classStr} - CRC Reduced`
 						};
 					} else if(item.productDesc.includes("6x9")){
 						return{
 							...item,
 							mailType: 'Custom',
-							productDesc: "Postcard 6x9 - First Class - CRC Reduced"
+							productDesc: `Postcard 6x9 - ${classStr} - CRC Reduced`
 						};
 					}
 
@@ -829,18 +832,21 @@ export default {
 
 		console.log("JG totalCollateral", totalCollateral);
 		console.log("JG orderGroupIds", orderGroupIds.length);
-		console.log("JG orderGroupIds", orderGroupIds.includes("letter_group_8tF3KuUbFsDYtLq4Ehyots"));
+		console.log("JG orderGroupIds", orderGroupIds);
+		console.log("JG orderGroupIds", orderGroupIds.includes("cheque_group_r13jhQaHfa6SbLyPzAyg2h"));
 		//filter only the ones that are not currently added
 		const newCollateral = [];
 		let skipCurrent = true;
 		let updateGroup = false;
 		let groupToAdd = [];
+		let newNumbering = 0;
 
-		for(const order of totalCollateral){
+		for(let order of totalCollateral){
 			if(order.groupID === null){
 				//check if the org associated to this order exists
 				if(updateGroup == true){
-					groupToAdd.push(order);
+					++newNumbering;
+					groupToAdd.push({...order, id: newNumbering, parentID: groupToAdd[0].id});
 				} else if(!skipCurrent){
 					newCollateral.push(order);
 				}
@@ -850,8 +856,11 @@ export default {
 					//customer line items
 					//printer line items
 					//envelope inventory
+					console.log("JG updateGroup", groupToAdd);
 					await storeValue('newList',JSON.parse(JSON.stringify(groupToAdd).replaceAll("'", "''")));
-					await Promise.all([
+					console.log("JG newList",appsmith.store.newList );
+					await reset_Id_sequence.run();
+					await Promise.all([  
 						set_customerprice.run(),
 						set_customerlineitems.run(),
 						set_printerlineitems.run(),
@@ -862,6 +871,7 @@ export default {
 
 					showAlert(`${groupToAdd[0].groupID} added for ${order.orgID}.`)
 
+					newNumbering = 0;
 					updateGroup = false;
 					groupToAdd = [];
 				}
@@ -869,8 +879,9 @@ export default {
 				if(!orderGroupIds.includes(order.groupID)){
 					//check if the org associated to this order exists
 					if(organizationIDs.includes(order.orgID)){
+						++newNumbering;
 						updateGroup = true;
-						groupToAdd.push(order);
+						groupToAdd.push({...order, id: newNumbering});
 					} else {
 						skipCurrent = false;
 						newCollateral.push(order);
@@ -880,6 +891,30 @@ export default {
 				}
 			}
 		}
+		if(updateGroup === true){
+			const order = totalCollateral[totalCollateral.length - 1];
+			//update all of the stuff
+			//customer line items
+			//printer line items
+			//envelope inventory
+			console.log("JG updateGroup", groupToAdd);
+			await storeValue('newList',JSON.parse(JSON.stringify(groupToAdd).replaceAll("'", "''")));
+			console.log("JG newList",appsmith.store.newList );
+			await reset_Id_sequence.run();
+			await Promise.all([
+				set_customerprice.run(),
+				set_customerlineitems.run(),
+				set_printerlineitems.run(),
+				set_envelope_inventory.run(),
+			]).catch(() => {
+				showAlert('Error! Unable to process.','error');
+			});
+
+			showAlert(`${groupToAdd[0].groupID} added for ${order.orgID}.`)
+
+			updateGroup = false;
+			groupToAdd = [];
+		}
 
 		//show an alert on the screen if there are any new order groups
 		console.log("JG newCollateral", newCollateral.length, newCollateral);
@@ -888,6 +923,7 @@ export default {
 		await storeValue('newList',JSON.parse(JSON.stringify(newCollateral).replaceAll("'", "''")));		
 
 		if(newCollateral.length !== 0){
+			await reset_Id_sequence.run();
 			Promise.all([
 				set_newCustList.run(),
 				set_newCustInvoice.run(),

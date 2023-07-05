@@ -1,0 +1,28 @@
+DO $$
+DECLARE
+    new_value_C INT;
+    new_value_P INT;
+    max_value INT;
+BEGIN
+    -- Get the desired values from the sequences
+    SELECT last_value INTO new_value_P FROM "PrinterLineItems_Id_seq";
+    SELECT last_value INTO new_value_C FROM "CustomerLineItems_Id_seq";
+
+    -- Compare the values and determine the maximum
+    IF new_value_P > new_value_C THEN
+        max_value := new_value_P;
+    ELSE
+        max_value := new_value_C;
+    END IF;
+
+    -- Reset the sequences with the new value
+    EXECUTE 'ALTER SEQUENCE "PrinterLineItems_Id_seq" RESTART WITH ' || max_value +1;
+    EXECUTE 'ALTER SEQUENCE "CustomerLineItems_Id_seq" RESTART WITH ' || max_value +1;
+
+    -- Output the new values
+    RAISE NOTICE 'Sequence "PrinterLineItems_Id_seq" restarted with %', max_value +1 ;
+    RAISE NOTICE 'Sequence "CustomerLineItems_Id_seq" restarted with %', max_value +1;
+		
+		
+END $$;
+

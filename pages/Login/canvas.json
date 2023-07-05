@@ -585,7 +585,7 @@
                                     {
                                       "boxShadow": "none",
                                       "widgetName": "Image1Copy",
-                                      "onClick": "{{navigateTo('https://sfhdcmlchbibooftjhnr.supabase.co/auth/v1/authorize',{\n\tprovider: 'google',\n\t\tredirect_to: 'https://app.appsmith.com/app/logistics-management-system/login-63b393c7f276cd0745e9510f?embed=true'\n}, 'SAME_WINDOW')}}",
+                                      "onClick": "{{navigateTo('https://sfhdcmlchbibooftjhnr.supabase.co/auth/v1/authorize',{\n\tprovider: 'google',\n\t\tredirect_to: 'https://app.appsmith.com/app/logistics-management-system/login-63b393c7f276cd0745e9510f'\n}, 'SAME_WINDOW')}}",
                                       "dynamicPropertyPathList": [
                                         {
                                           "key": "onClick"

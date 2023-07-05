@@ -793,56 +793,6 @@
                               "maxDynamicHeight": 9000,
                               "onOptionChange": "{{Util.getDraftOrdersForEmail();}}",
                               "minDynamicHeight": 4
-                            },
-                            {
-                              "mobileBottomRow": 9,
-                              "widgetName": "Progress1",
-                              "progressType": "linear",
-                              "isCanvas": false,
-                              "displayName": "Progress",
-                              "iconSVG": "https://appcdn.appsmith.com/static/media/icon.63065ff64699dbf6b2267d42d3713b98.svg",
-                              "searchTags": [
-                                "percent"
-                              ],
-                              "topRow": 4,
-                              "bottomRow": 8,
-                              "parentRowSpace": 10,
-                              "type": "PROGRESS_WIDGET",
-                              "isIndeterminate": false,
-                              "hideCard": false,
-                              "fillColor": "{{appsmith.theme.colors.primaryColor}}",
-                              "mobileRightColumn": 27,
-                              "parentColumnSpace": 16.125,
-                              "dynamicTriggerPathList": [],
-                              "leftColumn": 0,
-                              "dynamicBindingPathList": [
-                                {
-                                  "key": "fillColor"
-                                },
-                                {
-                                  "key": "borderRadius"
-                                },
-                                {
-                                  "key": "progress"
-                                }
-                              ],
-                              "key": "mehpntewwi",
-                              "showResult": false,
-                              "isDeprecated": false,
-                              "rightColumn": 26,
-                              "counterClosewise": false,
-                              "widgetId": "fgbts4kwj6",
-                              "isVisible": true,
-                              "steps": 1,
-                              "version": 1,
-                              "parentId": "47tca8pon2",
-                              "renderMode": "CANVAS",
-                              "isLoading": false,
-                              "mobileTopRow": 5,
-                              "responsiveBehavior": "fill",
-                              "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-                              "mobileLeftColumn": 0,
-                              "progress": "{{appsmith.store.tableProgress}}"
                             }
                           ],
                           "key": "5sa58q4kfb",

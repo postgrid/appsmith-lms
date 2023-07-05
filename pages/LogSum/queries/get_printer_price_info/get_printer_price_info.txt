@@ -1,0 +1,17 @@
+WITH printer_line_items_query AS (
+  SELECT
+    p3."Id",
+		p3."Printer",
+    p3."Qty",
+    p3."Rate",
+    p3."Amount",
+    p3."SubItemID",
+    i."InvoiceDate"
+  FROM
+    "public"."PrinterLineItems" p3
+    INNER JOIN "public"."Invoice" i ON (i."InvoiceID" = p3."InvoiceID")
+  WHERE
+     to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment(DatePicker1.selectedDate).format('YYYY-MM-DD')}}'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '{{moment(DatePicker1.selectedDate).format('YYYY-MM-DD')}}'
+		
+) select * FROM printer_line_items_query;
