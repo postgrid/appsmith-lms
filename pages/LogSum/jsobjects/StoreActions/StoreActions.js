@@ -7,10 +7,9 @@ export default {
 			let extraSheetPrice = 0;
 			let extraSheetQty = 0;
 			const rates = [];
-			// console.log("JG lineItems", lineItems)
 
 			for(const lineItem of lineItems){
-				if(lineItem.rate === null){
+				if(lineItem.Rate === null){
 					return "";
 				}
 				if(lineItem.SubItemID === null){
@@ -56,8 +55,7 @@ export default {
 		}, () => {});
 		const combinedData = [];
 		await storeValue('logSumTableProgress', 'loading...');
-		console.log("JG get_customer_price_info", get_customer_price_info.data)
-		for(const item of Object.entries(get_allorders_invoice.data)){
+		for(const item of get_allorders_invoice.data){
 			const tier2 = get_allorder_items.data.find((item2) => item.Id == item2.Id) || {};
 			const customerLineItems = get_customer_price_info.data.filter(order => order.Id === item.Id || order.SubItemID === item.Id)
 
@@ -65,10 +63,8 @@ export default {
 			const tier3 = get_allorder_printcost.data.find((item3) => item.Id == item3.Id) || {};
 			const printerLineItems = await get_printer_price_info.data.filter(order => order.Id === item.Id || order.SubItemID === item.Id);
 			const calcPrinter = !tier3 || JSON.stringify(tier3) === '{}'  ? '' : buildCalculation(printerLineItems, tier3.PSummary);
-			// console.log("JG", item, tier2, tier3, calcCustomer, calcPrinter)
 			combinedData.push({ ...item, ...tier2 ,...tier3, calcCustomer, calcPrinter});
 		}
-		console.log("JG combined", combinedData)
 
 		await storeValue('logSummary',combinedData);
 		await storeValue('logSumTableProgress', '');
