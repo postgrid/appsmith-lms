@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "clearPicker_orders",
-    "fullyQualifiedName": "Util.clearPicker_orders",
+    "name": "selectedOrderGroup",
+    "fullyQualifiedName": "Util.selectedOrderGroup",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -37,7 +37,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_Util.clearPicker_orders",
+  "id": "Orders_Util.selectedOrderGroup",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_645967eabd80bc02b63ecf9b"
+  "gitSyncId": "63b393c7f276cd0745e9510c_64a6c9cb395dbf37d6b082f9"
 }

@@ -25,6 +25,16 @@ export default {
 				get_letter_day_volume.run(),
 get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.run()}, 3000, "autoupdate");
 /*get_invoicelist_count.run()*/
+	},
+	selectedOrderGroup: async () => {
+		await get_customer_order_details.run();
+		console.log("JG get_customer_order_details", get_customer_order_details.data)
+		await get_printer_order_details.run();
+		console.log("JG get_printer_order_details", get_printer_order_details.data)
+		await get_list_of_collaterals.run();
+		console.log("JG get_list_of_collaterals", get_list_of_collaterals.data)
+		await storeValue('org','f');
+		console.log("JG storeValue", appsmith.store.org);
 	}
 
 }

@@ -69,25 +69,33 @@ export default {
 
 	},
 	updateOrderGroupVendors: async () => {
-		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (row) => {
-			return (await get_printer_line_item.run({row}))[0].OrderGroupID;
+		console.log("JG ", Table3Copy.tableData.slice(0, -1));
+
+		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (currentRow) => {
+			console.log("JG print line ",await get_printer_line_item.run({currentRow}));
+			return (await get_printer_line_item.run({currentRow}))[0].OrderGroupID;
 		}));
 
 		const letterOrderGroups = [];
 		const postcardOrderGroups = [];
 		const chequeOrderGroups = [];
 
-		orderGroupIDs.foreach(orderGroupID => {
-			const groupType = orderGroupID.slice(0, orderGroupID.indexOf("_"));
-			if(groupType === 'letter'){
-				letterOrderGroups.push(orderGroupID);
-			} else if(groupType === 'postcard'){
-				postcardOrderGroups.push(orderGroupID);
-			} else {
-				chequeOrderGroups.push(orderGroupID);
-			}
-		});
+		console.log("JG orderGroupIDs", orderGroupIDs);
 
+		for(const orderGroupID of orderGroupIDs){
+			if(orderGroupID !== "null"){
+				const groupType = orderGroupID.slice(0, orderGroupID.indexOf("_"));
+				if(groupType === 'letter'){
+					letterOrderGroups.push(orderGroupID);
+				} else if(groupType === 'postcard'){
+					postcardOrderGroups.push(orderGroupID);
+				} else {
+					chequeOrderGroups.push(orderGroupID);
+				}
+			}
+		}
+
+		console.log("JG chequeOrderGroups", chequeOrderGroups);
 		const vendorID = await (async () => {
 			if(appsmith.store.MBitem === "PAUSED" || appsmith.store.MBitem === "CANCELLED"){
 				return appsmith.store.MBitem;

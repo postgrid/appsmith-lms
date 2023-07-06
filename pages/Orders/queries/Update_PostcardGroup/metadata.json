@@ -79,7 +79,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"update\": \"postcardgroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }},\n    \"u\": {\"$set\": {\"vendor\": {{this.params.vendorID}}},\n    \"multi\": false,\n  }]\n}\n",
+            "data": "{\n  \"update\": \"postcardgroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }},\n    \"u\": {\"$set\": {\"vendor\": {{this.params.vendorID}}}},\n    \"multi\": true,\n  }]\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -88,13 +88,13 @@
         },
         "updateMany": {
           "limit": {
-            "data": "SINGLE"
+            "data": "ALL"
           },
           "query": {
             "data": "{\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }}"
           },
           "update": {
-            "data": "{\"$set\": {\"vendor\": {{this.params.vendorID}}}"
+            "data": "{\"$set\": {\"vendor\": {{this.params.vendorID}}}}"
           }
         }
       }
