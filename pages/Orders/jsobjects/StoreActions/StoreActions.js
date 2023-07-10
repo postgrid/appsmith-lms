@@ -329,6 +329,7 @@ export default {
 			const items = [];
 
 			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
+			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
 
 			const sizeStr = {
 				us_letter: 'Letter Size',
@@ -587,6 +588,27 @@ export default {
 				items.push(customEnvelopeItem);
 			}
 
+			if (group.destinationCountryCode !== orgCountryCode) {
+				/** @type {LineItem} */
+				const intlDeliveryItem = {
+					id: ++id,
+
+					orgID: group.organization,
+					orgName,
+
+					// For these, each sheet is additional, not just those after the first
+					quantity: group.orderCount,
+					mailType: "Added Services",
+					productDesc: `International Delivery`,
+					destinationCountryCode: null,
+
+					parentID: baseItem.id,
+					groupID: null,
+				};
+
+				items.push(intlDeliveryItem);
+			}
+
 			return items;
 		};
 
@@ -602,8 +624,15 @@ export default {
 			const items = [];
 
 			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
+			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
 
-			const sizeStr = group.size.split('').reverse().join('');
+			let sizeStr = '';
+			if(group.size === "9x6_reduced" || group.size === "11x6_reduced"){
+				sizeStr = group.size;
+			} else {
+				sizeStr = group.size.split('').reverse().join('');
+			}
+
 			const classStr = this.classStr(group);
 
 			let id = 0;
@@ -630,13 +659,13 @@ export default {
 				//CRC
 				if(group.organization === "org_iWccrJCPmbqmVbz1j1yNXg"){
 					console.log("JG CRC", item)
-					if(item.productDesc.includes("6x11")){
+					if(item.productDesc.includes("6x11") || item.productDesc.includes("11x6_reduced")){
 						return{
 							...item,
 							mailType: 'Custom',
 							productDesc: `Postcard 6x11 - ${classStr} - CRC Reduced`
 						};
-					} else if(item.productDesc.includes("6x9")){
+					} else if(item.productDesc.includes("6x9") || item.productDesc.includes("9x6_reduced")){
 						return{
 							...item,
 							mailType: 'Custom',
@@ -702,6 +731,28 @@ export default {
 				items.push(lamItem);
 			}
 
+			if (group.destinationCountryCode !== orgCountryCode) {
+				/** @type {LineItem} */
+				const intlDeliveryItem = {
+					id: ++id,
+
+					orgID: group.organization,
+					orgName,
+
+					// For these, each sheet is additional, not just those after the first
+					quantity: group.orderCount,
+					mailType: "Added Services",
+					productDesc: `International Delivery`,
+					destinationCountryCode: null,
+
+					parentID: baseItem.id,
+					groupID: null,
+				};
+
+				items.push(intlDeliveryItem);
+			}
+
+
 			return items;
 		};
 
@@ -718,6 +769,7 @@ export default {
 			const items = [];
 
 			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
+			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
 
 			const sizeStr = {
 				us_letter: 'Letter Size',
@@ -783,6 +835,27 @@ export default {
 				};
 
 				items.push(addlSheetItem);
+			}
+
+			if (group.destinationCountryCode !== orgCountryCode) {
+				/** @type {LineItem} */
+				const intlDeliveryItem = {
+					id: ++id,
+
+					orgID: group.organization,
+					orgName,
+
+					// For these, each sheet is additional, not just those after the first
+					quantity: group.orderCount,
+					mailType: "Added Services",
+					productDesc: `International Delivery`,
+					destinationCountryCode: null,
+
+					parentID: baseItem.id,
+					groupID: null,
+				};
+
+				items.push(intlDeliveryItem);
 			}
 
 			return items;

@@ -69,7 +69,7 @@
             "data": "10000"
           },
           "projection": {
-            "data": "{_id: 1, name: 1}"
+            "data": "{_id: 1, name: 1, countryCode: 1}"
           }
         },
         "insert": {
