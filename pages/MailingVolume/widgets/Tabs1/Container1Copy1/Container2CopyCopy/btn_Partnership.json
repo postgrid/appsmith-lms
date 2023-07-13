@@ -1,0 +1,70 @@
+{
+    "isCompact": false,
+    "boxShadow": "none",
+    "widgetName": "btn_Partnership",
+    "configureMenuItems": {
+        "label": "Configure Menu Items",
+        "id": "config",
+        "config": {
+            "id": "config",
+            "label": "Menu Item",
+            "isVisible": true,
+            "isDisabled": false
+        }
+    },
+    "dynamicPropertyPathList": [],
+    "displayName": "Menu Button",
+    "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
+    "topRow": 0,
+    "bottomRow": 4,
+    "parentRowSpace": 10,
+    "type": "MENU_BUTTON_WIDGET",
+    "hideCard": false,
+    "animateLoading": true,
+    "parentColumnSpace": 19.75,
+    "dynamicTriggerPathList": [
+        {"key": "menuItems.menuItem1.onClick"},
+        {"key": "menuItems.menuItem2.onClick"}
+    ],
+    "leftColumn": 22,
+    "dynamicBindingPathList": [{"key": "borderRadius"}],
+    "isDisabled": false,
+    "sourceData": [],
+    "key": "verm0vcpjg",
+    "isDeprecated": false,
+    "rightColumn": 32,
+    "iconName": "inherited-group",
+    "menuVariant": "PRIMARY",
+    "widgetId": "58f32tc097",
+    "menuItems": {
+        "menuItem1": {
+            "onClick": "{{navigateTo('Partnership', {}, 'SAME_WINDOW')}}",
+            "widgetId": "",
+            "index": 0,
+            "label": "Manage Printers",
+            "id": "menuItem1",
+            "isVisible": true,
+            "isDisabled": false
+        },
+        "menuItem2": {
+            "onClick": "{{navigateTo('RFP', {}, 'SAME_WINDOW')}}",
+            "widgetId": "",
+            "index": 1,
+            "label": "RFP",
+            "id": "menuItem2",
+            "isVisible": true,
+            "isDisabled": false
+        }
+    },
+    "isVisible": true,
+    "label": "Partnership",
+    "version": 1,
+    "parentId": "xndo660l4n",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "menuItemsSource": "STATIC",
+    "menuColor": "#000d3d",
+    "iconAlign": "left",
+    "placement": "BETWEEN"
+}

@@ -234,7 +234,7 @@ export default {
      * @param {string} orgName
      * @returns {LineItemWithoutID[]}
      */
-	baseGroupItems(group, orgName) {
+	baseGroupItems(group, orgName, orgCountryCode) {
 		/** @type LineItemWithoutID[] */
 		const items = [];
 
@@ -299,10 +299,11 @@ export default {
 		}
 
 		if (
-			group.destinationCountryCode !== 'US' &&
-			group.destinationCountryCode !== 'CA' &&
-			group.destinationCountryCode !== 'GB' &&
-			group.destinationCountryCode !== 'AU'
+			(group.destinationCountryCode !== 'US' &&
+			 group.destinationCountryCode !== 'CA' &&
+			 group.destinationCountryCode !== 'GB' &&
+			 group.destinationCountryCode !== 'AU') || 
+			group.destinationCountryCode !== orgCountryCode
 		) {
 			/** @type {LineItemWithoutID} */
 			const intlItem = {
@@ -452,7 +453,7 @@ export default {
 
 			items.push(baseItem);
 
-			const innerItems = this.baseGroupItems(group, orgName);
+			const innerItems = this.baseGroupItems(group, orgName, orgCountryCode);
 
 			for (const item of innerItems) {
 				items.push({
@@ -588,27 +589,6 @@ export default {
 				items.push(customEnvelopeItem);
 			}
 
-			if (group.destinationCountryCode !== orgCountryCode) {
-				/** @type {LineItem} */
-				const intlDeliveryItem = {
-					id: ++id,
-
-					orgID: group.organization,
-					orgName,
-
-					// For these, each sheet is additional, not just those after the first
-					quantity: group.orderCount,
-					mailType: "Added Services",
-					productDesc: `International Delivery`,
-					destinationCountryCode: null,
-
-					parentID: baseItem.id,
-					groupID: null,
-				};
-
-				items.push(intlDeliveryItem);
-			}
-
 			return items;
 		};
 
@@ -696,7 +676,7 @@ export default {
 
 			items.push(baseItem);
 
-			const innerItems = this.baseGroupItems(group, orgName);
+			const innerItems = this.baseGroupItems(group, orgName, orgCountryCode);
 
 			for (const item of innerItems) {
 				items.push({
@@ -730,28 +710,6 @@ export default {
 
 				items.push(lamItem);
 			}
-
-			if (group.destinationCountryCode !== orgCountryCode) {
-				/** @type {LineItem} */
-				const intlDeliveryItem = {
-					id: ++id,
-
-					orgID: group.organization,
-					orgName,
-
-					// For these, each sheet is additional, not just those after the first
-					quantity: group.orderCount,
-					mailType: "Added Services",
-					productDesc: `International Delivery`,
-					destinationCountryCode: null,
-
-					parentID: baseItem.id,
-					groupID: null,
-				};
-
-				items.push(intlDeliveryItem);
-			}
-
 
 			return items;
 		};
@@ -799,7 +757,7 @@ export default {
 
 			items.push(baseItem);
 
-			const innerItems = this.baseGroupItems(group, orgName);
+			const innerItems = this.baseGroupItems(group, orgName, orgCountryCode);
 
 			for (const item of innerItems) {
 				items.push({
@@ -835,27 +793,6 @@ export default {
 				};
 
 				items.push(addlSheetItem);
-			}
-
-			if (group.destinationCountryCode !== orgCountryCode) {
-				/** @type {LineItem} */
-				const intlDeliveryItem = {
-					id: ++id,
-
-					orgID: group.organization,
-					orgName,
-
-					// For these, each sheet is additional, not just those after the first
-					quantity: group.orderCount,
-					mailType: "Added Services",
-					productDesc: `International Delivery`,
-					destinationCountryCode: null,
-
-					parentID: baseItem.id,
-					groupID: null,
-				};
-
-				items.push(intlDeliveryItem);
 			}
 
 			return items;

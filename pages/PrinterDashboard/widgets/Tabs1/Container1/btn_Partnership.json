@@ -1,0 +1,64 @@
+{
+    "isCompact": false,
+    "boxShadow": "none",
+    "widgetName": "btn_Partnership",
+    "configureMenuItems": {
+        "label": "Configure Menu Items",
+        "id": "config",
+        "config": {
+            "id": "config",
+            "label": "Menu Item",
+            "isVisible": true,
+            "isDisabled": false
+        }
+    },
+    "displayName": "Menu Button",
+    "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
+    "topRow": 0,
+    "bottomRow": 4,
+    "parentRowSpace": 10,
+    "type": "MENU_BUTTON_WIDGET",
+    "hideCard": false,
+    "animateLoading": true,
+    "parentColumnSpace": 19.75,
+    "dynamicTriggerPathList": [],
+    "leftColumn": 47,
+    "dynamicBindingPathList": [{"key": "borderRadius"}],
+    "isDisabled": false,
+    "sourceData": [],
+    "key": "verm0vcpjg",
+    "isDeprecated": false,
+    "rightColumn": 52,
+    "iconName": "briefcase",
+    "menuVariant": "PRIMARY",
+    "widgetId": "5mpo90yjt3",
+    "menuItems": {
+        "menuItem1": {
+            "widgetId": "",
+            "index": 0,
+            "label": "Printers",
+            "id": "menuItem1",
+            "isVisible": true,
+            "isDisabled": false
+        },
+        "menuItem2": {
+            "widgetId": "",
+            "index": 1,
+            "label": "RFP",
+            "id": "menuItem2",
+            "isVisible": true,
+            "isDisabled": false
+        }
+    },
+    "isVisible": true,
+    "label": "Partnership",
+    "version": 1,
+    "parentId": "rreo9ecpq1",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "menuItemsSource": "STATIC",
+    "menuColor": "#2E3D49",
+    "iconAlign": "left",
+    "placement": "BETWEEN"
+}

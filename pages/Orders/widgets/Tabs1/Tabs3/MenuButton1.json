@@ -1,0 +1,62 @@
+{
+    "isCompact": false,
+    "boxShadow": "none",
+    "widgetName": "MenuButton1",
+    "configureMenuItems": {
+        "label": "Configure Menu Items",
+        "id": "config",
+        "config": {
+            "onClick": "{{storeValue('MBitem',currentItem.PrinterName);\nawait set_AllToPrinter.run();\nawait StoreActions.updateOrderGroupVendors();\nawait get_customer_order_details.run();\nawait get_PauseCancel_custOrderDetai.run();\nawait get_printer_order_details.run();\nawait showAlert('Well done!.','success');\n}}",
+            "iconAlign": "left",
+            "id": "config",
+            "label": "{{MenuButton1.sourceData.map((currentItem, currentIndex) => ( currentItem.PrinterName))}}",
+            "isVisible": true,
+            "isDisabled": false
+        }
+    },
+    "dynamicPropertyPathList": [{"key": "configureMenuItems.config.onClick"}],
+    "displayName": "Menu Button",
+    "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
+    "topRow": 0,
+    "bottomRow": 4,
+    "parentRowSpace": 10,
+    "type": "MENU_BUTTON_WIDGET",
+    "hideCard": false,
+    "animateLoading": true,
+    "parentColumnSpace": 11.769287109375,
+    "dynamicTriggerPathList": [{"key": "configureMenuItems.config.onClick"}],
+    "leftColumn": 0,
+    "dynamicBindingPathList": [
+        {"key": "menuColor"},
+        {"key": "borderRadius"},
+        {"key": "configureMenuItems.config.label"},
+        {"key": "sourceData"}
+    ],
+    "isDisabled": false,
+    "sourceData": "{{get_printerlist.data.concat([  {    \"PrinterName\": 'PAUSED'  },  {    \"PrinterName\": \"CANCELLED\"  }])}}\n",
+    "key": "efr89n9985",
+    "isDeprecated": false,
+    "rightColumn": 11,
+    "iconName": "multi-select",
+    "menuVariant": "PRIMARY",
+    "widgetId": "p3ryutjfkc",
+    "menuItems": {"menuItem3": {
+        "widgetId": "",
+        "index": 0,
+        "label": "Third Menu Item",
+        "id": "menuItem3",
+        "isVisible": true,
+        "isDisabled": false
+    }},
+    "isVisible": true,
+    "label": "Send All To:",
+    "version": 1,
+    "parentId": "imtgvif38q",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "menuItemsSource": "DYNAMIC",
+    "menuColor": "{{appsmith.theme.colors.primaryColor}}",
+    "iconAlign": "left",
+    "placement": "CENTER"
+}

@@ -1,0 +1,71 @@
+{
+    "isCompact": false,
+    "boxShadow": "none",
+    "widgetName": "Menu_button",
+    "configureMenuItems": {
+        "label": "Configure Menu Items",
+        "id": "config",
+        "config": {
+            "id": "config",
+            "label": "Menu Item",
+            "isVisible": true,
+            "isDisabled": false
+        }
+    },
+    "displayName": "Menu Button",
+    "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
+    "topRow": 0,
+    "bottomRow": 4,
+    "parentRowSpace": 10,
+    "type": "MENU_BUTTON_WIDGET",
+    "hideCard": false,
+    "animateLoading": false,
+    "parentColumnSpace": 13.9814453125,
+    "dynamicTriggerPathList": [
+        {"key": "menuItems.menuItem5t32gvzbnc.onClick"},
+        {"key": "menuItems.menuItemchlpdcx8u1.onClick"}
+    ],
+    "leftColumn": 61,
+    "dynamicBindingPathList": [{"key": "borderRadius"}],
+    "isDisabled": false,
+    "sourceData": [],
+    "key": "8de2s6u1o4",
+    "isDeprecated": false,
+    "rightColumn": 64,
+    "iconName": "menu",
+    "menuVariant": "PRIMARY",
+    "widgetId": "ikpnzbo3ei",
+    "menuItems": {
+        "menuItemchlpdcx8u1": {
+            "onClick": "{{showModal('modal_change_pw');}}",
+            "iconName": "key",
+            "widgetId": "aj9fd0bcf2",
+            "index": 0,
+            "id": "menuItemchlpdcx8u1",
+            "label": "Change Password",
+            "isDisabled": false,
+            "isVisible": true
+        },
+        "menuItem5t32gvzbnc": {
+            "onClick": "{{Auth.logOut()}}",
+            "iconName": "log-out",
+            "widgetId": "add2gtihvh",
+            "index": 1,
+            "id": "menuItem5t32gvzbnc",
+            "label": "Sign Out",
+            "isDisabled": false,
+            "isVisible": true
+        }
+    },
+    "isVisible": true,
+    "label": "",
+    "version": 1,
+    "parentId": "ldjnr0ghpn",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "menuColor": "#000D3D",
+    "menuItemsSource": "STATIC",
+    "iconAlign": "left",
+    "placement": "CENTER"
+}

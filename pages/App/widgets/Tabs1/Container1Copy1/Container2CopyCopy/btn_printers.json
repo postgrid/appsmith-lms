@@ -1,0 +1,88 @@
+{
+    "isCompact": false,
+    "boxShadow": "none",
+    "widgetName": "btn_printers",
+    "dynamicPropertyPathList": [],
+    "displayName": "Menu Button",
+    "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
+    "topRow": 0,
+    "bottomRow": 4,
+    "parentRowSpace": 10,
+    "type": "MENU_BUTTON_WIDGET",
+    "hideCard": false,
+    "animateLoading": true,
+    "parentColumnSpace": 19.75,
+    "dynamicTriggerPathList": [
+        {"key": "menuItems.menuItem1.onClick"},
+        {"key": "menuItems.menuItem3.onClick"},
+        {"key": "menuItems.menuItem2.onClick"},
+        {"key": "menuItems.menuItemgcx5eam3xh.onClick"},
+        {"key": "menuItems.menuItem99wwdrp04b.onClick"}
+    ],
+    "leftColumn": 12,
+    "dynamicBindingPathList": [{"key": "borderRadius"}],
+    "isDisabled": false,
+    "key": "verm0vcpjg",
+    "isDeprecated": false,
+    "rightColumn": 22,
+    "iconName": "swap-horizontal",
+    "menuVariant": "PRIMARY",
+    "widgetId": "7j24h6r7us",
+    "menuItems": {
+        "menuItemgcx5eam3xh": {
+            "onClick": "{{navigateTo('OrdersSummary', {}, 'SAME_WINDOW');}}",
+            "widgetId": "qdtpw6bftb",
+            "index": 3,
+            "id": "menuItemgcx5eam3xh",
+            "label": "Sales Dashboard",
+            "isDisabled": false,
+            "isVisible": true
+        },
+        "menuItem1": {
+            "onClick": "{{navigateTo('Orders', {}, 'SAME_WINDOW')}}",
+            "widgetId": "",
+            "index": 0,
+            "label": "Manage Orders",
+            "id": "menuItem1",
+            "isVisible": true,
+            "isDisabled": false
+        },
+        "menuItem3": {
+            "onClick": "{{navigateTo('MailingVolume', {}, 'SAME_WINDOW');}}",
+            "widgetId": "",
+            "index": 2,
+            "label": "Mailing & Inventory",
+            "id": "menuItem3",
+            "isVisible": true,
+            "isDisabled": false
+        },
+        "menuItem2": {
+            "onClick": "{{navigateTo('LogSum', {}, 'SAME_WINDOW');}}",
+            "widgetId": "",
+            "index": 1,
+            "label": "Logistics Summary",
+            "id": "menuItem2",
+            "isVisible": true,
+            "isDisabled": false
+        },
+        "menuItem99wwdrp04b": {
+            "onClick": "{{navigateTo('OrderEmailDrafting', {}, 'SAME_WINDOW');}}",
+            "widgetId": "jgelm4178f",
+            "index": 4,
+            "id": "menuItem99wwdrp04b",
+            "label": " Drafting Orders List",
+            "isDisabled": false,
+            "isVisible": true
+        }
+    },
+    "isVisible": true,
+    "label": "Operations",
+    "version": 1,
+    "parentId": "pw51uf6i6i",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "menuItemsSource": "STATIC",
+    "menuColor": "#000d3d",
+    "placement": "CENTER"
+}

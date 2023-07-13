@@ -1,0 +1,68 @@
+{
+    "isCompact": false,
+    "boxShadow": "none",
+    "widgetName": "btn_printers",
+    "displayName": "Menu Button",
+    "iconSVG": "/static/media/icon.0341d17d67020c8bfc560cc5928af2a7.svg",
+    "topRow": 0,
+    "bottomRow": 4,
+    "parentRowSpace": 10,
+    "type": "MENU_BUTTON_WIDGET",
+    "hideCard": false,
+    "animateLoading": true,
+    "parentColumnSpace": 19.75,
+    "dynamicTriggerPathList": [],
+    "leftColumn": 42,
+    "dynamicBindingPathList": [{"key": "borderRadius"}],
+    "isDisabled": false,
+    "key": "verm0vcpjg",
+    "isDeprecated": false,
+    "rightColumn": 47,
+    "iconName": "swap-horizontal",
+    "menuVariant": "PRIMARY",
+    "widgetId": "5f1w5cdggb",
+    "menuItems": {
+        "menuItem1": {
+            "widgetId": "",
+            "index": 0,
+            "label": "Orders",
+            "id": "menuItem1",
+            "isVisible": true,
+            "isDisabled": false
+        },
+        "menuItem3": {
+            "widgetId": "",
+            "index": 2,
+            "label": "Mailing",
+            "id": "menuItem3",
+            "isVisible": true,
+            "isDisabled": false
+        },
+        "menuItem2": {
+            "widgetId": "",
+            "index": 1,
+            "label": "Allocation",
+            "id": "menuItem2",
+            "isVisible": true,
+            "isDisabled": false
+        },
+        "menuItem99wwdrp04b": {
+            "widgetId": "jgelm4178f",
+            "index": 3,
+            "id": "menuItem99wwdrp04b",
+            "label": "Archives",
+            "isDisabled": false,
+            "isVisible": true
+        }
+    },
+    "isVisible": true,
+    "label": "Operations",
+    "version": 1,
+    "parentId": "rreo9ecpq1",
+    "renderMode": "CANVAS",
+    "isLoading": false,
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "menuItemsSource": "STATIC",
+    "menuColor": "#2E3D49",
+    "placement": "CENTER"
+}
