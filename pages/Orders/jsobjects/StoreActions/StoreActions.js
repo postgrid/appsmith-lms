@@ -842,8 +842,8 @@ export default {
 			organizationIDs.push(ID.OrgID)
 		});
 
-		const enter = totalCollateral.filter(order => order.orgID === 'org_iRzUYiZvDusyts2gVnUUCL')
-		console.log("JG CM", enter)
+		const enter = totalCollateral.filter(order => order.orgID === 'org_3pWY3piAx4H7XNrpY25RU2')
+		console.log("JG ENTER", enter)
 
 		const parents = totalCollateral.filter(order => order.orgID !== null);
 		console.log("JG parents", parents.length)

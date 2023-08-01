@@ -33,7 +33,7 @@
         {"key": "sourceData"}
     ],
     "isDisabled": false,
-    "sourceData": "{{get_printerlist.data.concat([  {    \"PrinterName\": 'PAUSED'  },  {    \"PrinterName\": \"CANCELLED\"  }])}}\n",
+    "sourceData": "{{get_printerlist.data.concat([    {    \"PrinterName\": \"CANCELLED\"  }])}}\n",
     "key": "efr89n9985",
     "isDeprecated": false,
     "rightColumn": 11,

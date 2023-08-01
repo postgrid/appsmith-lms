@@ -41,7 +41,8 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-05-08T04:17:29Z"
   },
   "id": "LogSum_get_user_department",
   "deleted": false,

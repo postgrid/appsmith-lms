@@ -26,7 +26,7 @@
     ],
     "shouldTruncate": false,
     "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-    "text": "{{\"Department:  \"+get_user_department.data[0].Department}}",
+    "text": "{{\"Department:  \"+get_user_department.data.length > 0 ? get_user_department.data[0] .Department : \"\"}}",
     "key": "e77w27x4dy",
     "isDeprecated": false,
     "rightColumn": 15,
