@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "get_allorder_printcost",
+    "name": "Query1",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -15,10 +15,10 @@
     },
     "pageId": "LogSum",
     "actionConfiguration": {
-      "timeoutInMillisecond": 10000,
+      "timeoutInMillisecond": 100000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT cl1.\"Id\", cl1.\"SubItemID\", cl1.\"Qty\", cl1.\"Rate\", cl1.\"Amount\", cl1.\"InitialProdDescription\" FROM \"PrinterLineItems\" cl1\n\tLEFT JOIN \"PrinterPrice\" c1 ON (cl1.\"PrinterPriceID\" = c1.\"Id\")\n\tLEFT JOIN \"Products\" p1 ON (c1.\"ProductID\" = p1.\"Id\")\n\tINNER JOIN \"Invoice\" i ON ( i.\"InvoiceID\" = cl1.\"InvoiceID\"  ) \nWHERE i.\"InvoiceDate\"::date >= '{{moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")}}'::date ORDER BY \"Id\" ASC",
+      "body": "SELECT cl1.\"Id\", cl1.\"Qty\", cl1.\"Rate\", cl1.\"Amount\" FROM \"PrinterLineItems\" cl1\n\tLEFT JOIN \"PrinterPrice\" c1 ON (cl1.\"PrinterPriceID\" = c1.\"Id\")\n\tLEFT JOIN \"Products\" p1 ON (c1.\"ProductID\" = p1.\"Id\")\n\tINNER JOIN \"Invoice\" i ON ( i.\"InvoiceID\" = cl1.\"InvoiceID\"  ) \nWHERE i.\"InvoiceDate\"::date >= '{{moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")}}'::date",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -33,7 +33,9 @@
       }
     ],
     "isValid": true,
-    "invalids": [],
+    "invalids": [
+      "'Query timeout' field must be an integer between 0 and 60000"
+    ],
     "messages": [],
     "jsonPathKeys": [
       "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
@@ -41,10 +43,9 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": [],
-    "createdAt": "2023-05-08T06:42:31Z"
+    "userPermissions": []
   },
-  "id": "LogSum_get_allorder_printcost",
+  "id": "LogSum_Query1",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_645899d7d192432eef648d21"
+  "gitSyncId": "64c9416ee7b8e74ccd45fed9_64c95063e7b8e74ccd460120"
 }

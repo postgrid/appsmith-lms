@@ -1,34 +1,70 @@
 export default {
 
 	rundateoforder: async () => {
-		const buildCalculation = (lineItems, subTotal) => {
+		const generateOrderLineMap = (lineItems) => {
+			const lineItemMap = [];
+			let currentMain = [];
+			let firstRun = true;
+			for(const lineItem of lineItems){
+				if(lineItem.SubItemID === null){
+					if(firstRun){
+						currentMain = [lineItem];
+						firstRun = false;
+					}else if(currentMain.length > 0){
+						lineItemMap.push(currentMain);
+						currentMain = [lineItem];
+					}		
+				} else {
+					if(currentMain[0].Id == lineItem.SubItemID){
+						currentMain.push(lineItem)
+					}
+				}
+			}
+			return lineItemMap;
+		};
+		const getCalcAndDescription = (lineItems, type) => {
+			let totalAmount = 0;
 			let quantity = 0;
 			let mailPrice = 0;
 			let extraSheetPrice = 0;
 			let extraSheetQty = 0;
 			const rates = [];
+			let sheets = 0;
 
+			let productDescription = ''
 			for(const lineItem of lineItems){
-				if(lineItem.SubItemID === null){
-					mailPrice = lineItem.Rate;
-					quantity = lineItem.Qty;
-				} else if(lineItem.InitialProdDescription){
-					if(!lineItem.InitialProdDescription.includes('Envelope')){
-						if(lineItem.InitialProdDescription.includes('Extra') || lineItem.InitialProdDescription.includes('add')){
-							extraSheetPrice = lineItem.Rate;
-							extraSheetQty = lineItem.Qty;
-						} else {
-							rates.push(lineItem.Rate);
-						}
+				totalAmount += lineItem.Amount;
+				if(type == 'customer'){
+					if(lineItem.SubItemID === null){
+						mailPrice = lineItem.Rate;
+						quantity = lineItem.Qty;
+						sheets = lineItem.Sheets;
+						productDescription = lineItem.ProductDescription;
+					} else {
+							if(lineItem.ProductDescription.includes('Extra') || lineItem.ProductDescription.includes('add')){
+								productDescription += ` ➤ (${sheets}) ${lineItem.ProductDescription}`
+								extraSheetPrice = lineItem.Rate;
+								extraSheetQty = lineItem.Qty;
+							} else {
+								if(!lineItem.ProductDescription.includes('Envelope')){
+									rates.push(lineItem.Rate ?? null);
+								}
+								productDescription += ` ➤ ${lineItem.ProductDescription}`
+							}
 					}
-				} else if(lineItem.ProductDescription ){
-					if(!lineItem.ProductDescription.includes('Envelope')){
-						if(lineItem.ProductDescription.includes('Extra') || lineItem.ProductDescription.includes('add')){
-							extraSheetPrice = lineItem.Rate;
-							extraSheetQty = lineItem.Qty;
-						} else {
-							rates.push(lineItem.Rate);
-						}
+				} else {
+					if(lineItem.SubItemID === null){
+						mailPrice = lineItem.Rate;
+						quantity = lineItem.Qty;
+					} else {
+							if(lineItem.InitialProdDescription.includes('Extra') || lineItem.InitialProdDescription.includes('add')){
+								extraSheetPrice = lineItem.Rate;
+								extraSheetQty = lineItem.Qty;
+							} else {
+								if(!lineItem.InitialProdDescription.includes('Envelope')){
+									rates.push(lineItem.Rate ?? null);
+								}
+							}
 					}
 				}
 			}
@@ -41,31 +77,60 @@ export default {
 			});
 
 			const calculation = `${quantity} * (${mailPrice}${extraSheetQty !== 0 ? ` + (${extraSheetPrice} * ${extraSheetQty / quantity})` : ''}
-				${serviceString}) = ${subTotal}`;
-
-			return calculation;
+				${serviceString}) = ${totalAmount}`;
+			
+			if(type == 'customer'){
+				return {
+					productDescription,
+					calculation,
+					totalAmount
+				}
+			} else {
+				return {
+					calculation,
+					totalAmount
+				}
+			}
+			
 		};
-
-		await get_invoicelist.run(()=>{
-			get_allorders_invoice.run(),
-				get_allorder_items.run(),
-				get_allorder_printcost.run(),
-				get_customer_price_info.run(),
-				get_printer_price_info.run()
-		}, () => {});
-		const combinedData = [];
+		
 		await storeValue('logSumTableProgress', 'loading...');
-		console.log("JG get_allorders_invoice", get_allorders_invoice.data)
-		for(const item of get_allorders_invoice.data){
-			const tier2 = get_allorder_items.data.find((item2) => item.Id == item2.Id) || {};
-			const customerLineItems = get_customer_price_info.data.filter(order => order.Id === item.Id || order.SubItemID === item.Id)
-			console.log("JG customerLineItems", customerLineItems)
-			const calcCustomer = buildCalculation(customerLineItems, tier2.Summary);
-			console.log("JG calcCustomer")
-			const tier3 = get_allorder_printcost.data.find((item3) => item.Id == item3.Id) || {};
-			const printerLineItems = await get_printer_price_info.data.filter(order => order.Id === item.Id || order.SubItemID === item.Id);
-			const calcPrinter = !tier3 || JSON.stringify(tier3) === '{}'  ? '' : buildCalculation(printerLineItems, tier3.PSummary);
-			combinedData.push({ ...item, ...tier2 ,...tier3, calcCustomer, calcPrinter});
+
+		await get_customer_price_info.run();
+		await get_allorder_printcost.run();
+
+		const combinedData = [];
+		const customerLineItems = generateOrderLineMap(get_customer_price_info.data);
+		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
+
+		for (const value of customerLineItems) {
+			const printerItem = printerLineItems.find(printerItem => printerItem[0].Id == value[0].Id);
+			const customerInfo = getCalcAndDescription(value, "customer")
+			const printerInfo = getCalcAndDescription(printerItem, "printer")
+
+			const orderInfo = {
+				Id: value[0].Id,
+				CustomerName: value[0].CustomerName,
+				InvoiceID: value[0].InvoiceId,
+				CustomerPriceID: value[0].CustomerPriceID,
+				Qty: value[0].Qty,
+				Printer: value[0].Printer,
+				OrderStatus: value[0].OrderStatus,
+				Notes: value[0].Notes,
+				Destination: value[0].Destination,
+				InvoiceDate: value[0].InvoiceDate,
+				PaymentMethod: value[0].PaymentMethod,
+				InvoiceStatus: value[0].InvoiceStatus,
+				InvoiceOrderStatus: value[0].InvoiceOrderStatus,
+				OrderDetails: customerInfo.productDescription,
+				CustomerCalculation: customerInfo.calculation,
+				Summary: customerInfo.totalAmount,
+				PrinterCalculation: printerInfo.calculation,
+				PrinterSummary: printerInfo.totalAmount
+			}
+			
+			combinedData.push(orderInfo);
+
 		}
 
 		await storeValue('logSummary',combinedData);

@@ -15,7 +15,7 @@
     },
     "pageId": "LogSum",
     "actionConfiguration": {
-      "timeoutInMillisecond": 10000,
+      "timeoutInMillisecond": 100000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "body": "WITH printer_line_items_query AS (\n  SELECT\n    p3.\"Id\",\n\t\tp3.\"Printer\",\n    p3.\"Qty\",\n    p3.\"Rate\",\n    p3.\"Amount\",\n    p3.\"SubItemID\",\n    i.\"InvoiceDate\"\n  FROM\n    \"public\".\"PrinterLineItems\" p3\n    INNER JOIN \"public\".\"Invoice\" i ON (i.\"InvoiceID\" = p3.\"InvoiceID\")\n  WHERE\n     to_date(cast(i.\"InvoiceDate\" as TEXT), 'YYYY-MM-DD') >= '{{moment(DatePicker1.selectedDate).format('YYYY-MM-DD')}}'\n    AND to_date(cast(i.\"InvoiceDate\" as TEXT), 'YYYY-MM-DD') <= '{{moment(DatePicker1.selectedDate).format('YYYY-MM-DD')}}'\n\t\t\n) select * FROM printer_line_items_query;",
@@ -33,7 +33,9 @@
       }
     ],
     "isValid": true,
-    "invalids": [],
+    "invalids": [
+      "'Query timeout' field must be an integer between 0 and 60000"
+    ],
     "messages": [],
     "jsonPathKeys": [
       "moment(DatePicker1.selectedDate).format('YYYY-MM-DD')"

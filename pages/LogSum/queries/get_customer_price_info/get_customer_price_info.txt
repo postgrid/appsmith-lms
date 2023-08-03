@@ -33,4 +33,22 @@ WITH customer_line_items_query AS (
     AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment(DatePicker1.selectedDate).format('YYYY-MM-DD')}}'
     AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '{{moment(DatePicker1.selectedDate).format('YYYY-MM-DD')}}'
 		
-) select * FROM customer_line_items_query;
+), sub_items AS (
+	SELECT * FROM customer_line_items_query WHERE "SubItemID" IS NOT NULL
+),
+item_qty_combo AS (
+	SELECT
+	 t1."Id" AS "Id",
+	t1."Qty" AS "Qty",
+	t2."Qty" AS "SubQty"
+	FROM customer_line_items_query t1
+	LEFT JOIN sub_items t2 ON (t2."SubItemID" = t1."Id" AND (t2."ProductDescription" ILIKE '%Extra%' OR t2."ProductDescription" ILIKE '%add%'))
+),
+item_sheets_count AS (
+	SELECT 
+		t4."Id" AS "Id",
+		(t4."SubQty" / t4."Qty") AS "Sheets"
+	FROM "item_qty_combo" t4
+)
+SELECT fci.*, t3."Sheets" FROM "customer_line_items_query" fci
+	LEFT JOIN "item_sheets_count" t3 ON (t3."Id" = fci."Id") ORDER BY "Id" ASC
