@@ -332,7 +332,8 @@ export default {
 			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
 			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
 
-			const sizeStr = {
+			const sizeStr = group.destinationCountryCode === 'GB' ||
+			group.destinationCountryCode === 'AU' ? 'A4 Size' : {
 				us_letter: 'Letter Size',
 				us_legal: 'Legal Size',
 				a4: 'A4 Size',
@@ -434,6 +435,9 @@ export default {
 				return item;
 			}
 
+			if(group.organization == "org_7KUi87TxMGrBqcJvi3TLon"){
+				console.log("JG grenwich", sizeStr, colorDoubleSidedStr, classStr)
+			}
 			/** @type LineItem */
 			const baseItem = formatCollateral({
 				id: ++id,
@@ -450,6 +454,10 @@ export default {
 				vendor: group.vendor,
 				groupID: group._id,
 			});
+			
+			if(group.organization == "org_7KUi87TxMGrBqcJvi3TLon"){
+				console.log("JG grenwich", baseItem)
+			}
 
 			items.push(baseItem);
 
@@ -589,6 +597,9 @@ export default {
 				items.push(customEnvelopeItem);
 			}
 
+			if(group.organization == "org_7KUi87TxMGrBqcJvi3TLon"){
+				console.log("JG grenwich", items)
+			}
 			return items;
 		};
 
@@ -808,11 +819,13 @@ export default {
 		await chequeGroups.run();		
 		console.log("JG orgs", orgs.data)
 		console.log("JG letterGroups", letterGroups.data)
+		console.log("JG grenwich", letterGroups.data.find(org => org.organization == "org_7KUi87TxMGrBqcJvi3TLon"));
 
 		const letters = this.letterGroupsLineItems();
 		const postcards = this.postcardGroupsLineItems();
 		const cheques = this.chequeGroupsLineItems();
 
+		console.log("JG grenwich final", letters.filter(org => org.orgID == "org_7KUi87TxMGrBqcJvi3TLon"));
 
 		/**
          * @param {LineItem[]} items

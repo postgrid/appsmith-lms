@@ -17,7 +17,7 @@
     "animateLoading": false,
     "parentColumnSpace": 18.828125,
     "dynamicTriggerPathList": [],
-    "leftColumn": 23,
+    "leftColumn": 29,
     "dynamicBindingPathList": [
         {"key": "accentColor"},
         {"key": "defaultTab"},
