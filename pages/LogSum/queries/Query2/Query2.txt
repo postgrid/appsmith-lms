@@ -1,0 +1,39 @@
+WITH full_customer_items AS (
+	SELECT "CustomerLineItems"."Id", p1."ProductDescription", "CustomerLineItems"."Qty", "CustomerLineItems"."Amount", CustomerLineItems"."SubItemID" FROM "CustomerLineItems"
+	LEFT JOIN "CustomerPrice" c1 ON ("CustomerLineItems"."CustomerPriceID" = c1."Id")
+	LEFT JOIN "Products" p1 ON (c1."ProductID" = p1."Id")
+),
+main_items AS (
+	SELECT * FROM full_customer_items WHERE "SubItemID" IS NULL
+),
+sub_items AS (
+	SELECT * FROM full_customer_items WHERE "SubItemID" IS NOT NULL
+),
+item_qty_combo AS (
+	SELECT
+	 t1."Id" AS "Id",
+	t1."Qty" AS "Qty",
+	(SELECT "QTY" FROM sub_items t2 WHERE t2."SubItemID" = t1."Id" AND t2."ProductDescription" ILIKE '%Extra%' OR t2."ProductDescription" ILIKE '%add%') AS SubQty
+),
+	total_amount AS (
+SELECT SUM("Amount") AS total FROM full_customer_items
+)
+SELECT
+COALESCE(full_customer_items."SubItemID", full_customer_items."Id") as "Id",
+string_agg(
+    CASE
+      WHEN p."ProductDescription" ILIKE '%Extra%' OR p."ProductDescription" ILIKE '%add%'
+      THEN
+        '(' || q."Qty" / it."Qty" || ') ' || p."ProductDescription"
+      ELSE
+        p."ProductDescription"
+      END, ' ➤ '
+) as "OrderDetails",
+SUM(it."Amount") as "Summary"
+FROM full_customer_items it
+JOIN "public"."CustomerPrice" c2 ON (it."CustomerPriceID" = c2."Id")
+JOIN "public"."Products" p ON (p."Id" = c2."ProductID")
+JOIN item_qty_combo q ON (q."Id" = it."Id")
+GROUP BY COALESCE(it."SubItemID", it."Id")
+ORDER BY "Id"
+

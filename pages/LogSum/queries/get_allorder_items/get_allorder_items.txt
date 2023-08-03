@@ -1,20 +1,26 @@
-WITH RECURSIVE category_tree AS (
-SELECT "Id", "SubItemID", "InvoiceID", "Qty", "CustomerPriceID", "Amount", "Printer", "Destination"
-FROM "CustomerLineItems"
-WHERE "SubItemID" IS NULL -- start with top-level categories
-UNION ALL
-SELECT oi."Id", oi."SubItemID", oi."InvoiceID", oi."Qty", oi."CustomerPriceID", oi."Amount", oi."Printer", oi."Destination"
-FROM "CustomerLineItems" oi
-JOIN category_tree ct ON oi."SubItemID" = ct."Id"
-), total_amount AS (
-SELECT SUM("Amount") AS total FROM category_tree
+WITH full_customer_items AS (
+	SELECT cl1."Id", cl1."SubItemID", cl1."Amount", cl1."Printer", cl1."Destination", p1."ProductDescription", cl1."Qty", i."InvoiceID" FROM "CustomerLineItems" cl1
+	LEFT JOIN "CustomerPrice" c1 ON (cl1."CustomerPriceID" = c1."Id")
+	LEFT JOIN "Products" p1 ON (c1."ProductID" = p1."Id")
+	INNER JOIN "Invoice" i ON ( i."InvoiceID" = cl1."InvoiceID"  ) 
+WHERE i."InvoiceDate"::date >= '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}'::date
+),
+sub_items AS (
+	SELECT * FROM full_customer_items WHERE "SubItemID" IS NOT NULL
+),
+item_qty_combo AS (
+	SELECT
+	 t1."Id" AS "Id",
+	t1."Qty" AS "Qty",
+	t2."Qty" AS "SubQty"
+	FROM full_customer_items t1
+	LEFT JOIN sub_items t2 ON (t2."SubItemID" = t1."Id" AND (t2."ProductDescription" ILIKE '%Extra%' OR t2."ProductDescription" ILIKE '%add%'))
+),
+item_sheets_count AS (
+	SELECT 
+		t4."Id" AS "Id",
+		(t4."SubQty" / t4."Qty") AS "Sheets"
+	FROM "item_qty_combo" t4
 )
-SELECT
-COALESCE(it."SubItemID", it."Id") as "Id",
-string_agg(p."ProductDescription", ' ➤ ') as "OrderDetails",
-SUM(it."Amount") as "Summary"
-FROM category_tree it
-JOIN "public"."CustomerPrice" c2 ON (it."CustomerPriceID" = c2."Id")
-JOIN "public"."Products" p ON (p."Id" = c2."ProductID")
-GROUP BY COALESCE(it."SubItemID", it."Id")
-ORDER BY "Id"
+SELECT fci."Id", fci."SubItemID", fci."Amount", fci."Printer", fci."Destination", fci."ProductDescription", fci."Qty", t3."Sheets" FROM "full_customer_items" fci
+	LEFT JOIN "item_sheets_count" t3 ON (t3."Id" = fci."Id")
