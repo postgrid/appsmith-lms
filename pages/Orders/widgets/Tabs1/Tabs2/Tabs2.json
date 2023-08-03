@@ -18,7 +18,7 @@
     "animateLoading": false,
     "parentColumnSpace": 19.171875,
     "dynamicTriggerPathList": [{"key": "onTabSelected"}],
-    "leftColumn": 23,
+    "leftColumn": 22,
     "dynamicBindingPathList": [{"key": "backgroundColor"}],
     "children": [
         {
