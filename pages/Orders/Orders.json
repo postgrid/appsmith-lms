@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 82,
+          "version": 83,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -122,6 +122,16 @@
               "jsonPathKeys": [
                 "(Table3CopyCopy.pageNo - 1) * Table3CopyCopy.pageSize",
                 "Table3CopyCopy.pageSize",
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Orders_get_selfmailer_day_volume",
+              "name": "get_selfmailer_day_volume",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
                 "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000

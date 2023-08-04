@@ -3,5 +3,4 @@ FROM "public"."Invoice" i
 	INNER JOIN "public"."CustomerLineItems" c1 ON ( c1."InvoiceID" = i."InvoiceID"  )  
 	INNER JOIN "public"."CustomerPrice" c2 ON ( c2."Id" = c1."CustomerPriceID"  )  
 	INNER JOIN "public"."Products" p ON ( p."Id" = c2."ProductID"  )  
-WHERE  p."ProductType" IN ('Cheque', 'Letter', 'Postcard','Custom', 'Selfmailer')   
-AND (extract(MONTH from i."InvoiceDate") = '{{moment().format('MM')}}' )
+WHERE p."ProductType" = 'Selfmailer'   AND extract(Month from i."InvoiceDate") ='{{moment().format('MM')}}' AND  c1."Printer" NOT IN ('CANCELLED','PAUSED')

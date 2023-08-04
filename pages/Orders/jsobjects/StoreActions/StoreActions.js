@@ -8,7 +8,6 @@ export default {
 
 		// add mongo connection and update the vendor for this
 		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
-		console.log("JG", orderGroupIDs, currentRow);
 		const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
 		const vendorID = await (async () => {
@@ -45,7 +44,7 @@ export default {
 		}});
 
 		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
-		console.log("JG", orderGroupIDs, currentRow);
+
 		if(orderGroupIDs.length > 0){
 			const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
@@ -69,18 +68,13 @@ export default {
 
 	},
 	updateOrderGroupVendors: async () => {
-		console.log("JG ", Table3Copy.tableData.slice(0, -1));
-
 		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (currentRow) => {
-			console.log("JG print line ",await get_printer_line_item.run({currentRow}));
 			return (await get_printer_line_item.run({currentRow}))[0].OrderGroupID;
 		}));
 
 		const letterOrderGroups = [];
 		const postcardOrderGroups = [];
 		const chequeOrderGroups = [];
-
-		console.log("JG orderGroupIDs", orderGroupIDs);
 
 		for(const orderGroupID of orderGroupIDs){
 			if(orderGroupID !== "null"){
@@ -95,7 +89,6 @@ export default {
 			}
 		}
 
-		console.log("JG chequeOrderGroups", chequeOrderGroups);
 		const vendorID = await (async () => {
 			if(appsmith.store.MBitem === "PAUSED" || appsmith.store.MBitem === "CANCELLED"){
 				return appsmith.store.MBitem;
@@ -320,10 +313,7 @@ export default {
 
 		return items;
 	},
-	letterGroupsLineItems() {
-		/** @type Map<string, string> */
-		const orgNames = new Map(orgs.data.map((o) => [o._id, o.name]));
-
+	letterGroupsLineItems(orgNames) {
 		/** @param {LetterGroup} group */
 		const groupLineItems = (group) => {
 			/** @type {LineItem[]} */
@@ -435,9 +425,6 @@ export default {
 				return item;
 			}
 
-			if(group.organization == "org_7KUi87TxMGrBqcJvi3TLon"){
-				console.log("JG grenwich", sizeStr, colorDoubleSidedStr, classStr)
-			}
 			/** @type LineItem */
 			const baseItem = formatCollateral({
 				id: ++id,
@@ -454,10 +441,6 @@ export default {
 				vendor: group.vendor,
 				groupID: group._id,
 			});
-			
-			if(group.organization == "org_7KUi87TxMGrBqcJvi3TLon"){
-				console.log("JG grenwich", baseItem)
-			}
 
 			items.push(baseItem);
 
@@ -477,8 +460,7 @@ export default {
 
 			// TODO(Apaar): Is Math.ceil robust enough for our use case? Is there ever
 			// a scenario where 4 / 2 could be rounded to 3?
-			const sheetCount = group.doubleSided
-			? Math.ceil(group.pageCount / 2)
+			const sheetCount = group.doubleSided ? Math.ceil(group.pageCount / 2)
 			: group.pageCount;
 
 			if (sheetCount > 1) {
@@ -558,8 +540,7 @@ export default {
 
 					// We only seem to specify org in US
 					productDesc: `${
-					group.destinationCountryCode === 'US'
-					? orgName + ' '
+					group.destinationCountryCode === 'US' ? orgName + ' '
 					: ''
 				}#9 Envelope`,
 					destinationCountryCode: null,
@@ -585,8 +566,8 @@ export default {
 
 					quantity: group.orderCount,
 					mailType: 'Custom Envelope',
-					productDesc: orgName.includes('Country')
-					? `${orgName} #10 Envelope`
+					productDesc: orgName.includes('Country') ? 
+					`${orgName} #10 Envelope`
 					: `${orgName} Full Front Window Envelope`,
 					destinationCountryCode: null,
 
@@ -597,18 +578,12 @@ export default {
 				items.push(customEnvelopeItem);
 			}
 
-			if(group.organization == "org_7KUi87TxMGrBqcJvi3TLon"){
-				console.log("JG grenwich", items)
-			}
 			return items;
 		};
 
 		return this.mapGroups(letterGroups.data, groupLineItems);
 	},
-	postcardGroupsLineItems() {
-		/** @type Map<string, string> */
-		const orgNames = new Map(orgs.data.map((o) => [o._id, o.name]));
-
+	postcardGroupsLineItems(orgNames) {
 		/** @param {PostcardGroup} group */
 		const groupLineItems = (group) => {
 			/** @type LineItem[] */
@@ -728,10 +703,7 @@ export default {
 		return this.mapGroups(postcardGroups.data, groupLineItems);
 	},
 
-	chequeGroupsLineItems() {
-		/** @type Map<string, string> */
-		const orgNames = new Map(orgs.data.map((o) => [o._id, o.name]));
-
+	chequeGroupsLineItems(orgNames) {
 		/** @param {ChequeGroup} group */
 		const groupLineItems = (group) => {
 			/** @type LineItem[] */
@@ -781,7 +753,6 @@ export default {
 				});
 			}
 
-			console.log("JG cheque", group);
 			if (group.letterPageCount) {
 				// Assume BW SS for cheque letters
 				const sheetCount = group.letterPageCount;
@@ -811,21 +782,75 @@ export default {
 
 		return this.mapGroups(chequeGroups.data, groupLineItems);
 	},
+	selfmailerGroupsLineItems(orgNames) {
+		const groupLineItems = (group) => {
+			/** @type LineItem[] */
+			const items = [];
+
+			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
+			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
+
+			const sizeStr = group.size == "8.5x11_bifold" ? '8.5x11 - Bifold' :group.size;
+
+			const classStr = this.classStr(group);
+
+			let id = 0;
+
+			const formatCollateral = (item) => {
+				return item;
+			}
+
+			/** @type LineItem */
+			const baseItem = formatCollateral({
+				id: ++id,
+
+				orgID: group.organization,
+				orgName,
+
+				quantity: group.orderCount,
+				mailType: 'Selfmailer',
+				productDesc: `Self Mailer ${sizeStr} ${classStr}`,
+				destinationCountryCode: group.destinationCountryCode,
+
+				parentID: null,
+				vendor: group.vendor,
+				groupID: group._id,
+			});
+
+			items.push(baseItem);
+
+			const innerItems = this.baseGroupItems(group, orgName, orgCountryCode);
+
+			for (const item of innerItems) {
+				items.push({
+					...item,
+
+					id: ++id,
+					destinationCountryCode: null,
+
+					parentID: baseItem.id,
+					groupID: null,
+				});
+			}
+			
+			return items;
+		};
+
+		return this.mapGroups(selfMailerGroups.data.data, groupLineItems);
+	},
 	updateOrderInfo: async () => {
-		console.log("JG start", DatePicker1.selectedDate)
 		await orgs.run();
 		await letterGroups.run();
 		await postcardGroups.run();
 		await chequeGroups.run();		
-		console.log("JG orgs", orgs.data)
-		console.log("JG letterGroups", letterGroups.data)
-		console.log("JG grenwich", letterGroups.data.find(org => org.organization == "org_7KUi87TxMGrBqcJvi3TLon"));
+		await selfMailerGroups.run();
+		
+		const orgNames = new Map(orgs.data.map((o) => [o._id, o.name]));
 
-		const letters = this.letterGroupsLineItems();
-		const postcards = this.postcardGroupsLineItems();
-		const cheques = this.chequeGroupsLineItems();
-
-		console.log("JG grenwich final", letters.filter(org => org.orgID == "org_7KUi87TxMGrBqcJvi3TLon"));
+		const letters = this.letterGroupsLineItems(orgNames);
+		const postcards = this.postcardGroupsLineItems(orgNames);
+		const cheques = this.chequeGroupsLineItems(orgNames);
+		const selfmailers = this.selfmailerGroupsLineItems(orgNames);
 
 		/**
          * @param {LineItem[]} items
@@ -842,8 +867,9 @@ export default {
 
 		renumberItems(postcards, letters.length);
 		renumberItems(cheques, letters.length + postcards.length);
+		renumberItems(selfmailers, letters.length + postcards.length + cheques.length);
 
-		const totalCollateral = letters.concat(postcards).concat(cheques);
+		const totalCollateral = letters.concat(postcards).concat(cheques).concat(selfmailers);
 
 		let orderGroupIds = [];
 		(await get_order_group_ids.run()).forEach(ID => {
@@ -855,16 +881,6 @@ export default {
 			organizationIDs.push(ID.OrgID)
 		});
 
-		const enter = totalCollateral.filter(order => order.orgID === 'org_3pWY3piAx4H7XNrpY25RU2')
-		console.log("JG ENTER", enter)
-
-		const parents = totalCollateral.filter(order => order.orgID !== null);
-		console.log("JG parents", parents.length)
-
-		console.log("JG totalCollateral", totalCollateral);
-		console.log("JG orderGroupIds", orderGroupIds.length);
-		console.log("JG orderGroupIds", orderGroupIds);
-		console.log("JG orderGroupIds", orderGroupIds.includes("cheque_group_r13jhQaHfa6SbLyPzAyg2h"));
 		//filter only the ones that are not currently added
 		const newCollateral = [];
 		let skipCurrent = true;
@@ -883,13 +899,7 @@ export default {
 				}
 			} else {
 				if(updateGroup === true){
-					//update all of the stuff
-					//customer line items
-					//printer line items
-					//envelope inventory
-					console.log("JG updateGroup", groupToAdd);
 					await storeValue('newList',JSON.parse(JSON.stringify(groupToAdd).replaceAll("'", "''")));
-					console.log("JG newList",appsmith.store.newList );
 					await reset_Id_sequence.run();
 					await Promise.all([  
 						set_customerprice.run(),
@@ -924,13 +934,7 @@ export default {
 		}
 		if(updateGroup === true){
 			const order = totalCollateral[totalCollateral.length - 1];
-			//update all of the stuff
-			//customer line items
-			//printer line items
-			//envelope inventory
-			console.log("JG updateGroup", groupToAdd);
 			await storeValue('newList',JSON.parse(JSON.stringify(groupToAdd).replaceAll("'", "''")));
-			console.log("JG newList",appsmith.store.newList );
 			await reset_Id_sequence.run();
 			await Promise.all([
 				set_customerprice.run(),
@@ -948,7 +952,6 @@ export default {
 		}
 
 		//show an alert on the screen if there are any new order groups
-		console.log("JG newCollateral", newCollateral.length, newCollateral);
 		showAlert(`There was ${newCollateral.length} Order Groups added.`)
 
 		await storeValue('newList',JSON.parse(JSON.stringify(newCollateral).replaceAll("'", "''")));		

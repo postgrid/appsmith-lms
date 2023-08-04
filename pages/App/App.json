@@ -101,6 +101,16 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "App_get_selfmailer_month_volume",
+              "name": "get_selfmailer_month_volume",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment().format('MM')"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "App_get_total_customers",
               "name": "get_total_customers",
               "confirmBeforeExecute": false,

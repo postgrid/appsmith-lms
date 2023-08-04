@@ -17,7 +17,7 @@
     "fontFamily": "Nunito Sans",
     "parentColumnSpace": 19.5,
     "dynamicTriggerPathList": [],
-    "leftColumn": 0,
+    "leftColumn": 4,
     "dynamicBindingPathList": [
         {"key": "truncateButtonColor"},
         {"key": "borderRadius"},
@@ -28,7 +28,7 @@
     "text": "EOD Summary(Daily) : {{Table1.filteredTableData.map(x => x.Total).reduce((a, i) => a + Number(i), 0) /2 }}",
     "key": "uqtbm4zdj8",
     "isDeprecated": false,
-    "rightColumn": 29,
+    "rightColumn": 33,
     "textAlign": "CENTER",
     "dynamicHeight": "AUTO_HEIGHT",
     "widgetId": "w8yunveto9",

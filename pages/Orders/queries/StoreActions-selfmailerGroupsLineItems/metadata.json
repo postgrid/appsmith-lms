@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "chequeGroupsLineItems",
-    "fullyQualifiedName": "StoreActions.chequeGroupsLineItems",
+    "name": "selfmailerGroupsLineItems",
+    "fullyQualifiedName": "StoreActions.selfmailerGroupsLineItems",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -39,9 +39,10 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-08-04T14:02:52Z"
   },
-  "id": "Orders_StoreActions.chequeGroupsLineItems",
+  "id": "Orders_StoreActions.selfmailerGroupsLineItems",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6492fcc37204916015a22f82"
+  "gitSyncId": "64cc02d9e1f91323174c9f3f_64cd050cb66be44a5c6e28c0"
 }
