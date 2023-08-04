@@ -2,14 +2,14 @@ SELECT COALESCE(cu."CustomerName", 'GrandTotal (' || COUNT(DISTINCT cu."Customer
 SUM(CASE WHEN p."ProductType" = 'Cheque' THEN c1."Qty" ELSE NULL END) AS "Cheques",
 SUM(CASE WHEN p."ProductType" = 'Letter' THEN c1."Qty" ELSE NULL END) AS "Letters",
 SUM(CASE WHEN p."ProductType" = 'Postcard' THEN c1."Qty" ELSE NULL END) AS "Postcards",
-SUM(CASE WHEN p."ProductType" = 'Selfmailer' THEN c1."Qty" ELSE NULL END) AS "Selfmailers",
-SUM(CASE WHEN p."ProductType" IN ('Cheque', 'Letter', 'Postcard', 'Selfmailer') THEN c1."Qty" ELSE NULL END) AS "Total"
+SUM(CASE WHEN p."ProductType" = 'Self Mailer' THEN c1."Qty" ELSE NULL END) AS "Selfmailers",
+SUM(CASE WHEN p."ProductType" IN ('Cheque', 'Letter', 'Postcard', 'Self Mailer') THEN c1."Qty" ELSE NULL END) AS "Total"
 FROM "public"."CustomerLineItems" c1
 INNER JOIN "public"."Invoice" i ON (c1."InvoiceID" = i."InvoiceID")
 INNER JOIN "public"."CustomerPrice" cp ON (cp."Id" = c1."CustomerPriceID")
 INNER JOIN "public"."Products" p ON (p."Id" = cp."ProductID")
 LEFT JOIN "public"."Customers" cu ON (cu."Id" = cp."CustomerID")
 WHERE to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  =  '{{moment().format("YYYY-MM-DD")}}'
-AND p."ProductType" IN ('Cheque', 'Letter', 'Postcard', 'Selfmailer')
+AND p."ProductType" IN ('Cheque', 'Letter', 'Postcard', 'Self Mailer')
 GROUP BY GROUPING SETS ((cu."CustomerName"), ())
 ORDER BY lower(cu."CustomerName") ASC

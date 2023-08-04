@@ -15,7 +15,7 @@
     "type": "CHART_WIDGET",
     "hideCard": false,
     "chartData": {"qsbrdepnqq": {
-        "data": "[\n  {\n    \"x\": \"Letter\",\n    \"y\": {{get_letter_month_volume.data[0].sum}}\n  },\n  {\n    \"x\": \"Postcard\",\n    \"y\": {{get_postcard_month_volume.data[0].sum}}\n  },\n  {\n    \"x\": \"Cheque\",\n    \"y\": {{get_cheque_month_volume.data[0].sum}}\n  },\n    {\n    \"x\": \"Selfmailer\",\n    \"y\": {{0}}\n  }\n]",
+        "data": "[\n  {\n    \"x\": \"Letter\",\n    \"y\": {{get_letter_month_volume.data[0].sum}}\n  },\n  {\n    \"x\": \"Postcard\",\n    \"y\": {{get_postcard_month_volume.data[0].sum}}\n  },\n  {\n    \"x\": \"Cheque\",\n    \"y\": {{get_cheque_month_volume.data[0].sum}}\n  },\n    {\n    \"x\": \"Self Mailer\",\n    \"y\": {{0}}\n  }\n]",
         "seriesName": "Sales Report"
     }},
     "animateLoading": false,

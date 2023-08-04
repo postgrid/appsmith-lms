@@ -808,7 +808,7 @@ export default {
 				orgName,
 
 				quantity: group.orderCount,
-				mailType: 'Selfmailer',
+				mailType: 'Self Mailer',
 				productDesc: `Self Mailer ${sizeStr} ${classStr}`,
 				destinationCountryCode: group.destinationCountryCode,
 
