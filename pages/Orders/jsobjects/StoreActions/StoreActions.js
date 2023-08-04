@@ -836,7 +836,7 @@ export default {
 			return items;
 		};
 
-		return this.mapGroups(selfMailerGroups.data.data, groupLineItems);
+		return this.mapGroups(selfMailerGroups.data, groupLineItems);
 	},
 	updateOrderInfo: async () => {
 		await orgs.run();
