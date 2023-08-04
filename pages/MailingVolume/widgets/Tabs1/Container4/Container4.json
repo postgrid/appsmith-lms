@@ -15,7 +15,7 @@
     "parentRowSpace": 10,
     "type": "CONTAINER_WIDGET",
     "hideCard": false,
-    "shouldScrollContents": false,
+    "shouldScrollContents": true,
     "animateLoading": true,
     "parentColumnSpace": 19.5,
     "dynamicTriggerPathList": [],

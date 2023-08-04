@@ -36,7 +36,7 @@
     "sourceData": "{{get_printerlist.data.concat([    {    \"PrinterName\": \"CANCELLED\"  }])}}\n",
     "key": "efr89n9985",
     "isDeprecated": false,
-    "rightColumn": 11,
+    "rightColumn": 10,
     "iconName": "multi-select",
     "menuVariant": "PRIMARY",
     "widgetId": "p3ryutjfkc",
