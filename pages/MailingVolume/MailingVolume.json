@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1760,
+          "bottomRow": 1680,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -63,7 +63,7 @@
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
-                "moment().format(\"YYYY-MM-DD\")"
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
             },

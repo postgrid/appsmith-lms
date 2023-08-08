@@ -18,7 +18,8 @@
         {"key": "totalRecordsCount"},
         {"key": "primaryColumns.Total.computedValue"},
         {"key": "borderRadius"},
-        {"key": "boxShadow"}
+        {"key": "boxShadow"},
+        {"key": "primaryColumns.Selfmailers.computedValue"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -56,7 +57,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1681390586742,
+    "columnUpdatedAt": 1691501970382,
     "originalBottomRow": 146,
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table1Copy",
@@ -67,6 +68,7 @@
         "Letters",
         "Postcards",
         "Total",
+        "Selfmailers",
         "customColumn1"
     ],
     "dynamicPropertyPathList": [{"key": "tableData"}],
@@ -223,6 +225,36 @@
             "isDisabled": false,
             "verticalAlignment": "CENTER",
             "validation": {}
+        },
+        "Selfmailers": {
+            "computedValue": "{{Table1Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Selfmailers\"]))}}",
+            "isEditable": false,
+            "alias": "Selfmailers",
+            "enableSort": true,
+            "isSaveVisible": true,
+            "id": "Selfmailers",
+            "isDisabled": false,
+            "allowSameOptionsInNewRow": true,
+            "validation": {},
+            "isCellVisible": true,
+            "isDerived": false,
+            "textSize": "0.875rem",
+            "allowCellWrapping": false,
+            "index": 4,
+            "isDiscardVisible": true,
+            "isVisible": true,
+            "label": "Selfmailers",
+            "fontStyle": "",
+            "textColor": "",
+            "columnType": "text",
+            "horizontalAlignment": "LEFT",
+            "isCellEditable": false,
+            "width": 150,
+            "enableFilter": true,
+            "sticky": "",
+            "originalId": "Selfmailers",
+            "cellBackground": "",
+            "verticalAlignment": "CENTER"
         },
         "Cheques": {
             "isCellVisible": true,
