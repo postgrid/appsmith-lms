@@ -1,0 +1,90 @@
+{
+    "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+    "borderColor": "#E0DEDE",
+    "isVisibleDownload": true,
+    "iconSVG": "https://appcdn.appsmith.com/static/media/icon.e6911f8bb94dc6c4a102a74740c41763.svg",
+    "topRow": 23,
+    "isSortable": true,
+    "type": "TABLE_WIDGET_V2",
+    "inlineEditingSaveOption": "ROW_LEVEL",
+    "animateLoading": true,
+    "dynamicBindingPathList": [
+        {"key": "accentColor"},
+        {"key": "borderRadius"},
+        {"key": "boxShadow"}
+    ],
+    "needsHeightForContent": true,
+    "leftColumn": 1,
+    "delimiter": ",",
+    "defaultSelectedRowIndex": 0,
+    "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+    "isVisibleFilters": true,
+    "isVisible": true,
+    "enableClientSideSearch": true,
+    "version": 2,
+    "totalRecordsCount": 0,
+    "tags": [
+        "Suggested",
+        "Display"
+    ],
+    "isLoading": false,
+    "childStylesheet": {
+        "button": {
+            "boxShadow": "none",
+            "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+            "buttonColor": "{{appsmith.theme.colors.primaryColor}}"
+        },
+        "iconButton": {
+            "boxShadow": "none",
+            "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+            "buttonColor": "{{appsmith.theme.colors.primaryColor}}"
+        },
+        "menuButton": {
+            "boxShadow": "none",
+            "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+            "menuColor": "{{appsmith.theme.colors.primaryColor}}"
+        },
+        "editActions": {
+            "saveButtonColor": "{{appsmith.theme.colors.primaryColor}}",
+            "saveBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+            "discardBorderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+            "discardButtonColor": "{{appsmith.theme.colors.primaryColor}}"
+        }
+    },
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "columnUpdatedAt": 1691696542206,
+    "defaultSelectedRowIndices": [0],
+    "mobileBottomRow": 52,
+    "widgetName": "BatchOrdersTable",
+    "defaultPageSize": 0,
+    "columnOrder": [],
+    "dynamicPropertyPathList": [],
+    "displayName": "Table",
+    "bottomRow": 52,
+    "columnWidthMap": {},
+    "parentRowSpace": 10,
+    "hideCard": false,
+    "mobileRightColumn": 14,
+    "parentColumnSpace": 23.109375,
+    "borderWidth": "1",
+    "primaryColumns": {},
+    "key": "12v0lol1ig",
+    "canFreezeColumn": true,
+    "isDeprecated": false,
+    "rightColumn": 63,
+    "textSize": "0.875rem",
+    "widgetId": "nzkcg5vpux",
+    "minWidth": 450,
+    "tableData": "",
+    "label": "Data",
+    "searchKey": "",
+    "parentId": "sii7tf5ehc",
+    "renderMode": "CANVAS",
+    "mobileTopRow": 24,
+    "horizontalAlignment": "LEFT",
+    "isVisibleSearch": true,
+    "responsiveBehavior": "fill",
+    "mobileLeftColumn": 0,
+    "isVisiblePagination": true,
+    "verticalAlignment": "CENTER"
+}

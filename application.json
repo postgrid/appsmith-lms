@@ -43,6 +43,10 @@
     {
       "id": "OrderEmailDrafting",
       "isDefault": false
+    },
+    {
+      "id": "OrderBatches",
+      "isDefault": false
     }
   ],
   "viewMode": false,

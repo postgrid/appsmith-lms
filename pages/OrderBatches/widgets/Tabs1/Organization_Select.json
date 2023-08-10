@@ -1,0 +1,71 @@
+{
+    "boxShadow": "none",
+    "iconSVG": "https://appcdn.appsmith.com/static/media/icon.a7b19dc8b31d68fcff57f1d2c0084a18.svg",
+    "labelText": "Organization",
+    "topRow": 18,
+    "labelWidth": "4",
+    "type": "SELECT_WIDGET",
+    "serverSideFiltering": false,
+    "defaultOptionValue": "GREEN",
+    "animateLoading": true,
+    "leftColumn": 1,
+    "dynamicBindingPathList": [
+        {"key": "accentColor"},
+        {"key": "borderRadius"}
+    ],
+    "placeholderText": "Select option",
+    "isDisabled": false,
+    "isRequired": false,
+    "dynamicHeight": "FIXED",
+    "accentColor": "{{appsmith.theme.colors.primaryColor}}",
+    "isVisible": true,
+    "version": 1,
+    "tags": [
+        "Suggested",
+        "Select"
+    ],
+    "isLoading": false,
+    "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "mobileBottomRow": 24,
+    "widgetName": "Organization_Select",
+    "isFilterable": true,
+    "displayName": "Select",
+    "searchTags": ["dropdown"],
+    "bottomRow": 22,
+    "parentRowSpace": 10,
+    "hideCard": false,
+    "mobileRightColumn": 11,
+    "parentColumnSpace": 23.109375,
+    "dynamicTriggerPathList": [],
+    "labelPosition": "Left",
+    "sourceData": [
+        {
+            "code": "BLUE",
+            "name": "Blue"
+        },
+        {
+            "code": "GREEN",
+            "name": "Green"
+        },
+        {
+            "code": "RED",
+            "name": "Red"
+        }
+    ],
+    "key": "7tn7y058tw",
+    "labelTextSize": "0.875rem",
+    "isDeprecated": false,
+    "rightColumn": 17,
+    "widgetId": "dowtq31mhr",
+    "optionValue": "code",
+    "minWidth": 450,
+    "parentId": "sii7tf5ehc",
+    "labelAlignment": "left",
+    "renderMode": "CANVAS",
+    "mobileTopRow": 17,
+    "optionLabel": "name",
+    "responsiveBehavior": "fill",
+    "mobileLeftColumn": 0,
+    "maxDynamicHeight": 9000,
+    "minDynamicHeight": 4
+}

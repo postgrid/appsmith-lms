@@ -1,0 +1,15 @@
+{
+  "unpublishedCollection": {
+    "name": "Auth",
+    "pageId": "OrderBatches",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "actions": [],
+    "archivedActions": [],
+    "variables": [],
+    "userPermissions": []
+  },
+  "id": "OrderBatches_Auth",
+  "deleted": false,
+  "gitSyncId": "63b393c7f276cd0745e9510c_64d53d100414e12728c7229a"
+}
