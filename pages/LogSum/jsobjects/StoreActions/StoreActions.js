@@ -94,13 +94,28 @@ export default {
 			
 		};
 		
+		//verify that the start date is greater then the end date
+		if(moment(StartDate_Picker.selectedDate).isAfter(EndDate_Picker.selectedDate)){
+			await showAlert("Start Date must come before End Date", "error");
+			return;
+		}
+		
+		let selectedOrg = "";
+		if(Organization_select.selectedOptionLabel !== ''){
+			const delimiterIndex = Organization_select.selectedOptionLabel.indexOf(' - ');
+			selectedOrg = Organization_select.selectedOptionLabel.slice(0, delimiterIndex);
+		}
+		
 		await storeValue('logSumTableProgress', 'loading...');
 
 		await get_customer_price_info.run();
 		await get_allorder_printcost.run();
 
 		const combinedData = [];
-		const customerLineItems = generateOrderLineMap(get_customer_price_info.data);
+		const customerLineItems = generateOrderLineMap(
+			Organization_select.selectedOptionValue !== "" ? 
+				get_customer_price_info.data.filter(item => item.CustomerName === selectedOrg) 
+				: get_customer_price_info.data);
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
 
 		for (const value of customerLineItems) {
