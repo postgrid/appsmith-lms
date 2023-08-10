@@ -1,2 +1,2 @@
-SELECT "CustomerName","Id" FROM "Customers" 
+SELECT "CustomerName","Id","OrgID" FROM "Customers" 
 Order by lower("CustomerName") ASC

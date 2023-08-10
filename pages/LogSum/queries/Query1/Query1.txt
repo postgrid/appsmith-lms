@@ -1,5 +1,0 @@
-SELECT cl1."Id", cl1."Qty", cl1."Rate", cl1."Amount" FROM "PrinterLineItems" cl1
-	LEFT JOIN "PrinterPrice" c1 ON (cl1."PrinterPriceID" = c1."Id")
-	LEFT JOIN "Products" p1 ON (c1."ProductID" = p1."Id")
-	INNER JOIN "Invoice" i ON ( i."InvoiceID" = cl1."InvoiceID"  ) 
-WHERE i."InvoiceDate"::date >= '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}'::date
