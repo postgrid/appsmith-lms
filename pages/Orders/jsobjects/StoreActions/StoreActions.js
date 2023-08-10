@@ -343,7 +343,7 @@ export default {
 				: group.pageCount;
 			}
 
-			const formatCollateral = (item) => {
+			const formatCollateral = (item, oversize) => {
 				//Credit Glory Inc
 				if(group.organization === "org_aVjt8NWrfQjqk1PRegvBpV"){
 					return{
@@ -386,7 +386,7 @@ export default {
 							mailType: 'Custom',
 							productDesc: item.productDesc += " - EHCUSBOX_CERTRR"
 						};
-					} else if(sheetCount >= 20){
+					} else if(sheetCount >= 20 && oversize == true){
 						return{
 							...item,
 							mailType: 'Custom',
@@ -498,7 +498,7 @@ export default {
 
 						parentID: baseItem.id,
 						groupID: null,
-					});
+					}, true);
 
 					if(group.organization === "org_3pWY3piAx4H7XNrpY25RU2" && sheetCount >= 20 || (group.organization !== "org_3pWY3piAx4H7XNrpY25RU2" && sheetCount > 6 && group.organization !== "org_wUB4oa68YQgdQNYTeiSYNQ")){
 						items.push(oversizedItem);
