@@ -41,7 +41,7 @@
     "parentColumnSpace": 22.828125,
     "dynamicTriggerPathList": [],
     "labelPosition": "Left",
-    "sourceData": "{{get_clientnames.data}}",
+    "sourceData": "{{[{CustomerName: 'SelectAll', Id: 'all', OrgID: ''},...get_clientnames.data]}}",
     "key": "3lopxzv7ne",
     "labelTextSize": "0.875rem",
     "isDeprecated": false,

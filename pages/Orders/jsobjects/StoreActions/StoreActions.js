@@ -483,7 +483,7 @@ export default {
 				items.push(addlSheetItem);
 
 				if (sheetCount > 6) {
-					const sheetRange = sheetCount <= 60 ? 'over 6' : sheetCount > 60 && sheetCount <= 150 ? '61 - 150' : sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : '300'
+					const sheetRange = sheetCount <= 60 ? 'over 6' : sheetCount > 60 && sheetCount <= 150 ? '61 - 150' : sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : 'over 300'
 					/** @type {LineItem} */
 					const oversizedItem = formatCollateral({
 						id: ++id,

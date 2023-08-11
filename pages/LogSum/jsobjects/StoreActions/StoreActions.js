@@ -41,30 +41,30 @@ export default {
 						sheets = lineItem.Sheets;
 						productDescription = lineItem.ProductDescription;
 					} else {
-							if(lineItem.ProductDescription.includes('Extra') || lineItem.ProductDescription.includes('add')){
-								productDescription += ` ➤ (${sheets}) ${lineItem.ProductDescription}`
-								extraSheetPrice = lineItem.Rate;
-								extraSheetQty = lineItem.Qty;
-							} else {
-								if(!lineItem.ProductDescription.includes('Envelope')){
-									rates.push(lineItem.Rate ?? null);
-								}
-								productDescription += ` ➤ ${lineItem.ProductDescription}`
+						if(lineItem.ProductDescription.includes('Extra') || lineItem.ProductDescription.includes('add')){
+							productDescription += ` ➤ (${sheets}) ${lineItem.ProductDescription}`
+							extraSheetPrice = lineItem.Rate;
+							extraSheetQty = lineItem.Qty;
+						} else {
+							if(!lineItem.ProductDescription.includes('Envelope')){
+								rates.push(lineItem.Rate ?? null);
 							}
+							productDescription += ` ➤ ${lineItem.ProductDescription}`
+						}
 					}
 				} else {
 					if(lineItem.SubItemID === null){
 						mailPrice = lineItem.Rate;
 						quantity = lineItem.Qty;
 					} else {
-							if(lineItem.InitialProdDescription.includes('Extra') || lineItem.InitialProdDescription.includes('add')){
-								extraSheetPrice = lineItem.Rate;
-								extraSheetQty = lineItem.Qty;
-							} else {
-								if(!lineItem.InitialProdDescription.includes('Envelope')){
-									rates.push(lineItem.Rate ?? null);
-								}
+						if(lineItem.InitialProdDescription.includes('Extra') || lineItem.InitialProdDescription.includes('add')){
+							extraSheetPrice = lineItem.Rate;
+							extraSheetQty = lineItem.Qty;
+						} else {
+							if(!lineItem.InitialProdDescription.includes('Envelope')){
+								rates.push(lineItem.Rate ?? null);
 							}
+						}
 					}
 				}
 			}
@@ -78,7 +78,7 @@ export default {
 
 			const calculation = `${quantity} * (${mailPrice}${extraSheetQty !== 0 ? ` + (${extraSheetPrice} * ${extraSheetQty / quantity})` : ''}
 				${serviceString}) = ${totalAmount}`;
-			
+
 			if(type == 'customer'){
 				return {
 					productDescription,
@@ -91,21 +91,18 @@ export default {
 					totalAmount
 				}
 			}
-			
+
 		};
-		
+
 		//verify that the start date is greater then the end date
 		if(moment(StartDate_Picker.selectedDate).isAfter(EndDate_Picker.selectedDate)){
 			await showAlert("Start Date must come before End Date", "error");
 			return;
 		}
-		
-		let selectedOrg = "";
-		if(Organization_select.selectedOptionLabel !== ''){
-			const delimiterIndex = Organization_select.selectedOptionLabel.indexOf(' - ');
-			selectedOrg = Organization_select.selectedOptionLabel.slice(0, delimiterIndex);
-		}
-		
+
+		const delimiterIndex = Organization_select.selectedOptionLabel.indexOf(' - ');
+		const selectedOrg = Organization_select.selectedOptionLabel.slice(0, delimiterIndex);
+
 		await storeValue('logSumTableProgress', 'loading...');
 
 		await get_customer_price_info.run();
@@ -113,9 +110,9 @@ export default {
 
 		const combinedData = [];
 		const customerLineItems = generateOrderLineMap(
-			Organization_select.selectedOptionValue !== "" ? 
-				get_customer_price_info.data.filter(item => item.CustomerName === selectedOrg) 
-				: get_customer_price_info.data);
+			Organization_select.selectedOptionValue !== "all" && Organization_select.selectedOptionValue !== "" ? 
+			get_customer_price_info.data.filter(item => item.CustomerName === selectedOrg) 
+			: get_customer_price_info.data);
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
 
 		for (const value of customerLineItems) {
@@ -143,7 +140,7 @@ export default {
 				PrinterCalculation: printerInfo.calculation,
 				PrinterSummary: printerInfo.totalAmount
 			}
-			
+
 			combinedData.push(orderInfo);
 
 		}
