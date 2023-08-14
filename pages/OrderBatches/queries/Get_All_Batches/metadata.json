@@ -55,7 +55,7 @@
             "data": "YES"
           },
           "expiry": {
-            "data": "5"
+            "data": "120"
           },
           "unSignedUrl": {
             "data": "YES"
