@@ -1,0 +1,2 @@
+SELECT "PrinterName","Id" FROM "Printers" WHERE "Status" = 'Active'
+Order by lower("PrinterName") ASC

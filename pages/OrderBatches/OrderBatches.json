@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 610,
+          "bottomRow": 3060,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -29,12 +29,111 @@
         "layoutOnLoadActions": [
           [
             {
+              "id": "OrderBatches_StoreActions.setSkippedOrderNumbers",
+              "name": "StoreActions.setSkippedOrderNumbers",
+              "collectionId": "OrderBatches_StoreActions",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "async () => {\n  await storeValue('chequesSkipCount', 0);\n  await storeValue('lettersSkipCount', 0);\n  await storeValue('postcardsSkipCount', 0);\n  await storeValue('selfmailersSkipCount', 0);\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "OrderBatches_get_printers",
+              "name": "get_printers",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "OrderBatches_get_allOrganizations",
+              "name": "get_allOrganizations",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
               "id": "OrderBatches_get_user",
               "name": "get_user",
               "confirmBeforeExecute": false,
               "pluginType": "API",
               "jsonPathKeys": [
                 "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "OrderBatches_letters",
+              "name": "letters",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "Status_Select.selectedOptionValue==='ALL' ?  { $exists: true } : Status_Select.selectedOptionValue",
+                "Organization_Select.selectedOptionValue==='all' ?  { $exists: true } : Organization_Select.selectedOptionValue",
+                "searchLetter.value==='' ? { $exists: true } : searchLetter.value ",
+                " Live_Switch.isSwitchedOn ",
+                " searchLetter.value==='' ? (appsmith.store.chequesSkipCount || 0) : 0 ",
+                " EndDate_Letter_Picker.selectedDate ",
+                "StartDate_Letter_Picker.selectedDate "
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "OrderBatches_selfmailers",
+              "name": "selfmailers",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "searchSelfmailer.value==='' ?  (appsmith.store.selfmailersSkipCount || 0) : 0 ",
+                "Status_Select.selectedOptionValue==='ALL' ?  { $exists: true } : Status_Select.selectedOptionValue",
+                "Organization_Select.selectedOptionValue==='all' ?  { $exists: true } : Organization_Select.selectedOptionValue",
+                "searchSelfmailer.value==='' ? { $exists: true } : searchSelfmailer.value ",
+                " EndDate_Selfmailer_Picker.selectedDate ",
+                " Live_Switch.isSwitchedOn ",
+                "StartDate_Selfmailer_Picker.selectedDate "
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "OrderBatches_cheques",
+              "name": "cheques",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "Status_Select.selectedOptionValue==='ALL' ?  { $exists: true } : Status_Select.selectedOptionValue",
+                "searchCheque.value==='' ? { $exists: true } : searchCheque.value ",
+                "Organization_Select.selectedOptionValue==='all' ?  { $exists: true } : Organization_Select.selectedOptionValue",
+                "searchCheque.value==='' ? (appsmith.store.chequesSkipCount || 0) : 0 ",
+                " Live_Switch.isSwitchedOn ",
+                "StartDate_Cheque_Picker.selectedDate ",
+                " EndDate_Cheque_Picker.selectedDate "
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "OrderBatches_postcards",
+              "name": "postcards",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "searchPostcard.value==='' ? { $exists: true } : searchPostcard.value ",
+                "Status_Select.selectedOptionValue==='ALL' ?  { $exists: true } : Status_Select.selectedOptionValue",
+                "Organization_Select.selectedOptionValue==='all' ?  { $exists: true } : Organization_Select.selectedOptionValue",
+                "searchPostcard.value==='' ?  (appsmith.store.postcardsSkipCount || 0) : 0 ",
+                " Live_Switch.isSwitchedOn ",
+                " EndDate_Postcard_Picker.selectedDate ",
+                "StartDate_Postcard_Picker.selectedDate "
               ],
               "timeoutInMillisecond": 10000
             }
