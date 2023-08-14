@@ -40,7 +40,7 @@
     "labelPosition": "Left",
     "key": "jp49csf0ml",
     "labelTextSize": "0.875rem",
-    "defaultDate": "{{moment().add('days', 1).format('YYYY-MM-DD')}}",
+    "defaultDate": "{{moment().format('YYYY-MM-DD')}}",
     "isDeprecated": false,
     "rightColumn": 43,
     "widgetId": "2p7c4r6ise",

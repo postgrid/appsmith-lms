@@ -28,7 +28,8 @@
         {"key": "primaryColumns.HasIMB.computedValue"},
         {"key": "primaryColumns.ImgUrl.computedValue"},
         {"key": "primaryColumns.PackageTier.computedValue"},
-        {"key": "isVisible"}
+        {"key": "isVisible"},
+        {"key": "primaryColumns.Currency.computedValue"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -67,7 +68,7 @@
         }
     },
     "borderRadius": "0.375rem",
-    "columnUpdatedAt": 1677725818750,
+    "columnUpdatedAt": 1691768289509,
     "originalBottomRow": 28,
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table1",
@@ -89,7 +90,8 @@
         "State",
         "Website",
         "HasIMB",
-        "ImgUrl"
+        "ImgUrl",
+        "Currency"
     ],
     "dynamicPropertyPathList": [
         {"key": "isVisible"},
@@ -488,6 +490,36 @@
             "enableFilter": true,
             "sticky": "",
             "originalId": "State",
+            "cellBackground": "transparent",
+            "verticalAlignment": "CENTER"
+        },
+        "Currency": {
+            "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Currency\"]))}}",
+            "isEditable": false,
+            "alias": "Currency",
+            "enableSort": true,
+            "isSaveVisible": true,
+            "id": "Currency",
+            "isDisabled": false,
+            "allowSameOptionsInNewRow": true,
+            "validation": {},
+            "isCellVisible": true,
+            "isDerived": false,
+            "textSize": "0.875rem",
+            "allowCellWrapping": false,
+            "index": 16,
+            "isDiscardVisible": true,
+            "isVisible": true,
+            "label": "Currency",
+            "fontStyle": "",
+            "textColor": "",
+            "columnType": "text",
+            "horizontalAlignment": "LEFT",
+            "isCellEditable": false,
+            "width": 150,
+            "enableFilter": true,
+            "sticky": "",
+            "originalId": "Currency",
             "cellBackground": "transparent",
             "verticalAlignment": "CENTER"
         },
