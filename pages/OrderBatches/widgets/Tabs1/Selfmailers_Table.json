@@ -65,7 +65,7 @@
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "columnUpdatedAt": 1692037806480,
-    "originalBottomRow": 295,
+    "originalBottomRow": 298,
     "defaultSelectedRowIndices": [0],
     "mobileBottomRow": 119,
     "widgetName": "Selfmailers_Table",
@@ -445,7 +445,7 @@
     "horizontalAlignment": "LEFT",
     "isVisibleSearch": true,
     "responsiveBehavior": "fill",
-    "originalTopRow": 258,
+    "originalTopRow": 261,
     "mobileLeftColumn": 0,
     "isVisiblePagination": true,
     "verticalAlignment": "CENTER"

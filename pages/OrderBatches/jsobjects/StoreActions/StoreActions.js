@@ -40,7 +40,7 @@ export default {
 
 		const allBatches = [];
 		for(let date of dateStrings){
-			const batches = await Get_All_Batches.run({date: date});
+			const batches = await Get_All_Batches.run({date: SameDay_Switch.isSwitchedOn ? `same_day_${date}` : date});
 			if(Printer_Select.selectedOptionValue !== '' && Printer_Select.selectedOptionValue !== 'all'){
 				//filter for printer
 				switch(Printer_Select.selectedOptionLabel) {

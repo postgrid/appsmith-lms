@@ -79,7 +79,7 @@
     "displayName": "Table",
     "bottomRow": 75,
     "columnWidthMap": {
-        "fileName": 500,
+        "fileName": 656,
         "url": 800
     },
     "parentRowSpace": 10,
@@ -249,6 +249,7 @@
         }
     },
     "onRowSelected": "navigateTo(BatchOrdersTable.)",
+    "defaultSearchText": "",
     "key": "12v0lol1ig",
     "canFreezeColumn": true,
     "isDeprecated": false,
