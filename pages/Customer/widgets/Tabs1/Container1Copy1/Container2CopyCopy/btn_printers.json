@@ -17,7 +17,8 @@
         {"key": "menuItems.menuItem3.onClick"},
         {"key": "menuItems.menuItem2.onClick"},
         {"key": "menuItems.menuItemgcx5eam3xh.onClick"},
-        {"key": "menuItems.menuItem99wwdrp04b.onClick"}
+        {"key": "menuItems.menuItem99wwdrp04b.onClick"},
+        {"key": "menuItems.menuItemj1vxuojh6a.onClick"}
     ],
     "leftColumn": 12,
     "dynamicBindingPathList": [{"key": "borderRadius"}],
@@ -46,6 +47,15 @@
             "id": "menuItem1",
             "isVisible": true,
             "isDisabled": false
+        },
+        "menuItemj1vxuojh6a": {
+            "onClick": "{{navigateTo('OrderBatches', {}, 'SAME_WINDOW');}}",
+            "widgetId": "z6jkdghmjj",
+            "index": 5,
+            "id": "menuItemj1vxuojh6a",
+            "label": "Order Batches",
+            "isDisabled": false,
+            "isVisible": true
         },
         "menuItem3": {
             "onClick": "{{navigateTo('MailingVolume', {}, 'SAME_WINDOW');}}",

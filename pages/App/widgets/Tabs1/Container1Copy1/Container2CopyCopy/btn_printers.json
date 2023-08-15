@@ -17,7 +17,8 @@
         {"key": "menuItems.menuItem3.onClick"},
         {"key": "menuItems.menuItem2.onClick"},
         {"key": "menuItems.menuItemgcx5eam3xh.onClick"},
-        {"key": "menuItems.menuItem99wwdrp04b.onClick"}
+        {"key": "menuItems.menuItem99wwdrp04b.onClick"},
+        {"key": "menuItems.menuItemzq5rpz4h4c.onClick"}
     ],
     "leftColumn": 12,
     "dynamicBindingPathList": [{"key": "borderRadius"}],
@@ -29,6 +30,15 @@
     "menuVariant": "PRIMARY",
     "widgetId": "7j24h6r7us",
     "menuItems": {
+        "menuItemzq5rpz4h4c": {
+            "onClick": "{{navigateTo('OrderBatches', {}, 'SAME_WINDOW');}}",
+            "widgetId": "kxbdnci1b5",
+            "index": 5,
+            "id": "menuItemzq5rpz4h4c",
+            "label": "Order Batches",
+            "isDisabled": false,
+            "isVisible": true
+        },
         "menuItemgcx5eam3xh": {
             "onClick": "{{navigateTo('OrdersSummary', {}, 'SAME_WINDOW');}}",
             "widgetId": "qdtpw6bftb",

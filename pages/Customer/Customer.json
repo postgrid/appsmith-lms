@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 80,
+          "version": 83,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -38,6 +38,16 @@
                 "async () => {\n  resetWidget('Select1');\n  resetWidget('Table3');\n  Query1.run();\n  StoreActions.runQuery('Query1');\n}"
               ],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Customer_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -48,18 +58,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Table3.selectedRow.OrgID"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Customer_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

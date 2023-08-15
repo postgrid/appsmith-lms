@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 80,
+          "version": 83,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -60,6 +60,16 @@
                 "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  await get_printernames.run();\n  await get_partner.run();\n}"
               ],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Partnership_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -70,18 +80,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "Input2.text.toUpperCase()"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Partnership_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
