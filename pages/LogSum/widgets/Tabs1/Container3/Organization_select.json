@@ -31,7 +31,10 @@
     "mobileBottomRow": 4,
     "widgetName": "Organization_select",
     "isFilterable": true,
-    "dynamicPropertyPathList": [{"key": "optionLabel"}],
+    "dynamicPropertyPathList": [
+        {"key": "optionLabel"},
+        {"key": "sourceData"}
+    ],
     "displayName": "Select",
     "searchTags": ["dropdown"],
     "bottomRow": 4,

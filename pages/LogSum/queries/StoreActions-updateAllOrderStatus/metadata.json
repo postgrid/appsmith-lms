@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "rundateoforder",
-    "fullyQualifiedName": "StoreActions.rundateoforder",
+    "name": "updateAllOrderStatus",
+    "fullyQualifiedName": "StoreActions.updateAllOrderStatus",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -36,7 +36,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "LogSum_StoreActions.rundateoforder",
+  "id": "LogSum_StoreActions.updateAllOrderStatus",
   "deleted": false,
-  "gitSyncId": "64de27ebb3facb6359d423ed_64e4ed5e91019a7dc7573b68"
+  "gitSyncId": "64de27ebb3facb6359d423ed_64e4d634e35a2c18801646ea"
 }

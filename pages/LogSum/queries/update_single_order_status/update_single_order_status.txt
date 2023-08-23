@@ -1,0 +1,3 @@
+UPDATE "{{this.params.type}}"
+SET "OrderStatus" = '{{this.params.orderStatus}}'
+WHERE "Id"={{this.params.orderID}} OR "SubItemID"={{this.params.orderID}};

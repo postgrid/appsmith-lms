@@ -1,5 +1,5 @@
-SELECT cl1."Id", cl1."SubItemID", cl1."Qty", cl1."Rate", cl1."Amount", cl1."InitialProdDescription" FROM "PrinterLineItems" cl1
+SELECT cl1."Id", cl1."SubItemID", cl1."Qty", cl1."Rate", cl1."Amount", cl1."InitialProdDescription", i."InvoiceDate", cl1."DeliveryDate", cl1."Printer" FROM "PrinterLineItems" cl1
 	LEFT JOIN "PrinterPrice" c1 ON (cl1."PrinterPriceID" = c1."Id")
 	LEFT JOIN "Products" p1 ON (c1."ProductID" = p1."Id")
-	INNER JOIN "Invoice" i ON ( i."InvoiceID" = cl1."InvoiceID"  ) 
+	INNER JOIN "Invoice" i ON ( i."InvoiceID" = cl1."InvoiceID"  )
 WHERE i."InvoiceDate"::date >= '{{moment(StartDate_Picker.selectedDate).format("YYYY-MM-DD")}}'::date AND i."InvoiceDate"::date <= '{{moment(EndDate_Picker.selectedDate).format("YYYY-MM-DD")}}'::date ORDER BY "Id" ASC

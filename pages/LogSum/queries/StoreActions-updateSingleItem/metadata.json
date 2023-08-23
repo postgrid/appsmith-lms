@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "rundateoforder",
-    "fullyQualifiedName": "StoreActions.rundateoforder",
+    "name": "updateSingleItem",
+    "fullyQualifiedName": "StoreActions.updateSingleItem",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -20,7 +20,20 @@
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": []
+      "jsArguments": [
+        {
+          "name": "orderID"
+        },
+        {
+          "name": "orderStatus"
+        },
+        {
+          "name": "invoiceID"
+        },
+        {
+          "name": "invoiceStatus"
+        }
+      ]
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -36,7 +49,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "LogSum_StoreActions.rundateoforder",
+  "id": "LogSum_StoreActions.updateSingleItem",
   "deleted": false,
-  "gitSyncId": "64de27ebb3facb6359d423ed_64e4ed5e91019a7dc7573b68"
+  "gitSyncId": "64de27ebb3facb6359d423ed_64e4ed973ffa427b26e1ebe4"
 }

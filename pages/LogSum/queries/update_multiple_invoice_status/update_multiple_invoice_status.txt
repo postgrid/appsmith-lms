@@ -1,0 +1,3 @@
+UPDATE "Invoice"
+SET "InvoiceStatus" = '{{this.params.invoiceStatus}}'
+WHERE "InvoiceID" IN ('{{this.params.invoices.join("','")}}')
