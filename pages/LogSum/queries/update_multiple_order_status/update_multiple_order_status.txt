@@ -1,0 +1,3 @@
+UPDATE "{{this.params.type}}"
+SET "OrderStatus" = '{{this.params.orderStatus}}'
+WHERE "Id" IN ('{{this.params.orderIDs.join("','")}}') OR "SubItemID" IN ('{{this.params.orderIDs.join("','")}}');

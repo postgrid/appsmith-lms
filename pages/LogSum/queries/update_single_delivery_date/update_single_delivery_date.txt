@@ -1,0 +1,3 @@
+UPDATE "PrinterLineItems"
+SET "DeliveryDate" = CAST('{{moment().format('YYYY-MM-DD').toString()}}' AS DATE)
+WHERE "Id"={{this.params.orderID}} OR "SubItemID"={{this.params.orderID}};

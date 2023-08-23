@@ -1,6 +1,7 @@
 WITH customer_line_items_query AS (
   SELECT
     c1."CustomerName",
+		c1."Currency",
     c3."Id",
     c3."InvoiceID",
     c3."CustomerPriceID",
@@ -15,7 +16,6 @@ WITH customer_line_items_query AS (
     i."InvoiceDate",
     i."PaymentMethod",
     i."InvoiceStatus",
-    i."OrderStatus" AS "InvoiceOrderStatus",
 		p."ProductDescription"
   FROM
     "public"."Customers" c1

@@ -1,0 +1,1 @@
+SELECT "Id", "PrinterName", "Currency" FROM "Printers"

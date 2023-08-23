@@ -27,6 +27,7 @@
     "mobileBottomRow": 16,
     "widgetName": "Select1Copy",
     "isFilterable": true,
+    "dynamicPropertyPathList": [{"key": "sourceData"}],
     "displayName": "Select",
     "searchTags": ["dropdown"],
     "bottomRow": 28,
