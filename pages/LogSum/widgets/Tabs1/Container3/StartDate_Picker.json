@@ -6,7 +6,7 @@
     "labelWidth": "4",
     "type": "DATE_PICKER_WIDGET2",
     "animateLoading": true,
-    "leftColumn": 21,
+    "leftColumn": 35,
     "dynamicBindingPathList": [
         {"key": "accentColor"},
         {"key": "borderRadius"},
@@ -42,7 +42,7 @@
     "labelTextSize": "0.875rem",
     "defaultDate": "{{moment().format('YYYY-MM-DD')}}",
     "isDeprecated": false,
-    "rightColumn": 32,
+    "rightColumn": 45,
     "widgetId": "mdxrdl8h3h",
     "minWidth": 450,
     "label": "Start Date",

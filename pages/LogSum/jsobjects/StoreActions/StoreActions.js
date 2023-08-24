@@ -111,10 +111,18 @@ export default {
 
 		const printerCurrency = get_printer_currency.data;
 		const combinedData = [];
-		const customerLineItems = generateOrderLineMap(
-			Organization_select.selectedOptionValue !== "all" && Organization_select.selectedOptionValue !== "" ? 
-			get_customer_price_info.data.filter(item => item.CustomerName === selectedOrg) 
-			: get_customer_price_info.data);
+		const filteredCustomerItems = (() => {
+			let items = get_customer_price_info.data;
+			if(Organization_select.selectedOptionValue !== "all"){
+				items = items.filter(item => item.CustomerName === selectedOrg)
+			}
+			
+			if(Printer_select.selectedOptionValue !== 'All'){
+				items = items.filter(item => item.Printer === Printer_select.selectedOptionValue)
+			}
+			return items;
+		})()
+		const customerLineItems = generateOrderLineMap(filteredCustomerItems);
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
 
 		for (const value of customerLineItems) {
@@ -183,9 +191,11 @@ export default {
 			const orderStatus = AllOrdersStatus_Select.selectedOptionValue;
 			await update_multiple_order_status.run({type: 'PrinterLineItems', orderIDs, orderStatus});
 			await update_multiple_order_status.run({type: 'CustomerLineItems', orderIDs, orderStatus});
+			
 			if(orderStatus === 'DELIVERED'){
-			await update_single_delivery_date.run({orderIDs});
+				await update_multiple_delivery_dates.run({orderIDs});
 			}
+			
 			await StoreActions.rundateoforder();
 		}
 	},

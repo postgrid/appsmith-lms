@@ -6,7 +6,7 @@
     "labelWidth": "3",
     "type": "DATE_PICKER_WIDGET2",
     "animateLoading": true,
-    "leftColumn": 33,
+    "leftColumn": 47,
     "dynamicBindingPathList": [
         {"key": "accentColor"},
         {"key": "borderRadius"},
@@ -42,7 +42,7 @@
     "labelTextSize": "0.875rem",
     "defaultDate": "{{moment().format('YYYY-MM-DD')}}",
     "isDeprecated": false,
-    "rightColumn": 43,
+    "rightColumn": 56,
     "widgetId": "2p7c4r6ise",
     "minWidth": 450,
     "label": "End Date",
