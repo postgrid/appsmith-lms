@@ -1,7 +1,7 @@
 SELECT COALESCE(cu."CustomerName", 'GrandTotal (' || COUNT(DISTINCT cu."CustomerName") || ') Clients') as "CustomerName",
 SUM(CASE WHEN p."ProductType" = 'Cheque' THEN c1."Qty" ELSE NULL END) AS "Cheques",
 SUM(CASE WHEN p."ProductType" = 'Letter' THEN c1."Qty" ELSE NULL END) AS "Letters",
-SUM(CASE WHEN p."ProductType" = 'Postcard' THEN c1."Qty" ELSE NULL END) AS "Postcards",
+SUM(CASE WHEN p."ProductType" = 'Letter' THEN c1."Qty" ELSE NULL END) AS "Postcards",
 SUM(CASE WHEN p."ProductType" = 'Self Mailer' THEN c1."Qty" ELSE NULL END) AS "Selfmailers",
 SUM(CASE WHEN p."ProductType" IN ('Cheque', 'Letter', 'Postcard', 'Self Mailer') THEN c1."Qty" ELSE NULL END) AS "Total"
 FROM "public"."CustomerLineItems" c1

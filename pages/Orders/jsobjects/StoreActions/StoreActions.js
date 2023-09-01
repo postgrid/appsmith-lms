@@ -527,7 +527,17 @@ export default {
 			}
 
 			if (group.returnEnvelope) {
-				// TODO(Apaar): In the future the product desc may change to be more specific to orgs
+				let envelopeName = '';
+				if(group.returnEnvelope === 'return_envelope_9KgsgkKFe5YYuT2QLuZbdq'){
+					envelopeName = 'SylvanHealth Ret Envelope';
+				} else if (group.returnEnvelope === 'return_envelope_mkG3NHTZZUnaz6jahkJRX5'){
+					envelopeName = "BridgingCare(Construqt) Ret Envelope";
+				} else {
+					envelopeName = `${
+						group.destinationCountryCode === 'US' ? orgName + ' '
+						: ''
+					}#9 Envelope`;
+				}
 
 				/** @type {LineItem} */
 				const returnEnvelopeItem = {
@@ -540,10 +550,7 @@ export default {
 					mailType: 'Return Envelope',
 
 					// We only seem to specify org in US
-					productDesc: `${
-					group.destinationCountryCode === 'US' ? orgName + ' '
-					: ''
-				}#9 Envelope`,
+					productDesc: envelopeName,
 					destinationCountryCode: null,
 
 					parentID: baseItem.id,
@@ -552,12 +559,49 @@ export default {
 
 				items.push(returnEnvelopeItem);
 			}
-
-			// Country Canvas Awnings and Highland Health Direct use a custom envelope
-			if (
-				group.organization === 'org_qv6KSxaXeXpGt7b1gE8eez' ||
-				group.organization === 'org_cbjmTDDQbfRFkd8pkYHNvi'
+			
+			const customEnvelopeOrgs = [
+				'Country Canvas Awnings',
+				'Highland Health Direct',
+				'Carrier-Robins Law Firm',
+				'ECA GreenTech',
+				'Pearl Health',
+				'Accompany Health Inc',
+				'RazorMetrics',
+				'ERC Partners, LLC'
+			];
+			// Check for orgs with custom envelopes
+			if(
+				customEnvelopeOrgs.includes(orgName)
 			) {
+				let envelopeName= '';
+				switch(orgName) {
+					case 'Country Canvas Awnings':
+						envelopeName = 'Country Canvas Awnings #10 Envelope';
+						break;
+					case 'Highland Health Direct':
+						envelopeName = 'Highland Health Direct Full Front Window Envelope';
+						break;
+					case 'Carrier-Robins Law Firm':
+						envelopeName = 'CarrierRobins #10 Envelope';
+						break;
+					case 'ECA GreenTech':
+						envelopeName = 'ECA Greentech #10 Envelope';
+						break;
+					case 'Pearl Health':
+						envelopeName = 'Pearl Health 9x12 Envelope';
+						break;
+					case 'Accompany Health Inc':
+						envelopeName = 'Accompany Health Custom Envelope';
+						break;
+					case 'RazorMetrics':
+						envelopeName = 'RazorMetrics Custom Envelope';
+						break;
+					case 'ERC Partners, LLC':
+						envelopeName = 'ERC Partners, LLC (Garett Law) Custom Envelope';
+						break;
+				}
+				
 				/** @type {LineItem} */
 				const customEnvelopeItem = {
 					id: ++id,
@@ -567,9 +611,7 @@ export default {
 
 					quantity: group.orderCount,
 					mailType: 'Custom Envelope',
-					productDesc: orgName.includes('Country') ? 
-					`${orgName} #10 Envelope`
-					: `${orgName} Full Front Window Envelope`,
+					productDesc: envelopeName,
 					destinationCountryCode: null,
 
 					parentID: baseItem.id,
