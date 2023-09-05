@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"Customers\" SET \n  \"Country\" = '{{Table3.updatedRow.Country}}',\n\t\"IsKYCDone\" = '{{Table3.updatedRow.IsKYCDone}}',\n\t\"RejectList\" = '{{Table3.updatedRow.RejectList}}',\n\t\"WithIMB\" =  {{Table3.updatedRow.WithIMB}}\n  WHERE \"Id\" = '{{ Table3.updatedRow.Id }}';\n",
+      "body": "UPDATE \"Customers\" SET \n  \"Country\" = '{{Table3.updatedRow.Country}}',\n\t\"IsKYCDone\" = '{{Table3.updatedRow.IsKYCDone}}',\n\t\"RejectList\" = '{{Table3.updatedRow.RejectList}}',\n\t\"WithIMB\" =  {{Table3.updatedRow.WithIMB}},\n\t\"SameDay\" = {{Table3.updatedRow.SameDay}}\n  WHERE \"Id\" = '{{ Table3.updatedRow.Id }}';\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -40,6 +40,7 @@
       "Table3.updatedRow.Country",
       "Table3.updatedRow.IsKYCDone",
       "Table3.updatedRow.RejectList",
+      "Table3.updatedRow.SameDay",
       "Table3.updatedRow.WithIMB"
     ],
     "userSetOnLoad": false,

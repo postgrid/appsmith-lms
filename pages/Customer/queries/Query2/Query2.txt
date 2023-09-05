@@ -1,4 +1,4 @@
-SELECT c1."CustomerName", MAX(c1."JoiningDate") AS "JoiningDate", c1."OrgID", c1."Country", c1."IsKYCDone", c1."RejectList", c1."WithIMB", c1."Id", c2."PlanDealID", c2."CustomerID", p."Plan", p."Limit"
+SELECT c1."CustomerName", MAX(c1."JoiningDate") AS "JoiningDate", c1."OrgID", c1."Country", c1."IsKYCDone", c1."RejectList", c1."WithIMB",  c1."SameDay", c1."Id", c2."PlanDealID", c2."CustomerID", p."Plan", p."Limit"
 FROM "public"."Customers" c1
 INNER JOIN "public"."CustomerPrice" c2 ON ( c2."CustomerID" = c1."Id" )
 LEFT OUTER JOIN "public"."PlanDeal" p ON ( p."Id" = c2."PlanDealID" )
