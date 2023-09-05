@@ -26,7 +26,8 @@
         {"key": "primaryColumns.OrgID.computedValue"},
         {"key": "primaryColumns.CustomerName.computedValue"},
         {"key": "primaryColumns.Plan.computedValue"},
-        {"key": "primaryColumns.custprice_id.computedValue"}
+        {"key": "primaryColumns.custprice_id.computedValue"},
+        {"key": "primaryColumns.Rate.cellBackground"}
     ],
     "leftColumn": 0,
     "delimiter": ",",
@@ -63,7 +64,7 @@
         }
     },
     "borderRadius": "0px",
-    "columnUpdatedAt": 1678905538474,
+    "columnUpdatedAt": 1693885299347,
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table2",
     "defaultPageSize": 0,
@@ -86,7 +87,8 @@
     ],
     "dynamicPropertyPathList": [
         {"key": "isVisible"},
-        {"key": "tableData"}
+        {"key": "tableData"},
+        {"key": "primaryColumns.Rate.cellBackground"}
     ],
     "compactMode": "DEFAULT",
     "displayName": "Table",
@@ -153,7 +155,7 @@
             "enableFilter": true,
             "sticky": "",
             "originalId": "Rate",
-            "cellBackground": "",
+            "cellBackground": "{{Table2.processedTableData.map((currentRow, currentIndex) => (  currentRow[\"Rate\"] === null ? \"RED\":\"Transparent \"))}}",
             "verticalAlignment": "CENTER"
         },
         "ProductType": {

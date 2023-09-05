@@ -63,7 +63,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1685625836231,
+    "columnUpdatedAt": 1693885552807,
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table3",
     "defaultPageSize": 0,
@@ -87,11 +87,12 @@
         {"key": "tableData"}
     ],
     "displayName": "Table",
-    "bottomRow": 89,
+    "bottomRow": 48,
     "columnWidthMap": {
         "OrgID": 223,
         "task": 245,
         "JoiningDate": 126,
+        "Country": 120,
         "step": 70,
         "customColumn1": 60,
         "CustomerName": 415,

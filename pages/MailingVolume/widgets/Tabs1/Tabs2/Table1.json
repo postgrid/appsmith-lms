@@ -18,7 +18,8 @@
         {"key": "primaryColumns.Total.computedValue"},
         {"key": "borderRadius"},
         {"key": "boxShadow"},
-        {"key": "primaryColumns.Selfmailers.computedValue"}
+        {"key": "primaryColumns.Selfmailers.computedValue"},
+        {"key": "primaryColumns.Postcards.computedValue"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -56,7 +57,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1693502719788,
+    "columnUpdatedAt": 1693885036715,
     "originalBottomRow": 146,
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table1",
@@ -67,6 +68,7 @@
         "Letters",
         "Total",
         "Selfmailers",
+        "Postcards",
         "customColumn1"
     ],
     "dynamicPropertyPathList": [{"key": "tableData"}],
@@ -142,6 +144,33 @@
             "sticky": "",
             "originalId": "Total",
             "cellBackground": "",
+            "verticalAlignment": "CENTER"
+        },
+        "Postcards": {
+            "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Postcards\"]))}}",
+            "isEditable": false,
+            "alias": "Postcards",
+            "enableSort": true,
+            "isSaveVisible": true,
+            "id": "Postcards",
+            "isDisabled": false,
+            "allowSameOptionsInNewRow": true,
+            "validation": {},
+            "isCellVisible": true,
+            "isDerived": false,
+            "textSize": "0.875rem",
+            "allowCellWrapping": false,
+            "index": 3,
+            "isDiscardVisible": true,
+            "isVisible": true,
+            "label": "Postcards",
+            "columnType": "number",
+            "horizontalAlignment": "LEFT",
+            "isCellEditable": false,
+            "width": 150,
+            "enableFilter": true,
+            "sticky": "",
+            "originalId": "Postcards",
             "verticalAlignment": "CENTER"
         },
         "customColumn1": {

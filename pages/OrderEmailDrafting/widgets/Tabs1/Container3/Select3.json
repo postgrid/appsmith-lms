@@ -35,8 +35,12 @@
     "hideCard": false,
     "mobileRightColumn": 20,
     "parentColumnSpace": 25.828125,
-    "dynamicTriggerPathList": [{"key": "onOptionChange"}],
+    "dynamicTriggerPathList": [
+        {"key": "onOptionChange"},
+        {"key": "onDropdownClose"}
+    ],
     "labelPosition": "Left",
+    "onDropdownClose": "{{Util.getDraftOrdersForEmail();}}",
     "sourceData": "{{ get_printerlist.data\n     .map(a => ({ label: a.PrinterName, value: a.PrinterName }))\n     .concat([{ label: 'PAUSED', value: 'PAUSED' }, { label: 'CANCELLED', value: 'CANCELLED' }])\n}}",
     "key": "jxo9cbmqhu",
     "labelTextSize": "0.875rem",
@@ -53,6 +57,6 @@
     "responsiveBehavior": "fill",
     "mobileLeftColumn": 0,
     "maxDynamicHeight": 9000,
-    "onOptionChange": "{{Util.getDraftOrdersForEmail();}}",
+    "onOptionChange": "",
     "minDynamicHeight": 4
 }

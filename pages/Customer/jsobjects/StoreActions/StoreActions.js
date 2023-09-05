@@ -11,13 +11,14 @@ export default {
 		runselect: async () => {
 		resetWidget('Select1')
 		resetWidget('Table3')
-			Query1.run()
+			await Query1.run()
 		StoreActions.runQuery('Query1')
 	},
 	runQuery: async (queryName) => {
 		const queries = {
 		"Query1": Query1,
-		"Query2": Query2
+		"Query2": Query2,
+		"Query3": Query3
 		}
 		await queries[queryName]?.run();
 		//Table3.tableData = queries[queryName].data

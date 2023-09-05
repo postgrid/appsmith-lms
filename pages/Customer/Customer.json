@@ -13,13 +13,13 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1270,
+          "bottomRow": 2090,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 83,
+          "version": 85,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -29,16 +29,30 @@
         "layoutOnLoadActions": [
           [
             {
+              "id": "Customer_get_custpricelist",
+              "name": "get_custpricelist",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "Table3.selectedRow.OrgID"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
               "id": "Customer_StoreActions.runselect",
               "name": "StoreActions.runselect",
               "collectionId": "Customer_StoreActions",
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "async () => {\n  resetWidget('Select1');\n  resetWidget('Table3');\n  Query1.run();\n  StoreActions.runQuery('Query1');\n}"
+                "async () => {\n  resetWidget('Select1');\n  resetWidget('Table3');\n  await Query1.run();\n  StoreActions.runQuery('Query1');\n}"
               ],
               "timeoutInMillisecond": 10000
-            },
+            }
+          ],
+          [
             {
               "id": "Customer_get_user",
               "name": "get_user",
@@ -46,18 +60,6 @@
               "pluginType": "API",
               "jsonPathKeys": [
                 "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Customer_get_custpricelist",
-              "name": "get_custpricelist",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Table3.selectedRow.OrgID"
               ],
               "timeoutInMillisecond": 10000
             }

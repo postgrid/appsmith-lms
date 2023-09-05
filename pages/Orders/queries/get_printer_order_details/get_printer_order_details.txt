@@ -10,7 +10,7 @@ WITH RECURSIVE item_tree("Id", "SubItemID", "InvoiceID", "Qty", "InitialProdDesc
   SELECT SUM("Amount") AS total FROM item_tree WHERE "InvoiceID" = '{{Table2.selectedRow.InvoiceNo}}' 
 )
 SELECT * FROM (
-  SELECT tt."Destination" as "To", tt."Id", "SubItemID", tt."InvoiceID", "Qty", "InitialProdDescription", "Amount", "PrinterPriceID", tt."Rate", "Printer", "depth", "InvoiceDate", "PaymentMethod", "InvoiceStatus", "OrderStatus", "CustomerID", "JoiningDate", "OrgID", "CustomerName", "Country", "PlanID", "IsKYCDone", "RejectList", "WithIMB", "PriceDealID", "ProductID", "PrinterID", "Date", "ProductDescription", "CreatedAt", "MailType", "ProductType", "QtyInStock", "ReOrderLevel"
+  SELECT tt."Destination" as "To", tt."Id", "SubItemID", tt."InvoiceID", "Qty", "InitialProdDescription", "Amount", "PrinterPriceID", tt."Rate", "Printer", "depth", "InvoiceDate", "PaymentMethod", "InvoiceStatus", "OrderStatus", "CustomerID", "JoiningDate", "CustomerName", "Country", "PlanID", "IsKYCDone", "RejectList", "WithIMB", "PriceDealID", "ProductID", "PrinterID", "Date", "ProductDescription", "CreatedAt", "MailType", "ProductType", "QtyInStock", "ReOrderLevel"
   FROM item_tree tt
   INNER JOIN "public"."Invoice" i ON (i."InvoiceID" = tt."InvoiceID")
   INNER JOIN "public"."Customers" c1 ON (c1."Id" = i."CustomerID")
@@ -20,6 +20,6 @@ SELECT * FROM (
   ORDER BY COALESCE(tt."SubItemID", tt."Id"), tt."Id"
 ) AS subquery
 UNION ALL
-SELECT NULL, NULL, NULL, NULL, NULL, NULL, total, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'TOTAL', NULL, NULL, NULL, NULL, NULL
+SELECT NULL, NULL, NULL, NULL, NULL, NULL, total, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL , NULL, NULL, 'TOTAL', NULL, NULL, NULL, NULL, NULL
 FROM total_amount 
 LIMIT {{Table3.pageSize}} offset {{(Table3.pageNo - 1) * Table3.pageSize}};

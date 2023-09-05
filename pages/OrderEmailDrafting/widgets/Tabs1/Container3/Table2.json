@@ -373,7 +373,7 @@
             "verticalAlignment": "CENTER"
         },
         "Collaterals": {
-            "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => (  currentRow.Collaterals ))}}",
+            "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow.Collaterals\n))}}",
             "isEditable": false,
             "alias": "Collaterals",
             "enableSort": true,
