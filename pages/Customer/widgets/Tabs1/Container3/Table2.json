@@ -92,7 +92,7 @@
     ],
     "compactMode": "DEFAULT",
     "displayName": "Table",
-    "bottomRow": 79,
+    "bottomRow": 88,
     "columnWidthMap": {
         "IsKYCDone": 129,
         "WithIMB": 100,
