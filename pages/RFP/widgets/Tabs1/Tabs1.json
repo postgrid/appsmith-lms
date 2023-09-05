@@ -26,7 +26,7 @@
             "tabId": "tab1",
             "widgetName": "Canvas1",
             "displayName": "Canvas",
-            "bottomRow": 1190,
+            "bottomRow": 1200,
             "topRow": 0,
             "parentRowSpace": 1,
             "type": "CANVAS_WIDGET",

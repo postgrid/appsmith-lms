@@ -1,0 +1,1 @@
+SELECT * FROM public."CustomerLineItems" LIMIT 10;

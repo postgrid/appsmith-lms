@@ -1,0 +1,6 @@
+UPDATE "Customers" SET 
+  "Country" = '{{Table3.updatedRow.Country}}',
+	"IsKYCDone" = '{{Table3.updatedRow.IsKYCDone}}',
+	"RejectList" = '{{Table3.updatedRow.RejectList}}',
+	"WithIMB" =  {{Table3.updatedRow.WithIMB}}
+  WHERE "Id" = '{{ Table3.updatedRow.Id }}';

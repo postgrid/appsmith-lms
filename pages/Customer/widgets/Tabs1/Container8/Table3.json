@@ -72,7 +72,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1693918320658,
+    "columnUpdatedAt": 1693920500810,
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table3",
     "defaultPageSize": 0,
@@ -96,7 +96,8 @@
         {"key": "primaryColumns.JoiningDate.outputFormat"},
         {"key": "tableData"},
         {"key": "primaryColumns.EditActions1.isSaveDisabled"},
-        {"key": "primaryColumns.EditActions1.isDiscardDisabled"}
+        {"key": "primaryColumns.EditActions1.isDiscardDisabled"},
+        {"key": "primaryColumns.EditActions1.onSave"}
     ],
     "displayName": "Table",
     "bottomRow": 48,
@@ -113,7 +114,10 @@
     "parentRowSpace": 10,
     "hideCard": false,
     "parentColumnSpace": 7.34912109375,
-    "dynamicTriggerPathList": [{"key": "onRowSelected"}],
+    "dynamicTriggerPathList": [
+        {"key": "onRowSelected"},
+        {"key": "primaryColumns.EditActions1.onSave"}
+    ],
     "borderWidth": "1",
     "primaryColumns": {
         "EditActions1": {
@@ -133,6 +137,7 @@
             "isCellVisible": true,
             "isDerived": true,
             "textSize": "0.875rem",
+            "onSave": "{{set_Rates.run(() => {\nStoreActions.runQuery(Select1.selectedOptionValue);\nStoreActions.runQuery(Select1.selectedOptionValue);\n  showAlert('Saved!', 'success');\n}, () => {});}}",
             "discardButtonVariant": "TERTIARY",
             "buttonStyle": "rgb(3, 179, 101)",
             "allowCellWrapping": false,
