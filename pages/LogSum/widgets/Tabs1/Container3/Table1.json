@@ -540,7 +540,7 @@
             "verticalAlignment": "CENTER"
         },
         "Summary": {
-            "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Summary\"]))}}",
+            "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Summary\"].toFixed(2)))}}",
             "isEditable": false,
             "alias": "Summary",
             "enableSort": true,
