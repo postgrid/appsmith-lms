@@ -2,7 +2,10 @@
     "boxShadow": "none",
     "widgetName": "Select2Copy",
     "isFilterable": false,
-    "dynamicPropertyPathList": [{"key": "onOptionChange"}],
+    "dynamicPropertyPathList": [
+        {"key": "onOptionChange"},
+        {"key": "sourceData"}
+    ],
     "displayName": "Select",
     "iconSVG": "/static/media/icon.bd99caba5853ad71e4b3d8daffacb3a2.svg",
     "labelText": "Select Printer",
@@ -48,6 +51,6 @@
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "maxDynamicHeight": 9000,
     "originalBottomRow": 23,
-    "onOptionChange": "{{get_RFP_T1.run();get_RFP_T2.run();get_RFP_T3.run();get_RFP_T4.run();get_RFP_T5.run()}}",
+    "onOptionChange": "{{\nStoreActions.showAllRFP();}}",
     "minDynamicHeight": 4
 }

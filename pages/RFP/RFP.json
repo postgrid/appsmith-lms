@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 83,
+          "version": 85,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -54,16 +54,6 @@
               "pluginType": "DB",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "RFP_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -88,54 +78,16 @@
                 "Select_Tier.selectedOptionLabel"
               ],
               "timeoutInMillisecond": 10000
-            },
+            }
+          ],
+          [
             {
-              "id": "RFP_get_RFP_T1",
-              "name": "get_RFP_T1",
+              "id": "RFP_get_user",
+              "name": "get_user",
               "confirmBeforeExecute": false,
-              "pluginType": "DB",
+              "pluginType": "API",
               "jsonPathKeys": [
-                "Select2Copy.selectedOptionValue"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "RFP_get_RFP_T2",
-              "name": "get_RFP_T2",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Select2Copy.selectedOptionValue"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "RFP_get_RFP_T3",
-              "name": "get_RFP_T3",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Select2Copy.selectedOptionValue"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "RFP_get_RFP_T4",
-              "name": "get_RFP_T4",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Select2Copy.selectedOptionValue"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "RFP_get_RFP_T5",
-              "name": "get_RFP_T5",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Select2Copy.selectedOptionValue"
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

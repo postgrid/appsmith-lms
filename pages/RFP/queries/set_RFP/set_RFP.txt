@@ -1,0 +1,29 @@
+UPDATE "public"."PrinterPrice" 
+SET 
+  "Rate" =  {{Table1.updatedRow["1 - 5k"]}}
+  WHERE "ProductID" = (SELECT "Id" from "Products" Where "ProductDescription"= '{{Table1.updatedRow.ProductDescription}}') AND "PriceDealID" = 1 AND "PrinterID" = (SELECT "Id" from "Printers" Where "PrinterName" ='{{Select2Copy.selectedOptionValue}}' );
+
+
+UPDATE "public"."PrinterPrice" 
+SET 
+  "Rate" =  {{Table1.updatedRow["5k - 60k"]}}
+  WHERE "ProductID" = (SELECT "Id" from "Products" Where "ProductDescription"= '{{Table1.updatedRow.ProductDescription}}') AND "PriceDealID" = 2 AND "PrinterID" = (SELECT "Id" from "Printers" Where "PrinterName" ='{{Select2Copy.selectedOptionValue}}' );
+	
+	
+UPDATE "public"."PrinterPrice" 
+SET 
+  "Rate" =  {{Table1.updatedRow["60k - 120k"]}}
+  WHERE "ProductID" = (SELECT "Id" from "Products" Where "ProductDescription"= '{{Table1.updatedRow.ProductDescription}}') AND "PriceDealID" = 3 AND "PrinterID" = (SELECT "Id" from "Printers" Where "PrinterName" ='{{Select2Copy.selectedOptionValue}}' );
+	
+	
+UPDATE "public"."PrinterPrice" 
+SET 
+  "Rate" =  {{Table1.updatedRow["120k - 250k"]}}
+  WHERE "ProductID" = (SELECT "Id" from "Products" Where "ProductDescription"= '{{Table1.updatedRow.ProductDescription}}') AND "PriceDealID" = 4 AND "PrinterID" = (SELECT "Id" from "Printers" Where "PrinterName" ='{{Select2Copy.selectedOptionValue}}' );
+	
+	
+UPDATE "public"."PrinterPrice" 
+SET 
+  "Rate" =  {{Table1.updatedRow["250k - 500k"]}}
+  WHERE "ProductID" = (SELECT "Id" from "Products" Where "ProductDescription"= '{{Table1.updatedRow.ProductDescription}}') AND "PriceDealID" = 5 AND "PrinterID" = (SELECT "Id" from "Printers" Where "PrinterName" ='{{Select2Copy.selectedOptionValue}}' );
+

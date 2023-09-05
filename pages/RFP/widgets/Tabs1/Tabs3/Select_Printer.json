@@ -2,7 +2,10 @@
     "boxShadow": "none",
     "widgetName": "Select_Printer",
     "isFilterable": false,
-    "dynamicPropertyPathList": [{"key": "onOptionChange"}],
+    "dynamicPropertyPathList": [
+        {"key": "onOptionChange"},
+        {"key": "sourceData"}
+    ],
     "iconSVG": "/static/media/icon.bd99caba5853ad71e4b3d8daffacb3a2.svg",
     "displayName": "Select",
     "labelText": "Printer 1",
