@@ -323,11 +323,11 @@ export default {
 			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
 
 			const sizeStr = group.destinationCountryCode === 'GB' ||
-			group.destinationCountryCode === 'AU' ? 'A4 Size' : {
-				us_letter: 'Letter Size',
-				us_legal: 'Legal Size',
-				a4: 'A4 Size',
-			}[group.size];
+						group.destinationCountryCode === 'AU' ? 'A4 Size' : {
+							us_letter: 'Letter Size',
+							us_legal: 'Legal Size',
+							a4: 'A4 Size',
+						}[group.size];
 
 			const colorDoubleSidedStr = `${group.color ? 'CLR' : 'BW'} ${
 			group.doubleSided ? 'DS' : 'SS'
@@ -534,9 +534,9 @@ export default {
 					envelopeName = "BridgingCare(Construqt) Ret Envelope";
 				} else {
 					envelopeName = `${
-						group.destinationCountryCode === 'US' ? orgName + ' '
-						: ''
-					}#9 Envelope`;
+					group.destinationCountryCode === 'US' ? orgName + ' '
+					: ''
+				}#9 Envelope`;
 				}
 
 				/** @type {LineItem} */
@@ -559,7 +559,7 @@ export default {
 
 				items.push(returnEnvelopeItem);
 			}
-			
+
 			const customEnvelopeOrgs = [
 				'Country Canvas Awnings',
 				'Highland Health Direct',
@@ -601,7 +601,7 @@ export default {
 						envelopeName = 'ERC Partners, LLC (Garett Law) Custom Envelope';
 						break;
 				}
-				
+
 				/** @type {LineItem} */
 				const customEnvelopeItem = {
 					id: ++id,
@@ -875,7 +875,7 @@ export default {
 					groupID: null,
 				});
 			}
-			
+
 			return items;
 		};
 
@@ -887,7 +887,7 @@ export default {
 		await postcardGroups.run();
 		await chequeGroups.run();		
 		await selfMailerGroups.run();
-		
+
 		const orgNames = new Map(orgs.data.map((o) => [o._id, o.name]));
 
 		const letters = this.letterGroupsLineItems(orgNames);
@@ -913,12 +913,14 @@ export default {
 		renumberItems(selfmailers, letters.length + postcards.length + cheques.length);
 
 		const totalCollateral = letters.concat(postcards).concat(cheques).concat(selfmailers);
+		console.log("JG totalCollateral", totalCollateral.filter(order => order.orgID === 'org_2awQt7uWmaSr8e4DMKvqAK'))
 
 		let orderGroupIds = [];
 		(await get_order_group_ids.run()).forEach(ID => {
 			orderGroupIds.push(ID.OrderGroupID)
 		});
 
+		//get the organzization IDs for items created for today
 		let organizationIDs = [];
 		(await get_organization_ids.run()).forEach(ID => {
 			organizationIDs.push(ID.OrgID)
@@ -932,8 +934,9 @@ export default {
 		let newNumbering = 0;
 
 		for(let order of totalCollateral){
+			//check if parent or sub item
 			if(order.groupID === null){
-				//check if the org associated to this order exists
+				//if this is an existing 
 				if(updateGroup == true){
 					++newNumbering;
 					groupToAdd.push({...order, id: newNumbering, parentID: groupToAdd[0].id});
@@ -960,8 +963,9 @@ export default {
 					groupToAdd = [];
 				}
 
+				// check if order group doesn't exist
 				if(!orderGroupIds.includes(order.groupID)){
-					//check if the org associated to this order exists
+					//check if the org associated to this already has an item
 					if(organizationIDs.includes(order.orgID)){
 						++newNumbering;
 						updateGroup = true;
@@ -975,18 +979,25 @@ export default {
 				}
 			}
 		}
-		if(updateGroup === true){
+
+		console.log("JG groupToAdd", groupToAdd);
+		if(groupToAdd.length > 0){
 			const order = totalCollateral[totalCollateral.length - 1];
 			await storeValue('newList',JSON.parse(JSON.stringify(groupToAdd).replaceAll("'", "''")));
 			await reset_Id_sequence.run();
-			await Promise.all([
-				set_customerprice.run(),
-				set_customerlineitems.run(),
-				set_printerlineitems.run(),
-				set_envelope_inventory.run(),
-			]).catch(() => {
+			try{
+				await set_customerprice.run();
+				await set_customerlineitems.run({orders: groupToAdd});
+				await set_printerlineitems.run({orders: groupToAdd});
+				await set_envelope_inventory.run();
+			} catch(err) {
 				showAlert('Error! Unable to process.','error');
-			});
+			}
+			// await Promise.all([
+				// 
+			// ]).catch(() => {
+				// 
+			// });
 
 			showAlert(`${groupToAdd[0].groupID} added for ${order.orgID}.`)
 
@@ -997,23 +1008,32 @@ export default {
 		//show an alert on the screen if there are any new order groups
 		showAlert(`There was ${newCollateral.length} Order Groups added.`)
 
+		console.log("JG newCollateral", newCollateral);
 		await storeValue('newList',JSON.parse(JSON.stringify(newCollateral).replaceAll("'", "''")));		
 
 		if(newCollateral.length !== 0){
 			await reset_Id_sequence.run();
-			Promise.all([
-				set_newCustList.run(),
-				set_newCustInvoice.run(),
-				set_customerprice.run(),
-				set_customerlineitems.run(),
-				set_printerlineitems.run(),
-				set_envelope_inventory.run(),
-			]).catch(() => {
-				showAlert('Error! Unable to process.','error');
-			});
+			await set_newCustList.run();
+				await set_newCustInvoice.run();
+				await set_customerprice.run();
+				await set_customerlineitems.run({orders: newCollateral});
+				await set_printerlineitems.run({orders: newCollateral});
+				// await set_envelope_inventory.run();
+			// try{
+				// 
+			// } catch(err) {
+				// showAlert('Error! Unable to process.','error');
+			// }
+			// Promise.all([
+				// 
+			// ]).catch(() => {
+				// 
+			// });
 		}
 
 		showAlert(`There was ${newCollateral.length} Order Groups added.`)
+		
+		// this.checkPrinterLineItems();
 
 		Promise.all([
 			get_letter_day_volume.run(),
@@ -1026,5 +1046,31 @@ export default {
 			showAlert('Well done! Your action has been processed successfully.','success');
 		})
 
-	}
+	},
+	checkPrinterLineItems: async () => {
+		//get all printer line items for selected date
+		let removedItems = [];
+		let printerLineItems = [];
+		
+		const startingNumber = printerLineItems[0].Id;
+		
+		for(let i = 0; i < printerLineItems.length; i++){
+			if(printerLineItems[i].subItemID !== null){
+				if(printerLineItems[i].subItemID > printerLineItems[i].Id){
+					//found the first instance of an issue 
+					removedItems.push(printerLineItems.splice(i, 1));
+					for(let j = i; j < printerLineItems.length; j++){
+						printerLineItems[j].Id = j + startingNumber;
+						if(removedItems[0].subItemId === printerLineItems[j].id){
+							printerLineItems = [
+									...printerLineItems.slice(0, j + 1),
+									removedItems[0],
+									...printerLineItems.slice(j + 1)
+							];
+						}
+					}
+					removedItems = [];
+				}
+			}
+		}
 }
