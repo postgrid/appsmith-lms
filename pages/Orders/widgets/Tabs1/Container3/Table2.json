@@ -578,7 +578,7 @@
             "verticalAlignment": "CENTER"
         }
     },
-    "onRowSelected": "{{\nget_customer_order_details.run();\nget_printer_order_details.run();\nget_list_of_collaterals.run();\nstoreValue('org','f');\n}}",
+    "onRowSelected": "{{\nUtil.getSelectedCustomerItems();\nUtil.getSelectedPrinterItems();\nget_list_of_collaterals.run();\nstoreValue('org','f');\n}}",
     "key": "xbdjr460wt",
     "canFreezeColumn": false,
     "isDeprecated": false,

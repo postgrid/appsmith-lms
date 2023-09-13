@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "clearPicker_orders",
-    "fullyQualifiedName": "Util.clearPicker_orders",
+    "name": "getSelectedPrinterItems",
+    "fullyQualifiedName": "Util.getSelectedPrinterItems",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -31,12 +31,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "userSetOnLoad": true,
+    "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_Util.clearPicker_orders",
+  "id": "Orders_Util.getSelectedPrinterItems",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_64d645d888b50a1bf87df1a8"
+  "gitSyncId": "6501c170f1ebd5644ad99ff4_650205bcc22f263c0323391e"
 }
