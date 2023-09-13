@@ -29,6 +29,7 @@
     "mobileBottomRow": 83,
     "widgetName": "Status_Select",
     "isFilterable": true,
+    "dynamicPropertyPathList": [{"key": "sourceData"}],
     "displayName": "Select",
     "searchTags": ["dropdown"],
     "bottomRow": 80,

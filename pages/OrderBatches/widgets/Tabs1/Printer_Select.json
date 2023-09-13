@@ -31,7 +31,10 @@
     "mobileBottomRow": 24,
     "widgetName": "Printer_Select",
     "isFilterable": true,
-    "dynamicPropertyPathList": [{"key": "optionLabel"}],
+    "dynamicPropertyPathList": [
+        {"key": "optionLabel"},
+        {"key": "sourceData"}
+    ],
     "displayName": "Select",
     "searchTags": ["dropdown"],
     "bottomRow": 22,

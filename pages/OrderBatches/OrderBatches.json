@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 83,
+          "version": 85,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -28,6 +28,17 @@
         },
         "layoutOnLoadActions": [
           [
+            {
+              "id": "OrderBatches_StoreActions.setSkippedOrderNumbers",
+              "name": "StoreActions.setSkippedOrderNumbers",
+              "collectionId": "OrderBatches_StoreActions",
+              "confirmBeforeExecute": false,
+              "pluginType": "JS",
+              "jsonPathKeys": [
+                "async () => {\n  await storeValue('chequesSkipCount', 0);\n  await storeValue('lettersSkipCount', 0);\n  await storeValue('postcardsSkipCount', 0);\n  await storeValue('selfmailersSkipCount', 0);\n}"
+              ],
+              "timeoutInMillisecond": 10000
+            },
             {
               "id": "OrderBatches_get_printers",
               "name": "get_printers",
@@ -49,13 +60,12 @@
           ],
           [
             {
-              "id": "OrderBatches_StoreActions.setSkippedOrderNumbers",
-              "name": "StoreActions.setSkippedOrderNumbers",
-              "collectionId": "OrderBatches_StoreActions",
+              "id": "OrderBatches_get_user",
+              "name": "get_user",
               "confirmBeforeExecute": false,
-              "pluginType": "JS",
+              "pluginType": "API",
               "jsonPathKeys": [
-                "async () => {\n  await storeValue('chequesSkipCount', 0);\n  await storeValue('lettersSkipCount', 0);\n  await storeValue('postcardsSkipCount', 0);\n  await storeValue('selfmailersSkipCount', 0);\n}"
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
@@ -90,18 +100,6 @@
                 "Status_Select.selectedOptionValue==='ALL' ?  { $exists: true } : Status_Select.selectedOptionValue",
                 "searchSelfmailer.value==='' ?  (appsmith.store.selfmailersSkipCount || 0) : 0 ",
                 "searchSelfmailer.value==='' ? { $exists: true } : searchSelfmailer.value "
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "OrderBatches_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

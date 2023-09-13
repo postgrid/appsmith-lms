@@ -1,1 +1,4 @@
-SELECT * FROM public."PrinterLineItems" LIMIT 10;
+SELECT * 
+FROM public."PrinterLineItems" p
+INNER JOIN public."Invoice" i ON p."InvoiceID" = i."InvoiceID"
+WHERE to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >= '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' order by p."Id" asc;
