@@ -5,7 +5,7 @@
     "isVisibleDownload": false,
     "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
     "topRow": 0,
-    "isSortable": false,
+    "isSortable": "false",
     "type": "TABLE_WIDGET_V2",
     "animateLoading": false,
     "dynamicBindingPathList": [
@@ -28,7 +28,8 @@
         {"key": "primaryColumns.AssignTo.isCellEditable"},
         {"key": "primaryColumns.customColumn1.computedValue"},
         {"key": "primaryColumns.Qty.isCellEditable"},
-        {"key": "primaryColumns.ProductDescription.selectOptions"}
+        {"key": "primaryColumns.ProductDescription.selectOptions"},
+        {"key": "primaryColumns.sort.computedValue"}
     ],
     "leftColumn": 0,
     "delimiter": ",",
@@ -67,7 +68,7 @@
     },
     "borderRadius": "0px",
     "originalBottomRow": 75,
-    "columnUpdatedAt": 1682480241070,
+    "columnUpdatedAt": 1694633389641,
     "defaultSelectedRowIndices": "",
     "widgetName": "Table3Copy",
     "defaultPageSize": 0,
@@ -82,7 +83,8 @@
         "Amount",
         "MailType",
         "itemid",
-        "SubItemID"
+        "SubItemID",
+        "sort"
     ],
     "dynamicPropertyPathList": [
         {"key": "isVisible"},
@@ -91,7 +93,8 @@
         {"key": "onRowSelected"},
         {"key": "primaryColumns.AssignTo.isCellEditable"},
         {"key": "primaryColumns.Qty.isCellEditable"},
-        {"key": "tableData"}
+        {"key": "tableData"},
+        {"key": "isSortable"}
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
@@ -108,6 +111,7 @@
         "CustomerID": 194,
         "InvoiceID": 181,
         "customColumn3": 60,
+        "itemid": 416,
         "mailType": 103,
         "task": 245,
         "InitialProdDescription": 287,
@@ -400,6 +404,36 @@
             "cellBackground": "",
             "verticalAlignment": "CENTER"
         },
+        "sort": {
+            "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"sort\"]))}}",
+            "isEditable": false,
+            "alias": "sort",
+            "enableSort": true,
+            "isSaveVisible": true,
+            "id": "sort",
+            "isDisabled": false,
+            "allowSameOptionsInNewRow": true,
+            "validation": {},
+            "isCellVisible": true,
+            "isDerived": false,
+            "textSize": "0.875rem",
+            "allowCellWrapping": false,
+            "index": 10,
+            "isDiscardVisible": true,
+            "isVisible": false,
+            "label": "sort",
+            "fontStyle": "",
+            "textColor": "",
+            "columnType": "number",
+            "horizontalAlignment": "LEFT",
+            "isCellEditable": false,
+            "width": 150,
+            "enableFilter": true,
+            "sticky": "",
+            "originalId": "sort",
+            "cellBackground": "",
+            "verticalAlignment": "CENTER"
+        },
         "MailType": {
             "computedValue": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"MailType\"]))}}",
             "isEditable": false,
@@ -467,7 +501,7 @@
     "textSize": "0.875rem",
     "widgetId": "c7pddxjk15",
     "allowAddNewRow": false,
-    "tableData": "{{get_customer_order_details.data}}",
+    "tableData": "{{appsmith.store.customerItems}}",
     "label": "Data",
     "searchKey": "",
     "parentId": "gocceicoum",

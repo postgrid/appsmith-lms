@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "clearPicker_orders",
-    "fullyQualifiedName": "Util.clearPicker_orders",
+    "name": "getSelectedCustomerItems",
+    "fullyQualifiedName": "Util.getSelectedCustomerItems",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -31,12 +31,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "userSetOnLoad": true,
+    "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_Util.clearPicker_orders",
+  "id": "Orders_Util.getSelectedCustomerItems",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_64d645d888b50a1bf87df1a8"
+  "gitSyncId": "6501c170f1ebd5644ad99ff4_6501fdfd21b587125d21d212"
 }

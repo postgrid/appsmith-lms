@@ -126,7 +126,8 @@ export default {
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
 
 		for (const value of customerLineItems) {
-			const printerItem = printerLineItems.find(printerItem => printerItem[0].Id == value[0].Id);
+			const uuid = value[0].Id.split('customer_item_')[1];
+			const printerItem = printerLineItems.find(printerItem => printerItem[0].Id == `printer_item_${uuid}`);
 			const customerInfo = getCalcAndDescription(value, "customer")
 			const printerInfo = getCalcAndDescription(printerItem, "printer")
 			

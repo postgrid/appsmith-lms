@@ -153,14 +153,6 @@ export default {
 		for (const group of groups) {
 			const groupItems = groupItemsFn(group);
 
-			// Renumber the IDs
-			for (const item of groupItems) {
-				item.id += items.length;
-				if (item.parentID) {
-					item.parentID += items.length;
-				}
-			}
-
 			items.push(...groupItems);
 		}
 
@@ -297,7 +289,7 @@ export default {
 			 group.destinationCountryCode !== 'GB' &&
 			 group.destinationCountryCode !== 'AU') || 
 			(group.destinationCountryCode !== orgCountryCode && (
-			group.destinationCountryCode !== 'AS' && orgCountryCode === 'US'
+				group.destinationCountryCode !== 'AS' && orgCountryCode === 'US'
 			))
 		) {
 			/** @type {LineItemWithoutID} */
@@ -337,7 +329,7 @@ export default {
 
 			const classStr = this.classStr(group);
 
-			let id = 0;
+			let id = UUID.generate();
 
 			const generateSheetCount = () => {
 				return group.doubleSided
@@ -429,7 +421,7 @@ export default {
 
 			/** @type LineItem */
 			const baseItem = formatCollateral({
-				id: ++id,
+				id: id,
 
 				orgID: group.organization,
 				orgName,
@@ -449,10 +441,11 @@ export default {
 			const innerItems = this.baseGroupItems(group, orgName, orgCountryCode);
 
 			for (const item of innerItems) {
+				const innerId = UUID.generate();
 				items.push({
 					...item,
 
-					id: ++id,
+					id: innerId,
 					destinationCountryCode: null,
 
 					parentID: baseItem.id,
@@ -468,7 +461,7 @@ export default {
 			if (sheetCount > 1) {
 				/** @type {LineItem} */
 				const addlSheetItem = formatCollateral({
-					id: ++id,
+					id: UUID.generate(),
 
 					orgID: group.organization,
 					orgName,
@@ -488,7 +481,7 @@ export default {
 					const sheetRange = sheetCount <= 60 ? 'over 6' : sheetCount > 60 && sheetCount <= 150 ? '61 - 150' : sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : 'over 300'
 					/** @type {LineItem} */
 					const oversizedItem = formatCollateral({
-						id: ++id,
+						id: UUID.generate(),
 
 						orgID: group.organization,
 						orgName,
@@ -511,7 +504,7 @@ export default {
 			if (group.perforatedPage) {
 				/** @type {LineItem} */
 				const perforatedItem = {
-					id: ++id,
+					id: UUID.generate(),
 
 					orgID: group.organization,
 					orgName,
@@ -543,7 +536,7 @@ export default {
 
 				/** @type {LineItem} */
 				const returnEnvelopeItem = {
-					id: ++id,
+					id: UUID.generate(),
 
 					orgID: group.organization,
 					orgName,
@@ -606,7 +599,7 @@ export default {
 
 				/** @type {LineItem} */
 				const customEnvelopeItem = {
-					id: ++id,
+					id: UUID.generate(),
 
 					orgID: group.organization,
 					orgName,
@@ -646,7 +639,7 @@ export default {
 
 			const classStr = this.classStr(group);
 
-			let id = 0;
+			let id = UUID.generate();
 
 			const formatCollateral = (item) => {
 				//Perbelle
@@ -669,7 +662,6 @@ export default {
 
 				//CRC
 				if(group.organization === "org_iWccrJCPmbqmVbz1j1yNXg"){
-					console.log("JG CRC", item)
 					if(item.productDesc.includes("6x11") || item.productDesc.includes("11x6_reduced")){
 						return{
 							...item,
@@ -690,7 +682,7 @@ export default {
 
 			/** @type LineItem */
 			const baseItem = formatCollateral({
-				id: ++id,
+				id: id,
 
 				orgID: group.organization,
 				orgName,
@@ -710,10 +702,11 @@ export default {
 			const innerItems = this.baseGroupItems(group, orgName, orgCountryCode);
 
 			for (const item of innerItems) {
+				const innerId = UUID.generate();
 				items.push({
 					...item,
 
-					id: ++id,
+					id: innerId,
 					destinationCountryCode: null,
 
 					parentID: baseItem.id,
@@ -725,7 +718,7 @@ export default {
 			if (group.organization === 'org_6pFGLJ6c1N6zT1xrrRYKe9') {
 				/** @type {LineItem} */
 				const lamItem = {
-					id: ++id,
+					id: UUID.generate(),
 
 					orgID: group.organization,
 					orgName,
@@ -764,11 +757,11 @@ export default {
 
 			const classStr = this.classStr(group);
 
-			let id = 0;
+			let id = UUID.generate();
 
 			/** @type LineItem */
 			const baseItem = {
-				id: ++id,
+				id: id,
 
 				orgID: group.organization,
 				orgName,
@@ -788,10 +781,11 @@ export default {
 			const innerItems = this.baseGroupItems(group, orgName, orgCountryCode);
 
 			for (const item of innerItems) {
+				const innerId = UUID.generate();
 				items.push({
 					...item,
 
-					id: ++id,
+					id: innerId,
 
 					parentID: baseItem.id,
 					groupID: null,
@@ -804,7 +798,7 @@ export default {
 
 				/** @type {LineItem} */
 				const addlSheetItem = {
-					id: ++id,
+					id: UUID.generate(),
 
 					orgID: group.organization,
 					orgName,
@@ -839,7 +833,7 @@ export default {
 
 			const classStr = this.classStr(group);
 
-			let id = 0;
+			let id = UUID.generate();
 
 			const formatCollateral = (item) => {
 				return item;
@@ -847,7 +841,7 @@ export default {
 
 			/** @type LineItem */
 			const baseItem = formatCollateral({
-				id: ++id,
+				id: id,
 
 				orgID: group.organization,
 				orgName,
@@ -867,10 +861,11 @@ export default {
 			const innerItems = this.baseGroupItems(group, orgName, orgCountryCode);
 
 			for (const item of innerItems) {
+				const innerId = UUID.generate();
 				items.push({
 					...item,
 
-					id: ++id,
+					id: innerId,
 					destinationCountryCode: null,
 
 					parentID: baseItem.id,
@@ -897,23 +892,6 @@ export default {
 		const cheques = this.chequeGroupsLineItems(orgNames);
 		const selfmailers = this.selfmailerGroupsLineItems(orgNames);
 
-		/**
-         * @param {LineItem[]} items
-         * @param {number} base
-         */
-		const renumberItems = (items, base) => {
-			for (const item of items) {
-				item.id += base;
-				if (item.parentID) {
-					item.parentID += base;
-				}
-			}
-		};
-
-		renumberItems(postcards, letters.length);
-		renumberItems(cheques, letters.length + postcards.length);
-		renumberItems(selfmailers, letters.length + postcards.length + cheques.length);
-
 		const totalCollateral = letters.concat(postcards).concat(cheques).concat(selfmailers);
 
 		let orderGroupIds = [];
@@ -932,15 +910,13 @@ export default {
 		let skipCurrent = true;
 		let updateGroup = false;
 		let groupToAdd = [];
-		let newNumbering = 0;
 
 		for(let order of totalCollateral){
 			//check if parent or sub item
 			if(order.groupID === null){
 				//if this is an existing 
 				if(updateGroup == true){
-					++newNumbering;
-					groupToAdd.push({...order, id: newNumbering, parentID: groupToAdd[0].id});
+					groupToAdd.push(order);
 				} else if(!skipCurrent){
 					newCollateral.push(order);
 				}
@@ -959,7 +935,6 @@ export default {
 
 					showAlert(`${groupToAdd[0].groupID} added for ${order.orgID}.`)
 
-					newNumbering = 0;
 					updateGroup = false;
 					groupToAdd = [];
 				}
@@ -968,9 +943,8 @@ export default {
 				if(!orderGroupIds.includes(order.groupID)){
 					//check if the org associated to this already has an item
 					if(organizationIDs.includes(order.orgID)){
-						++newNumbering;
 						updateGroup = true;
-						groupToAdd.push({...order, id: newNumbering});
+						groupToAdd.push(order);
 					} else {
 						skipCurrent = false;
 						newCollateral.push(order);
@@ -985,7 +959,6 @@ export default {
 		if(updateGroup === true){
 			const order = totalCollateral[totalCollateral.length - 1];
 			await storeValue('newList',JSON.parse(JSON.stringify(groupToAdd).replaceAll("'", "''")));
-			await reset_Id_sequence.run();
 			await Promise.all([
 				set_customerprice.run(),
 				set_customerlineitems.run(),
@@ -1006,7 +979,6 @@ export default {
 		await storeValue('newList',JSON.parse(JSON.stringify(newCollateral).replaceAll("'", "''")));		
 
 		if(newCollateral.length !== 0){
-			await reset_Id_sequence.run();
 			Promise.all([
 				set_newCustList.run(),
 				set_newCustInvoice.run(),
