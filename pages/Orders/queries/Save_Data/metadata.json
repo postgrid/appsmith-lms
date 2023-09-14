@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "\nUPDATE public.\"CustomerLineItems\"\nSET \"Printer\" = '{{this.params.currentRow.AssignTo}}' , \"OrderStatus\" = 'RELEASED'\nWHERE \"Id\" = {{this.params.currentRow.itemid}};\nUPDATE public.\"CustomerLineItems\"\nSET \"Printer\" = '{{this.params.currentRow.AssignTo}}' , \"OrderStatus\" = 'RELEASED'\nWHERE \"SubItemID\" = {{this.params.currentRow.itemid}};\n\n\nUPDATE public.\"PrinterLineItems\"\nSET \"Printer\" = '{{this.params.currentRow.AssignTo}}' , \"OrderStatus\" = 'RELEASED'\nWHERE \"Id\" = {{this.params.currentRow.itemid}};\nUPDATE public.\"PrinterLineItems\"\nSET \"Printer\" = '{{this.params.currentRow.AssignTo}}' , \"OrderStatus\" = 'RELEASED'\nWHERE \"SubItemID\" = {{this.params.currentRow.itemid}};\n\n\n\n\n",
+      "body": "\nUPDATE public.\"CustomerLineItems\"\nSET \"Printer\" = '{{this.params.currentRow.AssignTo}}' , \"OrderStatus\" = 'RELEASED'\nWHERE \"Id\" = {{`'${this.params.currentRow.itemid}'`}};\nUPDATE public.\"CustomerLineItems\"\nSET \"Printer\" = '{{this.params.currentRow.AssignTo}}' , \"OrderStatus\" = 'RELEASED'\nWHERE \"SubItemID\" = {{`'${this.params.currentRow.itemid}'`}};\n\n\nUPDATE public.\"PrinterLineItems\"\nSET \"Printer\" = '{{this.params.currentRow.AssignTo}}' , \"OrderStatus\" = 'RELEASED'\nWHERE \"Id\" = {{`'printer_item_${this.params.currentRow.itemid.split('customer_item_')[1]}'`}};\nUPDATE public.\"PrinterLineItems\"\nSET \"Printer\" = '{{this.params.currentRow.AssignTo}}' , \"OrderStatus\" = 'RELEASED'\nWHERE \"SubItemID\" = {{`'printer_item_${this.params.currentRow.itemid.split('customer_item_')[1]}'`}};\n\n\n\n\n",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,8 +36,9 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "this.params.currentRow.AssignTo",
-      "this.params.currentRow.itemid"
+      "`'${this.params.currentRow.itemid}'`",
+      "`'printer_item_${this.params.currentRow.itemid.split('customer_item_')[1]}'`",
+      "this.params.currentRow.AssignTo"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

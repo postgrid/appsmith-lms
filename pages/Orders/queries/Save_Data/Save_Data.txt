@@ -1,18 +1,18 @@
 
 UPDATE public."CustomerLineItems"
 SET "Printer" = '{{this.params.currentRow.AssignTo}}' , "OrderStatus" = 'RELEASED'
-WHERE "Id" = {{this.params.currentRow.itemid}};
+WHERE "Id" = {{`'${this.params.currentRow.itemid}'`}};
 UPDATE public."CustomerLineItems"
 SET "Printer" = '{{this.params.currentRow.AssignTo}}' , "OrderStatus" = 'RELEASED'
-WHERE "SubItemID" = {{this.params.currentRow.itemid}};
+WHERE "SubItemID" = {{`'${this.params.currentRow.itemid}'`}};
 
 
 UPDATE public."PrinterLineItems"
 SET "Printer" = '{{this.params.currentRow.AssignTo}}' , "OrderStatus" = 'RELEASED'
-WHERE "Id" = {{this.params.currentRow.itemid}};
+WHERE "Id" = {{`'printer_item_${this.params.currentRow.itemid.split('customer_item_')[1]}'`}};
 UPDATE public."PrinterLineItems"
 SET "Printer" = '{{this.params.currentRow.AssignTo}}' , "OrderStatus" = 'RELEASED'
-WHERE "SubItemID" = {{this.params.currentRow.itemid}};
+WHERE "SubItemID" = {{`'printer_item_${this.params.currentRow.itemid.split('customer_item_')[1]}'`}};
 
 
 

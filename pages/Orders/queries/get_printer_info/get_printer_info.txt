@@ -1,0 +1,4 @@
+SELECT "Printers"."Id", "Printers"."PrinterName", "set_tier"."tier_level_id"
+FROM "Printers"
+INNER JOIN "set_tier" ON "Printers"."Id"="set_tier"."printerid"
+WHERE "Printers"."PrinterName" = {{this.params.printerName}};

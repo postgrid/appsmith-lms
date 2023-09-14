@@ -1,1 +1,1 @@
-SELECT "OrderGroupID" FROM "public"."PrinterLineItems" WHERE "Id" = '{{this.params.currentRow.itemid}}';
+SELECT "OrderGroupID" FROM "public"."PrinterLineItems" WHERE "Id" = '{{`printer_item_${this.params.currentRow.itemid.split('customer_item_')[1]}`}}';

@@ -2,11 +2,29 @@ export default {
 	myFun1: async (currentRow) => {
 		await storeValue("rowUpdate",currentRow);
 		await Save_Data.run({currentRow});
+		
+		//change printerPriceID for the current order
+		const printerName = currentRow.AssignTo;
+		const printerInfo = await get_printer_info.run({printerName});
+		const allItems = await get_selected_printer_line_item.run({id: `printer_item_${currentRow.itemid.split('customer_item_')[1]}`})
+		const itemsList = allItems.map(item => {
+			return {
+				printerId: printerInfo[0].Id,
+				printerTier: printerInfo[0].tier_level_id,
+				productId: item.ProductID,
+				itemId: item.Id,
+				qty: item.Qty
+			}
+		})
+		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
+		await set_printer_price_id.run();
+		
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
-		await get_printer_order_details.run();
+		await Util.getSelectedPrinterItems();
 
 		// add mongo connection and update the vendor for this
+		await get_printer_line_item.run({currentRow});
 		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
 		const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 

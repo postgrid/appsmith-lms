@@ -1,0 +1,27 @@
+CREATE TABLE temp_items (
+	temp_item_id TEXT,
+	"PrinterPriceID" INTEGER, 
+	"Rate" NUMERIC, 
+	"Amount" NUMERIC
+);
+
+INSERT INTO temp_items (temp_item_id, "PrinterPriceID", "Rate", "Amount") 
+VALUES 
+{{appsmith.store.printerItemsList.map((d) => { 
+	return"(" + "'" + d.itemId+ "', " + "(SELECT pp.\"Id\" FROM \"public\".\"PrinterPrice\" pp WHERE pp.\"PriceDealID\" = '"+ d.printerTier +"' AND	pp.\"ProductID\" = '" + d.productId + "' AND pp.\"PrinterID\" = '" + d.printerId +"')," + "(SELECT pp.\"Rate\" FROM \"public\".\"PrinterPrice\" pp WHERE pp.\"PriceDealID\" = '"+ d.printerTier +"' AND	pp.\"ProductID\" = '" + d.productId + "' AND pp.\"PrinterID\" = '" + d.printerId +"')," + "(SELECT pp.\"Rate\" FROM \"public\".\"PrinterPrice\" pp WHERE pp.\"PriceDealID\" = '"+ d.printerTier +"' AND	pp.\"ProductID\" = '" + d.productId + "' AND pp.\"PrinterID\" = '" + d.printerId +"')  *" + d.qty + ")"}).join(",")  }};
+
+UPDATE "PrinterLineItems" SET "PrinterPriceID" = (SELECT "PrinterPriceID"
+                                 FROM temp_items
+                                 WHERE "PrinterLineItems"."Id" = temp_items.temp_item_id),
+                         "Rate" = (SELECT "Rate"
+                                 FROM temp_items
+                                 WHERE "PrinterLineItems"."Id" = temp_items.temp_item_id),
+												 "Amount" = (SELECT "Amount"
+                                 FROM temp_items
+                                 WHERE "PrinterLineItems"."Id" = temp_items.temp_item_id)
+
+
+WHERE "Id" IN (SELECT temp_item_id
+             FROM temp_items);
+						 
+DROP TABLE temp_items;
