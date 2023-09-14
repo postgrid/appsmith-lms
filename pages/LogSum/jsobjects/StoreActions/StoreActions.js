@@ -124,6 +124,8 @@ export default {
 		})()
 		const customerLineItems = generateOrderLineMap(filteredCustomerItems);
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
+		
+		console.log("JG cust", customerLineItems);
 
 		for (const value of customerLineItems) {
 			const uuid = value[0].Id.split('customer_item_')[1];

@@ -5,3 +5,4 @@ FROM "public"."PrinterPrice" p
 	INNER JOIN "public"."Printers" p3 ON ( p3."Id" = p."PrinterID"  )  
 	
 WHERE p2."PackageTier"='1 - 5k' AND p3."PrinterName"  ='{{Select2Copy.selectedOptionValue}}' 
+Order by p."Id"

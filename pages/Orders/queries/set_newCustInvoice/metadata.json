@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "CREATE TABLE temp_invoice(\n\t\"CustomerID\" TEXT,\n  \"InvoiceStatus\" TEXT,\n  \"OrderStatus\" TEXT\n);\n\nINSERT INTO temp_invoice(\"CustomerID\", \"InvoiceStatus\",\"OrderStatus\") \n VALUES \n\t {{appsmith.store.newList.map((d) => { \t\n\t\t\treturn\"((SELECT \\\"Id\\\" FROM \\\"Customers\\\" WHERE \\\"OrgID\\\" = '\"+ d.orgID + \"'),\"+ \"'INPROCESS',\" + \"'INPROCESS')\"}).join(\",\")  }};\t\t\n \nINSERT INTO \"Invoice\" (\"CustomerID\", \"InvoiceStatus\",\"OrderStatus\") \nSELECT DISTINCT \"CustomerID\" , \"InvoiceStatus\",\"OrderStatus\"\nFROM temp_invoice;\n\nDROP TABLE temp_invoice;",
+      "body": "CREATE TABLE temp_invoice(\n\t\"CustomerID\" TEXT,\n  \"InvoiceStatus\" TEXT,\n  \"OrderStatus\" TEXT,\n\t\"InvoiceDate\" TIMESTAMP\n);\n\nINSERT INTO temp_invoice(\"CustomerID\", \"InvoiceStatus\",\"OrderStatus\", \"InvoiceDate\") \n VALUES \n\t {{appsmith.store.newList.map((d) => { \t\n\t\t\treturn\"((SELECT \\\"Id\\\" FROM \\\"Customers\\\" WHERE \\\"OrgID\\\" = '\"+ d.orgID + \"'),\"+ \"'INPROCESS',\" + \"'INPROCESS','\" + DatePicker1.selectedDate +\"')\"}).join(\",\")  }};\t\t\n \nINSERT INTO \"Invoice\" (\"CustomerID\", \"InvoiceStatus\",\"OrderStatus\", \"InvoiceDate\") \nSELECT DISTINCT \"CustomerID\" , \"InvoiceStatus\",\"OrderStatus\", \"InvoiceDate\"\nFROM temp_invoice;\n\nDROP TABLE temp_invoice;",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,7 +36,7 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "appsmith.store.newList.map((d) => { \t\n\t\t\treturn\"((SELECT \\\"Id\\\" FROM \\\"Customers\\\" WHERE \\\"OrgID\\\" = '\"+ d.orgID + \"'),\"+ \"'INPROCESS',\" + \"'INPROCESS')\"}).join(\",\")  "
+      "appsmith.store.newList.map((d) => { \t\n\t\t\treturn\"((SELECT \\\"Id\\\" FROM \\\"Customers\\\" WHERE \\\"OrgID\\\" = '\"+ d.orgID + \"'),\"+ \"'INPROCESS',\" + \"'INPROCESS','\" + DatePicker1.selectedDate +\"')\"}).join(\",\")  "
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

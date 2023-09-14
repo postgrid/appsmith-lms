@@ -1,16 +1,17 @@
 CREATE TABLE temp_invoice(
 	"CustomerID" TEXT,
   "InvoiceStatus" TEXT,
-  "OrderStatus" TEXT
+  "OrderStatus" TEXT,
+	"InvoiceDate" TIMESTAMP
 );
 
-INSERT INTO temp_invoice("CustomerID", "InvoiceStatus","OrderStatus") 
+INSERT INTO temp_invoice("CustomerID", "InvoiceStatus","OrderStatus", "InvoiceDate") 
  VALUES 
 	 {{appsmith.store.newList.map((d) => { 	
-			return"((SELECT \"Id\" FROM \"Customers\" WHERE \"OrgID\" = '"+ d.orgID + "'),"+ "'INPROCESS'," + "'INPROCESS')"}).join(",")  }};		
+			return"((SELECT \"Id\" FROM \"Customers\" WHERE \"OrgID\" = '"+ d.orgID + "'),"+ "'INPROCESS'," + "'INPROCESS','" + DatePicker1.selectedDate +"')"}).join(",")  }};		
  
-INSERT INTO "Invoice" ("CustomerID", "InvoiceStatus","OrderStatus") 
-SELECT DISTINCT "CustomerID" , "InvoiceStatus","OrderStatus"
+INSERT INTO "Invoice" ("CustomerID", "InvoiceStatus","OrderStatus", "InvoiceDate") 
+SELECT DISTINCT "CustomerID" , "InvoiceStatus","OrderStatus", "InvoiceDate"
 FROM temp_invoice;
 
 DROP TABLE temp_invoice;

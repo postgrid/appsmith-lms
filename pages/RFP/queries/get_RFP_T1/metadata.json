@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT p1.\"ProductDescription\" , p.\"Rate\" as \"1 - 5k\"\nFROM \"public\".\"PrinterPrice\" p \n\tFULL OUTER JOIN \"public\".\"Products\" p1 ON ( p1.\"Id\" = p.\"ProductID\"  )  \n\tINNER JOIN \"public\".\"PriceDeal\" p2 ON ( p2.\"Id\" = p.\"PriceDealID\"  )  \n\tINNER JOIN \"public\".\"Printers\" p3 ON ( p3.\"Id\" = p.\"PrinterID\"  )  \n\t\nWHERE p2.\"PackageTier\"='1 - 5k' AND p3.\"PrinterName\"  ='{{Select2Copy.selectedOptionValue}}' ",
+      "body": "SELECT p1.\"ProductDescription\" , p.\"Rate\" as \"1 - 5k\"\nFROM \"public\".\"PrinterPrice\" p \n\tFULL OUTER JOIN \"public\".\"Products\" p1 ON ( p1.\"Id\" = p.\"ProductID\"  )  \n\tINNER JOIN \"public\".\"PriceDeal\" p2 ON ( p2.\"Id\" = p.\"PriceDealID\"  )  \n\tINNER JOIN \"public\".\"Printers\" p3 ON ( p3.\"Id\" = p.\"PrinterID\"  )  \n\t\nWHERE p2.\"PackageTier\"='1 - 5k' AND p3.\"PrinterName\"  ='{{Select2Copy.selectedOptionValue}}' \nOrder by p.\"Id\"",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
