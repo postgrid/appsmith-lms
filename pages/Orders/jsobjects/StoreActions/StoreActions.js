@@ -1,12 +1,13 @@
 export default {
 	myFun1: async (currentRow) => {
+		console.log("JG curr", currentRow);
 		await storeValue("rowUpdate",currentRow);
 		await Save_Data.run({currentRow});
 		
 		//change printerPriceID for the current order
 		const printerName = currentRow.AssignTo;
 		const printerInfo = await get_printer_info.run({printerName});
-		const allItems = await get_selected_printer_line_item.run({id: `printer_item_${currentRow.itemid.split('customer_item_')[1]}`})
+		const allItems = await get_selected_printer_item_sing.run({id: currentRow})
 		const itemsList = allItems.map(item => {
 			return {
 				printerId: printerInfo[0].Id,
@@ -54,6 +55,34 @@ export default {
 			});
 		}
 		showAlert('Vendor has been updated successfully', 'success');
+	},
+	updateAllItemsVendor: async () => {		
+		await set_AllToPrinter.run();
+		
+		//change printerPriceID for the current order
+		const printerName = appsmith.store.MBitem;
+		const printerInfo = await get_printer_info.run({printerName});
+		console.log("JG inv",Table2.selectedRow.InvoiceNo )
+		const allItems = await get_selected_printer_item_all.run({invoiceID: Table2.selectedRow.InvoiceNo})
+		console.log("JG all", allItems);
+		const itemsList = allItems.map(item => {
+			return {
+				printerId: printerInfo[0].Id,
+				printerTier: printerInfo[0].tier_level_id,
+				productId: item.ProductID,
+				itemId: item.Id,
+				qty: item.Qty
+			}
+		})
+		console.log("JG itemL", itemsList);
+		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
+		await set_printer_price_id.run();
+		
+		await StoreActions.updateOrderGroupVendors();
+		await get_customer_order_details.run();
+		await get_PauseCancel_custOrderDetai.run();
+		await Util.getSelectedPrinterItems();
+		await showAlert('Vendors successfully updated!.','success');
 	},
 	clearOrderGroupVendor: async (currentRow) => {
 		await Save_Data.run({currentRow: {

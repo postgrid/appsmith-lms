@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "get_selected_printer_line_item",
+    "name": "get_selected_printer_item_all",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT \"PrinterLineItems\".\"Id\", \"PrinterLineItems\".\"Qty\", \"Products\".\"Id\" AS \"ProductID\"\nFROM \"PrinterLineItems\"\nINNER JOIN \"Products\" ON \"PrinterLineItems\".\"InitialProdDescription\"=\"Products\".\"ProductDescription\"\nWHERE \"PrinterLineItems\".\"Id\" = {{this.params.id}} OR \"PrinterLineItems\".\"SubItemID\" = {{this.params.id}};",
+      "body": "SELECT \"PrinterLineItems\".\"Id\", \"PrinterLineItems\".\"Qty\", \"Products\".\"Id\" AS \"ProductID\", \"PrinterLineItems\".\"InvoiceID\"\nFROM \"PrinterLineItems\"\nINNER JOIN \"Products\" ON \"PrinterLineItems\".\"InitialProdDescription\"=\"Products\".\"ProductDescription\"\nWHERE \"PrinterLineItems\".\"InvoiceID\" = {{this.params.invoiceID}};",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,15 +36,15 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "this.params.id"
+      "this.params.invoiceID"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-09-14T14:39:28Z"
+    "createdAt": "2023-09-14T18:14:53Z"
   },
-  "id": "Orders_get_selected_printer_line_item",
+  "id": "Orders_get_selected_printer_item_all",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_65031b20d378b9405b61bc7d"
+  "gitSyncId": "63b393c7f276cd0745e9510c_65034d9d6bd395235ef3b3ba"
 }

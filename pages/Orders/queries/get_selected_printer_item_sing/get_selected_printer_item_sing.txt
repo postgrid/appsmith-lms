@@ -1,4 +1,4 @@
 SELECT "PrinterLineItems"."Id", "PrinterLineItems"."Qty", "Products"."Id" AS "ProductID"
 FROM "PrinterLineItems"
 INNER JOIN "Products" ON "PrinterLineItems"."InitialProdDescription"="Products"."ProductDescription"
-WHERE "PrinterLineItems"."Id" = {{this.params.id}} OR "PrinterLineItems"."SubItemID" = {{this.params.id}};
+WHERE "PrinterLineItems"."Id" = {{`'${this.params.id}'`}} OR "PrinterLineItems"."SubItemID" = {{`'${this.params.id}'`}};
