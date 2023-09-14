@@ -9,10 +9,10 @@ WHERE "SubItemID" = {{`'${this.params.currentRow.itemid}'`}};
 
 UPDATE public."PrinterLineItems"
 SET "Printer" = '{{this.params.currentRow.AssignTo}}' , "OrderStatus" = 'RELEASED'
-WHERE "Id" = {{`'printer_item_${this.params.currentRow.itemid.split('customer_item_')[1]}'`}};
+WHERE "Id" = {{`'${this.params.currentRow.itemid}'`}};
 UPDATE public."PrinterLineItems"
 SET "Printer" = '{{this.params.currentRow.AssignTo}}' , "OrderStatus" = 'RELEASED'
-WHERE "SubItemID" = {{`'printer_item_${this.params.currentRow.itemid.split('customer_item_')[1]}'`}};
+WHERE "SubItemID" = {{`'${this.params.currentRow.itemid}'`}};
 
 
 
