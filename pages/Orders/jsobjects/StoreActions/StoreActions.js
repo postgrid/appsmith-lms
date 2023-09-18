@@ -1,6 +1,5 @@
 export default {
 	myFun1: async (currentRow) => {
-		console.log("JG curr", currentRow);
 		await storeValue("rowUpdate",currentRow);
 		await Save_Data.run({currentRow});
 		
@@ -8,7 +7,6 @@ export default {
 		const printerName = currentRow.AssignTo;
 		const printerInfo = await get_printer_info.run({printerName});
 		const allItems = await get_selected_printer_item_sing.run()
-		console.log("JG all Items", allItems)
 		const itemsList = allItems.map(item => {
 			return {
 				printerId: printerInfo[0].Id,
@@ -19,7 +17,6 @@ export default {
 			}
 		})
 		
-		console.log("JG items", itemsList)
 		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
 		await set_printer_price_id.run();
 		
@@ -65,9 +62,7 @@ export default {
 		//change printerPriceID for the current order
 		const printerName = appsmith.store.MBitem;
 		const printerInfo = await get_printer_info.run({printerName});
-		console.log("JG inv",Table2.selectedRow.InvoiceNo )
 		const allItems = await get_selected_printer_item_all.run({invoiceID: Table2.selectedRow.InvoiceNo})
-		console.log("JG all", allItems);
 		const itemsList = allItems.map(item => {
 			return {
 				printerId: printerInfo[0].Id,
@@ -77,7 +72,6 @@ export default {
 				qty: item.Qty
 			}
 		})
-		console.log("JG itemL", itemsList);
 		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
 		await set_printer_price_id.run();
 		

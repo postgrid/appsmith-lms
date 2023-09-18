@@ -2,7 +2,6 @@ export default {
 
 	rundateoforder: async () => {
 		const generateOrderLineMap = (lineItems) => {
-			console.log("JG line items", lineItems)
 			let lineItemMap = [];
 			const mainItems = lineItems.filter(item => item.SubItemID === null);
 			for(const mainItem of mainItems){
@@ -15,22 +14,6 @@ export default {
 				
 				lineItemMap.push(items);
 			}
-			
-			
-			// for(const lineItem of lineItems){
-				// console.log(lineItem.Id)
-				// if(lineItem.SubItemID === null){
-						// lineItemMap.set(lineItem.SubItemID, [lineItem])
-				// } else {
-					// const mainItem = lineItemMap.get(lineItem.SubItemID);
-						// if(!mainItem){
-							// lineItemMap.set(lineItem.SubItemID, [lineItem])
-						// } else {
-							// lineItemMap.set(lineItem.SubItemID, [...mainItem, lineItem])
-						// }
-				// }
-			// }
-			console.log("JG lineItemMap", lineItemMap)
 			return lineItemMap;
 		
 		};
@@ -44,7 +27,6 @@ export default {
 			let sheets = 0;
 
 			let productDescription = ''
-			console.log("JG lineitems", lineItems)
 			for(const lineItem of lineItems){
 				totalAmount += lineItem.Amount;
 				if(type == 'customer'){
@@ -135,18 +117,13 @@ export default {
 			}
 			return items;
 		})()
-		console.log("JG filtered", filteredCustomerItems)
 		const customerLineItems = generateOrderLineMap(filteredCustomerItems);
-		console.log("JG after 1")
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
-		console.log("JG after 2")
 		
-		console.log("JG cust", customerLineItems);
 		for (const value of customerLineItems) {
 			const uuid = value[0].Id;
 			const printerItem = printerLineItems.find(printerItem => printerItem[0].Id == `${uuid}`);
 			const customerInfo = getCalcAndDescription(value, "customer")
-			console.log("JG after cust")
 			const printerInfo = getCalcAndDescription(printerItem, "printer")
 			
 			let sla;
