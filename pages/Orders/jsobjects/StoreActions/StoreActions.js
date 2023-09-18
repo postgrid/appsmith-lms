@@ -7,7 +7,8 @@ export default {
 		//change printerPriceID for the current order
 		const printerName = currentRow.AssignTo;
 		const printerInfo = await get_printer_info.run({printerName});
-		const allItems = await get_selected_printer_item_sing.run({id: currentRow})
+		const allItems = await get_selected_printer_item_sing.run()
+		console.log("JG all Items", allItems)
 		const itemsList = allItems.map(item => {
 			return {
 				printerId: printerInfo[0].Id,
@@ -17,6 +18,8 @@ export default {
 				qty: item.Qty
 			}
 		})
+		
+		console.log("JG items", itemsList)
 		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
 		await set_printer_price_id.run();
 		
@@ -116,7 +119,8 @@ export default {
 	},
 	updateOrderGroupVendors: async () => {
 		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (currentRow) => {
-			return (await get_printer_line_item.run({currentRow}))[0].OrderGroupID;
+			await storeValue("rowUpdate",currentRow);
+			return (await get_printer_line_item.run())[0].OrderGroupID;
 		}));
 
 		const letterOrderGroups = [];
@@ -940,6 +944,7 @@ export default {
 		const selfmailers = this.selfmailerGroupsLineItems(orgNames);
 
 		const totalCollateral = letters.concat(postcards).concat(cheques).concat(selfmailers);
+		console.log("JG total", totalCollateral)
 
 		let orderGroupIds = [];
 		(await get_order_group_ids.run()).forEach(ID => {
@@ -970,7 +975,6 @@ export default {
 			} else {
 				if(updateGroup === true){
 					await storeValue('newList',JSON.parse(JSON.stringify(groupToAdd).replaceAll("'", "''")));
-					await reset_Id_sequence.run();
 					await Promise.all([  
 						set_customerprice.run(),
 						set_customerlineitems.run(),

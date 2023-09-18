@@ -2,25 +2,37 @@ export default {
 
 	rundateoforder: async () => {
 		const generateOrderLineMap = (lineItems) => {
-			const lineItemMap = [];
-			let currentMain = [];
-			let firstRun = true;
-			for(const lineItem of lineItems){
-				if(lineItem.SubItemID === null){
-					if(firstRun){
-						currentMain = [lineItem];
-						firstRun = false;
-					}else if(currentMain.length > 0){
-						lineItemMap.push(currentMain);
-						currentMain = [lineItem];
-					}		
-				} else {
-					if(currentMain[0].Id == lineItem.SubItemID){
-						currentMain.push(lineItem)
-					}
+			console.log("JG line items", lineItems)
+			let lineItemMap = [];
+			const mainItems = lineItems.filter(item => item.SubItemID === null);
+			for(const mainItem of mainItems){
+				let items = [];
+				items.push(mainItem);
+				const subItems = lineItems.filter(item => item.SubItemID === mainItem.Id);
+				if(subItems.length > 0){
+					items = items.concat(subItems);
 				}
+				
+				lineItemMap.push(items);
 			}
+			
+			
+			// for(const lineItem of lineItems){
+				// console.log(lineItem.Id)
+				// if(lineItem.SubItemID === null){
+						// lineItemMap.set(lineItem.SubItemID, [lineItem])
+				// } else {
+					// const mainItem = lineItemMap.get(lineItem.SubItemID);
+						// if(!mainItem){
+							// lineItemMap.set(lineItem.SubItemID, [lineItem])
+						// } else {
+							// lineItemMap.set(lineItem.SubItemID, [...mainItem, lineItem])
+						// }
+				// }
+			// }
+			console.log("JG lineItemMap", lineItemMap)
 			return lineItemMap;
+		
 		};
 		const getCalcAndDescription = (lineItems, type) => {
 			let totalAmount = 0;
@@ -32,6 +44,7 @@ export default {
 			let sheets = 0;
 
 			let productDescription = ''
+			console.log("JG lineitems", lineItems)
 			for(const lineItem of lineItems){
 				totalAmount += lineItem.Amount;
 				if(type == 'customer'){
@@ -122,15 +135,18 @@ export default {
 			}
 			return items;
 		})()
+		console.log("JG filtered", filteredCustomerItems)
 		const customerLineItems = generateOrderLineMap(filteredCustomerItems);
+		console.log("JG after 1")
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
+		console.log("JG after 2")
 		
 		console.log("JG cust", customerLineItems);
-
 		for (const value of customerLineItems) {
 			const uuid = value[0].Id;
 			const printerItem = printerLineItems.find(printerItem => printerItem[0].Id == `${uuid}`);
 			const customerInfo = getCalcAndDescription(value, "customer")
+			console.log("JG after cust")
 			const printerInfo = getCalcAndDescription(printerItem, "printer")
 			
 			let sla;
