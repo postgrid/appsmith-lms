@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "DELETE FROM \"CustomerLineItems\" WHERE \"Id\" = {{Table3Copy.selectedRow.itemid}};\nDELETE FROM \"PrinterLineItems\" WHERE \"Id\" = {{Table3Copy.selectedRow.itemid}};",
+      "body": "DELETE FROM \"CustomerLineItems\" WHERE \"Id\" = {{`'${Table3Copy.selectedRow.itemid}'`}};\nDELETE FROM \"PrinterLineItems\" WHERE \"Id\" = {{`'${Table3Copy.selectedRow.itemid}'`}};",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,7 +36,7 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "Table3Copy.selectedRow.itemid"
+      "`'${Table3Copy.selectedRow.itemid}'`"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
