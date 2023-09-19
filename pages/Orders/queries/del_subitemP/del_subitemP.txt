@@ -1,1 +1,1 @@
-DELETE FROM "PrinterLineItems" WHERE "Id" = {{Table3.selectedRow.Id}};
+DELETE FROM "PrinterLineItems" WHERE "Id" = {{`'${Table3.selectedRow.Id}'`}};

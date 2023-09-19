@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "DELETE FROM \"PrinterLineItems\" WHERE \"Id\" = {{Table3.selectedRow.Id}};",
+      "body": "DELETE FROM \"PrinterLineItems\" WHERE \"Id\" = {{`'${Table3.selectedRow.Id}'`}};",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,7 +36,7 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "Table3.selectedRow.Id"
+      "`'${Table3.selectedRow.Id}'`"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
