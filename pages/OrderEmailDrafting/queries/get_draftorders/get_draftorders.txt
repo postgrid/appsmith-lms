@@ -130,6 +130,8 @@ printer_line_items_query AS (
 grouped_query AS (
 	SELECT
 	CASE
+	WHEN filtered_category_tree_query."OrderDetails" LIKE '%Glory%' THEN 'BW SS - FC Generic - Credit Glory Inc'
+	WHEN filtered_category_tree_query."OrderDetails" LIKE '%Credit Sage LLC%' THEN 'BW SS - FC Generic - Credit Sage LLC Inc'
 	WHEN filtered_category_tree_query."OrderDetails" LIKE '%Glory%' THEN 'BW DS - FC Generic - Credit Glory Inc'
 	WHEN filtered_category_tree_query."OrderDetails" LIKE '%Credit Sage LLC%' THEN 'BW DS - FC Generic - Credit Sage LLC Inc'
 	WHEN customer_line_items_query."CustomerName" LIKE '%ECA GreenTech%' THEN 'ECA Greentech'

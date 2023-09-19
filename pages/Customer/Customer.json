@@ -19,7 +19,7 @@
           "parentRowSpace": 1,
           "type": "CANVAS_WIDGET",
           "canExtend": true,
-          "version": 85,
+          "version": 86,
           "minHeight": 1292,
           "parentColumnSpace": 1,
           "dynamicTriggerPathList": [],
@@ -27,6 +27,18 @@
           "leftColumn": 0
         },
         "layoutOnLoadActions": [
+          [
+            {
+              "id": "Customer_get_custpricelist",
+              "name": "get_custpricelist",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "Table3.selectedRow.OrgID"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
           [
             {
               "id": "Customer_StoreActions.runselect",
@@ -38,7 +50,9 @@
                 "async () => {\n  resetWidget('Select1');\n  resetWidget('Table3');\n  await Query1.run();\n  StoreActions.runQuery('Query1');\n}"
               ],
               "timeoutInMillisecond": 10000
-            },
+            }
+          ],
+          [
             {
               "id": "Customer_get_user",
               "name": "get_user",
@@ -46,18 +60,6 @@
               "pluginType": "API",
               "jsonPathKeys": [
                 "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "Customer_get_custpricelist",
-              "name": "get_custpricelist",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "Table3.selectedRow.OrgID"
               ],
               "timeoutInMillisecond": 10000
             }
