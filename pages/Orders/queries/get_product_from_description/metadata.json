@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT \"ProductDescription\", \"MailType\" FROM public.\"Products\" WHERE \"ProductDescription\" = {{`'${this.params.prodDescription}'`}};",
+      "body": "SELECT \"ProductDescription\", \"MailType\" FROM public.\"Products\" WHERE \"ProductDescription\" = '{{`${appsmith.store.selectedDescription}`}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,7 +36,7 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "`'${this.params.prodDescription}'`"
+      "`${appsmith.store.selectedDescription}`"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

@@ -1,1 +1,1 @@
-SELECT "ProductDescription", "MailType" FROM public."Products" WHERE "ProductDescription" = {{`'${this.params.prodDescription}'`}};
+SELECT "ProductDescription", "MailType" FROM public."Products" WHERE "ProductDescription" = '{{`${appsmith.store.selectedDescription}`}}';

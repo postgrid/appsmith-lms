@@ -68,7 +68,8 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 	},
 	createNewItems: async () => {
 		const uuid = UUID.generate();
-		await get_product_from_description.run({prodDescription: Select1.selectedOptionValue});
+		await storeValue("selectedDescription", Select1.selectedOptionLabel)
+		await get_product_from_description.run();
 		const product = get_product_from_description.data
 		const newItem = {
 			id: uuid,
@@ -102,7 +103,8 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 	},
 	createNewSubItem: async () => {
 		const uuid = UUID.generate();
-		await get_product_from_description.run({prodDescription: Select1.selectedOptionValue});
+		await storeValue("selectedDescription", Select1.selectedOptionLabel)
+		await get_product_from_description.run();
 		const product = get_product_from_description.data
 	
 		const newItem = {
@@ -114,7 +116,7 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 			// For these, each sheet is additional, not just those after the first
 			quantity: Input2Copy.text,
 			mailType: product[0].MailType,
-			productDesc: Select1Copy.selectedOptionValue,
+			productDesc: product[0].ProductDescription,
 			destinationCountryCode: null,
 
 			parentID: Table2.selectedRow.itemid,
