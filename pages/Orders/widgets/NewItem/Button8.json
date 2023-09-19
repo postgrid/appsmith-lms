@@ -2,7 +2,7 @@
     "resetFormOnClick": true,
     "boxShadow": "none",
     "widgetName": "Button8",
-    "onClick": "{{set_addItem.run().then(() => {\n  showAlert('Added successfully', 'success');\n \n}).catch(() => {\n  showAlert('Check your query', 'error');\n});\n await get_customer_order_details.run();\n await get_printer_order_details.run();\ncloseModal('NewItem');}}",
+    "onClick": "{{Util.createNewItems().then(() => {\n  showAlert('Added successfully', 'success');\n \n}).catch(() => {\n  showAlert('Check your query', 'error');\n});\n await get_customer_order_details.run();\n await get_printer_order_details.run();\ncloseModal('NewItem');}}",
     "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
     "dynamicPropertyPathList": [{"key": "onClick"}],
     "displayName": "Button",

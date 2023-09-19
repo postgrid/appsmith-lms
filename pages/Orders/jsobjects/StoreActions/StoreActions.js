@@ -328,14 +328,14 @@ export default {
 			items.push(extraServiceItem);
 		}
 
-		if (
-			(group.destinationCountryCode !== 'US' &&
+		if (orgName !== "MIJN AFSPRAKEN B.V." &&
+			((group.destinationCountryCode !== 'US' &&
 			 group.destinationCountryCode !== 'CA' &&
 			 group.destinationCountryCode !== 'GB' &&
 			 group.destinationCountryCode !== 'AU') || 
 			(group.destinationCountryCode !== orgCountryCode && (
 				group.destinationCountryCode !== 'AS' && orgCountryCode === 'US'
-			))
+			)))
 		) {
 			/** @type {LineItemWithoutID} */
 			const intlItem = {
@@ -352,38 +352,13 @@ export default {
 
 		return items;
 	},
-	letterGroupsLineItems(orgNames) {
-		/** @param {LetterGroup} group */
-		const groupLineItems = (group) => {
-			/** @type {LineItem[]} */
-			const items = [];
-
-			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
-			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
-
-			const sizeStr = group.destinationCountryCode === 'GB' ||
-						group.destinationCountryCode === 'AU' ? 'A4 Size' : {
-							us_letter: 'Letter Size',
-							us_legal: 'Legal Size',
-							a4: 'A4 Size',
-						}[group.size];
-
-			const colorDoubleSidedStr = `${group.color ? 'CLR' : 'BW'} ${
-			group.doubleSided ? 'DS' : 'SS'
-			}`;
-
-			const classStr = this.classStr(group);
-
-			let id = UUID.generate();
-
-			const generateSheetCount = () => {
+	formatLetterCollateral: (item, group, oversize) => {
+		const generateSheetCount = () => {
 				return group.doubleSided
 					? Math.ceil(group.pageCount / 2)
 				: group.pageCount;
 			}
-
-			const formatCollateral = (item, oversize) => {
-				//Credit Glory Inc
+		//Credit Glory Inc
 				if(group.organization === "org_aVjt8NWrfQjqk1PRegvBpV"){
 					return{
 						...item,
@@ -462,10 +437,33 @@ export default {
 					};
 				}
 				return item;
-			}
+	},
+	letterGroupsLineItems(orgNames) {
+		/** @param {LetterGroup} group */
+		const groupLineItems = (group) => {
+			/** @type {LineItem[]} */
+			const items = [];
+
+			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
+			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
+
+			const sizeStr = group.destinationCountryCode === 'GB' ||
+						group.destinationCountryCode === 'AU' ? 'A4 Size' : {
+							us_letter: 'Letter Size',
+							us_legal: 'Legal Size',
+							a4: 'A4 Size',
+						}[group.size];
+
+			const colorDoubleSidedStr = `${group.color ? 'CLR' : 'BW'} ${
+			group.doubleSided ? 'DS' : 'SS'
+			}`;
+
+			const classStr = this.classStr(group);
+
+			let id = UUID.generate();
 
 			/** @type LineItem */
-			const baseItem = formatCollateral({
+			const baseItem = StoreActions.formatLetterCollateral({
 				id: id,
 
 				orgID: group.organization,
@@ -479,7 +477,7 @@ export default {
 				parentID: null,
 				vendor: group.vendor,
 				groupID: group._id,
-			});
+			}, group);
 
 			items.push(baseItem);
 
@@ -505,7 +503,7 @@ export default {
 
 			if (sheetCount > 1) {
 				/** @type {LineItem} */
-				const addlSheetItem = formatCollateral({
+				const addlSheetItem = StoreActions.formatLetterCollateral({
 					id: UUID.generate(),
 
 					orgID: group.organization,
@@ -518,14 +516,14 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
-				});
+				},group);
 
 				items.push(addlSheetItem);
 
 				if (sheetCount > 6) {
 					const sheetRange = sheetCount <= 60 ? 'over 6' : sheetCount > 60 && sheetCount <= 150 ? '61 - 150' : sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : 'over 300'
 					/** @type {LineItem} */
-					const oversizedItem = formatCollateral({
+					const oversizedItem = StoreActions.formatLetterCollateral({
 						id: UUID.generate(),
 
 						orgID: group.organization,
@@ -538,7 +536,7 @@ export default {
 
 						parentID: baseItem.id,
 						groupID: null,
-					}, true);
+					}, group, true);
 
 					if(group.organization === "org_3pWY3piAx4H7XNrpY25RU2" && sheetCount >= 20 || (group.organization !== "org_3pWY3piAx4H7XNrpY25RU2" && sheetCount > 6 && group.organization !== "org_wUB4oa68YQgdQNYTeiSYNQ")){
 						items.push(oversizedItem);
@@ -666,27 +664,7 @@ export default {
 
 		return this.mapGroups(letterGroups.data, groupLineItems);
 	},
-	postcardGroupsLineItems(orgNames) {
-		/** @param {PostcardGroup} group */
-		const groupLineItems = (group) => {
-			/** @type LineItem[] */
-			const items = [];
-
-			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
-			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
-
-			let sizeStr = '';
-			if(group.size === "9x6_reduced" || group.size === "11x6_reduced"){
-				sizeStr = group.size;
-			} else {
-				sizeStr = group.size.split('').reverse().join('');
-			}
-
-			const classStr = this.classStr(group);
-
-			let id = UUID.generate();
-
-			const formatCollateral = (item) => {
+	formatPostcardCollateral: (item, group, classStr) => {
 				//Perbelle
 				if(group.organization === "org_rUZTFHAodjrRhzxCP6LUzo"){
 					return{
@@ -723,10 +701,29 @@ export default {
 
 				}
 				return item;
+			},
+	postcardGroupsLineItems(orgNames) {
+		/** @param {PostcardGroup} group */
+		const groupLineItems = (group) => {
+			/** @type LineItem[] */
+			const items = [];
+
+			const orgName = orgNames.get(group.organization) ?? '(Unknown)';
+			const orgCountryCode = orgs.data.find(org => org._id === group.organization).countryCode ?? "US";
+
+			let sizeStr = '';
+			if(group.size === "9x6_reduced" || group.size === "11x6_reduced"){
+				sizeStr = group.size;
+			} else {
+				sizeStr = group.size.split('').reverse().join('');
 			}
 
+			const classStr = this.classStr(group);
+
+			let id = UUID.generate();
+
 			/** @type LineItem */
-			const baseItem = formatCollateral({
+			const baseItem = this.formatPostcardCollateral({
 				id: id,
 
 				orgID: group.organization,
@@ -740,7 +737,7 @@ export default {
 				parentID: null,
 				vendor: group.vendor,
 				groupID: group._id,
-			});
+			},group,classStr);
 
 			items.push(baseItem);
 
