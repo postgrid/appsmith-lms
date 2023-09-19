@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT \"PrinterLineItems\".\"Id\", \"PrinterLineItems\".\"Qty\", \"Products\".\"Id\" AS \"ProductID\"\nFROM \"PrinterLineItems\"\nINNER JOIN \"Products\" ON \"PrinterLineItems\".\"InitialProdDescription\"=\"Products\".\"ProductDescription\"\nWHERE \"PrinterLineItems\".\"Id\" = {{`'${this.params.id}'`}} OR \"PrinterLineItems\".\"SubItemID\" = {{`'${this.params.id}'`}};",
+      "body": "SELECT \"PrinterLineItems\".\"Id\", \"PrinterLineItems\".\"Qty\", \"Products\".\"Id\" AS \"ProductID\"\nFROM \"PrinterLineItems\"\nINNER JOIN \"Products\" ON \"PrinterLineItems\".\"InitialProdDescription\"=\"Products\".\"ProductDescription\"\nWHERE \"PrinterLineItems\".\"Id\" ={{`${appsmith.store.rowUpdate.itemid}`}} OR \"PrinterLineItems\".\"SubItemID\" ={{`${appsmith.store.rowUpdate.itemid}`}};",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,7 +36,7 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "`'${this.params.id}'`"
+      "`${appsmith.store.rowUpdate.itemid}`"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
