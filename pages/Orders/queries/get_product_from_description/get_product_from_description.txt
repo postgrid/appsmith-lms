@@ -1,0 +1,1 @@
+SELECT "ProductDescription", "MailType" FROM public."Products" WHERE "ProductDescription" = {{`'${this.params.prodDescription}'`}};

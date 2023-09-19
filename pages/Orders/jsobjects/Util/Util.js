@@ -65,6 +65,76 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 		finalArray.push(totalItem);
 
 		await storeValue('printerItems',finalArray);
+	},
+	createNewItems: async () => {
+		const uuid = UUID.generate();
+		await get_product_from_description.run({prodDescription: Select1.selectedOptionValue});
+		const product = get_product_from_description.data
+		const newItem = {
+			id: uuid,
+			orgID: Table2.selectedRow.OrgID,
+			orgName: Table2.selectedRow.CustomerName,
+
+			quantity: Input2.text,
+			mailType: product[0].MailType,
+			productDesc: product[0].ProductDescription,
+			destinationCountryCode: Input3.text,
+
+			parentID: null,
+			vendor: null,
+			groupID: null,
+		}
+		
+		await storeValue('newList',JSON.parse(JSON.stringify([newItem]).replaceAll("'", "''")));
+		
+		await Promise.all([
+				set_customerprice.run(),
+				set_customerlineitems.run(),
+				set_printerlineitems.run(),
+			]).catch(() => {
+				showAlert('Error! Unable to process.','error');
+			});
+		
+		await Util.getSelectedCustomerItems();
+		await Util.getSelectedPrinterItems();
+		await get_list_of_collaterals.run();
+		await storeValue('org','f');
+	},
+	createNewSubItem: async () => {
+		const uuid = UUID.generate();
+		await get_product_from_description.run({prodDescription: Select1.selectedOptionValue});
+		const product = get_product_from_description.data
+	
+		const newItem = {
+			id: uuid,
+
+			orgID: Table2.selectedRow.OrgID,
+			orgName: Table2.selectedRow.CustomerName,
+
+			// For these, each sheet is additional, not just those after the first
+			quantity: Input2Copy.text,
+			mailType: product[0].MailType,
+			productDesc: Select1Copy.selectedOptionValue,
+			destinationCountryCode: null,
+
+			parentID: Table2.selectedRow.itemid,
+			groupID: null,
+		}
+		
+		await storeValue('newList',JSON.parse(JSON.stringify([newItem]).replaceAll("'", "''")));
+		
+		await Promise.all([
+				set_customerprice.run(),
+				set_customerlineitems.run(),
+				set_printerlineitems.run(),
+			]).catch(() => {
+				showAlert('Error! Unable to process.','error');
+			});
+		
+		await Util.getSelectedCustomerItems();
+		await Util.getSelectedPrinterItems();
+		await get_list_of_collaterals.run();
+		await storeValue('org','f');
 	}
 
 }
