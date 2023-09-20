@@ -85,7 +85,7 @@
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
-    "bottomRow": 185,
+    "bottomRow": 254,
     "columnWidthMap": {
         "OrderDetails": 681,
         "WithIMB": 100,
@@ -407,7 +407,7 @@
     "key": "xbdjr460wt",
     "canFreezeColumn": false,
     "isDeprecated": false,
-    "rightColumn": 63,
+    "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "qeywr75owg",
     "allowAddNewRow": false,
