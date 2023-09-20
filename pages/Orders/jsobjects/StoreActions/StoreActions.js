@@ -935,7 +935,6 @@ export default {
 		const selfmailers = this.selfmailerGroupsLineItems(orgNames);
 
 		const totalCollateral = letters.concat(postcards).concat(cheques).concat(selfmailers);
-		console.log("JG total", totalCollateral)
 
 		let orderGroupIds = [];
 		(await get_order_group_ids.run()).forEach(ID => {

@@ -15,21 +15,23 @@
     },
     "pageId": "LogSum",
     "actionConfiguration": {
-      "timeoutInMillisecond": 10000,
+      "timeoutInMillisecond": 100000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "body": "SELECT \"Id\", \"PrinterName\", \"Currency\" FROM \"Printers\"",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ]
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [],
     "isValid": true,
-    "invalids": [],
+    "invalids": [
+      "'Query timeout' field must be an integer between 0 and 60000"
+    ],
     "messages": [],
     "jsonPathKeys": [],
     "userSetOnLoad": false,
