@@ -11,11 +11,11 @@ export default {
 				if(subItems.length > 0){
 					items = items.concat(subItems);
 				}
-				
+
 				lineItemMap.push(items);
 			}
 			return lineItemMap;
-		
+
 		};
 		const getCalcAndDescription = (lineItems, type) => {
 			let totalAmount = 0;
@@ -72,7 +72,7 @@ export default {
 			});
 
 			const calculation = `${quantity} * (${mailPrice}${extraSheetQty !== 0 ? ` + (${extraSheetPrice} * ${extraSheetQty / quantity})` : ''}
-				${serviceString}) = ${totalAmount}`;
+				${serviceString}) = ${totalAmount.toFixed(2)}`;
 
 			if(type == 'customer'){
 				return {
@@ -111,20 +111,20 @@ export default {
 			if(Organization_select.selectedOptionValue !== "all"){
 				items = items.filter(item => item.CustomerName === selectedOrg)
 			}
-			
+
 			if(Printer_select.selectedOptionValue !== 'All'){
 				items = items.filter(item => item.Printer === Printer_select.selectedOptionValue)
 			}
 			return items;
 		})()
-		
+
 		console.log("JG filteredCustomerItems", filteredCustomerItems)
 		const customerLineItems = generateOrderLineMap(filteredCustomerItems);
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
-		
+
 		console.log("JG customerLineItems", customerLineItems)
 		console.log("JG printerLineItems", printerLineItems)
-		
+
 		for (const value of customerLineItems) {
 			const uuid = value[0].Id;
 			console.log("JG uuid", uuid)
@@ -132,7 +132,7 @@ export default {
 			console.log("JG printerItem", printerItem)
 			const customerInfo = getCalcAndDescription(value, "customer")
 			const printerInfo = getCalcAndDescription(printerItem, "printer")
-			
+
 			let sla;
 			if(printerItem[0].DeliveryDate == null){
 				sla = 'N/A';
@@ -170,6 +170,16 @@ export default {
 
 		}
 
+		let totalCustomer = 0;
+		let totalPrinter = 0;
+
+		for(const item of combinedData){
+			totalCustomer += item.Summary;
+			totalPrinter += item.PrinterSummary;
+		}
+
+		await storeValue("totalCustomerPrice", totalCustomer.toFixed(2))
+		await storeValue("totalPrinterPrice", totalPrinter.toFixed(2))
 		await storeValue('logSummary',combinedData);
 		await storeValue('logSumTableProgress', '');
 		showAlert('Order date updated!', 'success');
@@ -178,11 +188,11 @@ export default {
 		await update_single_order_status.run({type: 'PrinterLineItems', orderID, orderStatus});
 		await update_single_order_status.run({type: 'CustomerLineItems', orderID, orderStatus});
 		await update_single_invoice_status.run({invoiceID, invoiceStatus});
-		
+
 		if(orderStatus === 'DELIVERED'){
 			await update_single_delivery_date.run({orderID});
 		}
-		
+
 		await StoreActions.rundateoforder();
 	},
 	updateAllOrderStatus: async () => {
@@ -194,11 +204,11 @@ export default {
 			const orderStatus = AllOrdersStatus_Select.selectedOptionValue;
 			await update_multiple_order_status.run({type: 'PrinterLineItems', orderIDs, orderStatus});
 			await update_multiple_order_status.run({type: 'CustomerLineItems', orderIDs, orderStatus});
-			
+
 			if(orderStatus === 'DELIVERED'){
 				await update_multiple_delivery_dates.run({orderIDs});
 			}
-			
+
 			await StoreActions.rundateoforder();
 		}
 	},
