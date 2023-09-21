@@ -79,7 +79,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"update\": \"postcardgroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }},\n    \"u\": {\"$set\": {\"vendor\": {{this.params.vendorID}}}},\n    \"multi\": true,\n  }]\n}\n",
+            "data": "{\n  \"update\": \"postcardgroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{appsmith.store.clearVendor.orderGroupID}} }},\n    \"u\": {\"$set\": {\"vendor\": {{appsmith.store.clearVendor.vendorID}}}},\n    \"multi\": true,\n  }]\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -91,10 +91,10 @@
             "data": "ALL"
           },
           "query": {
-            "data": "{\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }}"
+            "data": "{\"_id\": {\n\"$in\":{{appsmith.store.clearVendor.orderGroupID}} }}"
           },
           "update": {
-            "data": "{\"$set\": {\"vendor\": {{this.params.vendorID}}}}"
+            "data": "{\"$set\": {\"vendor\": {{appsmith.store.clearVendor.vendorID}}}}"
           }
         }
       }
@@ -112,8 +112,8 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "this.params.orderGroupIDs",
-      "this.params.vendorID"
+      "appsmith.store.clearVendor.orderGroupID",
+      "appsmith.store.clearVendor.vendorID"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

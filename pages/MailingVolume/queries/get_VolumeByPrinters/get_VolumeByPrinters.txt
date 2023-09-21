@@ -1,7 +1,5 @@
 SELECT DISTINCT p2."Printer", sum(p2."Qty") as "Volume"
-FROM "public"."Products" p
-INNER JOIN "public"."PrinterPrice" p1 ON p1."ProductID" = p."Id"
-INNER JOIN "public"."PrinterLineItems" p2 ON p2."PrinterPriceID" = p1."Id"
+FROM "public"."PrinterLineItems" p2
 INNER JOIN "public"."Invoice" i ON p2."InvoiceID" = i."InvoiceID"
-WHERE  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >=  '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}' AND p."ProductType" IN ('Cheque', 'Letter', 'Postcard', 'Self Mailer') 
+WHERE  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}' AND p2."SubItemID" IS NULL
 GROUP BY p2."Printer";

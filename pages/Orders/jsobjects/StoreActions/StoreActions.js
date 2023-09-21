@@ -2,7 +2,7 @@ export default {
 	myFun1: async (currentRow) => {
 		await storeValue("rowUpdate",currentRow);
 		await Save_Data.run({currentRow});
-		
+
 		//change printerPriceID for the current order
 		const printerName = currentRow.AssignTo;
 		const printerInfo = await get_printer_info.run({printerName});
@@ -16,10 +16,10 @@ export default {
 				qty: item.Qty
 			}
 		})
-		
+
 		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
 		await set_printer_price_id.run();
-		
+
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
 		await Util.getSelectedPrinterItems();
@@ -58,7 +58,7 @@ export default {
 	},
 	updateAllItemsVendor: async () => {		
 		await set_AllToPrinter.run();
-		
+
 		//change printerPriceID for the current order
 		const printerName = appsmith.store.MBitem;
 		const printerInfo = await get_printer_info.run({printerName});
@@ -74,7 +74,7 @@ export default {
 		})
 		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
 		await set_printer_price_id.run();
-		
+
 		await StoreActions.updateOrderGroupVendors();
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
@@ -86,27 +86,30 @@ export default {
 			AssignTo: "",
 			itemid: currentRow.itemid
 		}});
+		
+		console.log("JG currentRow", currentRow)
+		
+		console.log("JG await get_printer_line_item.run({currentRow}", await get_printer_line_item.run({currentRow}))
+		
+		await storeValue("rowUpdate", {itemid: currentRow.itemid})
 
-		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
+		const orderGroupIDs = [(await get_printer_line_item.run({currentRow})).find(item => item.SubItemID === null).OrderGroupID];
+		console.log("JG orderGroupIDs", orderGroupIDs)
+		
+		await storeValue("clearVendor", {
+			orderGroupID: orderGroupIDs,
+			vendorID: ""
+		})
 
 		if(orderGroupIDs.length > 0){
 			const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
 			if(groupType === 'letter'){
-				await Update_LetterGroup.run({
-					orderGroupID: orderGroupIDs,
-					vendorID: ""
-				});
+				await Update_LetterGroup.run();
 			} else if(groupType === 'postcard'){
-				await Update_PostcardGroup.run({
-					orderGroupID: orderGroupIDs,
-					vendorID: ""
-				});
+				await Update_PostcardGroup.run();
 			} else {
-				await Update_ChequeGroup.run({
-					orderGroupID: orderGroupIDs,
-					vendorID: ""
-				});
+				await Update_ChequeGroup.run();
 			}
 		}
 
@@ -329,14 +332,14 @@ export default {
 		}
 
 		if (orgName !== "MIJN AFSPRAKEN B.V." &&
-			((group.destinationCountryCode !== 'US' &&
-			 group.destinationCountryCode !== 'CA' &&
-			 group.destinationCountryCode !== 'GB' &&
-			 group.destinationCountryCode !== 'AU') || 
-			(group.destinationCountryCode !== orgCountryCode && (
-				group.destinationCountryCode !== 'AS' && orgCountryCode === 'US'
-			)))
-		) {
+				((group.destinationCountryCode !== 'US' &&
+					group.destinationCountryCode !== 'CA' &&
+					group.destinationCountryCode !== 'GB' &&
+					group.destinationCountryCode !== 'AU') || 
+				 (group.destinationCountryCode !== orgCountryCode && (
+			group.destinationCountryCode !== 'AS' && orgCountryCode === 'US'
+		)))
+			 ) {
 			/** @type {LineItemWithoutID} */
 			const intlItem = {
 				orgID: group.organization,
@@ -354,89 +357,89 @@ export default {
 	},
 	formatLetterCollateral: (item, group, oversize) => {
 		const generateSheetCount = () => {
-				return group.doubleSided
-					? Math.ceil(group.pageCount / 2)
-				: group.pageCount;
-			}
+			return group.doubleSided
+				? Math.ceil(group.pageCount / 2)
+			: group.pageCount;
+		}
 		//Credit Glory Inc
-				if(group.organization === "org_aVjt8NWrfQjqk1PRegvBpV"){
-					return{
-						...item,
-						mailType: 'Custom',
-						productDesc: `${item.productDesc} - CreditGlory`
-					};
-				}
+		if(group.organization === "org_aVjt8NWrfQjqk1PRegvBpV"){
+			return{
+				...item,
+				mailType: 'Custom',
+				productDesc: `${item.productDesc} - CreditGlory`
+			};
+		}
 
-				//HomeOptions.ai
-				if(group.organization === "org_rTPY7kJULSh1pUWSr7wxhG"){
-					return{
-						...item,
-						mailType: 'Custom',
-						productDesc: item.productDesc += " - HomeOptionsFlatmail"
-					};
-				}
+		//HomeOptions.ai
+		if(group.organization === "org_rTPY7kJULSh1pUWSr7wxhG"){
+			return{
+				...item,
+				mailType: 'Custom',
+				productDesc: item.productDesc += " - HomeOptionsFlatmail"
+			};
+		}
 
-				//Accuhealth Technologies LLC
-				if(group.organization === "org_fP1wzD9LXbwSdZ5MDHbNBw"){
-					return{
-						...item,
-						mailType: 'Custom',
-						productDesc: item.productDesc += " - AccuHealth"
-					};
-				}
+		//Accuhealth Technologies LLC
+		if(group.organization === "org_fP1wzD9LXbwSdZ5MDHbNBw"){
+			return{
+				...item,
+				mailType: 'Custom',
+				productDesc: item.productDesc += " - AccuHealth"
+			};
+		}
 
-				//Enter Health
-				if(group.organization === "org_3pWY3piAx4H7XNrpY25RU2"){
-					const sheetCount = generateSheetCount();
-					if(group.extraService === "certified"){
-						return{
-							...item,
-							mailType: 'Custom',
-							productDesc: item.productDesc += " - EHCUSBOX_CERTNRR"
-						};
-					} else if(group.extraService === "certified_return_receipt"){
-						return{
-							...item,
-							mailType: 'Custom',
-							productDesc: item.productDesc += " - EHCUSBOX_CERTRR"
-						};
-					} else if(sheetCount >= 20 && oversize == true){
-						return{
-							...item,
-							mailType: 'Custom',
-							productDesc: "Oversized (over 20-300 sheets) - EHCUSTOM"
-						};
-					} else {
-						return{
-							...item,
-							mailType: 'Custom',
-							productDesc: item.productDesc += " - EHCUSTOM"
-						};
-					}
-				}
+		//Enter Health
+		if(group.organization === "org_3pWY3piAx4H7XNrpY25RU2"){
+			const sheetCount = generateSheetCount();
+			if(group.extraService === "certified"){
+				return{
+					...item,
+					mailType: 'Custom',
+					productDesc: item.productDesc += " - EHCUSBOX_CERTNRR"
+				};
+			} else if(group.extraService === "certified_return_receipt"){
+				return{
+					...item,
+					mailType: 'Custom',
+					productDesc: item.productDesc += " - EHCUSBOX_CERTRR"
+				};
+			} else if(sheetCount >= 20 && oversize == true){
+				return{
+					...item,
+					mailType: 'Custom',
+					productDesc: "Oversized (over 20-300 sheets) - EHCUSTOM"
+				};
+			} else {
+				return{
+					...item,
+					mailType: 'Custom',
+					productDesc: item.productDesc += " - EHCUSTOM"
+				};
+			}
+		}
 
-				//Trinity Medical Management
-				if(group.organization === "org_wUB4oa68YQgdQNYTeiSYNQ"){
-					if(group.extraService === "certified"){
-						return{
-							...item,
-							mailType: 'Custom',
-							productDesc: item.productDesc += " - TMMCUSBOX_CERTNRR"
-						};
-					} else if(group.extraService === "certified_return_receipt"){
-						return{
-							...item,
-							mailType: 'Custom',
-							productDesc: item.productDesc += " - TMMCUSBOX_CERTRR"
-						};
-					}
-					return{
-						...item,
-						mailType: 'Custom',
-						productDesc: item.productDesc += " - TMMCUSBOX"
-					};
-				}
-				return item;
+		//Trinity Medical Management
+		if(group.organization === "org_wUB4oa68YQgdQNYTeiSYNQ"){
+			if(group.extraService === "certified"){
+				return{
+					...item,
+					mailType: 'Custom',
+					productDesc: item.productDesc += " - TMMCUSBOX_CERTNRR"
+				};
+			} else if(group.extraService === "certified_return_receipt"){
+				return{
+					...item,
+					mailType: 'Custom',
+					productDesc: item.productDesc += " - TMMCUSBOX_CERTRR"
+				};
+			}
+			return{
+				...item,
+				mailType: 'Custom',
+				productDesc: item.productDesc += " - TMMCUSBOX"
+			};
+		}
+		return item;
 	},
 	letterGroupsLineItems(orgNames) {
 		/** @param {LetterGroup} group */
@@ -665,43 +668,43 @@ export default {
 		return this.mapGroups(letterGroups.data, groupLineItems);
 	},
 	formatPostcardCollateral: (item, group, classStr) => {
-				//Perbelle
-				if(group.organization === "org_rUZTFHAodjrRhzxCP6LUzo"){
-					return{
-						...item,
-						mailType: 'Custom',
-						productDesc: item.productDesc += " - Perbelle"
-					};
-				}
+		//Perbelle
+		if(group.organization === "org_rUZTFHAodjrRhzxCP6LUzo"){
+			return{
+				...item,
+				mailType: 'Custom',
+				productDesc: item.productDesc += " - Perbelle"
+			};
+		}
 
-				//EcoFlow
-				if(group.organization === "org_eYKpX4E8GT8iwAbTtHd3BX"){
-					return{
-						...item,
-						mailType: 'Custom',
-						productDesc: item.productDesc += " - EcoFlow"
-					};
-				}
+		//EcoFlow
+		if(group.organization === "org_eYKpX4E8GT8iwAbTtHd3BX"){
+			return{
+				...item,
+				mailType: 'Custom',
+				productDesc: item.productDesc += " - EcoFlow"
+			};
+		}
 
-				//CRC
-				if(group.organization === "org_iWccrJCPmbqmVbz1j1yNXg"){
-					if(item.productDesc.includes("6x11") || item.productDesc.includes("11x6_reduced")){
-						return{
-							...item,
-							mailType: 'Custom',
-							productDesc: `Postcard 6x11 - ${classStr} - CRC Reduced`
-						};
-					} else if(item.productDesc.includes("6x9") || item.productDesc.includes("9x6_reduced")){
-						return{
-							...item,
-							mailType: 'Custom',
-							productDesc: `Postcard 6x9 - ${classStr} - CRC Reduced`
-						};
-					}
+		//CRC
+		if(group.organization === "org_iWccrJCPmbqmVbz1j1yNXg"){
+			if(item.productDesc.includes("6x11") || item.productDesc.includes("11x6_reduced")){
+				return{
+					...item,
+					mailType: 'Custom',
+					productDesc: `Postcard 6x11 - ${classStr} - CRC Reduced`
+				};
+			} else if(item.productDesc.includes("6x9") || item.productDesc.includes("9x6_reduced")){
+				return{
+					...item,
+					mailType: 'Custom',
+					productDesc: `Postcard 6x9 - ${classStr} - CRC Reduced`
+				};
+			}
 
-				}
-				return item;
-			},
+		}
+		return item;
+	},
 	postcardGroupsLineItems(orgNames) {
 		/** @param {PostcardGroup} group */
 		const groupLineItems = (group) => {

@@ -8,7 +8,6 @@ export default {
 		await get_VolumeByPrinters.run();
 		await get_EOD_Summary.run();
 		await get_mailing_volume.run();
-		await get_VolumeByPrinters.run();
 	}
 	
 	/*,

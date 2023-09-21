@@ -103,9 +103,10 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 	},
 	createNewSubItem: async () => {
 		const uuid = UUID.generate();
-		await storeValue("selectedDescription", Select1.selectedOptionLabel)
+		await storeValue("selectedDescription", Select1Copy.selectedOptionLabel)
 		await get_product_from_description.run();
 		const product = get_product_from_description.data
+		console.log("JG product", product)
 	
 		const newItem = {
 			id: uuid,
@@ -119,7 +120,7 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 			productDesc: product[0].ProductDescription,
 			destinationCountryCode: null,
 
-			parentID: Table2.selectedRow.itemid,
+			parentID: Table3Copy.selectedRow.itemid,
 			groupID: null,
 		}
 		
@@ -132,11 +133,6 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 			]).catch(() => {
 				showAlert('Error! Unable to process.','error');
 			});
-		
-		await Util.getSelectedCustomerItems();
-		await Util.getSelectedPrinterItems();
-		await get_list_of_collaterals.run();
-		await storeValue('org','f');
 	}
 
 }

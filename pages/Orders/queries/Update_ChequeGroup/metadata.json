@@ -80,7 +80,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"update\": \"chequegroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }},\n    \"u\": {$set: {vendor: {{this.params.vendorID}}}},\n    \"multi\": true,\n  }]\n}\n",
+            "data": "{\n  \"update\": \"chequegroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{appsmith.store.clearVendor.orderGroupIDs}} }},\n    \"u\": {$set: {vendor: {{appsmith.store.clearVendor.vendorID}}}},\n    \"multi\": true,\n  }]\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -92,10 +92,10 @@
             "data": "ALL"
           },
           "query": {
-            "data": "{\"_id\": {\n\"$in\":{{this.params.orderGroupIDs}} }}"
+            "data": "{\"_id\": {\n\"$in\":{{appsmith.store.clearVendor.orderGroupIDs}} }}"
           },
           "update": {
-            "data": "{$set: {vendor: {{this.params.vendorID}}}}"
+            "data": "{$set: {vendor: {{appsmith.store.clearVendor.vendorID}}}}"
           }
         }
       }
@@ -116,9 +116,10 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
+      "appsmith.store.clearVendor.orderGroupIDs",
+      "appsmith.store.clearVendor.vendorID",
       "chequeGroups",
       "this.params.orderGroupID",
-      "this.params.orderGroupIDs",
       "this.params.vendorID"
     ],
     "userSetOnLoad": false,

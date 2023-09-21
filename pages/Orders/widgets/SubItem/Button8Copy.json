@@ -2,7 +2,7 @@
     "resetFormOnClick": false,
     "boxShadow": "none",
     "widgetName": "Button8Copy",
-    "onClick": "{{Util.createNewSubItem().then(() => {\n  showAlert('Added Successfully', 'success')\n}).catch(() => {\n  showAlert('Check required items', 'error')\n});\nawait StoreActions.clearOrderGroupVendor(Table3Copy.selectedRow)\nawait\tset_deduct_inventory.run();\n await get_customer_order_details.run();\n await get_printer_order_details.run();\n  closeModal('SubItem');\n}}",
+    "onClick": "{{Util.createNewSubItem().then(() => {\n  showAlert('Added Successfully', 'success')\n}).catch(() => {\n  showAlert('Check required items', 'error')\n});\nawait StoreActions.clearOrderGroupVendor(Table3Copy.selectedRow)\nawait\tset_deduct_inventory.run();\n await get_customer_order_details.run();\n await get_printer_order_details.run();\nawait Util.getSelectedCustomerItems();\n\t\tawait Util.getSelectedPrinterItems();\n\t\tawait get_list_of_collaterals.run();\n\t\tawait storeValue('org','f');\n  closeModal('SubItem');\n}}",
     "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
     "dynamicPropertyPathList": [{"key": "onClick"}],
     "displayName": "Button",
