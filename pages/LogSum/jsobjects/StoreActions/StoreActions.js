@@ -72,7 +72,7 @@ export default {
 			});
 
 			const calculation = `${quantity} * (${mailPrice}${extraSheetQty !== 0 ? ` + (${extraSheetPrice} * ${extraSheetQty / quantity})` : ''}
-				${serviceString}) = ${totalAmount.toFixed(2)}`;
+				${serviceString}) = ${totalAmount}`;
 
 			if(type == 'customer'){
 				return {

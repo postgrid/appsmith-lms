@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"Invoice\"\nSET \"InvoiceStatus\" = '{{this.params.invoiceStatus}}'\nWHERE \"InvoiceID\"={{this.params.invoiceID}}",
+      "body": "UPDATE \"Invoice\"\nSET \"InvoiceStatus\" = '{{this.params.invoiceStatus}}'\nWHERE \"InvoiceID\"='{{this.params.invoiceID}}'",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {

@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"PrinterLineItems\"\nSET \"DeliveryDate\" = CAST('{{moment().format('YYYY-MM-DD').toString()}}' AS DATE)\nWHERE \"Id\"={{this.params.orderID}} OR \"SubItemID\"={{this.params.orderID}};",
+      "body": "UPDATE \"PrinterLineItems\"\nSET \"DeliveryDate\" = CAST('{{moment().format('YYYY-MM-DD').toString()}}' AS DATE)\nWHERE \"Id\"='{{this.params.orderID}}' OR \"SubItemID\"='{{this.params.orderID}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {

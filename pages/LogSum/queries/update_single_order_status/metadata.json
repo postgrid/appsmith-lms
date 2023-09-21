@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"{{this.params.type}}\"\nSET \"OrderStatus\" = '{{this.params.orderStatus}}'\nWHERE \"Id\"={{this.params.orderID}} OR \"SubItemID\"={{this.params.orderID}};",
+      "body": "UPDATE \"{{this.params.type}}\"\nSET \"OrderStatus\" = '{{this.params.orderStatus}}'\nWHERE \"Id\"='{{this.params.orderID}}' OR \"SubItemID\"='{{this.params.orderID}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
