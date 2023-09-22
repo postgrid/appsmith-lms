@@ -10,7 +10,7 @@
     "displayName": "Tabs",
     "iconSVG": "/static/media/icon.74a6d653c8201e66f1cd367a3fba2657.svg",
     "topRow": 37,
-    "bottomRow": 109,
+    "bottomRow": 126,
     "parentRowSpace": 10,
     "type": "TABS_WIDGET",
     "hideCard": false,

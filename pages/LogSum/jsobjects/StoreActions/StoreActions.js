@@ -72,7 +72,7 @@ export default {
 			});
 
 			const calculation = `${quantity} * (${mailPrice}${extraSheetQty !== 0 ? ` + (${extraSheetPrice} * ${extraSheetQty / quantity})` : ''}
-				${serviceString}) = ${totalAmount}`;
+				${serviceString}) = ${totalAmount.toFixed(2)}`;
 
 			if(type == 'customer'){
 				return {
@@ -205,6 +205,7 @@ export default {
 			await update_multiple_order_status.run({type: 'PrinterLineItems', orderIDs, orderStatus});
 			await update_multiple_order_status.run({type: 'CustomerLineItems', orderIDs, orderStatus});
 
+			await storeValue("updateAllOrderStatus")
 			if(orderStatus === 'DELIVERED'){
 				await update_multiple_delivery_dates.run({orderIDs});
 			}

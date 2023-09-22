@@ -28,7 +28,7 @@
     ],
     "shouldTruncate": false,
     "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-    "text": "Total Amount: {{appsmith.store.totalPrinterPrice}}",
+    "text": "Total Printer: {{appsmith.store.totalPrinterPrice}}",
     "key": "eoqwf2kuns",
     "isDeprecated": false,
     "rightColumn": 61,

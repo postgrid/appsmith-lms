@@ -3,7 +3,7 @@
     "borderColor": "#E0DEDE",
     "isVisibleDownload": true,
     "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-    "topRow": 10,
+    "topRow": 9,
     "isSortable": false,
     "onPageChange": "{{get_invoicelist.run()}}",
     "type": "TABLE_WIDGET_V2",
@@ -30,7 +30,9 @@
         {"key": "primaryColumns.to_date.computedValue"},
         {"key": "isVisible"},
         {"key": "primaryColumns.OrgID.computedValue"},
-        {"key": "totalRecordsCount"}
+        {"key": "totalRecordsCount"},
+        {"key": "primaryColumns.InvoiceNo.cellBackground"},
+        {"key": "primaryColumns.InvoiceNo.textColor"}
     ],
     "leftColumn": 0,
     "delimiter": ",",
@@ -98,11 +100,14 @@
         {"key": "primaryColumns.CustomerName.textColor"},
         {"key": "isVisible"},
         {"key": "onPageChange"},
-        {"key": "tableData"}
+        {"key": "tableData"},
+        {"key": "primaryColumns.InvoiceStatus.cellBackground"},
+        {"key": "primaryColumns.InvoiceNo.cellBackground"},
+        {"key": "primaryColumns.InvoiceNo.textColor"}
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
-    "bottomRow": 98,
+    "bottomRow": 97,
     "columnWidthMap": {
         "IsKYCDone": 129,
         "WithIMB": 100,
@@ -273,7 +278,7 @@
             "isVisible": true,
             "label": "InvoiceNo",
             "fontStyle": "",
-            "textColor": "",
+            "textColor": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow.RejectList==\"BLOCKED\"? \"White\":\"black\"))}}",
             "columnType": "text",
             "horizontalAlignment": "LEFT",
             "isCellEditable": false,
@@ -281,7 +286,7 @@
             "enableFilter": true,
             "sticky": "",
             "originalId": "InvoiceNo",
-            "cellBackground": "",
+            "cellBackground": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow.RejectList==\"BLOCKED\"? \"black\":\"Transparent\"))}}",
             "verticalAlignment": "CENTER"
         },
         "CustomerID": {
@@ -545,7 +550,7 @@
             "enableFilter": true,
             "sticky": "",
             "originalId": "CustomerName",
-            "cellBackground": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow.RejectList==\"BLOCKED\"? \"black\":\"transparent\",\ncurrentRow.to_date ==moment().format('YYYY-MM-DD')?\"#2b6777\":\"transparent\"))}}",
+            "cellBackground": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow.RejectList==\"BLOCKED\"? \"black\":\"Transparent\",\ncurrentRow.to_date ==moment().format('YYYY-MM-DD')?\"#2b6777\":\"transparent\"))}}",
             "verticalAlignment": "CENTER"
         },
         "InvoiceStatus": {
