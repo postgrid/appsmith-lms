@@ -45,7 +45,7 @@ export default {
 				//filter for printer
 				switch(Printer_Select.selectedOptionLabel) {
 					case 'Addressers':
-						allBatches.push(...batches.filter(batch => batch.includes('Addressers')))
+						allBatches.push(...batches.filter(batch => batch.fileName.includes('Addressers')))
 						break;
 					case 'PrintNow':
 					case 'Arc Mailing':
