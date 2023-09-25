@@ -9,8 +9,8 @@
         "visuals",
         "visualisations"
     ],
-    "topRow": 66,
-    "bottomRow": 118,
+    "topRow": 80,
+    "bottomRow": 132,
     "parentRowSpace": 10,
     "type": "CHART_WIDGET",
     "hideCard": false,
@@ -180,10 +180,10 @@
     "renderMode": "CANVAS",
     "isLoading": false,
     "yAxisName": "Revenue($)",
-    "originalTopRow": 66,
+    "originalTopRow": 65,
     "chartName": "Sales Report",
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "xAxisName": "Product Line",
-    "originalBottomRow": 118,
+    "originalBottomRow": 117,
     "chartType": "COLUMN_CHART"
 }

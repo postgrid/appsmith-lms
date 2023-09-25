@@ -68,7 +68,7 @@
     },
     "borderRadius": "0px",
     "originalBottomRow": 75,
-    "columnUpdatedAt": 1695411518718,
+    "columnUpdatedAt": 1695643503864,
     "defaultSelectedRowIndices": "",
     "widgetName": "Table3Copy",
     "defaultPageSize": 0,
@@ -94,7 +94,8 @@
         {"key": "primaryColumns.AssignTo.isCellEditable"},
         {"key": "primaryColumns.Qty.isCellEditable"},
         {"key": "tableData"},
-        {"key": "isSortable"}
+        {"key": "isSortable"},
+        {"key": "primaryColumns.AssignTo.onOptionChange"}
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
@@ -192,7 +193,7 @@
             "width": 150,
             "enableFilter": true,
             "sticky": "left",
-            "onOptionChange": "{{StoreActions.myFun1(currentRow)}}",
+            "onOptionChange": "{{StoreActions.myFun1(currentRow);\nawait get_printer_order_details.run();\nawait get_customer_order_details.run();}}",
             "originalId": "AssignTo",
             "cellBackground": "{{Table3Copy.processedTableData.map((currentRow, currentIndex) => (  \n  currentRow.enabled === false\n    ? \"transparent\"\n    : currentIndex !== Table3Copy.tableData.length - 1 && (currentRow.AssignTo == undefined || currentRow.AssignTo == \"\")\n      ? currentRow.SubItemID !== null\n      ? \"transparent\":\"#f87171\"\n      : currentIndex !== Table3Copy.tableData.length - 1\n        ?currentRow.SubItemID !== null\n      ? \"transparent\": \"LightGreen\"\n        : \"transparent\"\n))}}",
             "verticalAlignment": "CENTER"

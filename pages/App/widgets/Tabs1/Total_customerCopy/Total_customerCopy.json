@@ -5,8 +5,8 @@
     "isCanvas": true,
     "displayName": "Stats Box",
     "iconSVG": "/static/media/icon.382a7c7bc55323fbbd8edd79208c5324.svg",
-    "topRow": 66,
-    "bottomRow": 80,
+    "topRow": 65,
+    "bottomRow": 79,
     "parentRowSpace": 10,
     "type": "STATBOX_WIDGET",
     "hideCard": false,
@@ -56,9 +56,9 @@
     "parentId": "sii7tf5ehc",
     "renderMode": "CANVAS",
     "isLoading": false,
-    "originalTopRow": 66,
+    "originalTopRow": 65,
     "borderRadius": "0px",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 80,
+    "originalBottomRow": 79,
     "minDynamicHeight": 4
 }

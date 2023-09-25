@@ -99,7 +99,7 @@
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
-    "bottomRow": 28,
+    "bottomRow": 43,
     "columnWidthMap": {
         "Status": 96,
         "task": 245,
@@ -654,7 +654,7 @@
     "horizontalAlignment": "LEFT",
     "isVisibleSearch": false,
     "originalTopRow": 4,
-    "isVisiblePagination": false,
+    "isVisiblePagination": true,
     "cellBackground": "transparent",
     "verticalAlignment": "CENTER"
 }
