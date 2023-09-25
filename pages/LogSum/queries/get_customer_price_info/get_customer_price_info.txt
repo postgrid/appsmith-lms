@@ -16,7 +16,9 @@ WITH customer_line_items_query AS (
     i."InvoiceDate",
     i."PaymentMethod",
     i."InvoiceStatus",
-		p."ProductDescription"
+		p."ProductDescription",
+	  p."MailType",
+	  p."ProductType"
   FROM
     "public"."Customers" c1
     INNER JOIN "public"."CustomerPrice" c2 ON (c2."CustomerID" = c1."Id")
