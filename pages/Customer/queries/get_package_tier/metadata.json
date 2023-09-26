@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "get_printerlist",
+    "name": "get_package_tier",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT \"PrinterName\", \"Id\" from \"Printers\" where \"Status\" = 'Active'",
+      "body": "SELECT * FROM public.\"PriceDeal\" ORDER BY \"Id\";",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -32,13 +32,13 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [],
-    "userSetOnLoad": false,
+    "userSetOnLoad": true,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-09-25T19:20:41Z"
+    "createdAt": "2023-09-26T15:32:43Z"
   },
-  "id": "Customer_get_printerlist",
+  "id": "Customer_get_package_tier",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6400e614e69a2e1df5480c00"
+  "gitSyncId": "6511dd848207c83041509c9a_6512f99b0724fe100c22480d"
 }

@@ -1,0 +1,6 @@
+SELECT "PrinterLineItems"."Id", "PrinterLineItems"."Qty", "Products"."Id" AS "ProductID", "PrinterLineItems"."InvoiceID"
+FROM "PrinterLineItems"
+INNER JOIN "Products" ON "PrinterLineItems"."InitialProdDescription"="Products"."ProductDescription"
+INNER JOIN "Invoice" ON "PrinterLineItems"."InvoiceID" = "Invoice"."InvoiceID"
+WHERE  "Invoice"."InvoiceDate" >= '{{moment(Start_datePicker.selectedDate).format('YYYY-MM-DD')}}'
+    AND "Invoice"."InvoiceDate" < '{{moment(End_datePicker.selectedDate).add(1, 'days').format('YYYY-MM-DD')}}';

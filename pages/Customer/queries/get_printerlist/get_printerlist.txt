@@ -1,1 +1,1 @@
-SELECT "PrinterName" from "Printers" where "Status" = 'Active'
+SELECT "PrinterName", "Id" from "Printers" where "Status" = 'Active'

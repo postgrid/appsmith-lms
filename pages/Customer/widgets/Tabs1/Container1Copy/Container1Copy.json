@@ -6,8 +6,8 @@
     "dynamicPropertyPathList": [{"key": "borderRadius"}],
     "displayName": "Container",
     "iconSVG": "/static/media/icon.1977dca3.svg",
-    "topRow": 112,
-    "bottomRow": 118,
+    "topRow": 177,
+    "bottomRow": 183,
     "parentRowSpace": 10,
     "type": "CONTAINER_WIDGET",
     "hideCard": false,
@@ -55,9 +55,9 @@
     "parentId": "sii7tf5ehc",
     "renderMode": "CANVAS",
     "isLoading": false,
-    "originalTopRow": 200,
+    "originalTopRow": 177,
     "borderRadius": "5px",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 206,
+    "originalBottomRow": 183,
     "minDynamicHeight": 4
 }
