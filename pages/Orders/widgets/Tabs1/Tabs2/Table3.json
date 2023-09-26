@@ -90,7 +90,7 @@
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "originalBottomRow": 111,
-    "columnUpdatedAt": 1695318384487,
+    "columnUpdatedAt": 1695661778551,
     "defaultSelectedRowIndices": "",
     "widgetName": "Table3",
     "defaultPageSize": 0,
@@ -159,7 +159,7 @@
         "qty": 74,
         "Qty": 70,
         "step": 119,
-        "Id": 60,
+        "Id": 197,
         "ProductDescription": 365,
         "To": 60,
         "status": 75

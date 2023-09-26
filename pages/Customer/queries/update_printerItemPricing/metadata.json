@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "Save_Data",
+    "name": "update_printerItemPricing",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,34 +18,27 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE public.\"CustomerPrice\"\nSET \"Rate\" = {{this.params.currentRow.Rate}} \nWHERE \"ProductID\" = {{this.params.currentRow.ProductID}} AND \"CustomerID\" = '{{this.params.currentRow.Id}}';",
+      "body": "SELECT \"PrinterLineItems\".\"Id\", PrinterPrice\".\"Id\" AS \"PrinterPrice\", \"PrinterLineItems\".\"Qty\", \"PrinterPrice\".\"Rate\"\nFROM \"PrinterLineItems\"\nINNER JOIN \"Invoice\" ON \"Invoice\".\"InvoiceID\" = \"PrinterLineItems\".\"InvoiceID\"\nINNER JOIN \"Printers\" ON \"Printers\".\"PrinterName\" = \"PrinterLineItems\".\"Printer\"\nINNER JOIN \"set_item\" ON \"set_item\".\"printerid\" = \"Printers\".\"Id\"\nINNER JOIN ",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": false
+          "value": true
         }
       ]
     },
     "executeOnLoad": false,
-    "dynamicBindingPathList": [
-      {
-        "key": "body"
-      }
-    ],
+    "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "this.params.currentRow.Id",
-      "this.params.currentRow.ProductID",
-      "this.params.currentRow.Rate"
-    ],
+    "jsonPathKeys": [],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-09-26T17:10:16Z"
   },
-  "id": "Customer_Save_Data",
+  "id": "Customer_update_printerItemPricing",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6400e614e69a2e1df5480bed"
+  "gitSyncId": "6511dd848207c83041509c9a_651310785329da2e4840ff36"
 }

@@ -1,0 +1,4 @@
+UPDATE
+UPDATE "set_tier"
+SET "tier_level_id" = {{Tier_select.selectedOptionValue}}
+WHERE "printerid" = {{Printer_select.selectedOptionValue}};

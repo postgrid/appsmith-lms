@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1200,
+          "bottomRow": 1850,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -27,6 +27,34 @@
           "leftColumn": 0
         },
         "layoutOnLoadActions": [
+          [
+            {
+              "id": "Customer_get_package_tier",
+              "name": "get_package_tier",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "Customer_get_current_tier",
+              "name": "get_current_tier",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "Customer_get_printerlist",
+              "name": "get_printerlist",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [],
+              "timeoutInMillisecond": 10000
+            }
+          ],
           [
             {
               "id": "Customer_get_custpricelist",

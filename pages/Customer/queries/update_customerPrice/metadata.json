@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "get_printerlist",
+    "name": "update_customerPrice",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,27 +18,35 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT \"PrinterName\", \"Id\" from \"Printers\" where \"Status\" = 'Active'",
+      "body": "UPDATE public.\"CustomerPrice\"\nSET \"Rate\" = {{this.params.currentRow.Rate}} \nWHERE \"ProductID\" = {{this.params.currentRow.ProductID}} AND \"CustomerID\" = '{{this.params.currentRow.Id}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ]
     },
-    "executeOnLoad": true,
-    "dynamicBindingPathList": [],
+    "executeOnLoad": false,
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [],
+    "jsonPathKeys": [
+      "this.params.currentRow.Id",
+      "this.params.currentRow.ProductID",
+      "this.params.currentRow.Rate"
+    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
     "createdAt": "2023-09-25T19:20:41Z"
   },
-  "id": "Customer_get_printerlist",
+  "id": "Customer_update_customerPrice",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6400e614e69a2e1df5480c00"
+  "gitSyncId": "63b393c7f276cd0745e9510c_6400e614e69a2e1df5480bed"
 }

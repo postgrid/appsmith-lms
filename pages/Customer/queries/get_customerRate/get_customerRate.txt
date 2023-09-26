@@ -1,0 +1,1 @@
+SELECT "CustomerPrice"."Rate" FROM "CustomerPrice" WHERE "CustomerPrice"."Id" = '{{this.params.custprice_id}}';
