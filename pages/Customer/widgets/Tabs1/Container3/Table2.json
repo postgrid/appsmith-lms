@@ -130,7 +130,7 @@
     "primaryColumns": {
         "Rate": {
             "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Rate\"]))}}",
-            "onSubmit": "{{StoreActions.myFun1(currentRow)}}",
+            "onSubmit": "{{StoreActions.updateCustomerRate(currentRow);}}",
             "isEditable": true,
             "alias": "Rate",
             "enableSort": true,
