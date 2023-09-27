@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "set_printerTier",
+    "name": "get_all_printer_fix",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"set_tier\"\nSET \"tier_level_id\" = {{Tier_select.selectedOptionValue}}\nWHERE \"printerid\" = {{Printer_select.selectedOptionValue}};",
+      "body": "SELECT \"Printers\".\"Id\", \"Printers\".\"PrinterName\", \"set_tier\".\"tier_level_id\"\nFROM \"Printers\"\nINNER JOIN \"set_tier\" ON \"Printers\".\"Id\"=\"set_tier\".\"printerid\"",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -27,25 +27,18 @@
       ]
     },
     "executeOnLoad": false,
-    "dynamicBindingPathList": [
-      {
-        "key": "body"
-      }
-    ],
+    "dynamicBindingPathList": [],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [
-      "Printer_select.selectedOptionValue",
-      "Tier_select.selectedOptionValue"
-    ],
+    "jsonPathKeys": [],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-09-26T17:05:16Z"
+    "createdAt": "2023-09-26T20:23:54Z"
   },
-  "id": "Customer_set_printerTier",
+  "id": "Customer_get_all_printer_fix",
   "deleted": false,
-  "gitSyncId": "6511dd848207c83041509c9a_65130f4c0724fe100c2248e1"
+  "gitSyncId": "63b393c7f276cd0745e9510c_65133dda7b29a36f35046009"
 }

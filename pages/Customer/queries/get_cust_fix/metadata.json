@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "get_selected_printer_item_all",
+    "name": "get_cust_fix",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT \"PrinterLineItems\".\"Id\", \"PrinterLineItems\".\"Qty\", \"Products\".\"Id\" AS \"ProductID\", \"PrinterLineItems\".\"InvoiceID\"\nFROM \"PrinterLineItems\"\nINNER JOIN \"Products\" ON \"PrinterLineItems\".\"InitialProdDescription\"=\"Products\".\"ProductDescription\"\nINNER JOIN \"Invoice\" ON \"PrinterLineItems\".\"InvoiceID\" = \"Invoice\".\"InvoiceID\"\nWHERE  \"Invoice\".\"InvoiceDate\" >= '{{moment(Start_datePicker.selectedDate).format('YYYY-MM-DD')}}'\n    AND \"Invoice\".\"InvoiceDate\" < '{{moment(End_datePicker.selectedDate).add(1, 'days').format('YYYY-MM-DD')}}' AND \"PrinterLineItems\".\"Printer\" = {{Printer_select.selectedOptionLabel}};",
+      "body": "SELECT \"CustomerLineItems\".\"Id\", \"CustomerLineItems\".\"Printer\", \"CustomerLineItems\".\"Qty\"\nFROM \"CustomerLineItems\"\nINNER JOIN \"Invoice\" ON \"CustomerLineItems\".\"InvoiceID\" = \"Invoice\".\"InvoiceID\"\nWHERE  \"Invoice\".\"InvoiceDate\" >= '{{moment(Start_datePicker.selectedDate).format('YYYY-MM-DD')}}'\n    AND \"Invoice\".\"InvoiceDate\" < '{{moment(End_datePicker.selectedDate).add(1, 'days').format('YYYY-MM-DD')}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,7 +36,6 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "Printer_select.selectedOptionLabel",
       "moment(End_datePicker.selectedDate).add(1, 'days').format('YYYY-MM-DD')",
       "moment(Start_datePicker.selectedDate).format('YYYY-MM-DD')"
     ],
@@ -44,9 +43,9 @@
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-09-26T17:43:33Z"
+    "createdAt": "2023-09-26T20:20:07Z"
   },
-  "id": "Customer_get_selected_printer_item_all",
+  "id": "Customer_get_cust_fix",
   "deleted": false,
-  "gitSyncId": "6511dd848207c83041509c9a_65131845f1df2f57ef7f9bf6"
+  "gitSyncId": "63b393c7f276cd0745e9510c_65133cf70724fe100c224be6"
 }

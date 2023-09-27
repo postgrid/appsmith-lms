@@ -15,7 +15,7 @@
     },
     "pageId": "Customer",
     "actionConfiguration": {
-      "timeoutInMillisecond": 10000,
+      "timeoutInMillisecond": 100000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "body": "CREATE TABLE temp_items (\n\ttemp_item_id TEXT,\n\t\"PrinterPriceID\" INTEGER, \n\t\"Rate\" NUMERIC, \n\t\"Amount\" NUMERIC\n);\n\nINSERT INTO temp_items (temp_item_id, \"PrinterPriceID\", \"Rate\", \"Amount\") \nVALUES \n{{appsmith.store.printerItemsList.map((d) => { \n\treturn\"(\" + \"'\" + d.itemId+ \"', \" + \"(SELECT pp.\\\"Id\\\" FROM \\\"public\\\".\\\"PrinterPrice\\\" pp WHERE pp.\\\"PriceDealID\\\" = '\"+ d.printerTier +\"' AND\tpp.\\\"ProductID\\\" = '\" + d.productId + \"' AND pp.\\\"PrinterID\\\" = '\" + d.printerId +\"'),\" + \"(SELECT pp.\\\"Rate\\\" FROM \\\"public\\\".\\\"PrinterPrice\\\" pp WHERE pp.\\\"PriceDealID\\\" = '\"+ d.printerTier +\"' AND\tpp.\\\"ProductID\\\" = '\" + d.productId + \"' AND pp.\\\"PrinterID\\\" = '\" + d.printerId +\"'),\" + \"(SELECT pp.\\\"Rate\\\" FROM \\\"public\\\".\\\"PrinterPrice\\\" pp WHERE pp.\\\"PriceDealID\\\" = '\"+ d.printerTier +\"' AND\tpp.\\\"ProductID\\\" = '\" + d.productId + \"' AND pp.\\\"PrinterID\\\" = '\" + d.printerId +\"')  *\" + d.qty + \")\"}).join(\",\")  }};\n\nUPDATE \"PrinterLineItems\" SET \"PrinterPriceID\" = (SELECT \"PrinterPriceID\"\n                                 FROM temp_items\n                                 WHERE \"PrinterLineItems\".\"Id\" = temp_items.temp_item_id),\n                         \"Rate\" = (SELECT \"Rate\"\n                                 FROM temp_items\n                                 WHERE \"PrinterLineItems\".\"Id\" = temp_items.temp_item_id),\n\t\t\t\t\t\t\t\t\t\t\t\t \"Amount\" = (SELECT \"Amount\"\n                                 FROM temp_items\n                                 WHERE \"PrinterLineItems\".\"Id\" = temp_items.temp_item_id)\n\n\nWHERE \"Id\" IN (SELECT temp_item_id\n             FROM temp_items);\n\t\t\t\t\t\t \nDROP TABLE temp_items;",
@@ -33,7 +33,9 @@
       }
     ],
     "isValid": true,
-    "invalids": [],
+    "invalids": [
+      "'Query timeout' field must be an integer between 0 and 60000"
+    ],
     "messages": [],
     "jsonPathKeys": [
       "appsmith.store.printerItemsList.map((d) => { \n\treturn\"(\" + \"'\" + d.itemId+ \"', \" + \"(SELECT pp.\\\"Id\\\" FROM \\\"public\\\".\\\"PrinterPrice\\\" pp WHERE pp.\\\"PriceDealID\\\" = '\"+ d.printerTier +\"' AND\tpp.\\\"ProductID\\\" = '\" + d.productId + \"' AND pp.\\\"PrinterID\\\" = '\" + d.printerId +\"'),\" + \"(SELECT pp.\\\"Rate\\\" FROM \\\"public\\\".\\\"PrinterPrice\\\" pp WHERE pp.\\\"PriceDealID\\\" = '\"+ d.printerTier +\"' AND\tpp.\\\"ProductID\\\" = '\" + d.productId + \"' AND pp.\\\"PrinterID\\\" = '\" + d.printerId +\"'),\" + \"(SELECT pp.\\\"Rate\\\" FROM \\\"public\\\".\\\"PrinterPrice\\\" pp WHERE pp.\\\"PriceDealID\\\" = '\"+ d.printerTier +\"' AND\tpp.\\\"ProductID\\\" = '\" + d.productId + \"' AND pp.\\\"PrinterID\\\" = '\" + d.printerId +\"')  *\" + d.qty + \")\"}).join(\",\")  "

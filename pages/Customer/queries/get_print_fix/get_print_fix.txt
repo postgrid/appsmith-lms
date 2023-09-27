@@ -3,4 +3,4 @@ FROM "PrinterLineItems"
 INNER JOIN "Products" ON "PrinterLineItems"."InitialProdDescription"="Products"."ProductDescription"
 INNER JOIN "Invoice" ON "PrinterLineItems"."InvoiceID" = "Invoice"."InvoiceID"
 WHERE  "Invoice"."InvoiceDate" >= '{{moment(Start_datePicker.selectedDate).format('YYYY-MM-DD')}}'
-    AND "Invoice"."InvoiceDate" < '{{moment(End_datePicker.selectedDate).add(1, 'days').format('YYYY-MM-DD')}}' AND "PrinterLineItems"."Printer" = {{Printer_select.selectedOptionLabel}};
+    AND "Invoice"."InvoiceDate" < '{{moment(End_datePicker.selectedDate).add(1, 'days').format('YYYY-MM-DD')}}' ;
