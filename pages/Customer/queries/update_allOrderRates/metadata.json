@@ -18,11 +18,11 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"CustomerLineItems\" \nSET \"CustomerLineItems\".\"Rate\" = '{{this.params.currentRow.Rate}}', \"CustomerLineItems\".\"Amount\" = {{this.params.currentRow.Rate}} * \"CustomerLineItems\".\"Qty\"\nFROM \"CustomerLineItems\"\nINNER JOIN \"Invoice\"\nON \"CustomerLineItems\".\"InvoiceID\" = \"Invoice\".\"InvoiceID\"\nWHERE \"CustomerLineItems\".\"CustomerPriceID\" = '{{this.params.currentRow.custprice_id}}'",
+      "body": "UPDATE \"CustomerLineItems\" \nSET \"Rate\" = '{{appsmith.store.updateCustomerRate.Rate}}', \"Amount\" = ({{appsmith.store.updateCustomerRate.Rate}} * \"CustomerLineItems\".\"Qty\")\nWHERE \"CustomerLineItems\".\"CustomerPriceID\" = '{{appsmith.store.updateCustomerRate.custprice_id}}'",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ]
     },
@@ -36,8 +36,8 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "this.params.currentRow.Rate",
-      "this.params.currentRow.custprice_id"
+      "appsmith.store.updateCustomerRate.Rate",
+      "appsmith.store.updateCustomerRate.custprice_id"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

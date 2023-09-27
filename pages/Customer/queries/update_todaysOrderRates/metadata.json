@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"CustomerLineItems\" \nSET \"CustomerLineItems\".\"Rate\" = '{{this.params.currentRow.Rate}}', \"CustomerLineItems\".\"Amount\" = {{this.params.currentRow.Rate}} * \"CustomerLineItems\".\"Qty\"\nFROM \"CustomerLineItems\"\nINNER JOIN \"Invoice\"\nON \"CustomerLineItems\".\"InvoiceID\" = \"Invoice\".\"InvoiceID\"\nWHERE \"CustomerLineItems\".\"CustomerPriceID\" = '{{this.params.currentRow.custprice_id}}' AND  to_date(cast(\"Invoice\".\"InvoiceDate\" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}';",
+      "body": "UPDATE \"CustomerLineItems\"\nSET \"Rate\" = '{{appsmith.store.updateCustomerRate.Rate}}', \"Amount\" = ({{appsmith.store.updateCustomerRate.Rate}} * \"CustomerLineItems\".\"Qty\")\nWHERE\n(\n\tSELECT \"Invoice\".\"InvoiceID\"\n\tFROM\n\t\t\"Invoice\"\n\tWHERE to_date(cast(\"Invoice\".\"InvoiceDate\" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}'\n) = \"CustomerLineItems\".\"InvoiceID\" AND \"CustomerLineItems\".\"CustomerPriceID\" = '{{appsmith.store.updateCustomerRate.custprice_id}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -36,9 +36,9 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "moment().format('YYYY-MM-DD')",
-      "this.params.currentRow.Rate",
-      "this.params.currentRow.custprice_id"
+      "appsmith.store.updateCustomerRate.Rate",
+      "appsmith.store.updateCustomerRate.custprice_id",
+      "moment().format('YYYY-MM-DD')"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

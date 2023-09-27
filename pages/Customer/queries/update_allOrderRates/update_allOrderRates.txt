@@ -1,6 +1,3 @@
 UPDATE "CustomerLineItems" 
-SET "CustomerLineItems"."Rate" = '{{this.params.currentRow.Rate}}', "CustomerLineItems"."Amount" = {{this.params.currentRow.Rate}} * "CustomerLineItems"."Qty"
-FROM "CustomerLineItems"
-INNER JOIN "Invoice"
-ON "CustomerLineItems"."InvoiceID" = "Invoice"."InvoiceID"
-WHERE "CustomerLineItems"."CustomerPriceID" = '{{this.params.currentRow.custprice_id}}'
+SET "Rate" = '{{appsmith.store.updateCustomerRate.Rate}}', "Amount" = ({{appsmith.store.updateCustomerRate.Rate}} * "CustomerLineItems"."Qty")
+WHERE "CustomerLineItems"."CustomerPriceID" = '{{appsmith.store.updateCustomerRate.custprice_id}}'

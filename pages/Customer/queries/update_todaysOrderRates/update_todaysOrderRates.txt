@@ -1,6 +1,9 @@
-UPDATE "CustomerLineItems" 
-SET "CustomerLineItems"."Rate" = '{{this.params.currentRow.Rate}}', "CustomerLineItems"."Amount" = {{this.params.currentRow.Rate}} * "CustomerLineItems"."Qty"
-FROM "CustomerLineItems"
-INNER JOIN "Invoice"
-ON "CustomerLineItems"."InvoiceID" = "Invoice"."InvoiceID"
-WHERE "CustomerLineItems"."CustomerPriceID" = '{{this.params.currentRow.custprice_id}}' AND  to_date(cast("Invoice"."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}';
+UPDATE "CustomerLineItems"
+SET "Rate" = '{{appsmith.store.updateCustomerRate.Rate}}', "Amount" = ({{appsmith.store.updateCustomerRate.Rate}} * "CustomerLineItems"."Qty")
+WHERE
+(
+	SELECT "Invoice"."InvoiceID"
+	FROM
+		"Invoice"
+	WHERE to_date(cast("Invoice"."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}'
+) = "CustomerLineItems"."InvoiceID" AND "CustomerLineItems"."CustomerPriceID" = '{{appsmith.store.updateCustomerRate.custprice_id}}';

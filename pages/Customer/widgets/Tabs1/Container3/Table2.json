@@ -88,7 +88,8 @@
     "dynamicPropertyPathList": [
         {"key": "isVisible"},
         {"key": "tableData"},
-        {"key": "primaryColumns.Rate.cellBackground"}
+        {"key": "primaryColumns.Rate.cellBackground"},
+        {"key": "primaryColumns.Rate.onSubmit"}
     ],
     "compactMode": "DEFAULT",
     "displayName": "Table",
@@ -569,7 +570,7 @@
     "key": "xbdjr460wt",
     "canFreezeColumn": false,
     "isDeprecated": false,
-    "rightColumn": 64,
+    "rightColumn": 60,
     "textSize": "0.875rem",
     "widgetId": "rl939i16d0",
     "allowAddNewRow": false,

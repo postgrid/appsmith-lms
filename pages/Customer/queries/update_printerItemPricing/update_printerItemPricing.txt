@@ -1,6 +1,0 @@
-SELECT "PrinterLineItems"."Id", PrinterPrice"."Id" AS "PrinterPrice", "PrinterLineItems"."Qty", "PrinterPrice"."Rate"
-FROM "PrinterLineItems"
-INNER JOIN "Invoice" ON "Invoice"."InvoiceID" = "PrinterLineItems"."InvoiceID"
-INNER JOIN "Printers" ON "Printers"."PrinterName" = "PrinterLineItems"."Printer"
-INNER JOIN "set_item" ON "set_item"."printerid" = "Printers"."Id"
-INNER JOIN 
