@@ -4,9 +4,9 @@ export default {
 		const oldRate = await get_customerRate.run({currentRow});
 		await update_customerPrice.run({currentRow});
 		if(oldRate[0].Rate === null){
-			await update_todaysOrderRates.run({currentRow});
-		} else {
 			await update_allOrderRates.run({currentRow});
+		} else {
+			await update_todaysOrderRates.run({currentRow});
 		}
 		await get_custpricelist.run(() => { showAlert('Well done!.','success')}, () => {});
 	},
