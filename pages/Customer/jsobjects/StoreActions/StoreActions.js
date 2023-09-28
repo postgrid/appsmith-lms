@@ -4,9 +4,14 @@ export default {
 		const oldRate = await get_customerRate.run({currentRow});
 		await update_customerPrice.run({currentRow});
 		if(oldRate[0].Rate === null){
-			await update_allOrderRates.run({currentRow});
+			await update_allOrderRates.run();
+			console.log("update_allOrderRates")
 		} else {
-			await update_todaysOrderRates.run({currentRow});
+			const invoiceID = await get_invoiceID_for_Customer.run()
+			console.log("JG invoiceID", invoiceID)
+			await storeValue("updateCustomerRate",{...currentRow, invoiceID: invoiceID[0].InvoiceID});
+			await update_todaysOrderRates.run();
+			console.log("update_todaysOrderRates")
 		}
 		await get_custpricelist.run(() => { showAlert('Well done!.','success')}, () => {});
 	},
@@ -61,9 +66,9 @@ export default {
 		const customerItems = await get_cust_fix.run();
 		const printItems = await get_print_fix.run();
 		const printerInfo = await get_all_printer_fix.run();
-		
+
 		// const itemsList = [];
-		
+
 		for(const item of customerItems){
 			if(item.Printer !== "CANCELLED" && item.Printer !== null){
 				// const printer = printerInfo.find(printer => printer.PrinterName === item.Printer)
@@ -72,16 +77,16 @@ export default {
 					console.log(`JG missing printerItem ${item.Id}`)
 				}
 				// if(printIt){
-					// itemsList.push({
-						// printerId: printer.Id,
-						// printerTier: printer.tier_level_id,
-						// productId: printIt.ProductID,
-						// itemId: item.Id,
-						// qty: item.Qty
-					// })
+				// itemsList.push({
+				// printerId: printer.Id,
+				// printerTier: printer.tier_level_id,
+				// productId: printIt.ProductID,
+				// itemId: item.Id,
+				// qty: item.Qty
+				// })
 				// }
 			}
-			
+
 		}
 		// console.log("JG", itemsList)
 		// await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	

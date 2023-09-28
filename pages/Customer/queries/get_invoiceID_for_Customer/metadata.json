@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "postgres-plugin",
   "unpublishedAction": {
-    "name": "Query4",
+    "name": "get_invoiceID_for_Customer",
     "datasource": {
       "name": "Logistics_db",
       "pluginId": "postgres-plugin",
@@ -18,25 +18,34 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "SELECT * FROM public.\"CustomerLineItems\" LIMIT 10;",
+      "body": "SELECT \"Invoice\".\"InvoiceID\"\n\tFROM\n\t\t\"Invoice\"\n\tINNER JOIN \"CustomerLineItems\" ON \"CustomerLineItems\".\"InvoiceID\" = \"Invoice\".\"InvoiceID\"\n\tWHERE to_date(cast(\"Invoice\".\"InvoiceDate\" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}' AND \"CustomerLineItems\".\"CustomerPriceID\" = '{{appsmith.store.updateCustomerRate.custprice_id}}' LIMIT 1",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
-          "value": true
+          "value": false
         }
       ]
     },
     "executeOnLoad": false,
+    "dynamicBindingPathList": [
+      {
+        "key": "body"
+      }
+    ],
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "jsonPathKeys": [],
+    "jsonPathKeys": [
+      "appsmith.store.updateCustomerRate.custprice_id",
+      "moment().format('YYYY-MM-DD')"
+    ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-09-05T12:56:26Z"
   },
-  "id": "Customer_Query4",
+  "id": "Customer_get_invoiceID_for_Customer",
   "deleted": false,
   "gitSyncId": "63b393c7f276cd0745e9510c_64f7257a6ee9184888d1f32c"
 }

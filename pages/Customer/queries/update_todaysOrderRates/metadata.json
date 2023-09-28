@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"CustomerLineItems\"\nSET \"Rate\" = '{{appsmith.store.updateCustomerRate.Rate}}', \"Amount\" = ({{appsmith.store.updateCustomerRate.Rate}} * \"CustomerLineItems\".\"Qty\")\nWHERE\n(\n\tSELECT \"Invoice\".\"InvoiceID\"\n\tFROM\n\t\t\"Invoice\"\n\tWHERE to_date(cast(\"Invoice\".\"InvoiceDate\" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}'\n) = \"CustomerLineItems\".\"InvoiceID\" AND \"CustomerLineItems\".\"CustomerPriceID\" = '{{appsmith.store.updateCustomerRate.custprice_id}}';",
+      "body": "UPDATE \"CustomerLineItems\"\nSET \"Rate\" = '{{appsmith.store.updateCustomerRate.Rate}}', \n\t\t\"Amount\" = ({{appsmith.store.updateCustomerRate.Rate}} * \"CustomerLineItems\".\"Qty\")\nWHERE\n\"CustomerLineItems\".\"InvoiceID\" = '{{appsmith.store.updateCustomerRate.invoiceID}}' AND \"CustomerLineItems\".\"CustomerPriceID\" = '{{appsmith.store.updateCustomerRate.custprice_id}}';",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -38,7 +38,7 @@
     "jsonPathKeys": [
       "appsmith.store.updateCustomerRate.Rate",
       "appsmith.store.updateCustomerRate.custprice_id",
-      "moment().format('YYYY-MM-DD')"
+      "appsmith.store.updateCustomerRate.invoiceID"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,

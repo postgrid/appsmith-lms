@@ -1,9 +1,5 @@
 UPDATE "CustomerLineItems"
-SET "Rate" = '{{appsmith.store.updateCustomerRate.Rate}}', "Amount" = ({{appsmith.store.updateCustomerRate.Rate}} * "CustomerLineItems"."Qty")
+SET "Rate" = '{{appsmith.store.updateCustomerRate.Rate}}', 
+		"Amount" = ({{appsmith.store.updateCustomerRate.Rate}} * "CustomerLineItems"."Qty")
 WHERE
-(
-	SELECT "Invoice"."InvoiceID"
-	FROM
-		"Invoice"
-	WHERE to_date(cast("Invoice"."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}'
-) = "CustomerLineItems"."InvoiceID" AND "CustomerLineItems"."CustomerPriceID" = '{{appsmith.store.updateCustomerRate.custprice_id}}';
+"CustomerLineItems"."InvoiceID" = '{{appsmith.store.updateCustomerRate.invoiceID}}' AND "CustomerLineItems"."CustomerPriceID" = '{{appsmith.store.updateCustomerRate.custprice_id}}';

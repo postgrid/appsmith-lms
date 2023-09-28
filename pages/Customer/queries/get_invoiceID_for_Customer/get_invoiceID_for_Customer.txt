@@ -1,0 +1,5 @@
+SELECT "Invoice"."InvoiceID"
+	FROM
+		"Invoice"
+	INNER JOIN "CustomerLineItems" ON "CustomerLineItems"."InvoiceID" = "Invoice"."InvoiceID"
+	WHERE to_date(cast("Invoice"."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment().format('YYYY-MM-DD')}}' AND "CustomerLineItems"."CustomerPriceID" = '{{appsmith.store.updateCustomerRate.custprice_id}}' LIMIT 1
