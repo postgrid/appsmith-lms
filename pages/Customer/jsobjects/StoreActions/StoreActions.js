@@ -1,16 +1,12 @@
 export default {
 	updateCustomerRate: async (currentRow) => {
-		await storeValue("updateCustomeR",currentRow);
-		console.log("JG currentRow", currentRow)
+		await storeValue("updateCustomerRate",currentRow);
 		const oldRate = await get_customerRate.run({currentRow});
-		console.log("JG oldRate", oldRate)
 		await update_customerPrice.run({currentRow});
 		if(oldRate[0].Rate === null){
 			await update_todaysOrderRates.run({currentRow});
-			console.log("JG update_todaysOrderRates")
 		} else {
 			await update_allOrderRates.run({currentRow});
-			console.log("JG update_todaysOrderRates")
 		}
 		await get_custpricelist.run(() => { showAlert('Well done!.','success')}, () => {});
 	},
