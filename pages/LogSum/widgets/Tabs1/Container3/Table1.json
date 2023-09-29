@@ -421,7 +421,7 @@
             "verticalAlignment": "CENTER"
         },
         "CustomerCalculation": {
-            "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerCalculation\"]))}}",
+            "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"CustomerCalculation\"].replace(/\\(\\s+/g, '(').replace(/\\s+\\)/g, ')')))}}",
             "isEditable": false,
             "alias": "CustomerCalculation",
             "enableSort": true,
@@ -481,7 +481,7 @@
             "verticalAlignment": "CENTER"
         },
         "PrinterCalculation": {
-            "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"PrinterCalculation\"]))}}",
+            "computedValue": "{{Table1.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"PrinterCalculation\"].replace(/\\(\\s+/g, '(').replace(/\\s+\\)/g, ')')))}}",
             "isEditable": false,
             "alias": "PrinterCalculation",
             "enableSort": true,
@@ -788,7 +788,7 @@
     "key": "z6sdwodvb1",
     "canFreezeColumn": true,
     "isDeprecated": false,
-    "rightColumn": 61,
+    "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "ksrxesl3as",
     "minWidth": 450,
