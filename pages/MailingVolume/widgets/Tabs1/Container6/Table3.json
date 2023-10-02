@@ -3,7 +3,7 @@
     "borderColor": "#E0DEDE",
     "isVisibleDownload": false,
     "iconSVG": "/static/media/icon.db8a9cbd2acd22a31ea91cc37ea2a46c.svg",
-    "topRow": 54,
+    "topRow": 55,
     "isSortable": false,
     "type": "TABLE_WIDGET_V2",
     "inlineEditingSaveOption": "ROW_LEVEL",
@@ -73,7 +73,7 @@
         {"key": "tableData"}
     ],
     "displayName": "Table",
-    "bottomRow": 132,
+    "bottomRow": 133,
     "columnWidthMap": {
         "task": 245,
         "step": 70,
