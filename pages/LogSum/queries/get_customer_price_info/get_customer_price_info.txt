@@ -32,8 +32,8 @@ WITH customer_line_items_query AS (
       WHERE p."Id" = c2."ProductID"
     )
     --AND "SubItemID" IS NULL
-    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment(StartDate_Picker.selectedDate).format('YYYY-MM-DD')}}'
-    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '{{moment(EndDate_Picker.selectedDate).format('YYYY-MM-DD')}}'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment(appsmith.store.logSumDates.startDate).format('YYYY-MM-DD')}}'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '{{moment(appsmith.store.logSumDates.endDate).format('YYYY-MM-DD')}}'
 		
 ), sub_items AS (
 	SELECT * FROM customer_line_items_query WHERE "SubItemID" IS NOT NULL

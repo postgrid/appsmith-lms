@@ -2,4 +2,4 @@ SELECT cl1."Id", cl1."SubItemID", cl1."Qty", cl1."Rate", cl1."Amount", cl1."Init
 	LEFT JOIN "PrinterPrice" c1 ON (cl1."PrinterPriceID" = c1."Id")
 	LEFT JOIN "Products" p1 ON (c1."ProductID" = p1."Id")
 	INNER JOIN "Invoice" i ON ( i."InvoiceID" = cl1."InvoiceID"  )
-WHERE i."InvoiceDate"::date >= '{{moment(StartDate_Picker.selectedDate).format("YYYY-MM-DD")}}'::date AND i."InvoiceDate"::date <= '{{moment(EndDate_Picker.selectedDate).format("YYYY-MM-DD")}}'::date ORDER BY "Id" ASC
+WHERE i."InvoiceDate"::date >= '{{moment(appsmith.store.logSumDates.startDate).format("YYYY-MM-DD")}}'::date AND i."InvoiceDate"::date <= '{{moment(appsmith.store.logSumDates.endDate).format("YYYY-MM-DD")}}'::date ORDER BY "Id" ASC
