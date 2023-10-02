@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 100000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "UPDATE \"PrinterLineItems\"\nSET \"DeliveryDate\" = CAST('{{moment().format('YYYY-MM-DD').toString()}}' AS DATE)\nWHERE \"Id\" IN ({{`'${appsmith.store.updateAllOrderStatus.join(\"','\")}'`}}) OR \"SubItemID\" IN ({{`'${appsmith.store.updateAllOrderStatus.join(\"','\")}'`}});",
+      "body": "UPDATE \"PrinterLineItems\"\nSET \"DeliveryDate\" = CAST('{{moment().format('YYYY-MM-DD').toString()}}' AS DATE)\nWHERE \"Id\" IN ({{`'${this.params.orderIDs.join(\"','\")}'`}}) OR \"SubItemID\" IN ({{`'${this.params.orderIDs.join(\"','\")}'`}});",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
@@ -38,7 +38,7 @@
     ],
     "messages": [],
     "jsonPathKeys": [
-      "`'${appsmith.store.updateAllOrderStatus.join(\"','\")}'`",
+      "`'${this.params.orderIDs.join(\"','\")}'`",
       "moment().format('YYYY-MM-DD').toString()"
     ],
     "userSetOnLoad": false,
