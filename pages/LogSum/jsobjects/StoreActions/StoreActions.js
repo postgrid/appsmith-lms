@@ -125,18 +125,12 @@ export default {
 			return items;
 		})()
 
-		console.log("JG filteredCustomerItems", filteredCustomerItems)
 		const customerLineItems = generateOrderLineMap(filteredCustomerItems);
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
 
-		console.log("JG customerLineItems", customerLineItems)
-		console.log("JG printerLineItems", printerLineItems)
-
 		for (const value of customerLineItems) {
 			const uuid = value[0].Id;
-			console.log("JG uuid", uuid)
 			const printerItem = printerLineItems.find(printerItems => printerItems.find(item => item.SubItemID === null).Id === uuid);
-			console.log("JG printerItem", printerItem)
 			const customerInfo = getCalcAndDescription(value, "customer")
 			const printerInfo = getCalcAndDescription(printerItem, "printer")
 
