@@ -19,7 +19,8 @@
         {"key": "primaryColumns.Total.computedValue"},
         {"key": "borderRadius"},
         {"key": "boxShadow"},
-        {"key": "primaryColumns.Selfmailers.computedValue"}
+        {"key": "primaryColumns.Selfmailers.computedValue"},
+        {"key": "primaryColumns.Printer.computedValue"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -57,7 +58,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1691501970382,
+    "columnUpdatedAt": 1696432203353,
     "originalBottomRow": 146,
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table1Copy",
@@ -69,6 +70,7 @@
         "Postcards",
         "Total",
         "Selfmailers",
+        "Printer",
         "customColumn1"
     ],
     "dynamicPropertyPathList": [{"key": "tableData"}],
@@ -225,6 +227,36 @@
             "isDisabled": false,
             "verticalAlignment": "CENTER",
             "validation": {}
+        },
+        "Printer": {
+            "computedValue": "{{Table1Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Printer\"]))}}",
+            "isEditable": false,
+            "alias": "Printer",
+            "enableSort": true,
+            "isSaveVisible": true,
+            "id": "Printer",
+            "isDisabled": false,
+            "allowSameOptionsInNewRow": true,
+            "validation": {},
+            "isCellVisible": true,
+            "isDerived": false,
+            "textSize": "0.875rem",
+            "allowCellWrapping": false,
+            "index": 6,
+            "isDiscardVisible": true,
+            "isVisible": true,
+            "label": "Printer",
+            "fontStyle": "",
+            "textColor": "",
+            "columnType": "text",
+            "horizontalAlignment": "LEFT",
+            "isCellEditable": false,
+            "width": 150,
+            "enableFilter": true,
+            "sticky": "",
+            "originalId": "Printer",
+            "cellBackground": "",
+            "verticalAlignment": "CENTER"
         },
         "Selfmailers": {
             "computedValue": "{{Table1Copy.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"Selfmailers\"]))}}",
