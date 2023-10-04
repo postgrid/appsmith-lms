@@ -52,11 +52,11 @@ export default {
 						mailPrice = lineItem.Rate;
 						quantity = lineItem.Qty;
 					} else {
-						if(lineItem.InitialProdDescription.includes('Extra') || lineItem.InitialProdDescription.includes('add')){
+						if(lineItem.ProductDescription.includes('Extra') || lineItem.ProductDescription.includes('add')){
 							extraSheetPrice = lineItem.Rate;
 							extraSheetQty = lineItem.Qty;
 						} else {
-							if(!lineItem.InitialProdDescription.includes('Envelope')){
+							if(!lineItem.ProductDescription.includes('Envelope')){
 								rates.push(lineItem.Rate ?? null);
 							}
 						}
@@ -132,7 +132,15 @@ export default {
 			const uuid = value[0].Id;
 			const printerItem = printerLineItems.find(printerItems => printerItems.find(item => item.SubItemID === null).Id === uuid);
 			const customerInfo = getCalcAndDescription(value, "customer")
+			console.log("JG cl", uuid)
+
+			if(!printerItem){
+				console.error("Customer Line Item with no printer line item", uuid);
+			}
+			console.log("JG printerItem", printerItem)
 			const printerInfo = getCalcAndDescription(printerItem, "printer")
+			console.log("After print calc")
+			
 
 			let sla;
 			if(printerItem[0].DeliveryDate == null){
