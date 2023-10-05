@@ -103,7 +103,7 @@ export default {
 			'logSumDates', 
 			{
 				startDate: StartDate_Picker.selectedDate,
-				endDate: EndDate_Picker_solutions.selectedDate
+				endDate: EndDate_Picker.selectedDate
 			}
 		)
 
