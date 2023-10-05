@@ -480,6 +480,7 @@ export default {
 				parentID: null,
 				vendor: group.vendor,
 				groupID: group._id,
+				pages: group.pageCount
 			}, group);
 
 			items.push(baseItem);
@@ -740,6 +741,7 @@ export default {
 				parentID: null,
 				vendor: group.vendor,
 				groupID: group._id,
+				pages: null
 			},group,classStr);
 
 			items.push(baseItem);
@@ -819,6 +821,7 @@ export default {
 				parentID: null,
 				vendor: group.vendor,
 				groupID: group._id,
+				pages: null
 			};
 
 			items.push(baseItem);
@@ -899,6 +902,7 @@ export default {
 				parentID: null,
 				vendor: group.vendor,
 				groupID: group._id,
+				pages: null
 			});
 
 			items.push(baseItem);

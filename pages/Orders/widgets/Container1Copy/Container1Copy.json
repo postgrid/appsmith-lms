@@ -55,9 +55,9 @@
     "parentId": "0",
     "renderMode": "CANVAS",
     "isLoading": false,
-    "originalTopRow": 129,
+    "originalTopRow": 134,
     "borderRadius": "5px",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 136,
+    "originalBottomRow": 141,
     "minDynamicHeight": 4
 }
