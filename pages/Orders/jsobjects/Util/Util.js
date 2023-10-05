@@ -14,9 +14,9 @@ export default {
 	},
 	autorefresh: async () => {
 		setInterval(() => {
-				get_letter_day_volume.run(),
-get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.run()}, 3000, "autoupdate");
-/*get_invoicelist_count.run()*/
+			get_letter_day_volume.run(),
+				get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.run()}, 3000, "autoupdate");
+		/*get_invoicelist_count.run()*/
 	},
 	selectedOrderGroup: async () => {
 		await get_customer_order_details.run();
@@ -31,7 +31,7 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 		const parentItems = customerItems.filter(item => item.SubItemID === null && item.itemid !== null);
 		const finalArray = [];
 		let sort = 0;
-		
+
 		for(const parentItem of parentItems){
 			const allItems = customerItems.filter(item => item.SubItemID === parentItem.itemid);
 			finalArray.push({...parentItem, sort});
@@ -52,7 +52,7 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 		const parentItems = printerItems.filter(item => item.SubItemID === null && item.Id !==null);
 		const finalArray = [];
 		let sort = 0;
-		
+
 		for(const parentItem of parentItems){
 			const allItems = printerItems.filter(item => item.SubItemID === parentItem.Id);
 			finalArray.push({...parentItem, sort});
@@ -85,17 +85,17 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 			vendor: null,
 			groupID: null,
 		}
-		
+
 		await storeValue('newList',JSON.parse(JSON.stringify([newItem]).replaceAll("'", "''")));
-		
+
 		await Promise.all([
-				set_customerprice.run(),
-				set_customerlineitems.run(),
-				set_printerlineitems.run(),
-			]).catch(() => {
-				showAlert('Error! Unable to process.','error');
-			});
-		
+			set_customerprice.run(),
+			set_customerlineitems.run(),
+			set_printerlineitems.run(),
+		]).catch(() => {
+			showAlert('Error! Unable to process.','error');
+		});
+
 		await Util.getSelectedCustomerItems();
 		await Util.getSelectedPrinterItems();
 		await get_list_of_collaterals.run();
@@ -106,8 +106,7 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 		await storeValue("selectedDescription", Select1Copy.selectedOptionLabel)
 		await get_product_from_description.run();
 		const product = get_product_from_description.data
-		console.log("JG product", product)
-	
+
 		const newItem = {
 			id: uuid,
 
@@ -123,16 +122,15 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.r
 			parentID: Table3Copy.selectedRow.itemid,
 			groupID: null,
 		}
-		
-		await storeValue('newList',JSON.parse(JSON.stringify([newItem]).replaceAll("'", "''")));
-		
-		await Promise.all([
-				set_customerprice.run(),
-				set_customerlineitems.run(),
-				set_printerlineitems.run(),
-			]).catch(() => {
-				showAlert('Error! Unable to process.','error');
-			});
-	}
 
+		await storeValue('newList',JSON.parse(JSON.stringify([newItem]).replaceAll("'", "''")));
+
+		await Promise.all([
+			set_customerprice.run(),
+			set_customerlineitems.run(),
+			set_printerlineitems.run(),
+		]).catch(() => {
+			showAlert('Error! Unable to process.','error');
+		});
+	}
 }
