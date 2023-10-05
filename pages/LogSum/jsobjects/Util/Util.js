@@ -34,9 +34,9 @@ export default {
 				pageType: lineItem.ProductDescription.includes("DS") ? "DS" : "SS",	
 				pieceQuantity: lineItem.Qty,
 
-				printQuantity: lineItem.Qty,
-				perPages: lineItem.Qty,
-				perSheets: lineItem.Qty
+				printQuantity: lineItem.Qty * lineItem.Pages,
+				perPages: lineItem.Pages,
+				perSheets: lineItem.ProductDescription.includes("DS") ? (Math.floor(lineItem.Pages / 2)) + (lineItem.Pages % 2) : lineItem.Pages
 			}
 		} else if (lineItem.ProductType === "Cheque"){
 			return {
@@ -45,7 +45,7 @@ export default {
 				pageType: "SS",
 				pieceQuantity: lineItem.Qty,
 
-				printQuantity: lineItem.Qty,
+				printQuantity: lineItem.Qty * lineItem.Pages,
 				perPages: 1,
 				perSheets: 1
 			}
@@ -270,8 +270,6 @@ export default {
 				}
 			}
 			
-			orderInfo.perPages = orderInfo.printQuantity / orderInfo.pieceQuantity;
-			orderInfo.perSheets = orderInfo.pageType === "SS" ? orderInfo.perPages : (Math.floor(orderInfo.perPages / 2)) + (orderInfo.perPages % 2)
 			orderInfo.pieceTotalCost = (
 				orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
 			);
