@@ -7,14 +7,141 @@ export default {
 	synchronize: async () => {
 		await	get_user.run();
 		await	get_user_department.run();
-	  await get_draftorders.run();
-		//await	get_invoicelist.run();
-		
+		await get_draftorders.run();
 	},
+	
 	getDraftOrdersForEmail: async() => {
-		//get the information needed for the draft orders,
-		const orderInfo = await get_draftorders.run();
-		storeValue('emailDraft',orderInfo);
+		const generateOrderLineMap = (lineItems) => {
+			const organizedItemMap = [];
+			const mainItems = lineItems.filter(item => item.SubItemID === null);
+			for(const mainItem of mainItems){
+				let items = [];
+				items.push(mainItem);
+				const subItems = lineItems.filter(item => item.SubItemID === mainItem.Id);
+				if(subItems.length > 0){
+					items = items.concat(subItems);
+				}
+				const mapItemIndex = organizedItemMap.findIndex(item => item.clientName === mainItem.CustomerName)
+				if(mapItemIndex !== -1){
+					const item = organizedItemMap[mapItemIndex];
+					organizedItemMap[mapItemIndex] = {
+						clientName: item.clientName,
+						qty: item.qty += items[0].Qty,
+						items: [...item.items, items]
+					}
+				} else {
+					organizedItemMap.push({
+						clientName: mainItem.CustomerName,
+						qty: items[0].Qty,
+						items: [items]
+					})
+				}
+			}
+			
+			return organizedItemMap;
+		};
+		const getCalcAndDescription = (lineItems) => {
+			let totalAmount = 0;
+			let quantity = 0;
+			let mailPrice = 0;
+			let extraSheetPrice = 0;
+			let extraSheetQty = 0;
+			const rates = [];
+			let destination = '';
+			let collateral = '';
+
+			let productDescription = ''
+			for(const lineItem of lineItems){
+				totalAmount += lineItem.Amount;
+				if(lineItem.SubItemID === null){
+					mailPrice = lineItem.Rate;
+					quantity = lineItem.Qty;
+					destination = lineItem.Destination;
+
+					collateral = lineItem.ProductDescription;
+					productDescription = `${lineItem.Qty} ${lineItem.ProductDescription}`;
+				} else {
+					if(lineItem.ProductDescription.includes('Extra') || lineItem.ProductDescription.includes('add')){
+						extraSheetPrice = lineItem.Rate;
+						extraSheetQty = lineItem.Qty;
+						productDescription += ` ➤ (${lineItem.Qty}) ${lineItem.ProductDescription}`
+					} else {
+						if(!lineItem.ProductDescription.includes('Envelope')){
+							rates.push(lineItem.Rate ?? null);
+						}
+					}
+				}
+			}
+
+			let serviceString = '';
+			rates.forEach(rate => {
+				if(rate !== 0){
+					serviceString += ` + ${rate}`;
+				}
+			});
+
+			const calculation = `${quantity} * (${mailPrice}${extraSheetQty !== 0 ? ` + (${extraSheetPrice} * ${extraSheetQty / quantity})` : ''}
+				${serviceString}) = ${totalAmount.toFixed(2)}`;
+
+			return {
+				collateral,
+				destination,
+				productDescription,
+				calculation,
+				totalAmount
+			}
+
+		};
+
+		await storeValue(
+			'emailDraftInfo', 
+			{
+				date: DatePicker1.selectedDate,
+				printer: Select3.selectedOptionLabel
+			}
+		)
+
+		await get_allorder_printcost.run();
+
+		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
+
+		const combinedData = [];
+
+		for (let printerInfo of printerLineItems) {
+			for(let index = 0; index < printerInfo.items.length; index++){
+				const printerCalcDesc = getCalcAndDescription(printerInfo.items[index])
+
+				let orderInfo;
+
+				if(index === 0){
+					orderInfo = {
+						OrderCounts: printerInfo.qty,
+						Collateral: printerCalcDesc.collateral,
+						Clients: printerInfo.clientName,
+						To: printerCalcDesc.destination,
+						OrderDetails: printerCalcDesc.productDescription,
+						Calculation: printerCalcDesc.calculation,
+						Subtotal: printerCalcDesc.totalAmount.toFixed(2),
+						id: printerInfo.items[index][0].id
+					}
+				} else {
+					orderInfo = {
+						OrderCounts: '',
+						Collateral: printerCalcDesc.collateral,
+						Clients: printerInfo.clientName,
+						To: printerCalcDesc.destination,
+						OrderDetails: printerCalcDesc.productDescription,
+						Calculation: printerCalcDesc.calculation,
+						Subtotal: printerCalcDesc.totalAmount.toFixed(2),
+						id:  printerInfo.items[index][0].id
+					}
+				}
+				combinedData.push(orderInfo);
+			}
+
+		}
+		await storeValue('emailDraft',combinedData);
+		showAlert('Order date updated!', 'success');
 	}
 
 }
