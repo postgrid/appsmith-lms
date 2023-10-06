@@ -7,14 +7,12 @@ export default {
 	synchronize: async () => {
 		await	get_user.run();
 		await	get_user_department.run();
-	  await get_draftorders.run();
-		//await	get_invoicelist.run();
-		
+		await get_draftorders.run();
 	},
+	
 	getDraftOrdersForEmail: async() => {
 		const generateOrderLineMap = (lineItems) => {
-			console.log("JG ")
-			const organizedItemMap = new Map();
+			const organizedItemMap = [];
 			const mainItems = lineItems.filter(item => item.SubItemID === null);
 			for(const mainItem of mainItems){
 				let items = [];
@@ -23,23 +21,24 @@ export default {
 				if(subItems.length > 0){
 					items = items.concat(subItems);
 				}
-				const mapItem = organizedItemMap.get(mainItem.ClientName)
-				if(mapItem){
-					organizedItemMap.set(mainItem.ClientName, {
-						items: mapItem.items.concat(items),
-						qty: mapItem.qty += items[0].Qty
-					})
+				const mapItemIndex = organizedItemMap.findIndex(item => item.clientName === mainItem.CustomerName)
+				if(mapItemIndex !== -1){
+					const item = organizedItemMap[mapItemIndex];
+					organizedItemMap[mapItemIndex] = {
+						clientName: item.clientName,
+						qty: item.qty += items[0].Qty,
+						items: [...item.items, items]
+					}
 				} else {
-					organizedItemMap.set(mainItem.ClientName, {
-						items: [items],
-						qty: items[0].Qty
+					organizedItemMap.push({
+						clientName: mainItem.CustomerName,
+						qty: items[0].Qty,
+						items: [items]
 					})
 				}
 			}
 			
-			console.log("JG organizedItemMap")
 			return organizedItemMap;
-
 		};
 		const getCalcAndDescription = (lineItems) => {
 			let totalAmount = 0;
@@ -58,7 +57,7 @@ export default {
 					mailPrice = lineItem.Rate;
 					quantity = lineItem.Qty;
 					destination = lineItem.Destination;
-					
+
 					collateral = lineItem.ProductDescription;
 					productDescription = `${lineItem.Qty} ${lineItem.ProductDescription}`;
 				} else {
@@ -83,7 +82,7 @@ export default {
 
 			const calculation = `${quantity} * (${mailPrice}${extraSheetQty !== 0 ? ` + (${extraSheetPrice} * ${extraSheetQty / quantity})` : ''}
 				${serviceString}) = ${totalAmount.toFixed(2)}`;
-			
+
 			return {
 				collateral,
 				destination,
@@ -102,62 +101,39 @@ export default {
 			}
 		)
 
-		// await get_customer_price_info.run();
 		await get_allorder_printcost.run();
-		// await get_printer_currency.run();
 
-		// const printerCurrency = get_printer_currency.data;
-		// const combinedData = [];
-		// const filteredCustomerItems = (() => {
-			// let items = get_customer_price_info.data;
-			// if(Organization_select.selectedOptionValue !== "all"){
-				// items = items.filter(item => item.CustomerName === selectedOrg)
-			// }
-// 
-			// if(Printer_select.selectedOptionValue !== 'All'){
-				// items = items.filter(item => item.Printer === Printer_select.selectedOptionValue)
-			// }
-			// return items;
-		// })()
-
-		// const customerLineItems = generateOrderLineMap(filteredCustomerItems);
 		const printerLineItems = generateOrderLineMap(get_allorder_printcost.data);
-		
-		const combinedData = [];
-		
-		console.log("JG printer", printerLineItems)
 
-		for (let [key, value] of printerLineItems) {
-			let number = 0;
-			for(const [index,items] of value.items){
-				const printerInfo = getCalcAndDescription(items)
+		const combinedData = [];
+
+		for (let printerInfo of printerLineItems) {
+			for(let index = 0; index < printerInfo.items.length; index++){
+				const printerCalcDesc = getCalcAndDescription(printerInfo.items[index])
 
 				let orderInfo;
-				
+
 				if(index === 0){
-					number++;
 					orderInfo = {
-						Num: number,
-						orderCounts: value.qty,
-						collateral: printerInfo.collateral,
-						clients: key,
-						to: printerInfo.destination,
-						orderDetails: printerInfo.productDescription,
-						calculation: printerInfo.calculation,
-						subtotal: printerInfo.totalAmount,
-						id: items[0].id
+						OrderCounts: printerInfo.qty,
+						Collateral: printerCalcDesc.collateral,
+						Clients: printerInfo.clientName,
+						To: printerCalcDesc.destination,
+						OrderDetails: printerCalcDesc.productDescription,
+						Calculation: printerCalcDesc.calculation,
+						Subtotal: printerCalcDesc.totalAmount.toFixed(2),
+						id: printerInfo.items[index][0].id
 					}
 				} else {
 					orderInfo = {
-						Num: '',
-						orderCounts: '',
-						collateral: printerInfo.collateral,
-						clients: key,
-						to: printerInfo.destination,
-						orderDetails: printerInfo.productDescription,
-						calculation: printerInfo.calculation,
-						subtotal: printerInfo.totalAmount,
-						id: items[0].id
+						OrderCounts: '',
+						Collateral: printerCalcDesc.collateral,
+						Clients: printerInfo.clientName,
+						To: printerCalcDesc.destination,
+						OrderDetails: printerCalcDesc.productDescription,
+						Calculation: printerCalcDesc.calculation,
+						Subtotal: printerCalcDesc.totalAmount.toFixed(2),
+						id:  printerInfo.items[index][0].id
 					}
 				}
 				combinedData.push(orderInfo);
@@ -166,11 +142,6 @@ export default {
 		}
 		await storeValue('emailDraft',combinedData);
 		showAlert('Order date updated!', 'success');
-		
-		//OLD----------
-		//get the information needed for the draft orders,
-		// const orderInfo = await get_draftorders.run();
-		// storeValue('emailDraft',orderInfo);
 	}
 
 }
