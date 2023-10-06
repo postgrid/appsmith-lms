@@ -25,14 +25,10 @@ export default {
 		await storeValue('org','f');
 	},
 	getSelectedCustomerItems: async () => {
-		console.log("JG in")
 		await get_customer_order_details.run();
 		const customerItems = get_customer_order_details.data;
-		console.log("JG customerItems", customerItems)
 		const totalItem = customerItems.find(item => item.itemid === null)
-		console.log("JG totalItem", totalItem)
 		const parentItems = customerItems.filter(item => item.SubItemID === null && item.itemid !== null);
-		console.log("JG parentItems", parentItems)
 		let finalArray = [];
 		let sort = 0;
 
@@ -42,30 +38,34 @@ export default {
 			sort += 1;
 			for(const item of allItems){
 				if(item.ProductDescription.includes('Extra') || item.ProductDescription.includes('add')){
-					if(finalArray[finalArray.length - 1].SubItemId !== null){
-						const parentIndex = finalArray.lastIndexOf(prevItem => prevItem.SubItemId === null)
+					if(finalArray[finalArray.length - 1].SubItemID !== null){
+						let parentIndex = 0;
+						for (var i = finalArray.length - 1; i >= 0; i--) {
+								if (finalArray[i].SubItemID === null) {
+										parentIndex = i;
+									break;
+								}
+						}
+						
 						for(let i = parentIndex + 1; i < finalArray.length; i++){
-							if(i = parentIndex + 1){
+							if(i === parentIndex + 1){
 								const sortNum = finalArray[i].sort;
-								finalArray = [
-										...finalArray.slice(0, i),
-										{...item, sort: sortNum},
-										...finalArray.slice(i)
-								];
+								finalArray.splice(i, 0, {...item, sort: sortNum})
 							} else {
 								finalArray[i].sort += 1; 
 							}
 						}
+					} else {
+						finalArray.push({...item, sort});
+						sort += 1;
 					}
+				} else {
+					finalArray.push({...item, sort});
+					sort += 1;
 				}
-				
-				finalArray.push({...item, sort});
-				sort += 1;
 			}
 		}
 		finalArray.push(totalItem);
-		
-		console.log("JG finalArray", finalArray)
 
 		await storeValue('customerItems',finalArray);
 	},
@@ -82,8 +82,32 @@ export default {
 			finalArray.push({...parentItem, sort});
 			sort += 1;
 			for(const item of allItems){
-				finalArray.push({...item, sort});
-				sort += 1;
+				if(item.ProductDescription.includes('Extra') || item.ProductDescription.includes('add')){
+					if(finalArray[finalArray.length - 1].SubItemID !== null){
+						let parentIndex = 0;
+						for (var i = finalArray.length - 1; i >= 0; i--) {
+								if (finalArray[i].SubItemID === null) {
+										parentIndex = i;
+									break;
+								}
+						}
+						
+						for(let i = parentIndex + 1; i < finalArray.length; i++){
+							if(i === parentIndex + 1){
+								const sortNum = finalArray[i].sort;
+								finalArray.splice(i, 0, {...item, sort: sortNum})
+							} else {
+								finalArray[i].sort += 1; 
+							}
+						}
+					} else {
+						finalArray.push({...item, sort});
+						sort += 1;
+					}
+				} else {
+					finalArray.push({...item, sort});
+					sort += 1;
+				}
 			}
 		}
 		finalArray.push(totalItem);
