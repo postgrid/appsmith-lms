@@ -27,9 +27,12 @@ export default {
 	getSelectedCustomerItems: async () => {
 		console.log("JG in")
 		await get_customer_order_details.run();
-		const customerItems = await get_customer_order_details.data;
+		const customerItems = get_customer_order_details.data;
+		console.log("JG customerItems", customerItems)
 		const totalItem = customerItems.find(item => item.itemid === null)
+		console.log("JG totalItem", totalItem)
 		const parentItems = customerItems.filter(item => item.SubItemID === null && item.itemid !== null);
+		console.log("JG parentItems", parentItems)
 		let finalArray = [];
 		let sort = 0;
 

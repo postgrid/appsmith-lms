@@ -107,6 +107,7 @@ export default {
 
 		const combinedData = [];
 
+		let number = 0;
 		for (let printerInfo of printerLineItems) {
 			for(let index = 0; index < printerInfo.items.length; index++){
 				const printerCalcDesc = getCalcAndDescription(printerInfo.items[index])
@@ -114,7 +115,9 @@ export default {
 				let orderInfo;
 
 				if(index === 0){
+					number++;
 					orderInfo = {
+						'#': number,
 						OrderCounts: printerInfo.qty,
 						Collateral: printerCalcDesc.collateral,
 						Clients: printerInfo.items[index][0].CustomerName,
@@ -126,6 +129,7 @@ export default {
 					}
 				} else {
 					orderInfo = {
+						'#': '',
 						OrderCounts: '',
 						Collateral: printerCalcDesc.collateral,
 						Clients: printerInfo.items[index][0].CustomerName,
