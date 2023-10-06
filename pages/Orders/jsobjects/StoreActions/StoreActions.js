@@ -497,6 +497,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				});
 			}
 
@@ -520,6 +521,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				},group);
 
 				items.push(addlSheetItem);
@@ -540,6 +542,7 @@ export default {
 
 						parentID: baseItem.id,
 						groupID: null,
+						pages: null
 					}, group, true);
 
 					if(group.organization === "org_3pWY3piAx4H7XNrpY25RU2" && sheetCount >= 20 || (group.organization !== "org_3pWY3piAx4H7XNrpY25RU2" && sheetCount > 6 && group.organization !== "org_wUB4oa68YQgdQNYTeiSYNQ")){
@@ -563,6 +566,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				};
 
 				items.push(perforatedItem);
@@ -597,6 +601,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				};
 
 				items.push(returnEnvelopeItem);
@@ -658,6 +663,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				};
 
 				items.push(customEnvelopeItem);
@@ -758,6 +764,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				});
 			}
 
@@ -777,6 +784,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				};
 
 				items.push(lamItem);
@@ -837,6 +845,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				});
 			}
 
@@ -859,6 +868,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				};
 
 				items.push(addlSheetItem);
@@ -919,6 +929,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
+					pages: null
 				});
 			}
 

@@ -72,6 +72,16 @@
               "timeoutInMillisecond": 10000
             },
             {
+              "id": "Orders_get_letter_day_volume",
+              "name": "get_letter_day_volume",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            },
+            {
               "id": "Orders_get_printerlist",
               "name": "get_printerlist",
               "confirmBeforeExecute": false,
@@ -149,16 +159,6 @@
             {
               "id": "Orders_get_invoicelist_count",
               "name": "get_invoicelist_count",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "Orders_get_letter_day_volume",
-              "name": "get_letter_day_volume",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
