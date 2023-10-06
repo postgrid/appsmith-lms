@@ -21,17 +21,17 @@ export default {
 				if(subItems.length > 0){
 					items = items.concat(subItems);
 				}
-				const mapItemIndex = organizedItemMap.findIndex(item => item.clientName === mainItem.CustomerName)
+				const mapItemIndex = organizedItemMap.findIndex(item => item.collateral === mainItem.ProductDescription)
 				if(mapItemIndex !== -1){
 					const item = organizedItemMap[mapItemIndex];
 					organizedItemMap[mapItemIndex] = {
-						clientName: item.clientName,
+						collateral: item.collateral,
 						qty: item.qty += items[0].Qty,
 						items: [...item.items, items]
 					}
 				} else {
 					organizedItemMap.push({
-						clientName: mainItem.CustomerName,
+						collateral: mainItem.ProductDescription,
 						qty: items[0].Qty,
 						items: [items]
 					})
@@ -117,7 +117,7 @@ export default {
 					orderInfo = {
 						OrderCounts: printerInfo.qty,
 						Collateral: printerCalcDesc.collateral,
-						Clients: printerInfo.clientName,
+						Clients: printerInfo.items[index][0].CustomerName,
 						To: printerCalcDesc.destination,
 						OrderDetails: printerCalcDesc.productDescription,
 						Calculation: printerCalcDesc.calculation,
@@ -128,7 +128,7 @@ export default {
 					orderInfo = {
 						OrderCounts: '',
 						Collateral: printerCalcDesc.collateral,
-						Clients: printerInfo.clientName,
+						Clients: printerInfo.items[index][0].CustomerName,
 						To: printerCalcDesc.destination,
 						OrderDetails: printerCalcDesc.productDescription,
 						Calculation: printerCalcDesc.calculation,

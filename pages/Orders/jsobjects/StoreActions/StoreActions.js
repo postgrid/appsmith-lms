@@ -89,11 +89,10 @@ export default {
 		
 		console.log("JG currentRow", currentRow)
 		
-		console.log("JG await get_printer_line_item.run({currentRow}", await get_printer_line_item.run({currentRow}))
-		
 		await storeValue("rowUpdate", {itemid: currentRow.itemid})
+		// console.log("JG await get_printer_line_item.run({currentRow}", await get_printer_line_item.run())
 
-		const orderGroupIDs = [(await get_printer_line_item.run({currentRow})).find(item => item.SubItemID === null).OrderGroupID];
+		const orderGroupIDs = (await get_printer_line_item.run()).map(item => item.OrderGroupID);
 		console.log("JG orderGroupIDs", orderGroupIDs)
 		
 		await storeValue("clearVendor", {

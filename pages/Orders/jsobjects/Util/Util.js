@@ -25,11 +25,12 @@ export default {
 		await storeValue('org','f');
 	},
 	getSelectedCustomerItems: async () => {
+		console.log("JG in")
 		await get_customer_order_details.run();
 		const customerItems = await get_customer_order_details.data;
 		const totalItem = customerItems.find(item => item.itemid === null)
 		const parentItems = customerItems.filter(item => item.SubItemID === null && item.itemid !== null);
-		const finalArray = [];
+		let finalArray = [];
 		let sort = 0;
 
 		for(const parentItem of parentItems){
@@ -37,11 +38,31 @@ export default {
 			finalArray.push({...parentItem, sort});
 			sort += 1;
 			for(const item of allItems){
+				if(item.ProductDescription.includes('Extra') || item.ProductDescription.includes('add')){
+					if(finalArray[finalArray.length - 1].SubItemId !== null){
+						const parentIndex = finalArray.lastIndexOf(prevItem => prevItem.SubItemId === null)
+						for(let i = parentIndex + 1; i < finalArray.length; i++){
+							if(i = parentIndex + 1){
+								const sortNum = finalArray[i].sort;
+								finalArray = [
+										...finalArray.slice(0, i),
+										{...item, sort: sortNum},
+										...finalArray.slice(i)
+								];
+							} else {
+								finalArray[i].sort += 1; 
+							}
+						}
+					}
+				}
+				
 				finalArray.push({...item, sort});
 				sort += 1;
 			}
 		}
 		finalArray.push(totalItem);
+		
+		console.log("JG finalArray", finalArray)
 
 		await storeValue('customerItems',finalArray);
 	},
@@ -84,6 +105,7 @@ export default {
 			parentID: null,
 			vendor: null,
 			groupID: null,
+			pages: null
 		}
 
 		await storeValue('newList',JSON.parse(JSON.stringify([newItem]).replaceAll("'", "''")));
@@ -121,6 +143,7 @@ export default {
 
 			parentID: Table3Copy.selectedRow.itemid,
 			groupID: null,
+			pages: null
 		}
 
 		await storeValue('newList',JSON.parse(JSON.stringify([newItem]).replaceAll("'", "''")));
