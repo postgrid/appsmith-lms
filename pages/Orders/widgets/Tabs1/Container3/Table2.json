@@ -591,6 +591,7 @@
     "textSize": "0.875rem",
     "widgetId": "rl939i16d0",
     "allowAddNewRow": false,
+    "enableServerSideFiltering": false,
     "tableData": "{{get_invoicelist.data}}",
     "label": "Data",
     "searchKey": "",

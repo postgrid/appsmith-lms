@@ -64,7 +64,7 @@ export default {
 					if(lineItem.ProductDescription.includes('Extra') || lineItem.ProductDescription.includes('add')){
 						extraSheetPrice = lineItem.Rate;
 						extraSheetQty = lineItem.Qty;
-						productDescription += ` ➤ (${lineItem.Qty}) ${lineItem.ProductDescription}`
+						productDescription += ` ➤ (${lineItem.Qty/quantity}) ${lineItem.ProductDescription}`
 					} else {
 						if(!lineItem.ProductDescription.includes('Envelope')){
 							rates.push(lineItem.Rate ?? null);

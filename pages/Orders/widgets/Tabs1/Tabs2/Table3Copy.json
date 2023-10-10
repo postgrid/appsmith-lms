@@ -502,6 +502,7 @@
     "textSize": "0.875rem",
     "widgetId": "c7pddxjk15",
     "allowAddNewRow": false,
+    "enableServerSideFiltering": false,
     "tableData": "{{appsmith.store.customerItems}}",
     "label": "Data",
     "searchKey": "",

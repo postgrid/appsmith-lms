@@ -385,6 +385,7 @@
     "textSize": "0.875rem",
     "widgetId": "qeywr75owg",
     "allowAddNewRow": false,
+    "enableServerSideFiltering": false,
     "tableData": "{{appsmith.store.emailDraft}}",
     "label": "Data",
     "searchKey": "",

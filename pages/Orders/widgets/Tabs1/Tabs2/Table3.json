@@ -1223,6 +1223,7 @@
     "textSize": "0.875rem",
     "widgetId": "xpdm311054",
     "allowAddNewRow": false,
+    "enableServerSideFiltering": false,
     "tableData": "{{appsmith.store.printerItems}}",
     "label": "Data",
     "searchKey": "",

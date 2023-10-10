@@ -565,6 +565,7 @@
     "textSize": "0.875rem",
     "widgetId": "oq7n23depr",
     "allowAddNewRow": false,
+    "enableServerSideFiltering": false,
     "tableData": "{{\nfunction(){\n\tlet combindedData = get_PauseCancel_custOrderDetai.data.map((item) => {\n   \tconst tier2 = get_allorders_invoice.data.find((item2) => item.itemid == item2.Id) || {};\n   \t\treturn { ...item, ...tier2};\n\t\t})\n\t\nreturn combindedData;\n}()\n}}\n",
     "label": "Data",
     "searchKey": "",
