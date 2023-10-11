@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "myFun1",
-    "fullyQualifiedName": "StoreActions.myFun1",
+    "name": "updateOrders",
+    "fullyQualifiedName": "Util.updateOrders",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -14,7 +14,7 @@
       "userPermissions": []
     },
     "pageId": "Orders",
-    "collectionId": "Orders_StoreActions",
+    "collectionId": "Orders_Util",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
@@ -22,7 +22,13 @@
       "selfReferencingDataPaths": [],
       "jsArguments": [
         {
-          "name": "currentRow"
+          "name": "vendorID"
+        },
+        {
+          "name": "groupType"
+        },
+        {
+          "name": "orderGroupIDs"
         }
       ]
     },
@@ -39,9 +45,9 @@
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-10-10T19:28:26Z"
+    "createdAt": "2023-10-10T20:01:08Z"
   },
-  "id": "Orders_StoreActions.myFun1",
+  "id": "Orders_Util.updateOrders",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_64d645d86e14801e744e795e"
+  "gitSyncId": "6525a5d877401b2981eb218b_6525ad8444614c302ac39555"
 }

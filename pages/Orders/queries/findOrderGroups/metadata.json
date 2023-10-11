@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "Update_LetterGroup",
+    "name": "findOrderGroups",
     "datasource": {
       "name": "PM Database",
       "pluginId": "mongo-plugin",
@@ -29,10 +29,12 @@
           }
         },
         "collection": {
-          "data": "lettergroups"
+          "data": "{{this.params.groupType}}",
+          "componentData": "",
+          "viewType": "json"
         },
         "command": {
-          "data": "UPDATE"
+          "data": "FIND"
         },
         "count": {
           "query": {
@@ -60,13 +62,13 @@
             "data": ""
           },
           "query": {
-            "data": ""
+            "data": "{\n\t\"_id\": {\n\t\t\"$in\":{{this.params.orderGroupIDs}} \n\t}\n}"
           },
           "sort": {
             "data": ""
           },
           "limit": {
-            "data": ""
+            "data": "100000"
           },
           "projection": {
             "data": ""
@@ -79,7 +81,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"update\": \"lettergroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{appsmith.store.clearVendor.orderGroupID}} }},\n    \"u\": {\"$set\": {\"vendor\": {{appsmith.store.clearVendor.vendorID}}}},\n    \"multi\": true,\n  }]\n}\n",
+            "data": "{\n  \"find\": \"{{this.params.groupType}}\",\n  \"filter\": {\n\t\"_id\": {\n\t\t\"$in\":{{this.params.orderGroupIDs}} \n\t}\n},\n  \"limit\": 100000,\n  \"batchSize\": 100000\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -88,13 +90,13 @@
         },
         "updateMany": {
           "limit": {
-            "data": "ALL"
+            "data": "SINGLE"
           },
           "query": {
-            "data": "{\"_id\": {\n\"$in\":{{appsmith.store.clearVendor.orderGroupID}} }}"
+            "data": ""
           },
           "update": {
-            "data": "{\"$set\": {\"vendor\": {{appsmith.store.clearVendor.vendorID}}}}"
+            "data": ""
           }
         }
       }
@@ -102,26 +104,26 @@
     "executeOnLoad": false,
     "dynamicBindingPathList": [
       {
-        "key": "formData.updateMany.query.data"
+        "key": "formData.collection.data"
       },
       {
-        "key": "formData.updateMany.update.data"
+        "key": "formData.find.query.data"
       }
     ],
     "isValid": true,
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "appsmith.store.clearVendor.orderGroupID",
-      "appsmith.store.clearVendor.vendorID"
+      "this.params.groupType",
+      "this.params.orderGroupIDs"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-06-20T20:18:15Z"
+    "createdAt": "2023-10-10T19:47:22Z"
   },
-  "id": "Orders_Update_LetterGroup",
+  "id": "Orders_findOrderGroups",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_64920987d3cc2d2e52c8148d"
+  "gitSyncId": "6525a5d877401b2981eb218b_6525aa4a441fc2031cd34ab5"
 }

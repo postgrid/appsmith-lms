@@ -3,7 +3,6 @@ export default {
 		await resetWidget("FilePicker1");
 		await storeValue('newList',undefined);
 	},
-
 	synchronize: async () => {
 		await	get_user.run();
 		await	get_user_department.run();
@@ -182,5 +181,119 @@ export default {
 		]).catch(() => {
 			showAlert('Error! Unable to process.','error');
 		});
+	},
+	updateOrders: async (vendorID, groupType, orderGroupIDs) => {
+		const orderGroupType = groupType === 'letter' ?'lettergroups' : groupType === 'postcard' ? 'postcardgroups' : groupType === 'cheque' ? 'chequegroups' : 'selfmailergroups';
+		const orderGroups = await findOrderGroups.run({
+				orderGroupType,
+				orderGroupIDs
+		});
+		
+		for(const orderGroup of orderGroups){
+			const orderType = groupType === 'letter' ?'letters' : groupType === 'postcard' ? 'postcards' : groupType === 'cheque' ? 'cheques' : 'selfmailers';
+			
+			const getOrderTypeParams = () => {
+				if(groupType === 'letter') {
+					return {
+						pageCount: orderGroup.pageCount,
+						doubleSided: orderGroup.doubleSided,
+						color: orderGroup.color,
+						envelopeType: orderGroup.envelopeType,
+						perforatedPage: orderGroup.perforatedPage,
+						returnEnvelope: orderGroup.returnEnvelope,
+						customEnvelope: orderGroup.customerEnvelope,
+						
+					}
+					
+				} else if (groupType === 'cheque'){
+					if(orderGroup.letterPageCount === 0){
+						return {
+							letter: {$exists:false},
+							extraService: orderGroup.extraService,
+							customEnvelope: orderGroup.customEnvelope,
+						}
+					} else {
+						return {
+							letter: {$exists:true},
+							'letter.pageCount': orderGroup.letterPageCount,
+							extraService: orderGroup.extraService,
+							customEnvelope: orderGroup.customEnvelope,
+						}
+					}
+				} 
+				
+				//postcards and selfmailers don't have anything custom to be added
+				return{};
+				
+			};
+			
+			if(orderGroup.vendor === "CANCELLED" && vendorID !== "CANCELLED"){
+				//change status on all orders 
+					 await updateOrderStatus.run({
+						orderType,
+						find: {
+							...getOrderTypeParams(),
+							organization: orderGroup.organization,
+							live: true,
+							status: "cancelled",
+							sendDate: {
+								$gte: new Date(orderGroup.minOrderSendDate),
+								$lte: new Date(orderGroup.maxOrderSendDate)
+							},
+							'to.countryCode': orderGroup.destinationCountryCode,
+							express: orderGroup.express,
+							size: orderGroup.size,
+							mailingClass: orderGroup.mailingClass
+						},
+						update: {
+							$set: {
+								status: "printing",
+							}
+						}
+					})
+				//add the orders back to the org usage
+				await updateOrgUsage.run({
+					organization: orderGroup.organization,
+					count: orderGroup.orderCount
+				})
+					
+			} else if(vendorID !== "CANCELLED") {
+				//change status on all orders 
+				await updateOrderStatus.run({
+						orderType,
+						find: {
+							...getOrderTypeParams(),
+							organization: orderGroup.organization,
+							live: true,
+							status: "cancelled",
+							sendDate: {
+								$gte: new Date(orderGroup.minOrderSendDate),
+								$lte: new Date(orderGroup.maxOrderSendDate)
+							},
+							'to.countryCode': orderGroup.destinationCountryCode,
+							express: orderGroup.express,
+							size: orderGroup.size,
+							mailingClass: orderGroup.mailingClass
+						},
+						update: {
+							$set: {
+								status: "cancelled",
+							}
+						}
+					})
+				//remove the ordersfrom the org usage
+				await updateOrgUsage.run({
+					organization: orderGroup.organization,
+					count: -orderGroup.orderCount
+				})
+			}
+		}
+		
+		
+		await updateOrderGroupsVendor.run({
+			orderGroupIDs,
+			vendorID,
+			orderGroupType
+		})
 	}
 }

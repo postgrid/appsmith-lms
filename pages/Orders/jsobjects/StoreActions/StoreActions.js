@@ -37,23 +37,9 @@ export default {
 				vendorName: currentRow.AssignTo
 			}))[0]._id;
 		})();
-
-		if(groupType === 'letter'){
-			await Update_LetterGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: vendorID
-			});
-		} else if(groupType === 'postcard'){
-			await Update_PostcardGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: vendorID
-			});
-		} else {
-			await Update_ChequeGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: vendorID
-			});
-		}
+		
+		await Util.updateOrders(vendorID, groupType, orderGroupIDs);
+		
 		showAlert('Vendor has been updated successfully', 'success');
 	},
 	updateAllItemsVendor: async () => {		
@@ -104,7 +90,7 @@ export default {
 			const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
 			if(groupType === 'letter'){
-				await Update_LetterGroup.run();
+				await updateOrderGroupsVendor.run();
 			} else if(groupType === 'postcard'){
 				await Update_PostcardGroup.run();
 			} else {
@@ -146,7 +132,7 @@ export default {
 		})();
 
 		if(letterOrderGroups.length > 0){
-			await Update_LetterGroup.run({
+			await updateOrderGroupsVendor.run({
 				orderGroupID: letterOrderGroups,
 				vendorID: vendorID
 			});
