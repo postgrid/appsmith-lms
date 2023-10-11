@@ -291,6 +291,7 @@
     "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "6frpeshy94",
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "{{get_EOD_Summary.data}}",
     "label": "Data",

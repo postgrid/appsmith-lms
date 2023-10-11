@@ -69,7 +69,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1695929747999,
+    "columnUpdatedAt": 1696972950355,
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table3",
     "defaultPageSize": 0,
@@ -439,6 +439,7 @@
     "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "wcs942xg6t",
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "{{appsmith.store.tableData}}",
     "label": "Data",

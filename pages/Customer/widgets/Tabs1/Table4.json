@@ -659,6 +659,7 @@
     "rightColumn": 63,
     "textSize": "0.875rem",
     "widgetId": "sywf4z388e",
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "{{get_current_tier.data}}",
     "label": "Data",

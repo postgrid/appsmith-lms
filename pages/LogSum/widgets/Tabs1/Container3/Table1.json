@@ -791,6 +791,7 @@
     "rightColumn": 63,
     "textSize": "0.875rem",
     "widgetId": "ksrxesl3as",
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "{{appsmith.store.logSummary}}",
     "label": "Data",

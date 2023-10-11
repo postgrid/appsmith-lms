@@ -214,6 +214,7 @@
     "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "z2enl4kec8",
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "{{get_inventory.data}}",
     "label": "Data",
