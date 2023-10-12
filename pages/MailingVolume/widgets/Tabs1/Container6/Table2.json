@@ -140,6 +140,7 @@
     "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "ywglq52opm",
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "{{get_VolumeByPrinters.data}}",
     "label": "Data",

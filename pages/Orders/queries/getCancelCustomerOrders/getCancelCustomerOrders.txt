@@ -1,0 +1,5 @@
+SELECT "CustomerLineItems"."Id", "CustomerLineItems"."SubItemID", "CustomerLineItems"."Qty", "CustomerLineItems"."Rate", "CustomerLineItems"."Amount", "Products"."ProductDescription"
+FROM "CustomerLineItems"
+INNER JOIN "CutomerPrice" ON "CustomerLineItems"."CustomerPriceID" = "CustomerPrice"."Id"
+INNER JOIN "Products" ON "CustomerPrice"."ProductID" = "Products"."Id"
+WHERE "CustomerLineItems"."Id" = '{{this.params.Id}}' OR "CustomerLineItems"."SubItemID" = '{{this.params.Id}}'

@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "findOrderGroups",
+    "name": "getOrdersFromOrderGroup",
     "datasource": {
       "name": "PM Database",
       "pluginId": "mongo-plugin",
@@ -29,8 +29,8 @@
           }
         },
         "collection": {
-          "data": "{{this.params.orderGroupType}}",
           "componentData": "",
+          "data": "{{this.params.orderType}}",
           "viewType": "json"
         },
         "command": {
@@ -62,13 +62,13 @@
             "data": ""
           },
           "query": {
-            "data": "{\n\t\"_id\": {\n\t\t\"$in\":{{this.params.orderGroupIDs}} \n\t}\n}"
+            "data": "{{this.params.query}}"
           },
           "sort": {
             "data": ""
           },
           "limit": {
-            "data": "100000"
+            "data": "1000000"
           },
           "projection": {
             "data": ""
@@ -81,7 +81,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"find\": \"{{this.params.orderGroupType}}\",\n  \"filter\": {\n\t\"_id\": {\n\t\t\"$in\":{{this.params.orderGroupIDs}} \n\t}\n},\n  \"limit\": 100000,\n  \"batchSize\": 100000\n}\n",
+            "data": "{\n  \"find\": \"{{this.params.orderType}}\",\n  \"filter\": {{this.params.query}},\n  \"limit\": 1000000,\n  \"batchSize\": 1000000\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -114,16 +114,16 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "this.params.orderGroupIDs",
-      "this.params.orderGroupType"
+      "this.params.orderType",
+      "this.params.query"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-10-10T19:47:22Z"
+    "createdAt": "2023-10-11T20:07:16Z"
   },
-  "id": "Orders_findOrderGroups",
+  "id": "Orders_getOrdersFromOrderGroup",
   "deleted": false,
-  "gitSyncId": "6525a5d877401b2981eb218b_6525aa4a441fc2031cd34ab5"
+  "gitSyncId": "6525a5d877401b2981eb218b_652700746a7e0c4d328e8f43"
 }

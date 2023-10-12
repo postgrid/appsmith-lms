@@ -26,7 +26,7 @@ export default {
 
 		// add mongo connection and update the vendor for this
 		await get_printer_line_item.run({currentRow});
-		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
+		const orderGroupIDs = [await get_printer_line_item.data[0].OrderGroupID];
 		const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
 		const vendorID = await (async () => {

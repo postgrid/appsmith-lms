@@ -321,6 +321,7 @@
     "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "dkdyahvf2x",
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "{{get_mailing_volume.data}}",
     "label": "Data",

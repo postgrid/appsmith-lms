@@ -19,7 +19,7 @@
     "animateLoading": false,
     "parentColumnSpace": 18.859375,
     "dynamicTriggerPathList": [{"key": "onClick"}],
-    "leftColumn": 47,
+    "leftColumn": 37,
     "dynamicBindingPathList": [
         {"key": "buttonColor"},
         {"key": "borderRadius"},
@@ -29,7 +29,7 @@
     "isDisabled": "{{ Table2.selectedRowIndex === -1 || Table3Copy.selectedRowIndex === -1 ||\nTable3Copy.selectedRowIndex === Table3Copy.tableData.length -1 || Table3Copy.selectedRow.ProductType=== null}}\n",
     "key": "p7lz6y8v7e",
     "isDeprecated": false,
-    "rightColumn": 55,
+    "rightColumn": 45,
     "isDefaultClickDisabled": true,
     "iconName": "new-layers",
     "widgetId": "86zpew3qd2",

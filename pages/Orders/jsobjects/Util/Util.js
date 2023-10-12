@@ -182,17 +182,73 @@ export default {
 			showAlert('Error! Unable to process.','error');
 		});
 	},
-	updateOrders: async (vendorID, groupType, orderGroupIDs) => {
+	cancelSelectedOrder: async (currentRow) => {
+		const groupType = currentRow._id.slice(0, currentRow._id.indexOf("_"));
+		const orderType = groupType === 'letter' ?'letters' : groupType === 'postcard' ? 'postcards' : groupType === 'cheque' ? 'cheques' : 'selfmailers';
+		
+		//update prod db
+		await updateOrderStatus.run({
+			orderType: orderType,
+			find: {
+				_id: currentRow._id
+			},
+			update: {
+				$set: {
+					status: "cancelled",
+				}
+			}
+		})
+		
+		await updateOrgUsage({
+			organization: currentRow.organization,
+			count: -1
+		})
+		
+		//update customer
+		let orderCustomerItems = await getCancelCustomerOrders.run({Id: Table3Copy.selectedRow.itemid});
+		const parentItem = orderCustomerItems.find(item => item.SubItemID === null);
+		for(let orderItem of orderCustomerItems){
+			if(orderItem.ProductDescription.includes('Extra') || orderItem.ProductDescription.includes('add')){
+				const numberOfPages = orderItem.Qty / parentItem.Qty;
+				orderItem.Qty = numberOfPages * (parentItem.Qty - 1);
+				orderItem.Amount = orderItem.Qty * orderItem.Rate;
+			} else {
+				orderItem.Qty -= 1;
+				orderItem.Amount = orderItem.Qty * orderItem.Rate;
+			}
+		}
+		
+		await storeValue();
+		await updateCustomerCancelOrder.run();
+		
+		//update printer
+		
+		
+		
+		await Util.getAllOrderInfoFromOrderGroup();
+	},
+	getAllOrderInfoFromOrderGroup: async () => {
+		await storeValue('rowUpdate', Table3Copy.selectedRow);
+		await get_printer_line_item.run();
+		const orderGroupIDs = [await get_printer_line_item.data[0].OrderGroupID];
+		const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 		const orderGroupType = groupType === 'letter' ?'lettergroups' : groupType === 'postcard' ? 'postcardgroups' : groupType === 'cheque' ? 'chequegroups' : 'selfmailergroups';
-		const orderGroups = await findOrderGroups.run({
+		const orderType = groupType === 'letter' ?'letters' : groupType === 'postcard' ? 'postcards' : groupType === 'cheque' ? 'cheques' : 'selfmailers';
+		
+		const orderGroup = await findOrderGroups.run({
 				orderGroupType,
 				orderGroupIDs
 		});
 		
-		for(const orderGroup of orderGroups){
-			const orderType = groupType === 'letter' ?'letters' : groupType === 'postcard' ? 'postcards' : groupType === 'cheque' ? 'cheques' : 'selfmailers';
-			
-			const getOrderTypeParams = () => {
+		const orders = await getOrdersFromOrderGroup.run({
+			query: Util.generateFindForOrderGroupOrders(orderGroup[0], groupType, false),
+			orderType
+		})
+		
+		await storeValue('cancelOrdersAvailable', orders);
+	},
+	generateFindForOrderGroupOrders: (orderGroup, groupType, cancelled) => {
+		const getOrderTypeParams = () => {
 				if(groupType === 'letter') {
 					return {
 						pageCount: orderGroup.pageCount,
@@ -202,7 +258,6 @@ export default {
 						perforatedPage: orderGroup.perforatedPage,
 						returnEnvelope: orderGroup.returnEnvelope,
 						customEnvelope: orderGroup.customerEnvelope,
-						
 					}
 					
 				} else if (groupType === 'cheque'){
@@ -226,25 +281,37 @@ export default {
 				return{};
 				
 			};
+		
+		return {
+			...getOrderTypeParams(),
+			organization: orderGroup.organization,
+			live: true,
+			status: cancelled ? "cancelled" : {$ne: "cancelled"},
+			sendDate: {
+				$gte: `ISODate('${orderGroup.minOrderSendDate}')`,
+				$lte: `ISODate('${orderGroup.maxOrderSendDate}')`,
+			},
+			'to.countryCode': orderGroup.destinationCountryCode,
+			express: orderGroup.express,
+			size: orderGroup.size,
+			mailingClass: orderGroup.mailingClass
+		}
+	},
+	updateOrders: async (vendorID, groupType, orderGroupIDs) => {
+		const orderGroupType = groupType === 'letter' ?'lettergroups' : groupType === 'postcard' ? 'postcardgroups' : groupType === 'cheque' ? 'chequegroups' : 'selfmailergroups';
+		const orderGroups = await findOrderGroups.run({
+				orderGroupType,
+				orderGroupIDs
+		});
+		
+		for(const orderGroup of orderGroups){
+			const orderType = groupType === 'letter' ?'letters' : groupType === 'postcard' ? 'postcards' : groupType === 'cheque' ? 'cheques' : 'selfmailers';
 			
 			if(orderGroup.vendor === "CANCELLED" && vendorID !== "CANCELLED"){
 				//change status on all orders 
 					 await updateOrderStatus.run({
 						orderType,
-						find: {
-							...getOrderTypeParams(),
-							organization: orderGroup.organization,
-							live: true,
-							status: "cancelled",
-							sendDate: {
-								$gte: new Date(orderGroup.minOrderSendDate),
-								$lte: new Date(orderGroup.maxOrderSendDate)
-							},
-							'to.countryCode': orderGroup.destinationCountryCode,
-							express: orderGroup.express,
-							size: orderGroup.size,
-							mailingClass: orderGroup.mailingClass
-						},
+						find: Util.generateFindForOrderGroupOrders(orderGroup, groupType, true),
 						update: {
 							$set: {
 								status: "printing",
@@ -261,20 +328,7 @@ export default {
 				//change status on all orders 
 				await updateOrderStatus.run({
 						orderType,
-						find: {
-							...getOrderTypeParams(),
-							organization: orderGroup.organization,
-							live: true,
-							status: "cancelled",
-							sendDate: {
-								$gte: new Date(orderGroup.minOrderSendDate),
-								$lte: new Date(orderGroup.maxOrderSendDate)
-							},
-							'to.countryCode': orderGroup.destinationCountryCode,
-							express: orderGroup.express,
-							size: orderGroup.size,
-							mailingClass: orderGroup.mailingClass
-						},
+						find: this.generateFindForOrderGroupOrders(orderGroup, groupType, false),
 						update: {
 							$set: {
 								status: "cancelled",
