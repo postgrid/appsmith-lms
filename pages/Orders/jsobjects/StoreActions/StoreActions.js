@@ -132,24 +132,15 @@ export default {
 		})();
 
 		if(letterOrderGroups.length > 0){
-			await updateOrderGroupsVendor.run({
-				orderGroupID: letterOrderGroups,
-				vendorID: vendorID
-			});
+			await Util.updateOrders(vendorID, "letter", letterOrderGroups);
 		}
 
 		if(postcardOrderGroups.length > 0){
-			await Update_PostcardGroup.run({
-				orderGroupID: postcardOrderGroups,
-				vendorID: vendorID
-			});
+			await Util.updateOrders(vendorID, "postcard", postcardOrderGroups);
 		}
 
 		if(chequeOrderGroups.length > 0){
-			await Update_ChequeGroup.run({
-				orderGroupID: chequeOrderGroups,
-				vendorID: vendorID
-			});
+			await Util.updateOrders(vendorID, "cheque", chequeOrderGroups);
 		}
 		showAlert('Vendor has been updated successfully', 'success')
 	},

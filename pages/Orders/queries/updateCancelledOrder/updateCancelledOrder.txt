@@ -6,15 +6,15 @@ CREATE TABLE temp_items (
 
 INSERT INTO temp_items (temp_item_id, "Qty", "Amount") 
 VALUES 
-{{appsmith.store.customerCancelList.map((d) => { 
+{{appsmith.store.cancelOrderList.items.map((d) => { 
 	return"(" + "'" + d.itemId+ "', " + d.qty + ", " + d.amount + ")"}).join(",")  }};
 
-UPDATE "PrinterLineItems" SET "Qty" = (SELECT "Qty"
+UPDATE "{{appsmith.store.cancelOrderList.type}}" SET "Qty" = (SELECT "Qty"
                                  FROM temp_items
-                                 WHERE "CustomerLineItems"."Id" = temp_items.temp_item_id),
+                                 WHERE "{{appsmith.store.cancelOrderList.type}}"."Id" = temp_items.temp_item_id),
 												 "Amount" = (SELECT "Amount"
                                  FROM temp_items
-                                 WHERE "CustomerLineItems"."Id" = temp_items.temp_item_id)
+                                 WHERE "{{appsmith.store.cancelOrderList.type}}"."Id" = temp_items.temp_item_id)
 
 
 WHERE "Id" IN (SELECT temp_item_id

@@ -205,6 +205,7 @@ export default {
 		})
 		
 		//update customer
+		const updatedCustomerItems = [];
 		let orderCustomerItems = await getCancelCustomerOrders.run({Id: Table3Copy.selectedRow.itemid});
 		const parentItem = orderCustomerItems.find(item => item.SubItemID === null);
 		for(let orderItem of orderCustomerItems){
@@ -216,15 +217,31 @@ export default {
 				orderItem.Qty -= 1;
 				orderItem.Amount = orderItem.Qty * orderItem.Rate;
 			}
+			updatedCustomerItems.push(orderItem)
 		}
 		
-		await storeValue();
-		await updateCustomerCancelOrder.run();
+		await storeValue("cancelOrderList", {items: updatedCustomerItems, type: "CustomerLineItems"});
+		await updateCancelledOrder.run();
 		
 		//update printer
+		const updatedPrinterItems = [];
+		let orderPrinterItems = await getCancelPrinterOrders.run({Id: Table3Copy.selectedRow.itemid});
+		const parentItemPrinter = orderPrinterItems.find(item => item.SubItemID === null);
+		for(let orderItem of orderPrinterItems){
+			if(orderItem.ProductDescription.includes('Extra') || orderItem.ProductDescription.includes('add')){
+				const numberOfPages = orderItem.Qty / parentItemPrinter.Qty;
+				orderItem.Qty = numberOfPages * (parentItemPrinter.Qty - 1);
+				orderItem.Amount = orderItem.Qty * orderItem.Rate;
+			} else {
+				orderItem.Qty -= 1;
+				orderItem.Amount = orderItem.Qty * orderItem.Rate;
+			}
+			updatedPrinterItems.push(orderItem)
+		}
 		
-		
-		
+		await storeValue("cancelOrderList", {items: updatedPrinterItems, type: "PrinterLineItems"});
+		await updateCancelledOrder.run();
+
 		await Util.getAllOrderInfoFromOrderGroup();
 	},
 	getAllOrderInfoFromOrderGroup: async () => {
@@ -324,7 +341,7 @@ export default {
 					count: orderGroup.orderCount
 				})
 					
-			} else if(vendorID !== "CANCELLED") {
+			} else if(orderGroup.vendor !== "CANCELLED" && vendorID === "CANCELLED") {
 				//change status on all orders 
 				await updateOrderStatus.run({
 						orderType,

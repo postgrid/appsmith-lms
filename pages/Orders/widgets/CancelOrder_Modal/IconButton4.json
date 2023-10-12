@@ -2,8 +2,9 @@
     "boxShadow": "none",
     "mobileBottomRow": 4,
     "widgetName": "IconButton4",
-    "onClick": "{{closeModal('CancelOrder_Modal');}}",
+    "onClick": "{{Util.getSelectedCustomerItems();\nUtil.getSelectedPrinterItems();\nget_list_of_collaterals.run();\nstoreValue('org','f');\ncloseModal('CancelOrder_Modal');}}",
     "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+    "dynamicPropertyPathList": [{"key": "onClick"}],
     "displayName": "Icon button",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.b08054586989b185a0801e9a34f8ad49.svg",
     "searchTags": [

@@ -3,8 +3,9 @@
     "boxShadow": "none",
     "mobileBottomRow": 22,
     "widgetName": "Button13",
-    "onClick": "{{closeModal('CancelOrder_Modal');}}",
+    "onClick": "{{Util.getSelectedCustomerItems();\nUtil.getSelectedPrinterItems();\nget_list_of_collaterals.run();\nstoreValue('org','f');\ncloseModal('CancelOrder_Modal');}}",
     "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
+    "dynamicPropertyPathList": [{"key": "onClick"}],
     "displayName": "Button",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.05d209fafeb13a8569e3b4e97069d9ee.svg",
     "searchTags": [
