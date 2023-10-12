@@ -12,4 +12,4 @@ LEFT JOIN "public"."Customers" cu ON (cu."Id" = cp."CustomerID")
 WHERE to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >=  '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}'
 AND p."ProductType" IN ('Cheque', 'Letter', 'Postcard', 'Self Mailer')
 GROUP BY GROUPING SETS ((cu."CustomerName",c1."Printer"), ())
-ORDER BY lower(cu."CustomerName") ASC
+ORDER BY  c1."Printer" ,lower(cu."CustomerName") ASC

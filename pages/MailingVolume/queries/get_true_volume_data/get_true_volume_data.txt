@@ -1,0 +1,36 @@
+
+SELECT  
+  COALESCE(a.per_day, b.per_day) AS per_day,
+  COALESCE(a.total_volume, 0) AS true_total_volume,
+  COALESCE(a.num_of_clients, 0) AS true_num_of_clients,
+  COALESCE(b.total_volume, 0) AS volume_cancelled,
+  COALESCE(b.num_of_clients, 0) AS clients_cancelled
+FROM
+(
+  SELECT  
+    DATE(i."InvoiceDate") AS per_day,
+    SUM(p2."Qty") AS total_volume,
+    COUNT(DISTINCT i."InvoiceID") AS num_of_clients
+  FROM
+    "public"."PrinterLineItems" p2
+  INNER JOIN "public"."Invoice" i ON p2."InvoiceID" = i."InvoiceID"
+  WHERE p2."Printer" != 'CANCELLED' AND p2."SubItemID" IS NULL  AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}'
+  GROUP BY
+    per_day
+) AS a
+FULL OUTER JOIN
+(
+  SELECT  
+    DATE(i."InvoiceDate") AS per_day,
+    SUM(p2."Qty") AS total_volume,
+    COUNT(DISTINCT i."InvoiceID") AS num_of_clients
+  FROM
+    "public"."PrinterLineItems" p2
+  INNER JOIN "public"."Invoice" i ON p2."InvoiceID" = i."InvoiceID"
+  WHERE p2."Printer" = 'CANCELLED' AND p2."SubItemID" IS NULL  AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}'
+  GROUP BY
+    per_day
+) AS b
+ON a.per_day = b.per_day
+ORDER BY
+  per_day DESC;

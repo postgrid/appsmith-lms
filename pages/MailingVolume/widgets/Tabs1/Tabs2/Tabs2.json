@@ -106,14 +106,15 @@
     "dynamicHeight": "FIXED",
     "widgetId": "k73x6z1uxr",
     "accentColor": "{{appsmith.theme.colors.primaryColor}}",
-    "defaultTab": "EOD Summary",
+    "defaultTab": "Mailing Volume",
     "shouldShowTabs": true,
     "minWidth": 450,
     "tabsObj": {
         "tab1": {
             "widgetId": "20edqsizv9",
             "positioning": "vertical",
-            "index": 0,
+            "isDuplicateLabel": false,
+            "index": 1,
             "label": "EOD Summary",
             "id": "tab1",
             "isVisible": true
@@ -121,7 +122,8 @@
         "tab2": {
             "widgetId": "ud1hfh7oxm",
             "positioning": "vertical",
-            "index": 1,
+            "isDuplicateLabel": false,
+            "index": 0,
             "label": "Mailing Volume",
             "id": "tab2",
             "isVisible": true

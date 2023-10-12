@@ -62,11 +62,11 @@
     ],
     "dynamicPropertyPathList": [{"key": "tableData"}],
     "displayName": "Table",
-    "bottomRow": 51,
+    "bottomRow": 68,
     "columnWidthMap": {
         "task": 245,
         "step": 70,
-        "Printer": 304,
+        "Printer": 177,
         "status": 85
     },
     "parentRowSpace": 10,
@@ -137,7 +137,7 @@
     "key": "r70y5ez0a9",
     "canFreezeColumn": true,
     "isDeprecated": false,
-    "rightColumn": 64,
+    "rightColumn": 23,
     "textSize": "0.875rem",
     "widgetId": "ywglq52opm",
     "enableServerSideFiltering": false,

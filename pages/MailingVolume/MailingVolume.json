@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1690,
+          "bottomRow": 1860,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -58,6 +58,18 @@
           ],
           [
             {
+              "id": "MailingVolume_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
               "id": "MailingVolume_get_EOD_Summary",
               "name": "get_EOD_Summary",
               "confirmBeforeExecute": false,
@@ -88,16 +100,28 @@
                 "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "MailingVolume_get_true_volume_data",
+              "name": "get_true_volume_data",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
+                "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
             {
-              "id": "MailingVolume_get_user",
-              "name": "get_user",
+              "id": "MailingVolume_get_num_of_cancelled",
+              "name": "get_num_of_cancelled",
               "confirmBeforeExecute": false,
-              "pluginType": "API",
+              "pluginType": "DB",
               "jsonPathKeys": [
-                "appsmith.store.access_token"
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
+                "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
               ],
               "timeoutInMillisecond": 10000
             }

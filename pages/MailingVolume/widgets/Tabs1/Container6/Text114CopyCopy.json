@@ -1,6 +1,6 @@
 {
     "mobileBottomRow": 53,
-    "widgetName": "Text114",
+    "widgetName": "Text114CopyCopy",
     "displayName": "Text",
     "iconSVG": "/static/media/icon.97c59b523e6f70ba6f40a10fc2c7c5b5.svg",
     "searchTags": [
@@ -8,8 +8,8 @@
         "paragraph",
         "label"
     ],
-    "topRow": 68,
-    "bottomRow": 72,
+    "topRow": 0,
+    "bottomRow": 4,
     "parentRowSpace": 10,
     "type": "TEXT_WIDGET",
     "hideCard": false,
@@ -19,7 +19,7 @@
     "fontFamily": "{{appsmith.theme.fontFamily.appFont}}",
     "parentColumnSpace": 9.1015625,
     "dynamicTriggerPathList": [],
-    "leftColumn": 0,
+    "leftColumn": 28,
     "dynamicBindingPathList": [
         {"key": "truncateButtonColor"},
         {"key": "fontFamily"},
@@ -27,13 +27,13 @@
     ],
     "shouldTruncate": false,
     "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-    "text": "Inventory",
+    "text": "TRUE Volume",
     "key": "zo2gdv995b",
     "isDeprecated": false,
-    "rightColumn": 16,
+    "rightColumn": 37,
     "textAlign": "LEFT",
     "dynamicHeight": "AUTO_HEIGHT",
-    "widgetId": "1bdfan8hhp",
+    "widgetId": "yd2um0awev",
     "minWidth": 450,
     "isVisible": true,
     "fontStyle": "BOLD",
@@ -44,11 +44,11 @@
     "isLoading": false,
     "mobileTopRow": 49,
     "responsiveBehavior": "fill",
-    "originalTopRow": 51,
+    "originalTopRow": 0,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 0,
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 55,
+    "originalBottomRow": 4,
     "fontSize": "1rem",
     "minDynamicHeight": 4
 }
