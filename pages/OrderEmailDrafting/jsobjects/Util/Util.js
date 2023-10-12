@@ -21,7 +21,9 @@ export default {
 				if(subItems.length > 0){
 					items = items.concat(subItems);
 				}
-				const mapItemIndex = organizedItemMap.findIndex(item => item.collateral === mainItem.ProductDescription)
+				const chequeWithDoc = items.findIndex(item => item.ProductDescription.includes("add"))
+				const collateral = chequeWithDoc === -1 ? mainItem.ProductDescription : `${mainItem.ProductDescription} - With Doc`;
+				const mapItemIndex = organizedItemMap.findIndex(item => item.collateral === collateral)
 				if(mapItemIndex !== -1){
 					const item = organizedItemMap[mapItemIndex];
 					organizedItemMap[mapItemIndex] = {
@@ -30,10 +32,8 @@ export default {
 						items: [...item.items, items]
 					}
 				} else {
-					console.log("items", items)
-					const chequeWithDoc = items.findIndex(item => item.ProductDescription.includes("add"))
 					organizedItemMap.push({
-						collateral: chequeWithDoc === -1 ? mainItem.ProductDescription : `${mainItem.productDescription} - With Doc`,
+						collateral: collateral,
 						qty: items[0].Qty,
 						items: [items]
 					})
@@ -121,7 +121,7 @@ export default {
 					orderInfo = {
 						'#': number,
 						OrderCounts: printerInfo.qty,
-						Collateral: printerCalcDesc.collateral,
+						Collateral: printerInfo.collateral,
 						Clients: printerInfo.items[index][0].CustomerName,
 						To: printerCalcDesc.destination,
 						OrderDetails: printerCalcDesc.productDescription,
@@ -133,7 +133,7 @@ export default {
 					orderInfo = {
 						'#': '',
 						OrderCounts: '',
-						Collateral: printerCalcDesc.collateral,
+						Collateral: printerInfo.collateral,
 						Clients: printerInfo.items[index][0].CustomerName,
 						To: printerCalcDesc.destination,
 						OrderDetails: printerCalcDesc.productDescription,
