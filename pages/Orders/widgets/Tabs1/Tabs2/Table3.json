@@ -90,7 +90,7 @@
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "originalBottomRow": 111,
-    "columnUpdatedAt": 1695661778551,
+    "columnUpdatedAt": 1697135711325,
     "defaultSelectedRowIndices": "",
     "widgetName": "Table3",
     "defaultPageSize": 0,
@@ -139,7 +139,7 @@
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
-    "bottomRow": 373,
+    "bottomRow": 688,
     "columnWidthMap": {
         "amount": 116,
         "level": 90,

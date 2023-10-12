@@ -271,7 +271,7 @@ export default {
 			}
 			
 			orderInfo.pieceTotalCost = (
-				orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + ((orderInfo.perPages > 1 ? orderInfo.perPages - 1 : 1) * orderInfo.additionalCost )
+				orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
 			);
 
 

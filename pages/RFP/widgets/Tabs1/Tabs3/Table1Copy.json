@@ -185,6 +185,7 @@
     "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "wqttducqvu",
+    "enableServerSideFiltering": false,
     "tableData": "{{\nfunction(){\n\tlet combindedData = get_RFP_Comparison_1.data.map((item) => {\n   \tconst tier2 = get_RFP_Comparison_2.data.find((item2) => item.ProductDescription == item2.ProductDescription) || {};\n   \t\treturn { ...item, ...tier2 };\n\t\t})\n\t\nreturn combindedData;\n}()\n}}",
     "label": "Data",
     "searchKey": "",

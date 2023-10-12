@@ -30,8 +30,10 @@ export default {
 						items: [...item.items, items]
 					}
 				} else {
+					console.log("items", items)
+					const chequeWithDoc = items.findIndex(item => item.ProductDescription.includes("add"))
 					organizedItemMap.push({
-						collateral: mainItem.ProductDescription,
+						collateral: chequeWithDoc === -1 ? mainItem.ProductDescription : `${mainItem.productDescription} - With Doc`,
 						qty: items[0].Qty,
 						items: [items]
 					})
