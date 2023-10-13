@@ -526,7 +526,13 @@ export default {
 				items.push(addlSheetItem);
 
 				if (sheetCount > 6) {
-					const sheetRange = sheetCount <= 60 ? 'over 6' : sheetCount > 60 && sheetCount <= 150 ? '61 - 150' : sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : 'over 300'
+					const sheetRange = sheetCount <= 15 ? '7 - 15' : 
+								sheetCount > 15 && sheetCount <= 60 ? '16 - 60' : 
+									sheetCount > 60 && sheetCount <= 150 ? '61 - 150' : 
+										sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : 
+											sheetCount > 300 && sheetCount <= 500 ? '301 - 500' : 
+												sheetCount > 500 && sheetCount <= 1000 ? '501 - 1000' : 
+													'over 1000'
 					/** @type {LineItem} */
 					const oversizedItem = StoreActions.formatLetterCollateral({
 						id: UUID.generate(),
