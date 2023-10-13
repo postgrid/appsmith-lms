@@ -2,7 +2,7 @@
   "pluginType": "DB",
   "pluginId": "mongo-plugin",
   "unpublishedAction": {
-    "name": "Update_LetterGroup",
+    "name": "updateOrgUsage",
     "datasource": {
       "name": "PM Database",
       "pluginId": "mongo-plugin",
@@ -29,7 +29,7 @@
           }
         },
         "collection": {
-          "data": "lettergroups"
+          "data": "organizations"
         },
         "command": {
           "data": "UPDATE"
@@ -79,7 +79,7 @@
         },
         "misc": {
           "formToNativeQuery": {
-            "data": "{\n  \"update\": \"lettergroups\",\n  \"updates\": [{\n    \"q\": {\"_id\": {\n\"$in\":{{appsmith.store.clearVendor.orderGroupID}} }},\n    \"u\": {\"$set\": {\"vendor\": {{appsmith.store.clearVendor.vendorID}}}},\n    \"multi\": true,\n  }]\n}\n",
+            "data": "{\n  \"update\": \"organizations\",\n  \"updates\": [{\n    \"q\": {\n  _id: {{this.params.organization}}\n},\n    \"u\": {\n  $inc: {\n    usage: {{this.params.count}}\n  }\n},\n    \"multi\": false,\n  }]\n}\n",
             "status": "SUCCESS"
           }
         },
@@ -88,13 +88,13 @@
         },
         "updateMany": {
           "limit": {
-            "data": "ALL"
+            "data": "SINGLE"
           },
           "query": {
-            "data": "{\"_id\": {\n\"$in\":{{appsmith.store.clearVendor.orderGroupID}} }}"
+            "data": "{\n  _id: {{this.params.organization}}\n}"
           },
           "update": {
-            "data": "{\"$set\": {\"vendor\": {{appsmith.store.clearVendor.vendorID}}}}"
+            "data": "{\n  $inc: {\n    usage: {{this.params.count}}\n  }\n}"
           }
         }
       }
@@ -112,16 +112,16 @@
     "invalids": [],
     "messages": [],
     "jsonPathKeys": [
-      "appsmith.store.clearVendor.orderGroupID",
-      "appsmith.store.clearVendor.vendorID"
+      "this.params.count",
+      "this.params.organization"
     ],
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": [],
-    "createdAt": "2023-06-20T20:18:15Z"
+    "createdAt": "2023-10-11T16:10:58Z"
   },
-  "id": "Orders_Update_LetterGroup",
+  "id": "Orders_updateOrgUsage",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_64920987d3cc2d2e52c8148d"
+  "gitSyncId": "6525a5d877401b2981eb218b_6526c912c5f0894d61621e9f"
 }

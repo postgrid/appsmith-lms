@@ -26,7 +26,7 @@ export default {
 
 		// add mongo connection and update the vendor for this
 		await get_printer_line_item.run({currentRow});
-		const orderGroupIDs = [(await get_printer_line_item.run({currentRow}))[0].OrderGroupID];
+		const orderGroupIDs = [await get_printer_line_item.data[0].OrderGroupID];
 		const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
 		const vendorID = await (async () => {
@@ -37,23 +37,9 @@ export default {
 				vendorName: currentRow.AssignTo
 			}))[0]._id;
 		})();
-
-		if(groupType === 'letter'){
-			await Update_LetterGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: vendorID
-			});
-		} else if(groupType === 'postcard'){
-			await Update_PostcardGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: vendorID
-			});
-		} else {
-			await Update_ChequeGroup.run({
-				orderGroupID: orderGroupIDs,
-				vendorID: vendorID
-			});
-		}
+		
+		await Util.updateOrders(vendorID, groupType, orderGroupIDs);
+		
 		showAlert('Vendor has been updated successfully', 'success');
 	},
 	updateAllItemsVendor: async () => {		
@@ -104,7 +90,7 @@ export default {
 			const groupType = orderGroupIDs[0].slice(0, orderGroupIDs[0].indexOf("_"));
 
 			if(groupType === 'letter'){
-				await Update_LetterGroup.run();
+				await updateOrderGroupsVendor.run();
 			} else if(groupType === 'postcard'){
 				await Update_PostcardGroup.run();
 			} else {
@@ -146,24 +132,15 @@ export default {
 		})();
 
 		if(letterOrderGroups.length > 0){
-			await Update_LetterGroup.run({
-				orderGroupID: letterOrderGroups,
-				vendorID: vendorID
-			});
+			await Util.updateOrders(vendorID, "letter", letterOrderGroups);
 		}
 
 		if(postcardOrderGroups.length > 0){
-			await Update_PostcardGroup.run({
-				orderGroupID: postcardOrderGroups,
-				vendorID: vendorID
-			});
+			await Util.updateOrders(vendorID, "postcard", postcardOrderGroups);
 		}
 
 		if(chequeOrderGroups.length > 0){
-			await Update_ChequeGroup.run({
-				orderGroupID: chequeOrderGroups,
-				vendorID: vendorID
-			});
+			await Util.updateOrders(vendorID, "cheque", chequeOrderGroups);
 		}
 		showAlert('Vendor has been updated successfully', 'success')
 	},

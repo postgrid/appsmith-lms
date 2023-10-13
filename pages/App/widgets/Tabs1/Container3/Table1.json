@@ -646,6 +646,7 @@
     "rightColumn": 64,
     "textSize": "0.875rem",
     "widgetId": "hsx5l36qld",
+    "enableServerSideFiltering": false,
     "tableData": "{{get_current_tier.data}}",
     "label": "Data",
     "searchKey": "",

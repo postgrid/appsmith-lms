@@ -37,7 +37,7 @@
     ],
     "displayName": "Select",
     "searchTags": ["dropdown"],
-    "bottomRow": 7,
+    "bottomRow": 4,
     "parentRowSpace": 10,
     "hideCard": false,
     "mobileRightColumn": 32,
