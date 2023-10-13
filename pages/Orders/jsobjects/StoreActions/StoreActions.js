@@ -532,7 +532,9 @@ export default {
 										sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : 
 											sheetCount > 300 && sheetCount <= 500 ? '301 - 500' : 
 												sheetCount > 500 && sheetCount <= 1000 ? '501 - 1000' : 
-													'over 1000'
+													sheetCount > 1000 && sheetCount <= 1500 ? '1001 - 1500' : 
+														sheetCount > 1500 && sheetCount <= 2000 ? '1501 - 2000' : 
+															'over 2000'
 					/** @type {LineItem} */
 					const oversizedItem = StoreActions.formatLetterCollateral({
 						id: UUID.generate(),
