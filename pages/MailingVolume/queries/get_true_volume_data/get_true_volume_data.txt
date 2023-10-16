@@ -1,10 +1,10 @@
 
 SELECT  
   COALESCE(a.per_day, b.per_day) AS per_day,
-  COALESCE(a.total_volume, 0) AS true_total_volume,
-  COALESCE(a.num_of_clients, 0) AS true_num_of_clients,
-  COALESCE(b.total_volume, 0) AS volume_cancelled,
-  COALESCE(b.num_of_clients, 0) AS clients_cancelled
+  COALESCE(a.total_volume, 0) AS Volume,
+  COALESCE(a.num_of_clients, 0) AS Clients,
+  COALESCE(b.total_volume, 0) AS Cancelled_Orders,
+  COALESCE(b.num_of_clients, 0) AS Clients_Cancelled
 FROM
 (
   SELECT  
