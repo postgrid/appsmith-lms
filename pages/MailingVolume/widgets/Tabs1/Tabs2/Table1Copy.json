@@ -75,7 +75,7 @@
     "dynamicPropertyPathList": [{"key": "tableData"}],
     "compactMode": "SHORT",
     "displayName": "Table",
-    "bottomRow": 92,
+    "bottomRow": 157,
     "columnWidthMap": {
         "task": 245,
         "Letters": 102,
