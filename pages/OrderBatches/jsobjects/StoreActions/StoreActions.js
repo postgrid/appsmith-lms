@@ -64,6 +64,9 @@ export default {
 					case 'Xpressdocs':
 						allBatches.push(...batches.filter(batch => batch.fileName.includes('Xpressdocs')))
 						break;
+					case 'Epic Print':
+						allBatches.push(...batches.filter(batch => batch.fileName.includes('Epic')))
+						break;
 					case '1Vision':
 						allBatches.push(...batches.filter(batch => batch.fileName.includes('1Vision')))
 						break;

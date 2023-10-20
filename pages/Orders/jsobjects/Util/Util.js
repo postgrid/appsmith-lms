@@ -315,6 +315,7 @@ export default {
 		}
 	},
 	updateOrders: async (vendorID, groupType, orderGroupIDs) => {
+		console.log("JG", vendorID, groupType, orderGroupIDs)
 		const orderGroupType = groupType === 'letter' ?'lettergroups' : groupType === 'postcard' ? 'postcardgroups' : groupType === 'cheque' ? 'chequegroups' : 'selfmailergroups';
 		const orderGroups = await findOrderGroups.run({
 				orderGroupType,

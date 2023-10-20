@@ -6,19 +6,23 @@ export default {
 		//change printerPriceID for the current order
 		const printerName = currentRow.AssignTo;
 		const printerInfo = await get_printer_info.run({printerName});
-		const allItems = await get_selected_printer_item_sing.run()
-		const itemsList = allItems.map(item => {
-			return {
-				printerId: printerInfo[0].Id,
-				printerTier: printerInfo[0].tier_level_id,
-				productId: item.ProductID,
-				itemId: item.Id,
-				qty: item.Qty
-			}
-		})
+		if(printerInfo.length > 0){
+			await get_selected_printer_item_sing.run();
+			const allItems = get_selected_printer_item_sing.data
+			const itemsList = allItems.map(item => {
+				return {
+					printerId: printerInfo[0].Id,
+					printerTier: printerInfo[0].tier_level_id,
+					productId: item.ProductID,
+					itemId: item.Id,
+					qty: item.Qty
+				}
+			})
 
-		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
-		await set_printer_price_id.run();
+			await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
+			await set_printer_price_id.run();
+		}
+		
 
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
@@ -48,19 +52,21 @@ export default {
 		//change printerPriceID for the current order
 		const printerName = appsmith.store.MBitem;
 		const printerInfo = await get_printer_info.run({printerName});
-		const allItems = await get_selected_printer_item_all.run({invoiceID: Table2.selectedRow.InvoiceNo})
-		const itemsList = allItems.map(item => {
-			return {
-				printerId: printerInfo[0].Id,
-				printerTier: printerInfo[0].tier_level_id,
-				productId: item.ProductID,
-				itemId: item.Id,
-				qty: item.Qty
-			}
-		})
-		await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
-		await set_printer_price_id.run();
-
+		if(printerInfo.length > 0){
+			const allItems = await get_selected_printer_item_all.run({invoiceID: Table2.selectedRow.InvoiceNo})
+			const itemsList = allItems.map(item => {
+				return {
+					printerId: printerInfo[0].Id,
+					printerTier: printerInfo[0].tier_level_id,
+					productId: item.ProductID,
+					itemId: item.Id,
+					qty: item.Qty
+				}
+			})
+			await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
+			await set_printer_price_id.run();
+		}
+		
 		await StoreActions.updateOrderGroupVendors();
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
@@ -73,13 +79,9 @@ export default {
 			itemid: currentRow.itemid
 		}});
 		
-		console.log("JG currentRow", currentRow)
-		
-		await storeValue("rowUpdate", {itemid: currentRow.itemid})
-		// console.log("JG await get_printer_line_item.run({currentRow}", await get_printer_line_item.run())
+		await storeValue("rowUpdate", currentRow)
 
 		const orderGroupIDs = (await get_printer_line_item.run()).map(item => item.OrderGroupID);
-		console.log("JG orderGroupIDs", orderGroupIDs)
 		
 		await storeValue("clearVendor", {
 			orderGroupID: orderGroupIDs,
@@ -100,10 +102,13 @@ export default {
 
 	},
 	updateOrderGroupVendors: async () => {
-		const orderGroupIDs = await Promise.all(Table3Copy.tableData.slice(0, -1).map(async (currentRow) => {
-			await storeValue("rowUpdate",currentRow);
-			return (await get_printer_line_item.run())[0].OrderGroupID;
-		}));
+		const orderGroupIDs = [];
+		for(const currentRow of Table3Copy.tableData){
+			if(currentRow.SubItemID === null && currentRow.itemid !== null) {
+				await storeValue("rowUpdate",currentRow);
+				orderGroupIDs.push((await get_printer_line_item.run())[0].OrderGroupID);
+			}
+		}
 
 		const letterOrderGroups = [];
 		const postcardOrderGroups = [];
