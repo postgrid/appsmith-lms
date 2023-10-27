@@ -1,0 +1,5 @@
+SELECT DISTINCT p2."Printer", sum(p2."Qty") as "Volume"
+FROM "public"."PrinterLineItems" p2
+INNER JOIN "public"."Invoice" i ON p2."InvoiceID" = i."InvoiceID"
+WHERE  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  <=  '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}' AND p2."SubItemID" IS NULL AND p2."Printer" = 'PAUSED'
+GROUP BY p2."Printer";
