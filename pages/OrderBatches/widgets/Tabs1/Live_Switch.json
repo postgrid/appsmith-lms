@@ -5,8 +5,8 @@
     "displayName": "Switch",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.afbd826fee9d09b12c5cde30a8c6fe62.svg",
     "searchTags": ["boolean"],
-    "topRow": 76,
-    "bottomRow": 80,
+    "topRow": 77,
+    "bottomRow": 81,
     "parentRowSpace": 10,
     "type": "SWITCH_WIDGET",
     "alignWidget": "LEFT",
@@ -35,7 +35,9 @@
     "isLoading": false,
     "mobileTopRow": 76,
     "responsiveBehavior": "fill",
+    "originalTopRow": 76,
     "mobileLeftColumn": 52,
     "maxDynamicHeight": 9000,
+    "originalBottomRow": 80,
     "minDynamicHeight": 4
 }

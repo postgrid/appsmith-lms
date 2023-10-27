@@ -1,7 +1,7 @@
 {
     "boxShadow": "none",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.f2c34197dbcf03595098986de898928f.svg",
-    "topRow": 83,
+    "topRow": 84,
     "labelWidth": 5,
     "type": "INPUT_WIDGET_V2",
     "animateLoading": true,
@@ -26,6 +26,7 @@
     ],
     "isLoading": false,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+    "originalBottomRow": 87,
     "mobileBottomRow": 89,
     "widgetName": "searchCheque",
     "displayName": "Input",
@@ -35,7 +36,7 @@
         "number",
         "textarea"
     ],
-    "bottomRow": 87,
+    "bottomRow": 88,
     "parentRowSpace": 10,
     "autoFocus": false,
     "hideCard": false,
@@ -55,6 +56,7 @@
     "renderMode": "CANVAS",
     "mobileTopRow": 82,
     "responsiveBehavior": "fill",
+    "originalTopRow": 83,
     "mobileLeftColumn": 18,
     "maxDynamicHeight": 9000,
     "iconAlign": "left",

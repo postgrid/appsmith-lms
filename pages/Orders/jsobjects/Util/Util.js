@@ -262,7 +262,7 @@ export default {
 			orderType
 		})
 		
-		await storeValue('cancelOrdersAvailable', orders);
+		await storeValue('cancelOrdersAvailable', {orders: orders, orderGroupID: orderGroupIDs});
 	},
 	generateFindForOrderGroupOrders: (orderGroup, groupType, cancelled) => {
 		const getOrderTypeParams = () => {
@@ -367,5 +367,98 @@ export default {
 			vendorID,
 			orderGroupType
 		})
+	},
+	cancelSingleOrders: async (currentRow) => {
+		const orderGroupID = appsmith.store.cancelOrdersAvailable.orderGroupID;
+		const orderType = currentRow._id.includes("letter") ? "letters" : currentRow._id.includes("postcard") ? "postcards" : currentRow._id.includes("cheque") ? "cheques" : "selfmailers";
+		const orderGroupType = currentRow._id.includes("letter") ? "lettergroups" : currentRow._id.includes("postcard") ? "postcardgroups" : currentRow._id.includes("cheque") ? "chequegroups" : "selfmailergroups";
+		
+		//cancel order in the backend
+		await updateOrderStatus.run({
+			orderType,
+			find: {
+				_id: currentRow._id,
+			},
+			update: {
+				$set: {
+					status: "cancelled"
+				}
+			}
+		})
+		
+		//remove this order from the order group
+		await updateOrderStatus.run({
+			orderType: orderGroupType,
+			find: {
+				_id: orderGroupID,
+			},
+			update: {
+				$inc: {
+					orderCount: -1
+				}
+			}
+		})
+		
+		//remove one from the customer and printer line items
+		const updatedPrinterItems = [];
+		const allPrinterItems = await get_printer_items_by_main_id.run({
+			Id: Table3Copy.selectedRow.itemid
+		})
+		
+		const updatedCustomerItems = [];
+		const allCustomerItems = await get_cust_items_by_main_id.run({
+			Id: Table3Copy.selectedRow.itemid
+		})
+		
+		const initialQty = (allPrinterItems.find(item => item.SubItemID === null)).Qty;
+		for(const printerItem of allPrinterItems){
+			const customerItem = allCustomerItems.find(item => item.Id === printerItem.Id);
+			let qty;
+			if(printerItem.InitialProdDescription.includes("Extra") || printerItem.InitialProdDescription.includes("add")){
+				const additionalSheets = printerItem.Qty / initialQty;
+				qty = printerItem.Qty - additionalSheets;
+			} else {
+				qty -= 1;
+			}
+			
+			const printerAmount  = printerItem.Rate * qty;
+			const customerAmount = customerItem.Rate * qty;
+			
+			updatedPrinterItems.push({
+				itemID: printerItem.Id,
+				qty,
+				amount: printerAmount
+			});
+			
+			updatedCustomerItems.push({
+				itemID: customerItem.Id,
+				qty,
+				amount: customerAmount
+			});
+		}
+		
+		//update printer items
+		await storeValue("cancelOrderList", {
+			type: "PrinterLineItems",
+			items: updatedPrinterItems
+		})
+		await updateCancelledOrder.run();
+		
+		//update customer items
+		await storeValue("cancelOrderList", {
+			type: "CustomerLineItems",
+			items: updatedCustomerItems
+		})
+		await updateCancelledOrder.run();
+		
+		
+		//add this to the cancelled single orders
+		await set_cancelled_single_orders.run({
+			orderId: currentRow._id,
+			orderGroupID,
+			lineItemID: (allPrinterItems.find(item => item.SubItemID === null)).Id
+		})
+		
+		await Util.getAllOrderInfoFromOrderGroup()
 	}
 }

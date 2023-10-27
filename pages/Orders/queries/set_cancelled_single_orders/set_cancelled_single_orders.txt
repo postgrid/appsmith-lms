@@ -1,0 +1,4 @@
+INSERT INTO "CancelledSingleOrders" ("Id", "orderGroupID", "lineItemID") 
+VALUES 
+	 {{appsmith.store.newList.map((d) => { 
+		return"(" + "'" + d.orderID+ "', '" + d.orderGroupID + "', '" + d.lineItemID +"'" +")"}).join(",")}};

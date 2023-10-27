@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "generateFindForOrderGroupOrders",
-    "fullyQualifiedName": "Util.generateFindForOrderGroupOrders",
+    "name": "cancelSingleOrders",
+    "fullyQualifiedName": "Util.cancelSingleOrders",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -16,19 +16,13 @@
     "pageId": "Orders",
     "collectionId": "Orders_Util",
     "actionConfiguration": {
-      "timeoutInMillisecond": 10000,
+      "timeoutInMillisecond": 0,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
       "jsArguments": [
         {
-          "name": "orderGroup"
-        },
-        {
-          "name": "groupType"
-        },
-        {
-          "name": "cancelled"
+          "name": "currentRow"
         }
       ]
     },
@@ -46,7 +40,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "Orders_Util.generateFindForOrderGroupOrders",
+  "id": "Orders_Util.cancelSingleOrders",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_65391884f386a61f18b132d9"
+  "gitSyncId": "63b393c7f276cd0745e9510c_653aa59eddbee8503366d7fb"
 }

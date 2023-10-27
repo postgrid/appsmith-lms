@@ -3,7 +3,7 @@
     "borderColor": "#E0DEDE",
     "isVisibleDownload": true,
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.e6911f8bb94dc6c4a102a74740c41763.svg",
-    "topRow": 23,
+    "topRow": 24,
     "isSortable": true,
     "type": "TABLE_WIDGET_V2",
     "inlineEditingSaveOption": "ROW_LEVEL",
@@ -61,6 +61,7 @@
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "columnUpdatedAt": 1691785052848,
+    "originalBottomRow": 75,
     "defaultSelectedRowIndices": [0],
     "mobileBottomRow": 52,
     "widgetName": "BatchOrdersTable",
@@ -77,9 +78,9 @@
         {"key": "onRowSelected"}
     ],
     "displayName": "Table",
-    "bottomRow": 75,
+    "bottomRow": 76,
     "columnWidthMap": {
-        "fileName": 656,
+        "fileName": 840,
         "url": 800
     },
     "parentRowSpace": 10,
@@ -256,6 +257,7 @@
     "rightColumn": 63,
     "textSize": "0.875rem",
     "widgetId": "nzkcg5vpux",
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "{{appsmith.store.orderBatches}}",
     "label": "Data",
@@ -266,6 +268,7 @@
     "horizontalAlignment": "LEFT",
     "isVisibleSearch": true,
     "responsiveBehavior": "fill",
+    "originalTopRow": 23,
     "mobileLeftColumn": 0,
     "isVisiblePagination": true,
     "verticalAlignment": "CENTER"

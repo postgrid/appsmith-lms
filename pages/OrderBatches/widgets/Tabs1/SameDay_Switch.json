@@ -6,7 +6,7 @@
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.afbd826fee9d09b12c5cde30a8c6fe62.svg",
     "searchTags": ["boolean"],
     "topRow": 18,
-    "bottomRow": 22,
+    "bottomRow": 23,
     "parentRowSpace": 10,
     "type": "SWITCH_WIDGET",
     "alignWidget": "LEFT",
@@ -35,7 +35,9 @@
     "isLoading": false,
     "mobileTopRow": 18,
     "responsiveBehavior": "fill",
+    "originalTopRow": 18,
     "mobileLeftColumn": 42,
     "maxDynamicHeight": 9000,
+    "originalBottomRow": 22,
     "minDynamicHeight": 4
 }

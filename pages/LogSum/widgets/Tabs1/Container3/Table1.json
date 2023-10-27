@@ -39,7 +39,9 @@
         {"key": "primaryColumns.SLA.computedValue"},
         {"key": "primaryColumns.CustomerCurrency.computedValue"},
         {"key": "primaryColumns.PrinterCurrency.computedValue"},
-        {"key": "primaryColumns.Id.computedValue"}
+        {"key": "primaryColumns.Id.computedValue"},
+        {"key": "primaryColumns.Summary.cellBackground"},
+        {"key": "primaryColumns.OrderStatus.cellBackground"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -77,7 +79,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1696041412830,
+    "columnUpdatedAt": 1697835073666,
     "originalBottomRow": 87,
     "defaultSelectedRowIndices": [0],
     "mobileBottomRow": 36,
@@ -97,13 +99,13 @@
         "Summary",
         "Destination",
         "SLA",
-        "InvoiceStatus",
-        "OrderStatus",
         "PaymentMethod",
         "CustomerCurrency",
         "InvoiceID",
         "PrinterCurrency",
         "Id",
+        "InvoiceStatus",
+        "OrderStatus",
         "EditActions1"
     ],
     "dynamicPropertyPathList": [
@@ -112,7 +114,9 @@
         {"key": "primaryColumns.EditActions1.isDiscardDisabled"},
         {"key": "primaryColumns.OrderStatus.onOptionChange"},
         {"key": "primaryColumns.EditActions1.onSave"},
-        {"key": "primaryColumns.InvoiceStatus.onOptionChange"}
+        {"key": "primaryColumns.InvoiceStatus.onOptionChange"},
+        {"key": "primaryColumns.Summary.cellBackground"},
+        {"key": "primaryColumns.OrderStatus.cellBackground"}
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
@@ -414,10 +418,10 @@
             "isCellEditable": true,
             "width": 150,
             "enableFilter": true,
-            "sticky": "",
+            "sticky": "right",
             "onOptionChange": "",
             "originalId": "OrderStatus",
-            "cellBackground": "",
+            "cellBackground": "{{Table1.processedTableData.map((currentRow, currentIndex) => (  \n  (currentRow.OrderStatus === 'DELIVERED'\n    ? \"LIGHTGREEN\"\n    : \"YELLOW\")\n))}}",
             "verticalAlignment": "CENTER"
         },
         "CustomerCalculation": {
@@ -567,7 +571,7 @@
             "enableFilter": true,
             "sticky": "",
             "originalId": "Summary",
-            "cellBackground": "",
+            "cellBackground": "{{Table1.processedTableData.map((currentRow, currentIndex) => (  \n  (currentRow.Summary >= currentRow.PrinterSummary\n    ? \"transparent\"\n    : \"RED\")\n))}}",
             "verticalAlignment": "CENTER"
         },
         "PrinterSummary": {

@@ -1,0 +1,3 @@
+SELECT "Id", "SubItemID", "Qty", "Amount", "Rate", "InitialProdDescription"
+from "PrinterLineItems"
+WHERE "PrinterLineItems"."Id" = '{{this.params.Id}}' AND "PrinterLineItems"."SubItemID" = '{{this.params.Id}}';

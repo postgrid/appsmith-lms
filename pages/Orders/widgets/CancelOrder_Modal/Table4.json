@@ -39,7 +39,8 @@
         {"key": "primaryColumns.updatedAt.computedValue"},
         {"key": "primaryColumns.customColumn1.buttonColor"},
         {"key": "primaryColumns.customColumn1.borderRadius"},
-        {"key": "primaryColumns.customColumn1.boxShadow"}
+        {"key": "primaryColumns.customColumn1.boxShadow"},
+        {"key": "primaryColumns.customColumn1.isDisabled"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -115,7 +116,8 @@
     ],
     "dynamicPropertyPathList": [
         {"key": "tableData"},
-        {"key": "primaryColumns.customColumn1.onClick"}
+        {"key": "primaryColumns.customColumn1.onClick"},
+        {"key": "primaryColumns.customColumn1.isDisabled"}
     ],
     "displayName": "Table",
     "bottomRow": 31,
@@ -124,7 +126,7 @@
     "hideCard": false,
     "mobileRightColumn": 20,
     "parentColumnSpace": 9.75,
-    "dynamicTriggerPathList": [],
+    "dynamicTriggerPathList": [{"key": "primaryColumns.customColumn1.onClick"}],
     "borderWidth": "1",
     "primaryColumns": {
         "color": {
@@ -610,14 +612,14 @@
         "customColumn1": {
             "boxShadow": "{{Table4.processedTableData.map((currentRow, currentIndex) => ( \"none\"))}}",
             "computedValue": "",
-            "onClick": "{{}}",
+            "onClick": "{{await Util.cancelSingleOrders(currentRow)}}",
             "buttonColor": "{{Table4.processedTableData.map((currentRow, currentIndex) => ( (appsmith.theme.colors.primaryColor)))}}",
             "isEditable": false,
             "alias": "Cancel",
             "enableSort": true,
             "isSaveVisible": true,
             "id": "customColumn1",
-            "isDisabled": false,
+            "isDisabled": "{{Table4.processedTableData.map((currentRow, currentIndex) => ( currentRow.status === \"cancelled\" ? true : false))}}",
             "allowSameOptionsInNewRow": true,
             "validation": {},
             "isCellVisible": true,
@@ -891,7 +893,7 @@
     "widgetId": "4gw72du8a5",
     "enableServerSideFiltering": false,
     "minWidth": 450,
-    "tableData": "{{appsmith.store.cancelOrdersAvailable}}",
+    "tableData": "{{appsmith.store.cancelOrdersAvailable.orders}}",
     "label": "Data",
     "searchKey": "",
     "parentId": "tjbgybd3z2",

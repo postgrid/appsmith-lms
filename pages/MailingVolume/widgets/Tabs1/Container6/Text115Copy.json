@@ -27,7 +27,7 @@
     ],
     "shouldTruncate": false,
     "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-    "text": "{{\nText115.text - get_num_of_cancelled.data[0].Volume}}",
+    "text": "{{\nText115.text - get_num_of_cancelled.data[0].Volume}}\n",
     "key": "1oc38ib6qe",
     "isDeprecated": false,
     "rightColumn": 53,

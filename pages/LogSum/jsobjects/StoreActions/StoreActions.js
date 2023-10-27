@@ -170,7 +170,7 @@ export default {
 				CustomerCurrency: value[0].Currency,
 				CustomerCalculation: customerInfo.calculation,
 				Summary: customerInfo.totalAmount,
-				PrinterCurrency: printerItem[0].Printer !== null && printerItem[0].Printer !== 'CANCELLED' && printerItem[0].Printer !== '' ? printerCurrency.find(printer => printer.PrinterName === printerItem[0].Printer).Currency : 'N/A',
+				PrinterCurrency: printerItem[0].Printer !== null && printerItem[0].Printer !== 'CANCELLED' && printerItem[0].Printer !== 'PAUSED' && printerItem[0].Printer !== '' ? printerCurrency.find(printer => printer.PrinterName === printerItem[0].Printer).Currency : 'N/A',
 				PrinterCalculation: printerInfo.calculation,
 				PrinterSummary: printerInfo.totalAmount
 			}
