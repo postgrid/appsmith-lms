@@ -63,6 +63,9 @@
   "unpublishedCustomJSLibs": [
     {
       "uidString": "UUID_https://cdn.jsdelivr.net/npm/uuidjs@4.2.12/src/uuid.min.js"
+    },
+    {
+      "uidString": "xmlParser_https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/3.17.5/parser.min.js"
     }
   ],
   "publishedCustomJSLibs": [],
