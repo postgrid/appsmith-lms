@@ -10,6 +10,7 @@ export default {
 		await get_mailing_volume.run();
 		await get_true_volume_data.run();
 		await get_num_of_cancelled.run();
+		await get_VolumePaused.run();
 	}
 	
 	/*,

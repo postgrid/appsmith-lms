@@ -307,6 +307,7 @@
     "textSize": "0.875rem",
     "widgetId": "rl939i16d0",
     "allowAddNewRow": false,
+    "enableServerSideFiltering": false,
     "tableData": "{{\nfunction(){\n\tlet combindedData = get_pivot_income.data.map((item) => {\n   \tconst tier2 = get_pivot_expense.data.find((item2) => item.ClientName == item2.ClientName) || {};\n   \t\treturn { ...item, ...tier2  };\n\t\t})\n\t\nreturn combindedData;\n}()\n}}",
     "label": "Data",
     "searchKey": "",
