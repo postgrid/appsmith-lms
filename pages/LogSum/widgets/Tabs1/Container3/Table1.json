@@ -41,7 +41,8 @@
         {"key": "primaryColumns.PrinterCurrency.computedValue"},
         {"key": "primaryColumns.Id.computedValue"},
         {"key": "primaryColumns.Summary.cellBackground"},
-        {"key": "primaryColumns.OrderStatus.cellBackground"}
+        {"key": "primaryColumns.OrderStatus.cellBackground"},
+        {"key": "primaryColumns.InvoiceStatus.cellBackground"}
     ],
     "needsHeightForContent": true,
     "leftColumn": 0,
@@ -116,7 +117,8 @@
         {"key": "primaryColumns.EditActions1.onSave"},
         {"key": "primaryColumns.InvoiceStatus.onOptionChange"},
         {"key": "primaryColumns.Summary.cellBackground"},
-        {"key": "primaryColumns.OrderStatus.cellBackground"}
+        {"key": "primaryColumns.OrderStatus.cellBackground"},
+        {"key": "primaryColumns.InvoiceStatus.cellBackground"}
     ],
     "compactMode": "SHORT",
     "displayName": "Table",
@@ -755,7 +757,7 @@
             "sticky": "",
             "onOptionChange": "",
             "originalId": "InvoiceStatus",
-            "cellBackground": "",
+            "cellBackground": "{{Table1.processedTableData.map((currentRow, currentIndex) => (  \n  (currentRow.InvoiceStatus === 'PAID'\n    ? \"LIGHTGREEN\"\n    :   (currentRow.InvoiceStatus === 'INPROCESS'\n    ? \"YELLOW\"\n    : \"ORANGE\"))\n))}}",
             "verticalAlignment": "CENTER"
         },
         "Notes": {

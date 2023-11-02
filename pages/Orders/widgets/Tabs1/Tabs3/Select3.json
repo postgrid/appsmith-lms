@@ -54,7 +54,7 @@
     "isDeprecated": false,
     "rightColumn": 25,
     "widgetId": "i8ankkf3td",
-    "optionValue": "label",
+    "optionValue": "PrinterName",
     "minWidth": 450,
     "parentId": "imtgvif38q",
     "labelAlignment": "left",
