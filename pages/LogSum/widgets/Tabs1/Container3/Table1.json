@@ -80,7 +80,7 @@
         }
     },
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-    "columnUpdatedAt": 1697835073666,
+    "columnUpdatedAt": 1699026725838,
     "originalBottomRow": 87,
     "defaultSelectedRowIndices": [0],
     "mobileBottomRow": 36,
@@ -754,7 +754,7 @@
             "isCellEditable": true,
             "width": 150,
             "enableFilter": true,
-            "sticky": "",
+            "sticky": "right",
             "onOptionChange": "",
             "originalId": "InvoiceStatus",
             "cellBackground": "{{Table1.processedTableData.map((currentRow, currentIndex) => (  \n  (currentRow.InvoiceStatus === 'PAID'\n    ? \"LIGHTGREEN\"\n    :   (currentRow.InvoiceStatus === 'INPROCESS'\n    ? \"YELLOW\"\n    : \"ORANGE\"))\n))}}",
