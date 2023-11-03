@@ -350,6 +350,15 @@ export default {
 				productDesc: `${item.productDesc} - CreditGlory`
 			};
 		}
+		
+		//Credit Sage
+		if(group.organization === "org_rQt1f4NfvSjVAdvcncmW8p"){
+			return{
+				...item,
+				mailType: 'Custom',
+				productDesc: `${item.productDesc} - CreditSage`
+			};
+		}
 
 		//HomeOptions.ai
 		if(group.organization === "org_rTPY7kJULSh1pUWSr7wxhG"){
