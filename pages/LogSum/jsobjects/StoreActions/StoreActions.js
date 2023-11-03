@@ -136,6 +136,7 @@ export default {
 
 			if(!printerItem){
 				console.error("Customer Line Item with no printer line item", uuid);
+				continue;
 			}
 			console.log("JG printerItem", printerItem)
 			const printerInfo = getCalcAndDescription(printerItem, "printer")
