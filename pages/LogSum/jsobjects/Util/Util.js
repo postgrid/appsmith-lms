@@ -99,6 +99,11 @@ export default {
 					letterEndingText = '_CertifiedMail' + letterEndingText + orderInfo.withSignature ? '_RR' : '_NRR';
 				}
 
+				if(clientName === "Enter"){
+					generic = false;
+					letterEndingText = "EnterHealth"
+				}
+
 				if(generic){
 					letterEndingText = '_Generic'
 				}
@@ -215,7 +220,7 @@ export default {
 			}
 
 			for(const lineItem of lineItems){
-				
+
 				orderInfo.jobTotalCost += lineItem.Amount;
 				if(lineItem.SubItemID === null){
 					const orderDetails = Util.generateSolutionsLetterDetails(lineItem);
@@ -272,7 +277,7 @@ export default {
 					}
 				}
 			}
-			
+
 			orderInfo.pieceTotalCost = (
 				orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
 			);
