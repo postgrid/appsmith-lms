@@ -46,8 +46,8 @@ export default {
 				pieceQuantity: lineItem.Qty,
 
 				printQuantity: lineItem.Qty * lineItem.Pages,
-				perPages: 1,
-				perSheets: 1
+				perPages: lineItem.Pages,
+				perSheets: lineItem.Pages
 			}
 		} else {
 			//selfmailer

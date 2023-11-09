@@ -23,7 +23,7 @@ export default {
 			await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
 			await set_printer_price_id.run();
 		}
-		
+
 
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
@@ -42,9 +42,9 @@ export default {
 				vendorName: currentRow.AssignTo
 			}))[0]._id;
 		})();
-		
+
 		await Util.updateOrders(vendorID, groupType, orderGroupIDs);
-		
+
 		showAlert('Vendor has been updated successfully', 'success');
 	},
 	updateAllItemsVendor: async () => {		
@@ -67,7 +67,7 @@ export default {
 			await storeValue('printerItemsList',JSON.parse(JSON.stringify(itemsList).replaceAll("'", "''")));	
 			await set_printer_price_id.run();
 		}
-		
+
 		await StoreActions.updateOrderGroupVendors();
 		await get_customer_order_details.run();
 		await get_PauseCancel_custOrderDetai.run();
@@ -79,11 +79,11 @@ export default {
 			AssignTo: "",
 			itemid: currentRow.itemid
 		}});
-		
+
 		await storeValue("rowUpdate", currentRow)
 
 		const orderGroupIDs = (await get_printer_line_item.run()).map(item => item.OrderGroupID);
-		
+
 		await storeValue("clearVendor", {
 			orderGroupID: orderGroupIDs,
 			vendorID: ""
@@ -351,7 +351,7 @@ export default {
 				productDesc: `${item.productDesc} - CreditGlory`
 			};
 		}
-		
+
 		//Credit Sage
 		if(group.organization === "org_rQt1f4NfvSjVAdvcncmW8p"){
 			return{
@@ -519,15 +519,15 @@ export default {
 
 				if (sheetCount > 6) {
 					const sheetRange = sheetCount <= 15 ? '7 - 15' : 
-								sheetCount > 15 && sheetCount <= 60 ? '16 - 60' : 
-									sheetCount > 60 && sheetCount <= 100 ? '61 - 100' : 
-										sheetCount > 100 && sheetCount <= 150 ? '101 - 150' : 
-											sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : 
-												sheetCount > 300 && sheetCount <= 500 ? '301 - 500' : 
-													sheetCount > 500 && sheetCount <= 1000 ? '501 - 1000' : 
-														sheetCount > 1000 && sheetCount <= 1500 ? '1001 - 1500' : 
-															sheetCount > 1500 && sheetCount <= 2000 ? '1501 - 2000' : 
-																'over 2000'
+					sheetCount > 15 && sheetCount <= 60 ? '16 - 60' : 
+					sheetCount > 60 && sheetCount <= 100 ? '61 - 100' : 
+					sheetCount > 100 && sheetCount <= 150 ? '101 - 150' : 
+					sheetCount > 150 && sheetCount <= 300 ? '151 - 300' : 
+					sheetCount > 300 && sheetCount <= 500 ? '301 - 500' : 
+					sheetCount > 500 && sheetCount <= 1000 ? '501 - 1000' : 
+					sheetCount > 1000 && sheetCount <= 1500 ? '1001 - 1500' : 
+					sheetCount > 1500 && sheetCount <= 2000 ? '1501 - 2000' : 
+					'over 2000'
 					/** @type {LineItem} */
 					const oversizedItem = StoreActions.formatLetterCollateral({
 						id: UUID.generate(),
@@ -615,7 +615,8 @@ export default {
 				'Pearl Health',
 				'Accompany Health Inc',
 				'RazorMetrics',
-				'ERC Partners, LLC'
+				'ERC Partners, LLC',
+				'AnsibleHealth'
 			];
 			// Check for orgs with custom envelopes
 			if(
@@ -646,6 +647,9 @@ export default {
 						break;
 					case 'ERC Partners, LLC':
 						envelopeName = 'ERC Partners, LLC (Garett Law) Custom Envelope';
+						break;
+					case 'AnsibleHealth':
+						envelopeName = 'AnsibleHealth Custom Envelope';
 						break;
 				}
 
@@ -845,7 +849,7 @@ export default {
 
 					parentID: baseItem.id,
 					groupID: null,
-					pages: null
+					pages: 1 + group.letterPageCount
 				});
 			}
 
