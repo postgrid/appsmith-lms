@@ -6,6 +6,7 @@ export default {
 		//change printerPriceID for the current order
 		const printerName = currentRow.AssignTo;
 		const printerInfo = await get_printer_info.run({printerName});
+		console.log("JG", printerInfo)
 		if(printerInfo.length > 0){
 			await get_selected_printer_item_sing.run();
 			const allItems = get_selected_printer_item_sing.data

@@ -242,8 +242,11 @@ export default {
 
 				} else {
 					if(lineItem.ProductDescription.includes('Extra') || lineItem.ProductDescription.includes('add')){
-						orderInfo.printQuantity += lineItem.Qty
+						orderInfo.printQuantity += lineItem.Qty;
 						orderInfo.additionalCost = lineItem.Rate ?? 0;
+						if(orderInfo.mailType === 'Cheques' && orderInfo.perPages === 1){ 
+							orderInfo.perPages = 2;
+						}
 					} else if(lineItem.ProductDescription === "SameDay"){
 						orderInfo.sameDay = "YES";
 						orderInfo.sameDayCost = lineItem.Rate ?? 0;
