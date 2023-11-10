@@ -277,11 +277,30 @@ export default {
 					}
 				}
 			}
-
-			orderInfo.pieceTotalCost = (
-				orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
-			);
-
+			
+			if(moment(lineItems[0].InvoiceDate).isAfter(moment('2023-11-01')) && (lineItems[0].CustomerName === 'Credit Glory Inc' ||  lineItems[0].CustomerName === 'Credit Sage LLC') && orderInfo.perPages < 49){
+				const numberOfStamps = 
+							orderInfo.perPages <= 3 ? 1
+							: orderInfo.perPages >= 4 && orderInfo.perPages <= 8 ? 2 
+								: orderInfo.perPages === 9 ? 3 
+									: orderInfo.perPages >= 10 && orderInfo.perPages <= 21 ? 4 
+										: orderInfo.perPages >= 22 && orderInfo.perPages <= 32 ? 5
+											: orderInfo.perPages >= 33 && orderInfo.perPages <= 40 ? 6
+												: 7;
+				
+				orderInfo.oversize = orderInfo.perPages > 5 ? 3.7200 : 0.0000;
+				orderInfo.baseCost = 0.7838;
+				orderInfo.additionalCost = 0.0347
+				
+				orderInfo.pieceTotalCost = (
+					orderInfo.baseCost + ((orderInfo.perPages - 1) * orderInfo.additionalCost) + ((numberOfStamps - 1) * 0.0250) + orderInfo.oversize
+				);
+				
+			} else {
+				orderInfo.pieceTotalCost = (
+					orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
+				);
+			}
 
 			orderInfo.jobTotalCost = orderInfo.pieceTotalCost * orderInfo.pieceQuantity;
 			const jobNameDescription = this.generateJobNameDescription(orderInfo, clientName);
