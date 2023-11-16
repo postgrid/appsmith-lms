@@ -697,7 +697,7 @@ export default {
 			if((orgName === 'Credit Glory Inc' || orgName === 'Credit Sage LLC') && sheetCount >= 4 && sheetCount <= 48){
 				const sheets = 
 							sheetCount >= 4 && sheetCount <= 8 ? '4-8' :
-				sheetCount === 9 ? '9' :
+				sheetCount == 9 ? '9' :
 				sheetCount >= 10 && sheetCount <= 21 ? '10-21' :
 				sheetCount >= 22 && sheetCount <= 32 ? '22-32' :
 				sheetCount >= 33 && sheetCount <= 40 ? '33-40' :
