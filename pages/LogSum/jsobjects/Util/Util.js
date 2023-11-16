@@ -216,7 +216,9 @@ export default {
 				postcardSize: '',
 				mailType: '',
 				returnEnvelope: false,
-				customEnvelope: false
+				customEnvelope: false,
+				stampQuantity: 0,
+				tabbingFee: 0,
 			}
 
 			for(const lineItem of lineItems){
@@ -232,6 +234,18 @@ export default {
 						orderInfo.printQuantity = orderDetails.printQuantity;
 						orderInfo.perPages = orderDetails.perPages;
 						orderInfo.perSheets = orderDetails.perSheets;
+					}
+					
+					if(clientName === "Credit Glory Inc" || clientName === "Credit Sage LLC"){
+						orderInfo.stampQuantity = 
+								orderInfo.perSheets < 4 ? 1 :
+								orderInfo.perSheets >= 4 && orderInfo.perSheets <= 8 ? 2 :
+								orderInfo.perSheets === 9 ? 3 :
+								orderInfo.perSheets >= 10 && orderInfo.perSheets <= 21 ? 4 :
+								orderInfo.perSheets >= 22 && orderInfo.perSheets <= 32 ? 5 :
+								orderInfo.perSheets >= 33 && orderInfo.perSheets <= 40 ? 6 :
+								orderInfo.perSheets >= 41 && orderInfo.perSheets <= 48 ? 7 :
+								0
 					}
 
 					orderInfo.baseCost = lineItem.Rate ?? 0;
@@ -274,33 +288,16 @@ export default {
 						} else if(lineItem.MailType === "Return Envelope"){
 							orderInfo.returnEnvelope = true;
 						}
+					} else if(lineItem.ProductDescription === "Tabbing"){
+						orderInfo.tabblingFee =  lineItem.Rate ?? 0;
 					}
 				}
 			}
-			
-			if(moment(lineItems[0].InvoiceDate).isAfter(moment('2023-11-01')) && (lineItems[0].CustomerName === 'Credit Glory Inc' ||  lineItems[0].CustomerName === 'Credit Sage LLC') && orderInfo.perPages < 49){
-				const numberOfStamps = 
-							orderInfo.perPages <= 3 ? 1
-							: orderInfo.perPages >= 4 && orderInfo.perPages <= 8 ? 2 
-								: orderInfo.perPages === 9 ? 3 
-									: orderInfo.perPages >= 10 && orderInfo.perPages <= 21 ? 4 
-										: orderInfo.perPages >= 22 && orderInfo.perPages <= 32 ? 5
-											: orderInfo.perPages >= 33 && orderInfo.perPages <= 40 ? 6
-												: 7;
-				
-				orderInfo.oversize = orderInfo.perPages > 5 ? 3.7200 : 0.0000;
-				orderInfo.baseCost = 0.7838;
-				orderInfo.additionalCost = 0.0347
-				
-				orderInfo.pieceTotalCost = (
-					orderInfo.baseCost + ((orderInfo.perPages - 1) * orderInfo.additionalCost) + ((numberOfStamps - 1) * 0.0250) + orderInfo.oversize
-				);
-				
-			} else {
-				orderInfo.pieceTotalCost = (
-					orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
-				);
-			}
+
+			orderInfo.pieceTotalCost = (
+				orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + orderInfo.tabbingFee + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
+			);
+
 
 			orderInfo.jobTotalCost = orderInfo.pieceTotalCost * orderInfo.pieceQuantity;
 			const jobNameDescription = this.generateJobNameDescription(orderInfo, clientName);
@@ -371,6 +368,8 @@ export default {
 				'SameDay Price': solutionsItemInfo.sameDayCost === 0 ? '' : solutionsItemInfo.sameDayCost.toFixed(4),
 				International: solutionsItemInfo.international === 0 ? '' : solutionsItemInfo.international.toFixed(4),
 				Perforation: solutionsItemInfo.perforation === 0 ? '' : solutionsItemInfo.perforation.toFixed(4),
+				'Number of Stamps': solutionsInfo.stampQuantity === 0 ? '' : solutionsInfo.stampQuantity,
+				'Tabbing Fee': solutionsInfo.tabbingFee === 0 ? '' : solutionsInfo.tabbingFee.toFixed(4),
 				'Piece Total Cost': solutionsItemInfo.pieceTotalCost.toFixed(2),
 				'Job Total Cost': solutionsItemInfo.jobTotalCost.toFixed(2),
 				Notes: ""
