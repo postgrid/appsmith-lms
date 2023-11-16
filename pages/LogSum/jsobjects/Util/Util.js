@@ -216,7 +216,9 @@ export default {
 				postcardSize: '',
 				mailType: '',
 				returnEnvelope: false,
-				customEnvelope: false
+				customEnvelope: false,
+				stampQuantity: 0,
+				tabbingFee: 0,
 			}
 
 			for(const lineItem of lineItems){
@@ -232,6 +234,18 @@ export default {
 						orderInfo.printQuantity = orderDetails.printQuantity;
 						orderInfo.perPages = orderDetails.perPages;
 						orderInfo.perSheets = orderDetails.perSheets;
+					}
+					
+					if(clientName === "Credit Glory Inc" || clientName === "Credit Sage LLC"){
+						orderInfo.stampQuantity = 
+								orderInfo.perSheets < 4 ? 1 :
+								orderInfo.perSheets >= 4 && orderInfo.perSheets <= 8 ? 2 :
+								orderInfo.perSheets === 9 ? 3 :
+								orderInfo.perSheets >= 10 && orderInfo.perSheets <= 21 ? 4 :
+								orderInfo.perSheets >= 22 && orderInfo.perSheets <= 32 ? 5 :
+								orderInfo.perSheets >= 33 && orderInfo.perSheets <= 40 ? 6 :
+								orderInfo.perSheets >= 41 && orderInfo.perSheets <= 48 ? 7 :
+								0
 					}
 
 					orderInfo.baseCost = lineItem.Rate ?? 0;
@@ -274,12 +288,14 @@ export default {
 						} else if(lineItem.MailType === "Return Envelope"){
 							orderInfo.returnEnvelope = true;
 						}
+					} else if(lineItem.ProductDescription === "Tabbing"){
+						orderInfo.tabblingFee =  lineItem.Rate ?? 0;
 					}
 				}
 			}
 
 			orderInfo.pieceTotalCost = (
-				orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
+				orderInfo.baseCost + orderInfo.oversize + orderInfo.certified + orderInfo.priority + orderInfo.sameDayCost + orderInfo.international + orderInfo.perforation + orderInfo.tabbingFee + ((orderInfo.perSheets > 1 ? orderInfo.perSheets - 1 : 1) * orderInfo.additionalCost )
 			);
 
 
@@ -352,6 +368,8 @@ export default {
 				'SameDay Price': solutionsItemInfo.sameDayCost === 0 ? '' : solutionsItemInfo.sameDayCost.toFixed(4),
 				International: solutionsItemInfo.international === 0 ? '' : solutionsItemInfo.international.toFixed(4),
 				Perforation: solutionsItemInfo.perforation === 0 ? '' : solutionsItemInfo.perforation.toFixed(4),
+				'Number of Stamps': solutionsInfo.stampQuantity === 0 ? '' : solutionsInfo.stampQuantity,
+				'Tabbing Fee': solutionsInfo.tabbingFee === 0 ? '' : solutionsInfo.tabbingFee.toFixed(4),
 				'Piece Total Cost': solutionsItemInfo.pieceTotalCost.toFixed(2),
 				'Job Total Cost': solutionsItemInfo.jobTotalCost.toFixed(2),
 				Notes: ""
