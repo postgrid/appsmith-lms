@@ -368,8 +368,8 @@ export default {
 				'SameDay Price': solutionsItemInfo.sameDayCost === 0 ? '' : solutionsItemInfo.sameDayCost.toFixed(4),
 				International: solutionsItemInfo.international === 0 ? '' : solutionsItemInfo.international.toFixed(4),
 				Perforation: solutionsItemInfo.perforation === 0 ? '' : solutionsItemInfo.perforation.toFixed(4),
-				'Number of Stamps': solutionsInfo.stampQuantity === 0 ? '' : solutionsInfo.stampQuantity,
-				'Tabbing Fee': solutionsInfo.tabbingFee === 0 ? '' : solutionsInfo.tabbingFee.toFixed(4),
+				'Number of Stamps': solutionsItemInfo.stampQuantity === 0 ? '' : solutionsItemInfo.stampQuantity,
+				'Tabbing Fee': solutionsItemInfo.tabbingFee === 0 ? '' : solutionsItemInfo.tabbingFee.toFixed(4),
 				'Piece Total Cost': solutionsItemInfo.pieceTotalCost.toFixed(2),
 				'Job Total Cost': solutionsItemInfo.jobTotalCost.toFixed(2),
 				Notes: ""

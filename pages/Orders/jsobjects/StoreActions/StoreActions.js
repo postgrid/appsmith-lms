@@ -518,7 +518,6 @@ export default {
 				items.push(addlSheetItem);
 
 				if((orgName === 'Credit Glory Inc' || orgName === 'Credit Sage LLC') && sheetCount === 6){
-					const productOrgName = orgName === 'Credit Glory Inc' ? "CreditGlory" : "CreditSage"
 					const oversizedItem = StoreActions.formatLetterCollateral({
 						id: UUID.generate(),
 
@@ -527,7 +526,7 @@ export default {
 
 						quantity: group.orderCount,
 						mailType: 'Added Services',
-						productDesc: `Oversized (6 sheets) - ${productOrgName}`,
+						productDesc: `Oversized (6 sheets)`,
 						destinationCountryCode: null,
 
 						parentID: baseItem.id,

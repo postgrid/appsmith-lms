@@ -1,0 +1,57 @@
+
+
+WITH Query1 AS (
+    SELECT 
+        SUM(p."Amount") as "Total Cost (LocalCurrency)",
+        p2."Currency",
+  SUM(CASE WHEN p2."Currency" = 'CAD' THEN p."Amount" / {{appsmith.store.currency.CAD}}
+           WHEN p2."Currency" = 'GBP' THEN p."Amount" / {{appsmith.store.currency.GBP}}
+					 WHEN p2."Currency" = 'AUD' THEN p."Amount" / {{appsmith.store.currency.AUD}}
+           ELSE p."Amount" END) as "Total Cost (ConvertedToUSD)",
+  c1."CustomerName" as "ClientName"
+    FROM "public"."Invoice" i 
+        INNER JOIN "public"."PrinterLineItems" p ON ( p."InvoiceID" = i."InvoiceID"  )  
+        INNER JOIN "public"."PrinterPrice" p1 ON ( p1."Id" = p."PrinterPriceID"  )  
+        INNER JOIN "public"."Printers" p2 ON ( p2."Id" = p1."PrinterID"  )  
+        INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID"  )  
+   WHERE  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= DATE '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}'
+    GROUP BY 
+        c1."CustomerName", p2."Currency"
+),
+Query2 AS (
+    SELECT 
+        SUM(c."Amount") as "Total Cost (LocalCurrency income)",
+        p2."Currency" as "currencyIncome",
+        SUM(CASE 
+                WHEN   i."InvoiceStatus" ='PAID' THEN c."Amount"
+                ELSE 0
+            END) as "Total Cost PAID",
+	        SUM(CASE 
+                WHEN p2."Currency" = 'CAD' AND i."InvoiceStatus" !='PAID' THEN c."Amount" 
+                WHEN p2."Currency" = 'GBP' AND i."InvoiceStatus" !='PAID' THEN c."Amount" 
+                WHEN p2."Currency" = 'AUD' AND i."InvoiceStatus" !='PAID' THEN c."Amount"
+                ELSE 0
+            END) as "Total Cost (income ConvertedToUSD)",
+        c1."CustomerName" as "ClientName"
+    FROM "public"."Invoice" i 
+        INNER JOIN "public"."CustomerLineItems" c ON ( c."InvoiceID" = i."InvoiceID"  )  
+        INNER JOIN "public"."Printers" p2 ON ( p2."PrinterName" = c."Printer"  )  
+        INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID"  )  
+    WHERE  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= DATE '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}'
+    GROUP BY 
+        c1."CustomerName", p2."Currency"
+)
+SELECT 
+    COALESCE(q1."ClientName", q2."ClientName") as "ClientName",
+    COALESCE(q1."Currency", q2."currencyIncome") as "Currency",
+    COALESCE(q1."Total Cost (LocalCurrency)", 0) as "Total Cost (LocalCurrency)",
+    COALESCE(q1."Total Cost (ConvertedToUSD)", 0) as "Total Cost (ConvertedToUSD)",
+    COALESCE(q2."Total Cost (LocalCurrency income)", 0) as "Total Cost (LocalCurrency income)",
+    COALESCE(q2."Total Cost (income ConvertedToUSD)", 0) as "Total Cost (income ConvertedToUSD)",
+		COALESCE(q2."Total Cost PAID", 0) as "Total Cost PAID"
+FROM 
+    Query1 q1
+FULL OUTER JOIN 
+    Query2 q2 ON q1."ClientName" = q2."ClientName" AND q1."Currency" = q2."currencyIncome"
+ORDER BY 
+    LOWER(COALESCE(q1."ClientName", q2."ClientName")) ASC;

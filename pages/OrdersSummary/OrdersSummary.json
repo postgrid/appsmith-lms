@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1940,
+          "bottomRow": 1270,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -29,21 +29,14 @@
         "layoutOnLoadActions": [
           [
             {
-              "id": "OrdersSummary_Util.autorefresh",
-              "name": "Util.autorefresh",
-              "collectionId": "OrdersSummary_Util",
-              "confirmBeforeExecute": false,
-              "pluginType": "JS",
-              "jsonPathKeys": [],
-              "timeoutInMillisecond": 10000
-            },
-            {
               "id": "OrdersSummary_Util.synchronize",
               "name": "Util.synchronize",
               "collectionId": "OrdersSummary_Util",
               "confirmBeforeExecute": false,
               "pluginType": "JS",
-              "jsonPathKeys": [],
+              "jsonPathKeys": [
+                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  await get_current_tier.run();\n  await get_customer_order_details.run();\n  await get_invoicelist.run();\n  await get_list_of_collaterals.run();\n  await get_num_new_clients.run();\n  await get_printer_order_details.run();\n  await get_printerlist.run();\n  await get_cheque_day_volume.run();\n  await get_letter_day_volume.run();\n  await get_postcard_day_volume.run();\n}"
+              ],
               "timeoutInMillisecond": 10000
             },
             {
@@ -69,6 +62,16 @@
               "pluginType": "API",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
+            },
+            {
+              "id": "OrdersSummary_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
+              ],
+              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -82,43 +85,18 @@
                 "async () => {\n  storeValue('currency', get_forexchange.data.rates);\n}"
               ],
               "timeoutInMillisecond": 10000
-            }
-          ],
-          [
+            },
             {
-              "id": "OrdersSummary_get_pivot_expense",
-              "name": "get_pivot_expense",
+              "id": "OrdersSummary_get_sales_summary",
+              "name": "get_sales_summary",
               "confirmBeforeExecute": false,
               "pluginType": "DB",
               "jsonPathKeys": [
                 "appsmith.store.currency.AUD",
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
                 "appsmith.store.currency.CAD",
                 "appsmith.store.currency.GBP",
-                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
                 "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "OrdersSummary_get_pivot_income",
-              "name": "get_pivot_income",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [
-                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
-                "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
-              ],
-              "timeoutInMillisecond": 10000
-            }
-          ],
-          [
-            {
-              "id": "OrdersSummary_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }

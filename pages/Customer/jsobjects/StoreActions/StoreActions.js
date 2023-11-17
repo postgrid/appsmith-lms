@@ -8,10 +8,12 @@ export default {
 			console.log("update_allOrderRates")
 		} else {
 			const invoiceID = await get_invoiceID_for_Customer.run()
-			console.log("JG invoiceID", invoiceID)
+			if(invoiceID.length > 0){
+				console.log("JG invoiceID", invoiceID)
 			await storeValue("updateCustomerRate",{...currentRow, invoiceID: invoiceID[0].InvoiceID});
 			await update_todaysOrderRates.run();
 			console.log("update_todaysOrderRates")
+			}
 		}
 		await get_custpricelist.run(() => { showAlert('Well done!.','success')}, () => {});
 	},

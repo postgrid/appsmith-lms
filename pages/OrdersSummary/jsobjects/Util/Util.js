@@ -17,12 +17,12 @@ export default {
 		await get_cheque_day_volume.run();
 		await get_letter_day_volume.run();
 		await get_postcard_day_volume.run();
-	},
+	}/*,
 	autorefresh: async () => {
 		setInterval(() => {
 				get_letter_day_volume.run(),
 get_cheque_day_volume.run(), get_postcard_day_volume.run(),get_num_new_clients.run(),
 get_invoicelist_count.run()}, 3000, "autoupdate");
-	}
+	}*/
 
 }

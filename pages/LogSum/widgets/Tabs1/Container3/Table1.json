@@ -124,7 +124,7 @@
     "displayName": "Table",
     "bottomRow": 88,
     "columnWidthMap": {
-        "OrderDetails": 684,
+        "OrderDetails": 840,
         "CustomerCalculation": 263,
         "Qty": 84,
         "PrinterCalculation": 357,
