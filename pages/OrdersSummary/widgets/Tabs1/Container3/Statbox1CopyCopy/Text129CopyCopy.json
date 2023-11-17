@@ -26,7 +26,7 @@
     ],
     "shouldTruncate": false,
     "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-    "text": "USD     {{Table2.filteredTableData.map(x => x[\"Total Cost (ConvertedToUSD)\"].trim()).reduce((a, i) => a + Number(i), 0).toFixed(2) }}",
+    "text": "$ {{get_kpi_metrics.data[0].Revenue.toFixed(2)}}",
     "key": "ipr4lcutwx",
     "isDeprecated": false,
     "rightColumn": 64,

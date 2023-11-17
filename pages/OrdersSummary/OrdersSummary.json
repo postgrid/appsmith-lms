@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1270,
+          "bottomRow": 1260,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -62,16 +62,6 @@
               "pluginType": "API",
               "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "OrdersSummary_get_user",
-              "name": "get_user",
-              "confirmBeforeExecute": false,
-              "pluginType": "API",
-              "jsonPathKeys": [
-                "appsmith.store.access_token"
-              ],
-              "timeoutInMillisecond": 10000
             }
           ],
           [
@@ -82,7 +72,7 @@
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "async () => {\n  storeValue('currency', get_forexchange.data.rates);\n}"
+                "async () => {\n  storeValue('currency', get_forexchange.data.rates);\n  await get_sales_summary.run();\n  await get_kpi_metrics.run();\n}"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -93,10 +83,35 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "appsmith.store.currency.AUD",
-                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
                 "appsmith.store.currency.CAD",
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
                 "appsmith.store.currency.GBP",
                 "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "OrdersSummary_get_kpi_metrics",
+              "name": "get_kpi_metrics",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
+                "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "OrdersSummary_get_user",
+              "name": "get_user",
+              "confirmBeforeExecute": false,
+              "pluginType": "API",
+              "jsonPathKeys": [
+                "appsmith.store.access_token"
               ],
               "timeoutInMillisecond": 10000
             }
