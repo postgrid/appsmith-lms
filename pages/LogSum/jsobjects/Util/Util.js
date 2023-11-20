@@ -28,7 +28,7 @@ export default {
 		) {
 			return true;
 		}
-		
+
 		return false;
 	},
 	generateSolutionsLetterDetails: (lineItem) => {
