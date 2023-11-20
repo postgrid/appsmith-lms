@@ -16,8 +16,6 @@ get_cheque_day_volume.run(), get_postcard_day_volume.run(), showAlert('Well done
 	
 	conversion: async () => {
 		storeValue('currency',get_forexchange.data.rates)
-		await get_sales_summary.run();
-		await get_kpi_metrics.run();
 	},
 			runvolume: async () => {
  		await get_pivot_expense.run();

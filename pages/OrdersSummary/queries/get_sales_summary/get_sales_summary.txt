@@ -1,11 +1,13 @@
+
+
 WITH Query1 AS (
     SELECT 
-        SUM(p."Amount") as "Local Expense",
+        SUM(p."Amount") as "Total Cost (LocalCurrency)",
         p2."Currency",
   SUM(CASE WHEN p2."Currency" = 'CAD' THEN p."Amount" / {{appsmith.store.currency.CAD}}
            WHEN p2."Currency" = 'GBP' THEN p."Amount" / {{appsmith.store.currency.GBP}}
 					 WHEN p2."Currency" = 'AUD' THEN p."Amount" / {{appsmith.store.currency.AUD}}
-           ELSE p."Amount" END) as "Expense (USD Convesion)",
+           ELSE p."Amount" END) as "Total Cost (ConvertedToUSD)",
   c1."CustomerName" as "ClientName"
     FROM "public"."Invoice" i 
         INNER JOIN "public"."PrinterLineItems" p ON ( p."InvoiceID" = i."InvoiceID"  )  
@@ -18,16 +20,18 @@ WITH Query1 AS (
 ),
 Query2 AS (
     SELECT 
-        SUM(c."Amount") as "Revenue",
-        p2."Currency" as "RevenueCurrency",
+        SUM(c."Amount") as "Total Cost (LocalCurrency income)",
+        p2."Currency" as "currencyIncome",
         SUM(CASE 
                 WHEN   i."InvoiceStatus" ='PAID' THEN c."Amount"
                 ELSE 0
-            END) as "Amount Paid",
+            END) as "Total Cost PAID",
 	        SUM(CASE 
-                WHEN  i."InvoiceStatus" !='PAID' THEN c."Amount" 
+                WHEN p2."Currency" = 'CAD' AND i."InvoiceStatus" !='PAID' THEN c."Amount" 
+                WHEN p2."Currency" = 'GBP' AND i."InvoiceStatus" !='PAID' THEN c."Amount" 
+                WHEN p2."Currency" = 'AUD' AND i."InvoiceStatus" !='PAID' THEN c."Amount"
                 ELSE 0
-            END) as "Balance",
+            END) as "Total Cost (income ConvertedToUSD)",
         c1."CustomerName" as "ClientName"
     FROM "public"."Invoice" i 
         INNER JOIN "public"."CustomerLineItems" c ON ( c."InvoiceID" = i."InvoiceID"  )  
@@ -39,17 +43,15 @@ Query2 AS (
 )
 SELECT 
     COALESCE(q1."ClientName", q2."ClientName") as "ClientName",
-    COALESCE(q1."Currency", q2."RevenueCurrency") as "Currency",
-    COALESCE(q1."Local Expense", 0) as "Local Expense",
-    COALESCE(q1."Expense (USD Convesion)", 0) as "Expense (USD Convesion)",
-    COALESCE(q2."Revenue", 0) as "Revenue",
-    COALESCE(q2."Balance", 0) as "Balance",
-		COALESCE(q2."Amount Paid", 0) as "Amount Paid"
+    COALESCE(q1."Currency", q2."currencyIncome") as "Currency",
+    COALESCE(q1."Total Cost (LocalCurrency)", 0) as "Total Cost (LocalCurrency)",
+    COALESCE(q1."Total Cost (ConvertedToUSD)", 0) as "Total Cost (ConvertedToUSD)",
+    COALESCE(q2."Total Cost (LocalCurrency income)", 0) as "Total Cost (LocalCurrency income)",
+    COALESCE(q2."Total Cost (income ConvertedToUSD)", 0) as "Total Cost (income ConvertedToUSD)",
+		COALESCE(q2."Total Cost PAID", 0) as "Total Cost PAID"
 FROM 
     Query1 q1
 FULL OUTER JOIN 
-    Query2 q2 ON q1."ClientName" = q2."ClientName" AND q1."Currency" = q2."RevenueCurrency"
+    Query2 q2 ON q1."ClientName" = q2."ClientName" AND q1."Currency" = q2."currencyIncome"
 ORDER BY 
     LOWER(COALESCE(q1."ClientName", q2."ClientName")) ASC;
-
-

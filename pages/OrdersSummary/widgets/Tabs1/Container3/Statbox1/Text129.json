@@ -26,7 +26,7 @@
     ],
     "shouldTruncate": false,
     "truncateButtonColor": "{{appsmith.theme.colors.primaryColor}}",
-    "text": "{{\n(get_kpi_metrics.data[0].Revenue - get_kpi_metrics.data[0].ExpenseUSDConversion).toFixed(2)\n}}\n",
+    "text": "USD    {{Table2.filteredTableData.map(x => x[\"TotalRevenue\"].trim()).reduce((a, i) => a + Number(i), 0).toFixed(2) }}\n",
     "key": "ipr4lcutwx",
     "isDeprecated": false,
     "rightColumn": 64,
@@ -43,11 +43,9 @@
     "isLoading": false,
     "mobileTopRow": 4,
     "responsiveBehavior": "fill",
-    "originalTopRow": 4,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 1,
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 8,
     "fontSize": "1.25rem",
     "minDynamicHeight": 4
 }
