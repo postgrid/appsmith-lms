@@ -209,25 +209,38 @@ export default {
      */
 	classStr(group) {
 		if (group.destinationCountryCode === 'CA') {
-			if (group.mailingClass === 'standard_class') {
+			if (group.mailingClass === 'standard_class' || group.mailingClass === 'ca_post_personalized') {
 				return 'Personalized';
+			}else if(group.mailingClass === 'ca_post_lettermail'){
+				return 'Lettermail';
 			}
 
 			return 'Lettermail';
 		}
+		
+		if (
+			group.destinationCountryCode === 'GB'
+		) {
+			if (group.mailingClass === 'standard_class' || group.mailingClass === 'royal_mail_second_class') {
+				return 'Second Class';
+			} else if (group.mailingClass === 'royal_mail_first_class'){
+				return 'First Class';
+			}
+
+			return 'First Class';
+		}
 
 		if (
-			group.destinationCountryCode === 'GB' ||
 			group.destinationCountryCode === 'AU'
 		) {
-			if (group.mailingClass === 'standard_class') {
+			if (group.mailingClass === 'standard_class' || group.mailingClass === 'au_post_second_class') {
 				return 'Second Class';
 			}
 
 			return 'First Class';
 		}
 
-		if (group.mailingClass === 'standard_class') {
+		if (group.mailingClass === 'standard_class' || group.mailingClass === 'usps_standard_class') {
 			return 'Standard Class';
 		}
 
@@ -272,6 +285,18 @@ export default {
 					if (group.destinationCountryCode === 'CA') {
 						return 'UPS CA Express';
 					}
+					
+					if(group.mailingClass === 'usps_express_overnight'){
+						// TODO add when ready
+						// return 'USPS - Overnight';
+					} else if(group.mailingClass === 'usps_express_2_day'){
+						// TODO add when ready
+						// return 'USPS - 2 Days';
+					} else if (group.mailingClass === 'usps_express_3_day'){
+						// TODO add when ready
+						// return 'USPS - 3 Days';
+						
+					}
 
 					return 'USPS - 1 to 3 Days';
 				})(),
@@ -296,6 +321,7 @@ export default {
 		}
 
 		if (this.isLetterOrChequeGroup(group) && group.extraService) {
+			
 			/** @type {LineItemWithoutID} */
 			const extraServiceItem = {
 				orgID: group.organization,
@@ -306,6 +332,9 @@ export default {
 					certified: 'Certified Mail NRR',
 					certified_return_receipt: 'Certified Mail RR',
 					registered: 'Registered Mail',
+					usps_first_class_certified: 'Certified Mail NRR',
+					usps_first_class_certified_return_receipt: 'Certified Mail RR',
+					usps_first_class_registered: 'Registered Mail'
 				}[group.extraService],
 				destinationCountryCode: null,
 			};
@@ -517,26 +546,6 @@ export default {
 
 				items.push(addlSheetItem);
 
-				if((orgName === 'Credit Glory Inc' || orgName === 'Credit Sage LLC') && sheetCount === 6){
-					const oversizedItem = StoreActions.formatLetterCollateral({
-						id: UUID.generate(),
-
-						orgID: group.organization,
-						orgName,
-
-						quantity: group.orderCount,
-						mailType: 'Added Services',
-						productDesc: `Oversized (6 sheets)`,
-						destinationCountryCode: null,
-
-						parentID: baseItem.id,
-						groupID: null,
-						pages: null
-					}, group, true);
-
-					items.push(oversizedItem);
-				}
-
 				if (sheetCount > 6) {
 					const sheetRange = sheetCount <= 15 ? '7 - 15' : 
 					sheetCount > 15 && sheetCount <= 60 ? '16 - 60' : 
@@ -691,34 +700,6 @@ export default {
 				};
 
 				items.push(customEnvelopeItem);
-			}
-
-			if((orgName === 'Credit Glory Inc' || orgName === 'Credit Sage LLC') && sheetCount >= 4 && sheetCount <= 48){
-				const sheets = 
-							sheetCount >= 4 && sheetCount <= 8 ? '4-8' :
-				sheetCount == 9 ? '9' :
-				sheetCount >= 10 && sheetCount <= 21 ? '10-21' :
-				sheetCount >= 22 && sheetCount <= 32 ? '22-32' :
-				sheetCount >= 33 && sheetCount <= 40 ? '33-40' :
-				'41-48'
-
-				const tabbingFeeItem = {
-					id: UUID.generate(),
-
-					orgID: group.organization,
-					orgName,
-
-					quantity: group.orderCount,
-					mailType: 'Added Services',
-					productDesc: `Tabbing Fee (${sheets} sheets)`,
-					destinationCountryCode: null,
-
-					parentID: baseItem.id,
-					groupID: null,
-					pages: null
-				};
-
-				items.push(tabbingFeeItem);
 			}
 
 			return items;

@@ -16,6 +16,21 @@ export default {
 		}, 3000, "autoupdate");
 		/*get_invoicelist_count.run()*/
 	},
+	isExpress: (productDescription) => {
+		if(
+			productDescription.includes('Australia Post Express') ||
+			productDescription.includes('Royal Mail Express') ||
+			productDescription.includes('UPS CA Express') ||
+			productDescription.includes('usps_express_overnight') ||
+			productDescription.includes('usps_express_2_day') ||
+			productDescription.includes('usps_express_3_day') ||
+			productDescription.includes('USPS - 1 to 3 Days')
+		) {
+			return true;
+		}
+		
+		return false;
+	},
 	generateSolutionsLetterDetails: (lineItem) => {
 		if(lineItem.ProductType === "Postcard"){
 			return {
@@ -55,6 +70,7 @@ export default {
 		return;
 	},
 	generateJobNameDescription: (orderInfo, clientName) => {
+		console.log("JG ordderinfo", orderInfo)
 		const customClients = new Map([
 			['AtoB', 'AtoB'],
 			['Highland Health Direct', 'FFW_HighlandHealthDirect'],
@@ -112,16 +128,16 @@ export default {
 			}
 
 			if(orderInfo.mailType === 'Postcard'){
-				return `Postcards${orderInfo.international > 0 ? '_International' : ''}${orderInfo.priorityText.includes('Express') ? '_Expresss' : ''}_${orderInfo.postcardSize}`
+				return `Postcards${orderInfo.international > 0 ? 'International' : ''}${orderInfo.priorityText.includes('Express') ? 'Express' : ''}_${orderInfo.postcardSize}`
 			} else if(orderInfo.mailType === 'Letter'){
 				return `${
-				orderInfo.international > 0 ? 'International' : orderInfo.priorityText.includes('Express') ? '_Expresss' : orderInfo.mailClass
+				orderInfo.international > 0 ? 'International' : this.isExpress(orderInfo.priorityText) ? 'Express' : orderInfo.mailClass
 			}_${
 				orderInfo.inkType === 'BW' ? 'BW' : 'Color'
 			}_${orderInfo.pageType}${generateLetterEnding()}`
 			} else {
 				return `${
-				orderInfo.priorityText.includes('Express') ? '_Expresss' : orderInfo.mailClass
+				this.isExpress(orderInfo.priorityText) ? 'Express' : orderInfo.mailClass
 			}_Cheques_${
 				orderInfo.perPages > 1 ? 'WithDocuments' : 'Only'
 			}${
@@ -222,6 +238,7 @@ export default {
 			}
 
 			for(const lineItem of lineItems){
+				console.log("JG lineItem", lineItem);
 
 				orderInfo.jobTotalCost += lineItem.Amount;
 				if(lineItem.SubItemID === null){
@@ -235,17 +252,17 @@ export default {
 						orderInfo.perPages = orderDetails.perPages;
 						orderInfo.perSheets = orderDetails.perSheets;
 					}
-					
+
 					if(clientName === "Credit Glory Inc" || clientName === "Credit Sage LLC"){
 						orderInfo.stampQuantity = 
-								orderInfo.perSheets < 4 ? 1 :
-								orderInfo.perSheets >= 4 && orderInfo.perSheets <= 8 ? 2 :
-								orderInfo.perSheets === 9 ? 3 :
-								orderInfo.perSheets >= 10 && orderInfo.perSheets <= 21 ? 4 :
-								orderInfo.perSheets >= 22 && orderInfo.perSheets <= 32 ? 5 :
-								orderInfo.perSheets >= 33 && orderInfo.perSheets <= 40 ? 6 :
-								orderInfo.perSheets >= 41 && orderInfo.perSheets <= 48 ? 7 :
-								0
+							orderInfo.perSheets < 4 ? 1 :
+						orderInfo.perSheets >= 4 && orderInfo.perSheets <= 8 ? 2 :
+						orderInfo.perSheets === 9 ? 3 :
+						orderInfo.perSheets >= 10 && orderInfo.perSheets <= 21 ? 4 :
+						orderInfo.perSheets >= 22 && orderInfo.perSheets <= 32 ? 5 :
+						orderInfo.perSheets >= 33 && orderInfo.perSheets <= 40 ? 6 :
+						orderInfo.perSheets >= 41 && orderInfo.perSheets <= 48 ? 7 :
+						0
 					}
 
 					orderInfo.baseCost = lineItem.Rate ?? 0;
@@ -279,7 +296,7 @@ export default {
 						orderInfo.international = lineItem.Rate ?? 0;
 					} else if(lineItem.ProductDescription.includes("Perforated")){
 						orderInfo.perforation = lineItem.Rate ?? 0;
-					} else if(lineItem.MailType === "Express"){
+					} else if(this.isExpress(lineItem.ProductDescription)){
 						orderInfo.priorityText = lineItem.ProductDescription;
 						orderInfo.priority = lineItem.Rate ?? 0;
 					} else if (lineItem.productType === "Envelope"){
