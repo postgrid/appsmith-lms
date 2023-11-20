@@ -70,7 +70,6 @@ export default {
 		return;
 	},
 	generateJobNameDescription: (orderInfo, clientName) => {
-		console.log("JG ordderinfo", orderInfo)
 		const customClients = new Map([
 			['AtoB', 'AtoB'],
 			['Highland Health Direct', 'FFW_HighlandHealthDirect'],
@@ -238,8 +237,6 @@ export default {
 			}
 
 			for(const lineItem of lineItems){
-				console.log("JG lineItem", lineItem);
-
 				orderInfo.jobTotalCost += lineItem.Amount;
 				if(lineItem.SubItemID === null){
 					const orderDetails = Util.generateSolutionsLetterDetails(lineItem);
