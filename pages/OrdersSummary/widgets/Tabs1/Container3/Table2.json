@@ -158,7 +158,7 @@
             "verticalAlignment": "CENTER"
         },
         "ExpenseToUSD": {
-            "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ExpenseToUSD\"].toFied(2)))}}",
+            "computedValue": "{{Table2.processedTableData.map((currentRow, currentIndex) => ( currentRow[\"ExpenseToUSD\"].toFixed(2)))}}",
             "isEditable": false,
             "notation": "standard",
             "alias": "ExpenseToUSD",
