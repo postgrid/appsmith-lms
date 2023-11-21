@@ -13,7 +13,7 @@
           "detachFromLayout": true,
           "widgetId": "0",
           "topRow": 0,
-          "bottomRow": 1270,
+          "bottomRow": 1250,
           "containerStyle": "none",
           "snapRows": 125,
           "parentRowSpace": 1,
@@ -35,24 +35,8 @@
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n  await get_current_tier.run();\n  await get_customer_order_details.run();\n  await get_invoicelist.run();\n  await get_list_of_collaterals.run();\n  await get_num_new_clients.run();\n  await get_printer_order_details.run();\n  await get_printerlist.run();\n  await get_cheque_day_volume.run();\n  await get_letter_day_volume.run();\n  await get_postcard_day_volume.run();\n}"
+                "async () => {\n  await get_user.run();\n  await get_user_department.run();\n}"
               ],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "OrdersSummary_get_collaterals",
-              "name": "get_collaterals",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [],
-              "timeoutInMillisecond": 10000
-            },
-            {
-              "id": "OrdersSummary_get_collaterals_subitem",
-              "name": "get_collaterals_subitem",
-              "confirmBeforeExecute": false,
-              "pluginType": "DB",
-              "jsonPathKeys": [],
               "timeoutInMillisecond": 10000
             },
             {
@@ -76,13 +60,13 @@
           ],
           [
             {
-              "id": "OrdersSummary_StoreActions.conversion",
-              "name": "StoreActions.conversion",
+              "id": "OrdersSummary_StoreActions.onpage_init",
+              "name": "StoreActions.onpage_init",
               "collectionId": "OrdersSummary_StoreActions",
               "confirmBeforeExecute": false,
               "pluginType": "JS",
               "jsonPathKeys": [
-                "async () => {\n  storeValue('currency', get_forexchange.data.rates);\n}"
+                "async () => {\n  storeValue('currency', get_forexchange.data.rates);\n  await get_sales_summary.run();\n  await get_kpi_metrics.run();\n}"
               ],
               "timeoutInMillisecond": 10000
             },
@@ -93,8 +77,24 @@
               "pluginType": "DB",
               "jsonPathKeys": [
                 "appsmith.store.currency.AUD",
-                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
                 "appsmith.store.currency.CAD",
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
+                "appsmith.store.currency.GBP",
+                "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
+              ],
+              "timeoutInMillisecond": 10000
+            }
+          ],
+          [
+            {
+              "id": "OrdersSummary_get_kpi_metrics",
+              "name": "get_kpi_metrics",
+              "confirmBeforeExecute": false,
+              "pluginType": "DB",
+              "jsonPathKeys": [
+                "appsmith.store.currency.AUD",
+                "appsmith.store.currency.CAD",
+                "moment(DatePicker1.selectedDate).format(\"YYYY-MM-DD\")",
                 "appsmith.store.currency.GBP",
                 "moment(DatePicker2.selectedDate).format(\"YYYY-MM-DD\")"
               ],

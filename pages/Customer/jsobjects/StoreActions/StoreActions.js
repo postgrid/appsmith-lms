@@ -32,9 +32,9 @@ export default {
 			"Query2": Query2,
 			"Query3": Query3
 		}
-		await queries[queryName]?.run();
+	queries[queryName]?.run();
 		//Table3.tableData = queries[queryName].data
-		await storeValue('tableData', queries[queryName].data)
+	storeValue('tableData', queries[queryName].data)
 	},
 	updatePrinterTier: async () => {
 		//verify that the start date is greater then the end date

@@ -117,7 +117,7 @@
             "index": 1,
             "label": "EOD Summary",
             "id": "tab1",
-            "isVisible": true
+            "isVisible": false
         },
         "tab2": {
             "widgetId": "ud1hfh7oxm",

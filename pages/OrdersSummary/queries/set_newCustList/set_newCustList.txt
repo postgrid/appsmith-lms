@@ -1,5 +1,0 @@
-INSERT INTO public."Customers" ("OrgID", "CustomerName") 
-VALUES
-	 {{appsmith.store.newList.map((d) => { 	
-			return"(" + "'" + d.orgID + "'," + "'" + d.orgName + "')"}).join(",")  }}
-ON CONFLICT ("OrgID") DO NOTHING;

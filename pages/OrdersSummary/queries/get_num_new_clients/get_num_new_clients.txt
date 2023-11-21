@@ -1,1 +1,0 @@
-select count(*) from "Customers" where to_date(cast("JoiningDate" as TEXT),'YYYY-MM-DD')  >= '{{moment().format('YYYY-MM-DD')}}';

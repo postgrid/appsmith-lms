@@ -5,7 +5,7 @@ WITH Query1 AS (
   SUM(CASE WHEN p2."Currency" = 'CAD' THEN p."Amount" / {{appsmith.store.currency.CAD}}
            WHEN p2."Currency" = 'GBP' THEN p."Amount" / {{appsmith.store.currency.GBP}}
 					 WHEN p2."Currency" = 'AUD' THEN p."Amount" / {{appsmith.store.currency.AUD}}
-           ELSE p."Amount" END) as "Expense (USD Conversion)",
+           ELSE p."Amount" END) as "Expense (USD Convesion)",
   c1."CustomerName" as "ClientName"
     FROM "public"."Invoice" i 
         INNER JOIN "public"."PrinterLineItems" p ON ( p."InvoiceID" = i."InvoiceID"  )  
@@ -13,7 +13,7 @@ WITH Query1 AS (
         INNER JOIN "public"."Printers" p2 ON ( p2."Id" = p1."PrinterID"  )  
         INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID"  )  
    WHERE  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= DATE '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}'
-    GROUP BY 
+       GROUP BY 
         c1."CustomerName", p2."Currency"
 ),
 Query2 AS (
@@ -33,23 +33,21 @@ Query2 AS (
         INNER JOIN "public"."CustomerLineItems" c ON ( c."InvoiceID" = i."InvoiceID"  )  
         INNER JOIN "public"."Printers" p2 ON ( p2."PrinterName" = c."Printer"  )  
         INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID"  )  
-    WHERE  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= DATE '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}'
-    GROUP BY 
+   WHERE  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= DATE '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}'
+       GROUP BY 
         c1."CustomerName", p2."Currency"
 )
 SELECT 
-    COALESCE(q1."ClientName", q2."ClientName") as "ClientName",
-    COALESCE(q1."Currency", q2."RevenueCurrency") as "Currency",
-    COALESCE(q1."Local Expense", 0) as "Local Expense",
-    COALESCE(q1."Expense (USD Conversion)", 0) as "ExpenseToUSD",
-    COALESCE(q2."Revenue", 0) as "Revenue",
-    COALESCE(q2."Balance", 0) as "Balance",
-		COALESCE(q2."Amount Paid", 0) as "Amount Paid"
+    --COALESCE(q1."ClientName", q2."ClientName") as "ClientName",
+    --COALESCE(q1."Currency", q2."RevenueCurrency") as "Currency",
+    --SUM(COALESCE(q1."Local Expense", 0) ) as "Local Expense",
+    SUM(COALESCE(q1."Expense (USD Convesion)", 0) ) as "ExpenseToUSD",
+    SUM(COALESCE(q2."Revenue", 0) ) as "Revenue",
+    SUM(COALESCE(q2."Balance", 0) ) as "Balance",
+	SUM(COALESCE(q2."Amount Paid", 0) )as "AmountPaid"
 FROM 
     Query1 q1
 FULL OUTER JOIN 
     Query2 q2 ON q1."ClientName" = q2."ClientName" AND q1."Currency" = q2."RevenueCurrency"
-ORDER BY 
-    LOWER(COALESCE(q1."ClientName", q2."ClientName")) ASC;
-
-
+--ORDER BY 
+--    LOWER(COALESCE(q1."ClientName", q2."ClientName")) ASC;

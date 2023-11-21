@@ -74,7 +74,7 @@
     ],
     "dynamicPropertyPathList": [],
     "displayName": "Table",
-    "bottomRow": 68,
+    "bottomRow": 69,
     "columnWidthMap": {
         "clients_cancelled": 160.9609375,
         "true_num_of_clients": 183,
@@ -253,7 +253,7 @@
     "horizontalAlignment": "LEFT",
     "isVisibleSearch": false,
     "responsiveBehavior": "fill",
-    "originalTopRow": 4,
+    "originalTopRow": 5,
     "mobileLeftColumn": 23,
     "isVisiblePagination": true,
     "verticalAlignment": "CENTER"

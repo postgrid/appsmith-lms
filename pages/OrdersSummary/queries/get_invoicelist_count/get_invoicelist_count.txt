@@ -1,7 +1,0 @@
-
-
-
-SELECT count(*)
-FROM "public"."Invoice" i 
-	INNER JOIN "public"."Customers" c1 ON ( c1."Id" = i."CustomerID"  )  
-WHERE to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD')  >= '{{moment().format('YYYY-MM-DD')}}'  

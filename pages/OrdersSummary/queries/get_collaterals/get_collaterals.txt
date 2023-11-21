@@ -1,1 +1,0 @@
-  SELECT "ProductDescription" from "Products" where "ProductType" IN ('Letter','Cheque','Postcard')

@@ -1,6 +1,0 @@
-SELECT Sum(c1."Qty")
-FROM "public"."Invoice" i 
-	INNER JOIN "public"."CustomerLineItems" c1 ON ( c1."InvoiceID" = i."InvoiceID"  )  
-	INNER JOIN "public"."CustomerPrice" c2 ON ( c2."Id" = c1."CustomerPriceID"  )  
-	INNER JOIN "public"."Products" p ON ( p."Id" = c2."ProductID"  )  
-WHERE p."ProductType" = 'Cheque'   AND  to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment().format("YYYY-MM-DD")}}'
