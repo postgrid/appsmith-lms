@@ -3,7 +3,7 @@
     "boxShadow": "none",
     "mobileBottomRow": 4,
     "widgetName": "Button3",
-    "onClick": "{{StoreActions.rundateoforder();}}",
+    "onClick": "{{StoreActions.rundateoforder();\nset_to_zero.run()}}",
     "buttonColor": "{{appsmith.theme.colors.primaryColor}}",
     "displayName": "Button",
     "iconSVG": "https://appcdn.appsmith.com/static/media/icon.05d209fafeb13a8569e3b4e97069d9ee.svg",

@@ -1,0 +1,47 @@
+
+WITH ExpenseConversion AS (
+    SELECT 
+        p."Printer",
+        p2."Currency",
+        SUM(p."Amount") as "Local Expense",
+        SUM(CASE 
+                WHEN p2."Currency" = 'CAD' THEN p."Amount" / {{appsmith.store.currency.CAD}}
+                WHEN p2."Currency" = 'GBP' THEN p."Amount" / {{appsmith.store.currency.GBP}}
+                WHEN p2."Currency" = 'AUD' THEN p."Amount" / {{appsmith.store.currency.AUD}}
+                ELSE p."Amount" 
+            END) as "ExpenseToUSD"
+    FROM 
+        "public"."Invoice" i 
+        INNER JOIN "public"."PrinterLineItems" p ON (p."InvoiceID" = i."InvoiceID")  
+        INNER JOIN "public"."PrinterPrice" p1 ON (p1."Id" = p."PrinterPriceID")  
+        INNER JOIN "public"."Printers" p2 ON (p2."Id" = p1."PrinterID")  
+        INNER JOIN "public"."Customers" c1 ON (c1."Id" = i."CustomerID")  
+    WHERE  
+            to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= DATE '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}' 
+        AND p."Printer" IN (
+            SELECT DISTINCT(p."Printer")
+            FROM "public"."PrinterLineItems" as p
+            INNER JOIN "public"."Invoice" i ON (p."InvoiceID" = i."InvoiceID")
+            WHERE   
+                   to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') >= DATE '{{moment(DatePicker1.selectedDate).format("YYYY-MM-DD")}}' AND to_date(cast(i."InvoiceDate" as TEXT),'YYYY-MM-DD') <= DATE '{{moment(DatePicker2.selectedDate).format("YYYY-MM-DD")}}' 
+                AND p."Printer" != 'CANCELLED' 
+                AND p."Printer" != 'PAUSED'
+        )
+    GROUP BY p."Printer", p2."Currency"
+)
+
+SELECT 
+    "Printer",
+    "Currency",
+    "Local Expense",
+    "ExpenseToUSD"
+FROM ExpenseConversion
+
+UNION ALL
+
+SELECT 
+    'Total' as "Printer",
+    'USD' as "Currency",
+    0 as "Local Expense",
+    SUM("ExpenseToUSD") as "ExpenseToUSD"
+FROM ExpenseConversion;

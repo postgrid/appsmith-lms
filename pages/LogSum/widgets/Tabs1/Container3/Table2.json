@@ -113,7 +113,7 @@
     ],
     "dynamicPropertyPathList": [{"key": "tableData"}],
     "displayName": "Table",
-    "bottomRow": 163,
+    "bottomRow": 156,
     "columnWidthMap": {
         "Job_Description": 475,
         "Job_Name": 371

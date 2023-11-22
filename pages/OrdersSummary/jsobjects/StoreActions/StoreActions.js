@@ -4,5 +4,7 @@ export default {
 		storeValue('currency',get_forexchange.data.rates)
 		await get_sales_summary.run();
 		await get_kpi_metrics.run();
+		await Query1.run();
+		await Query2.run();
 	}
 }

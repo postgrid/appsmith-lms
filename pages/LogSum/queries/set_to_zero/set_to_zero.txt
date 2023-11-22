@@ -1,0 +1,19 @@
+UPDATE "PrinterLineItems"
+SET "Amount" = 0,
+    "OrderStatus" = 'PAUSED'
+WHERE "Printer" = 'PAUSED';
+
+UPDATE "CustomerLineItems"
+SET "Amount" = 0,
+"OrderStatus" = 'PAUSED'
+WHERE "Printer" = 'PAUSED';
+
+UPDATE "PrinterLineItems"
+SET "Amount" = 0,
+"OrderStatus" = 'CANCELLED'
+WHERE "Printer" = 'CANCELLED';
+
+UPDATE "CustomerLineItems"
+SET "Amount" = 0,
+"OrderStatus" = 'CANCELLED'
+WHERE "Printer" = 'CANCELLED';
