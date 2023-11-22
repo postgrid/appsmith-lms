@@ -618,6 +618,26 @@ export default {
 
                 items.push(addlSheetItem);
 
+								if((orgName === 'Credit Glory Inc' || orgName === 'Credit Sage LLC') && sheetCount === 6){
+									const oversizedItem = StoreActions.formatLetterCollateral({
+										id: UUID.generate(),
+
+										orgID: group.organization,
+										orgName,
+
+										quantity: group.orderCount,
+										mailType: 'Added Services',
+										productDesc: `Oversized (6 sheets)`,
+										destinationCountryCode: null,
+
+										parentID: baseItem.id,
+										groupID: null,
+										pages: null
+									}, group, true);
+
+									items.push(oversizedItem);
+								}
+
                 if (sheetCount > 6) {
                     const sheetRange =
                         sheetCount <= 15
@@ -800,6 +820,34 @@ export default {
 
                 items.push(customEnvelopeItem);
             }
+					
+						if((orgName === 'Credit Glory Inc' || orgName === 'Credit Sage LLC') && sheetCount >= 4 && sheetCount <= 48){
+							const sheets = 
+										sheetCount >= 4 && sheetCount <= 8 ? '4-8' :
+										sheetCount == 9 ? '9' :
+										sheetCount >= 10 && sheetCount <= 21 ? '10-21' :
+										sheetCount >= 22 && sheetCount <= 32 ? '22-32' :
+										sheetCount >= 33 && sheetCount <= 40 ? '33-40' :
+										'41-48'
+
+							const tabbingFeeItem = {
+								id: UUID.generate(),
+
+								orgID: group.organization,
+								orgName,
+
+								quantity: group.orderCount,
+								mailType: 'Added Services',
+								productDesc: `Tabbing Fee (${sheets} sheets)`,
+								destinationCountryCode: null,
+
+								parentID: baseItem.id,
+								groupID: null,
+								pages: null
+							};
+
+							items.push(tabbingFeeItem);
+						}
 
             return items;
         };
