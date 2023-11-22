@@ -10,8 +10,8 @@
         "visuals",
         "visualisations"
     ],
-    "topRow": 123,
-    "bottomRow": 185,
+    "topRow": 103,
+    "bottomRow": 165,
     "parentRowSpace": 10,
     "type": "CHART_WIDGET",
     "hideCard": false,
@@ -99,11 +99,11 @@
     "mobileTopRow": 87,
     "responsiveBehavior": "fill",
     "yAxisName": "Printers",
-    "originalTopRow": 123,
+    "originalTopRow": 103,
     "chartName": "Printer Expenses Chart",
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 32,
     "xAxisName": "Total Expenses in USD",
-    "originalBottomRow": 185,
+    "originalBottomRow": 165,
     "chartType": "BAR_CHART"
 }

@@ -17,7 +17,7 @@
     "animateLoading": true,
     "parentColumnSpace": 19.125,
     "dynamicTriggerPathList": [{"key": "onDateSelected"}],
-    "leftColumn": 48,
+    "leftColumn": 53,
     "dynamicBindingPathList": [
         {"key": "accentColor"},
         {"key": "borderRadius"},
@@ -31,7 +31,7 @@
     "labelTextSize": "0.875rem",
     "isRequired": false,
     "isDeprecated": false,
-    "rightColumn": 59,
+    "rightColumn": 64,
     "defaultDate": "{{moment().format('YYYY-MM-DD')}}",
     "dynamicHeight": "FIXED",
     "accentColor": "{{appsmith.theme.colors.primaryColor}}",

@@ -6,8 +6,8 @@
     "isCanvas": true,
     "displayName": "Stats Box",
     "iconSVG": "/static/media/icon.382a7c7bc55323fbbd8edd79208c5324.svg",
-    "topRow": 0,
-    "bottomRow": 14,
+    "topRow": 10,
+    "bottomRow": 20,
     "parentRowSpace": 10,
     "type": "STATBOX_WIDGET",
     "hideCard": false,
@@ -16,7 +16,7 @@
     "animateLoading": true,
     "parentColumnSpace": 28.546875,
     "dynamicTriggerPathList": [],
-    "leftColumn": 20,
+    "leftColumn": 28,
     "dynamicBindingPathList": [
         {"key": "borderRadius"},
         {"key": "boxShadow"}
@@ -26,7 +26,7 @@
         "widgetName": "Canvas121",
         "displayName": "Canvas",
         "topRow": 0,
-        "bottomRow": 140,
+        "bottomRow": 100,
         "parentRowSpace": 1,
         "type": "CANVAS_WIDGET",
         "canExtend": false,
@@ -58,8 +58,8 @@
     "key": "njma9i0er0",
     "backgroundColor": "white",
     "isDeprecated": false,
-    "rightColumn": 35,
-    "dynamicHeight": "FIXED",
+    "rightColumn": 37,
+    "dynamicHeight": "AUTO_HEIGHT",
     "widgetId": "otjz7kv1o6",
     "isVisible": true,
     "parentId": "47tca8pon2",
@@ -67,8 +67,10 @@
     "isLoading": false,
     "mobileTopRow": 19,
     "responsiveBehavior": "fill",
+    "originalTopRow": 10,
     "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
     "mobileLeftColumn": 2,
     "maxDynamicHeight": 9000,
-    "minDynamicHeight": 14
+    "originalBottomRow": 20,
+    "minDynamicHeight": 10
 }

@@ -12,7 +12,7 @@
         "group"
     ],
     "topRow": 17,
-    "bottomRow": 205,
+    "bottomRow": 185,
     "parentRowSpace": 10,
     "type": "CONTAINER_WIDGET",
     "hideCard": false,
@@ -30,7 +30,7 @@
         "displayName": "Canvas",
         "widgetId": "47tca8pon2",
         "topRow": 0,
-        "bottomRow": 1880,
+        "bottomRow": 1680,
         "containerStyle": "none",
         "parentRowSpace": 1,
         "isVisible": true,
@@ -63,6 +63,6 @@
     "originalTopRow": 17,
     "borderRadius": "0px",
     "maxDynamicHeight": 9000,
-    "originalBottomRow": 198,
+    "originalBottomRow": 183,
     "minDynamicHeight": 10
 }
