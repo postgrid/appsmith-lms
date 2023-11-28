@@ -1,1 +1,1 @@
-  SELECT "ProductDescription" from "Products" where "ProductType" IN ('Letter','Cheque','Postcard')
+  SELECT "ProductDescription" from "Products" where "ProductType" IN ('Letter','Cheque','Postcard','Samples','Order')

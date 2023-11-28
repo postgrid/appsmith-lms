@@ -302,7 +302,7 @@ export default {
 						} else if(lineItem.MailType === "Return Envelope"){
 							orderInfo.returnEnvelope = true;
 						}
-					} else if(lineItem.ProductDescription === "Tabbing"){
+					} else if(lineItem.ProductDescription.includes("Tabbing")){
 						orderInfo.tabblingFee =  lineItem.Rate ?? 0;
 					}
 				}

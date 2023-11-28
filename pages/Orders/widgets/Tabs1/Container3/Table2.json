@@ -72,7 +72,7 @@
     },
     "borderRadius": "0px",
     "columnUpdatedAt": 1682480240889,
-    "originalBottomRow": 101,
+    "originalBottomRow": 102,
     "primaryColumnId": "InvoiceNo",
     "defaultSelectedRowIndices": [0],
     "widgetName": "Table2",
@@ -600,7 +600,7 @@
     "renderMode": "CANVAS",
     "horizontalAlignment": "LEFT",
     "isVisibleSearch": true,
-    "originalTopRow": 13,
+    "originalTopRow": 14,
     "isVisiblePagination": true,
     "cellBackground": "",
     "verticalAlignment": "CENTER"

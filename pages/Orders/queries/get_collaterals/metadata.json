@@ -18,7 +18,7 @@
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
-      "body": "  SELECT \"ProductDescription\" from \"Products\" where \"ProductType\" IN ('Letter','Cheque','Postcard')",
+      "body": "  SELECT \"ProductDescription\" from \"Products\" where \"ProductType\" IN ('Letter','Cheque','Postcard','Samples','Order')",
       "selfReferencingDataPaths": [],
       "pluginSpecifiedTemplates": [
         {
