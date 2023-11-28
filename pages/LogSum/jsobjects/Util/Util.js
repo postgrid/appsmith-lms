@@ -303,7 +303,7 @@ export default {
 							orderInfo.returnEnvelope = true;
 						}
 					} else if(lineItem.ProductDescription.includes("Tabbing")){
-						orderInfo.tabblingFee =  lineItem.Rate ?? 0;
+						orderInfo.tabbingFee =  lineItem.Rate ?? 0;
 					}
 				}
 			}
