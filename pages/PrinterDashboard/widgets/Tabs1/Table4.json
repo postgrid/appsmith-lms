@@ -166,6 +166,7 @@
     "textSize": "0.875rem",
     "widgetId": "05f7hstxeu",
     "allowAddNewRow": true,
+    "enableServerSideFiltering": false,
     "minWidth": 450,
     "tableData": "",
     "label": "Data",
