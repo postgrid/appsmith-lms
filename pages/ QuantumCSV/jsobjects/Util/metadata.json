@@ -1,0 +1,24 @@
+{
+  "unpublishedCollection": {
+    "name": "Util",
+    "pageId": " QuantumCSV",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "actions": [],
+    "archivedActions": [],
+    "variables": [
+      {
+        "name": "PRINTER_SPECIAL_LETTER_CLIENTS",
+        "value": "{\n  AtoB: {\n    file: () => 'CustomEnvelope_Color_SS_AtoB',\n    folder: () => 'CustomEnvelope_Color_SS_AtoB'\n  },\n  'Highland Health Direct': {\n    file: () => 'FC_BW_SS_FFW_HighlandHealthDirect',\n    folder: () => 'FC_BW_SS_FFW_HighlandHealthDirect'\n  },\n  Clek: {\n    file: () => 'CustomEnvelope_BW_DS_Clek',\n    folder: () => 'CustomEnvelope_BW_DS_Clek'\n  },\n  'Pearl Health': {\n    file: () => 'FC_BW_DS_PearlHealth',\n    folder: () => 'FC_BW_DS_PearlHealth'\n  },\n  'Accompany Health Inc': {\n    file: order => Util.generateCustomEnvelopeDetails(order, 'AccompanyHealthInc'),\n    folder: order => Util.generateCustomEnvelopeDetails(order, 'AccompanyHealthInc')\n  },\n  RazorMetrics: {\n    file: order => Util.generateCustomEnvelopeDetails(order, 'RazorMetric'),\n    folder: order => Util.generateCustomEnvelopeDetails(order, 'RazorMetric')\n  },\n  Defendify: {\n    file: order => Util.generateCustomEnvelopeDetails(order, 'Defendify'),\n    folder: order => Util.generateCustomEnvelopeDetails(order, 'Defendify')\n  },\n  Enter: {\n    file: order => Util.generateCustomEnvelopeDetails(order, 'EnterHealth'),\n    folder: order => Util.generateCustomEnvelopeDetails(order, 'EnterHealth')\n  },\n  'Credit Glory Inc': {\n    file: order => Util.generateCustomEnvelopeDetails(order, 'CreditGlory'),\n    folder: order => Util.generateCustomEnvelopeDetails(order, 'CreditGlory')\n  },\n  'Credit Sage LLC': {\n    file: order => Util.generateCustomEnvelopeDetails(order, 'CreditSage'),\n    folder: order => Util.generateCustomEnvelopeDetails(order, 'CreditSage')\n  },\n  AnsibleHealth: {\n    file: order => Util.generateCustomEnvelopeDetails(order, 'AnsibleHealth'),\n    folder: order => Util.generateCustomEnvelopeDetails(order, 'AnsibleHealth')\n  }\n}"
+      },
+      {
+        "name": "PRINTER_SPECIAL_RETURN_ENVELOPES",
+        "value": "{\n  return_envelope_sxNVDhNFwREC3DWg9VCFHw: 'Titanvest_ReturnEnvelope',\n  return_envelope_vesZZ3Xe5XfPeeArizdTDr: 'MyDMeDoc_ReturnEnvelope',\n  return_envelope_fk8b7Zzgn8ReB7AZSea6xd: 'Newgent_ReturnEnvelope',\n  return_envelope_aDv4CCz3mL9qhvQFFHuaUK: 'OttLawFirm_ReturnEnvelope',\n  return_envelope_rvodu5mkpkHy2CEh33iKVE: 'OctopusEnergy_ReturnEnvelope',\n  return_envelope_1PZgt4TraeTCn7rkeajzKb: 'MedxServicesInc_ReturnEnvelope',\n  return_envelope_vGabY569VBDwfA36RcBqFr: 'SwyftConnect_Previous',\n  return_envelope_fMi8JJ3ijRPjkW1vKaXzEt: 'SwyftConnect',\n  return_envelope_mkG3NHTZZUnaz6jahkJRX5: 'BridgingCare_ReturnEnvelope',\n  return_envelope_9KgsgkKFe5YYuT2QLuZbdq: 'SylvanHealth_ReturnEnvelope',\n  return_envelope_bcp8aBYRMfj3whMbujzgrh: 'LumataHealth_ReturnEnvelope',\n  return_envelope_9pYHUhvXvskMGTWC62vQfE: 'VyncaCare_ReturnEnvelope',\n  return_envelope_v6PXxXjihDy4RwMKNyPcn1: 'Somos_ReturnEnvelope',\n  return_envelope_88rHHgyVvfXnGhsqYR8vxv: 'BlueAlley_ReturnEnvelope'\n}"
+      }
+    ],
+    "userPermissions": []
+  },
+  "id": " QuantumCSV_Util",
+  "deleted": false,
+  "gitSyncId": "657b27b726b111462287ae3b_657b29b126b111462287b026"
+}
