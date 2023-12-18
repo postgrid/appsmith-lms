@@ -18,7 +18,8 @@
         {"key": "menuItems.menuItem2.onClick"},
         {"key": "menuItems.menuItemgcx5eam3xh.onClick"},
         {"key": "menuItems.menuItem99wwdrp04b.onClick"},
-        {"key": "menuItems.menuItemzq5rpz4h4c.onClick"}
+        {"key": "menuItems.menuItemzq5rpz4h4c.onClick"},
+        {"key": "menuItems.menuItem6m7gpbv1gs.onClick"}
     ],
     "leftColumn": 12,
     "dynamicBindingPathList": [{"key": "borderRadius"}],
@@ -74,6 +75,15 @@
             "id": "menuItem2",
             "isVisible": true,
             "isDisabled": false
+        },
+        "menuItem6m7gpbv1gs": {
+            "onClick": "{{navigateTo(' QuantumCSV', {}, 'SAME_WINDOW');}}",
+            "widgetId": "97nfmmhgnc",
+            "index": 6,
+            "id": "menuItem6m7gpbv1gs",
+            "label": "Quantum CSV",
+            "isDisabled": false,
+            "isVisible": true
         },
         "menuItem99wwdrp04b": {
             "onClick": "{{navigateTo('OrderEmailDrafting', {}, 'SAME_WINDOW');}}",
