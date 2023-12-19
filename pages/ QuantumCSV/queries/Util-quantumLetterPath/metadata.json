@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "logOut",
-    "fullyQualifiedName": "Auth.logOut",
+    "name": "quantumLetterPath",
+    "fullyQualifiedName": "Util.quantumLetterPath",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -13,15 +13,21 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "App",
-    "collectionId": "App_Auth",
+    "pageId": " QuantumCSV",
+    "collectionId": " QuantumCSV_Util",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
-      "isAsync": true
+      "jsArguments": [
+        {
+          "name": "orgNames"
+        },
+        {
+          "name": "orderGroup"
+        }
+      ]
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -37,7 +43,7 @@
     "policies": [],
     "userPermissions": []
   },
-  "id": "App_Auth.logOut",
+  "id": " QuantumCSV_Util.quantumLetterPath",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_63b3c2090bc0a80b30018b62"
+  "gitSyncId": "657b27b726b111462287ae3b_657c5f10c8356e4ca12ccc9c"
 }

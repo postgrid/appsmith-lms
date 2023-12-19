@@ -1,0 +1,6 @@
+SELECT 
+	pl."Id", pl."OrderGroupID"
+FROM "PrinterLineItems" as pl
+INNER JOIN "Invoice" as i ON pl."InvoiceID" = i."InvoiceID"
+WHERE to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') >= '{{moment(this.params.date).format('YYYY-MM-DD')}}'
+    AND to_date(cast(i."InvoiceDate" as TEXT), 'YYYY-MM-DD') <= '{{moment(this.params.date).add(1, "days").format('YYYY-MM-DD')}}' AND pl."SubItemID" IS NULL AND pl."Printer" = 'Quantum Group' ;

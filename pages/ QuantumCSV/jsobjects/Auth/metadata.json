@@ -1,0 +1,15 @@
+{
+  "unpublishedCollection": {
+    "name": "Auth",
+    "pageId": " QuantumCSV",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "actions": [],
+    "archivedActions": [],
+    "variables": [],
+    "userPermissions": []
+  },
+  "id": " QuantumCSV_Auth",
+  "deleted": false,
+  "gitSyncId": "657b27b726b111462287ae3b_657b29b126b111462287b022"
+}

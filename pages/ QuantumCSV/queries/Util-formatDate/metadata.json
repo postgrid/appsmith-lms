@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "synchronize",
-    "fullyQualifiedName": "Util.synchronize",
+    "name": "formatDate",
+    "fullyQualifiedName": "Util.formatDate",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -13,15 +13,18 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "App",
-    "collectionId": "App_Util",
+    "pageId": " QuantumCSV",
+    "collectionId": " QuantumCSV_Util",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
-      "isAsync": true
+      "jsArguments": [
+        {
+          "name": "date"
+        }
+      ]
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -32,12 +35,12 @@
     "isValid": true,
     "invalids": [],
     "messages": [],
-    "userSetOnLoad": true,
+    "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
     "userPermissions": []
   },
-  "id": "App_Util.synchronize",
+  "id": " QuantumCSV_Util.formatDate",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_63ffc6842127687553737892"
+  "gitSyncId": "657b27b726b111462287ae3b_657c5f10c8356e4ca12ccca0"
 }

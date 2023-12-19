@@ -2,8 +2,8 @@
   "pluginType": "JS",
   "pluginId": "js-plugin",
   "unpublishedAction": {
-    "name": "changePassword",
-    "fullyQualifiedName": "Auth.changePassword",
+    "name": "quantumPostcardPath",
+    "fullyQualifiedName": "Util.quantumPostcardPath",
     "datasource": {
       "name": "UNUSED_DATASOURCE",
       "pluginId": "js-plugin",
@@ -13,15 +13,18 @@
       "policies": [],
       "userPermissions": []
     },
-    "pageId": "App",
-    "collectionId": "App_Auth",
+    "pageId": " QuantumCSV",
+    "collectionId": " QuantumCSV_Util",
     "actionConfiguration": {
       "timeoutInMillisecond": 10000,
       "paginationType": "NONE",
       "encodeParamsToggle": true,
       "selfReferencingDataPaths": [],
-      "jsArguments": [],
-      "isAsync": true
+      "jsArguments": [
+        {
+          "name": "orderGroup"
+        }
+      ]
     },
     "executeOnLoad": false,
     "dynamicBindingPathList": [
@@ -35,9 +38,10 @@
     "userSetOnLoad": false,
     "confirmBeforeExecute": false,
     "policies": [],
-    "userPermissions": []
+    "userPermissions": [],
+    "createdAt": "2023-12-15T14:13:36Z"
   },
-  "id": "App_Auth.changePassword",
+  "id": " QuantumCSV_Util.quantumPostcardPath",
   "deleted": false,
-  "gitSyncId": "63b393c7f276cd0745e9510c_6401a0bc2127687553739be1"
+  "gitSyncId": "657b27b726b111462287ae3b_657c5f10c8356e4ca12cccac"
 }
